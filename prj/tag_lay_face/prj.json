@@ -1,0 +1,17 @@
+{
+	"save_ns": "skynovel.uc",
+	"search": ["mat","face"],
+	"window": {
+		"width": 750,
+		"height": 500
+	},
+	"debug"	: {
+		"devtool"		: true,
+		"token"			: false,
+		"tag"			: false,
+		"putCh"			: false,
+		"slideBaseSpan"	: false,
+		"baseTx"		: false,
+		"masume"		: false
+	}
+}

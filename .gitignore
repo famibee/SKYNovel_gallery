@@ -8,6 +8,11 @@ app/index.js
 build/skynovel*
 build/cordova
 
+# gallery、famibeeの作業中なので公開してないが、いずれは無くして公開していきたい
+prj/3d_f*
+prj/3d_m*
+prj/glsl_/
+
 # Node.js Tools
 node_modules/
 

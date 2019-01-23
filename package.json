@@ -1,7 +1,7 @@
 {
 	"name": "gallery",
 	"version": "1.0.0",
-	"description": "Novelgame(Tate-gaki) sample project",
+	"description": "What can SKYNovel do? sample project",
 	"main": "app.js",
 	"appBundleId": "com.fc2.blog.famibee.gallery",
 	"appCopyright": "(c)famibee",
@@ -9,12 +9,12 @@
 	"license": "MIT",
 	"dependencies": {
 		"humane-js": "^3.2.2",
-		"skynovel": "^0.1.8"
+		"skynovel": "file:../npm_core"
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.18",
 		"css-loader": "^2.1.0",
-		"electron": "^4.0.1",
+		"electron": "^4.0.2",
 		"electron-installer-dmg": "^2.0.0",
 		"electron-packager": "^13.0.1",
 		"electron-winstaller": "^2.7.0",
