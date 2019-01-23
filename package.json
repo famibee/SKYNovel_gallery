@@ -8,11 +8,12 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"humane-js": "^3.2.2",
-		"skynovel": "file:../npm_core"
+		"skynovel": "file:../npm_core",
+		"three": "^0.100.0"
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.18",
+		"@types/three": "^0.93.16",
 		"css-loader": "^2.1.0",
 		"electron": "^4.0.2",
 		"electron-installer-dmg": "^2.0.0",
@@ -20,11 +21,14 @@
 		"electron-winstaller": "^2.7.0",
 		"imagemin-webpack-plugin": "^2.4.0",
 		"style-loader": "^0.23.1",
+		"typescript": "^3.2.4",
 		"webpack": "^4.29.0",
 		"webpack-cli": "^3.2.1",
 		"webpack-dev-server": "^3.1.14"
 	},
 	"scripts": {
+		"plg": "tsc -p core/plugin/",
+		"plg:w": "tsc -p core/plugin/ -w & npm run watch:wds",
 		"install": "npm run webpack:dev",
 		"start": "electron ./",
 		"web": "npm run watch:wds",

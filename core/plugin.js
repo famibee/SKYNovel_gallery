@@ -1,3 +1,3 @@
 export default {
-	"humane": 0
+	"3d_layer": 0
 };
