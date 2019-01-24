@@ -10,7 +10,7 @@
 
 [button text=pause left=240 top=120 page=fore label=*pause global=true call=true fill_hover=tomato]
 [button text=resume left=240 top=160 page=fore label=*resume global=true call=true fill_hover=tomato]
-[button text=MouseOn.. left=240 top=200 page=fore onenter=*pause onleave=*resume global=true call=true fill_hover=tomato]
+[button text=MouseOn.. left=240 top=200 page=fore label=*resume onenter=*pause onleave=*resume global=true call=true fill_hover=tomato]
 
 
 *loop
