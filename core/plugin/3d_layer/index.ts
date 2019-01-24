@@ -15,6 +15,8 @@ exports.init = (plgArg: IPluginInitArg)=> {
 		(window as any).THREE = ThreeDLayer.THREE;	// 次のrequireで必須なので
 		require('three/examples/js/controls/OrbitControls');
 
-		plgArg.addLayCls('3d', ()=> new ThreeDLayer);
+		//plgArg.addLayCls('3d', ()=> new ThreeDLayer);
+		// なぜか「type is missing the following properties ...」になるので any 逃げ
+		plgArg.addLayCls('3d', ()=> {const l: any = new ThreeDLayer; return l});
 	})();
 };
