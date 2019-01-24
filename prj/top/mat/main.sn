@@ -6,8 +6,8 @@
 　𩸽《ほっけ》なルビや[tcy t="451" r=縦中横][tcy t="蓬莱" r=551]、👺《てんぐ》など絵文字も。[r]
 　文字修飾は[span style='color: tomato;']CSS Style[span]で指定。[span style='font-size: 40px;']	🌈[span][r]
 　[span style='font-family: my_himajihoso; color: skyblue;']フォント[span]も自由に変更。[r]
-　スプライトシートも簡単に作れ、インライン表示[graph pic=sankaku]する事も。[r]
 [r][r][r][r][r][r][r]
+　スプライトシートも簡単に作れ、インライン表示[graph pic=sankaku]する事も。[r]
 　[link label=*目を輝かせる global=true call=true]文字リンク[endlink]を押すと柊《ひいらぎ》さんが目を輝かせます。[r]
 　クリックでアニメを止めないまま[ch text='[trans]']します。
 [l][clear_text]
