@@ -13,10 +13,11 @@
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.18",
-		"@types/three": "^0.93.16",
+		"@types/three": "^0.93.18",
 		"css-loader": "^2.1.0",
 		"electron": "^4.0.2",
 		"electron-builder": "^20.38.5",
+		"imagemin-webpack-plugin": "^2.4.0",
 		"style-loader": "^0.23.1",
 		"typescript": "^3.2.4",
 		"webpack": "^4.29.0",
