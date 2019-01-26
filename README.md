@@ -44,7 +44,7 @@ SKYNovelにはどんな事ができるのか？　というサンプルをまと
 ### タスクの説明
 - npm start ... Electronでアプリとして起動します。
 - npm web ... ローカルサーバーを起動し、ブラウザ版を起動できます。
-- npm build ... アプリパッケージを作成します。（制作中）
+- npm pack:win ... アプリパッケージを作成します。（Macなら pack:mac）
 
 ## License ... [MIT](LICENSE)
 
