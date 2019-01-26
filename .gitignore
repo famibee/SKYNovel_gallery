@@ -5,7 +5,10 @@
 app/index.js
 
 # Build results
-build/skynovel*
+build/*.yaml
+build/*.yml
+build/mac
+build/gallery*
 build/cordova
 
 # gallery、famibeeの作業中なので公開してないが、いずれは無くして公開していきたい
