@@ -13,6 +13,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^10.12.21",
+		"@types/pixi.js": "^4.8.6",
 		"@types/three": "^0.93.19",
 		"css-loader": "^2.1.0",
 		"electron": "^4.0.4",
