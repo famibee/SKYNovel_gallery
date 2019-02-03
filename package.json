@@ -8,18 +8,18 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"skynovel": "^0.1.12",
-		"three": "^0.100.0"
+		"skynovel": "file:../npm_core",
+		"three": "^0.101.1"
 	},
 	"devDependencies": {
-		"@types/node": "^10.12.18",
-		"@types/three": "^0.93.18",
+		"@types/node": "^10.12.21",
+		"@types/three": "^0.93.19",
 		"css-loader": "^2.1.0",
-		"electron": "^4.0.2",
+		"electron": "^4.0.4",
 		"electron-builder": "^20.38.5",
 		"imagemin-webpack-plugin": "^2.4.0",
 		"style-loader": "^0.23.1",
-		"typescript": "^3.2.4",
+		"typescript": "^3.3.1",
 		"webpack": "^4.29.0",
 		"webpack-cli": "^3.2.1",
 		"webpack-dev-server": "^3.1.14"
@@ -32,7 +32,7 @@
 		"web": "npm run watch:wds",
 		"webpack:dev": "webpack --mode development --config ./core/webpack.config.js",
 		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
-		"watch:wds": "webpack-dev-server --mode development --config ./core/wds.config.js",
+		"watch:wds": "webpack-dev-server --config ./core/wds.config.js",
 		"npm_check_updates": "ncu",
 		"npm_check_updates -g": "ncu -g",
 		"npm_check_updates_do": "ncu -a && npm update && npm i -D",
@@ -87,6 +87,10 @@
 			"category": "Network"
 		}
 	},
+	"keywords": [
+		"sample",
+		"skynovel"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com:famibee/SKYNovel_gallery.git"

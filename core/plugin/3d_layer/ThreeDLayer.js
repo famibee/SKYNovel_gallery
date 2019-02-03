@@ -69,7 +69,8 @@ class ThreeDLayer extends Layer {
             };
         }
         if ('controls' in hArg) {
-            const controls = new ThreeDLayer.THREE.OrbitControls(this.camera);
+            const elm = document.getElementById('skynovel');
+            const controls = new ThreeDLayer.THREE.OrbitControls(this.camera, elm);
             controls.target.set(this.camera.position.x + 0.15, this.camera.position.y, this.camera.position.z);
             controls.enableDamping = true;
             controls.dampingFactor = 0.2;

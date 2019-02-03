@@ -7,7 +7,6 @@
 
 const Layer_1 = require('skynovel/core/lib/sn/Layer');
 const Layer = Layer_1.Layer;
-//	console.log(`fn:index.ts line:26 Layer:%o`, Layer);
 const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
 const CmnLib = CmnLib_1.CmnLib;
 
@@ -201,7 +200,8 @@ console.log(`fn:ThreeDLayer.ts line:76 load:%o:`, obj);
 		}
 
 		if ('controls' in hArg) {
-			const controls = new ThreeDLayer.THREE.OrbitControls(this.camera);
+			const elm = document.getElementById('skynovel');
+			const controls = new ThreeDLayer.THREE.OrbitControls(this.camera, elm);
 			controls.target.set(
 				this.camera.position.x + 0.15,
 				this.camera.position.y,
