@@ -10,6 +10,8 @@ module.exports = {
 	devServer: {
 		contentBase: './',
 		port: 8081,
+		openPage: 'web.htm',
+		watchContentBase: true,
 		open: true,
 		headers: {
 			// 'Access-Control-Allow-Origin': '*'	//--いまのとこ不要
