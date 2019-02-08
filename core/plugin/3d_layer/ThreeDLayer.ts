@@ -10,12 +10,12 @@ const Layer = Layer_1.Layer;
 const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
 const CmnLib = CmnLib_1.CmnLib;
 
-import {HArg} from 'skynovel';
+import {HArg, IPluginInitArg} from 'skynovel';
 
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 
 export class ThreeDLayer extends Layer {
-	static	searchPath	: any;
+	static	plgArg	: IPluginInitArg;
 
 	static	THREE		: any;
 	private scene_3D	: THREE.Scene;
@@ -169,7 +169,7 @@ console.log(`fn:ThreeDLayer.ts line:76 load:%o:`, obj);
 			const geometry = new ThreeDLayer.THREE.SphereGeometry(5, 60, 40);
 			geometry.scale(-1, 1, 1);
 			const ldr = new ThreeDLayer.THREE.TextureLoader();
-			const tx = ldr.load(ThreeDLayer.searchPath(celestial_sphere, EXT_STILL_IMG));
+			const tx = ldr.load(ThreeDLayer.plgArg.searchPath(celestial_sphere, EXT_STILL_IMG));
 			tx.minFilter = ThreeDLayer.THREE.LinearFilter;
 			const material = new ThreeDLayer.THREE.MeshBasicMaterial({map: tx});
 			const obj = new ThreeDLayer.THREE.Mesh(geometry, material);

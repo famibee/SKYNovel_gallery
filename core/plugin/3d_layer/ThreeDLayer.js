@@ -45,7 +45,7 @@ class ThreeDLayer extends Layer {
             const geometry = new ThreeDLayer.THREE.SphereGeometry(5, 60, 40);
             geometry.scale(-1, 1, 1);
             const ldr = new ThreeDLayer.THREE.TextureLoader();
-            const tx = ldr.load(ThreeDLayer.searchPath(celestial_sphere, EXT_STILL_IMG));
+            const tx = ldr.load(ThreeDLayer.plgArg.searchPath(celestial_sphere, EXT_STILL_IMG));
             tx.minFilter = ThreeDLayer.THREE.LinearFilter;
             const material = new ThreeDLayer.THREE.MeshBasicMaterial({ map: tx });
             const obj = new ThreeDLayer.THREE.Mesh(geometry, material);

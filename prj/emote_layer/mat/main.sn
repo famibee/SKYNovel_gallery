@@ -1,22 +1,138 @@
-[title text='えもふりレイヤ（実験機能）'][call label=*init]
+[title text='えもふりレイヤ'][call label=*init]
 
 [add_lay layer=bg class=grp]
 	[lay layer=bg fn=bg]
-
 [add_lay layer=emote class=emote]
 [add_lay layer=mes class=txt]
+	[lay layer=mes b_color=0xFFFFFF b_alpha=0.3 left=16 top=350 style="width: 718px; height: 140px; padding-top: 24x; padding-left: 8px; padding-right: 8px; color: black;"]
+[add_lay layer=btn class=txt]
+	[button layer=btn text=初期化 left=20 top=20 page=fore label=*初期化 global=true call=true fill_hover=tomato]
+	[button layer=btn text=喜ぶ02 left=20 top=60 page=fore label=*喜ぶ02 global=true call=true fill_hover=tomato]
+	[button layer=btn text=怒る01 left=20 top=100 page=fore label=*怒る01 global=true call=true fill_hover=tomato]
+	[button layer=btn text=哀しい01 left=20 top=140 page=fore label=*哀しい01 global=true call=true fill_hover=tomato]
+	[button layer=btn text=頬染め00 left=20 top=180 page=fore label=*頬染め00 global=true call=true fill_hover=tomato]
+	[button layer=btn text=驚き02 left=20 top=220 page=fore label=*驚き02 global=true call=true fill_hover=tomato]
+	[button layer=btn text=困る00 left=20 top=260 page=fore label=*困る00 global=true call=true fill_hover=tomato]
+	[button layer=btn text=うつむき left=20 top=300 page=fore label=*うつむき global=true call=true fill_hover=tomato]
 
-	[lay layer=emote fn=emote_test2]
+	[button layer=btn text=うんうん left=140 top=20 page=fore label=*うんうん global=true call=true fill_hover=tomato]
+	[button layer=btn text='　ok　' left=140 top=60 page=fore label=*ok global=true call=true fill_hover=tomato]
+	[button layer=btn text=いやいや2 left=140 top=100 page=fore label=*いやいや2 global=true call=true fill_hover=tomato]
+	[button layer=btn text=疑問 left=140 top=140 page=fore label=*疑問 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_驚00 left=140 top=180 page=fore label=*sample_驚00 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_驚01 left=140 top=220 page=fore label=*sample_驚01 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_驚02 left=140 top=260 page=fore label=*sample_驚02 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_驚03 left=140 top=300 page=fore label=*sample_驚03 global=true call=true fill_hover=tomato]
 
-	　えもふりレイヤ（実験機能）
-[s]
+	[button layer=btn text=sample_喜00 left=520 top=20 page=fore label=*sample_喜00 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_喜01 left=520 top=60 page=fore label=*sample_喜01 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_喜02 left=520 top=100 page=fore label=*sample_喜02 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_喜03 left=520 top=140 page=fore label=*sample_喜03 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_楽00 left=520 top=180 page=fore label=*sample_楽00 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_楽01 left=520 top=220 page=fore label=*sample_楽01 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_楽02 left=520 top=260 page=fore label=*sample_楽02 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_楽03 left=520 top=300 page=fore label=*sample_楽03 global=true call=true fill_hover=tomato]
+
+	[button layer=btn text=sample_哀00 left=640 top=20 page=fore label=*sample_哀00 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_哀01 left=640 top=60 page=fore label=*sample_哀01 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_哀02 left=640 top=100 page=fore label=*sample_哀02 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_哀03 left=640 top=140 page=fore label=*sample_哀03 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_怒00 left=640 top=180 page=fore label=*sample_怒00 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_怒01 left=640 top=220 page=fore label=*sample_怒01 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_怒02 left=640 top=260 page=fore label=*sample_怒02 global=true call=true fill_hover=tomato]
+	[button layer=btn text=sample_怒03 left=640 top=300 page=fore label=*sample_怒03 global=true call=true fill_hover=tomato]
+
+
+	[lay layer=emote fn=emote_test2 scale=0.5]
+ロード完了[l][r]
+
+*loop
+	[lay layer=emote label=sample_全自動_test]
+全自動_test[l][er]
+
+[jump label=*loop]
+
+*初期化
+[lay layer=emote label=初期化][return]
+*喜ぶ02
+[lay layer=emote label=喜ぶ02][return]
+*怒る01
+[lay layer=emote label=怒る01][return]
+*哀しい01
+[lay layer=emote label=哀しい01][return]
+*頬染め00
+[lay layer=emote label=頬染め00][return]
+*驚き02
+[lay layer=emote label=驚き02][return]
+*困る00
+[lay layer=emote label=困る00][return]
+*うつむき
+[lay layer=emote label=うつむき][return]
+
+*うんうん
+[lay layer=emote label=うんうん][return]
+*ok
+[lay layer=emote label=ok][return]
+*いやいや2
+[lay layer=emote label=いやいや2][return]
+*疑問
+[lay layer=emote label=疑問][return]
+*sample_驚00
+[lay layer=emote label=sample_驚00][return]
+*sample_驚01
+[lay layer=emote label=sample_驚01][return]
+*sample_驚02
+[lay layer=emote label=sample_驚02][return]
+*sample_驚03
+[lay layer=emote label=sample_驚03][return]
+
+*sample_哀00
+[lay layer=emote label=sample_哀00][return]
+*sample_哀01
+[lay layer=emote label=sample_哀01][return]
+*sample_哀02
+[lay layer=emote label=sample_哀02][return]
+*sample_哀03
+[lay layer=emote label=sample_哀03][return]
+*sample_楽00
+[lay layer=emote label=sample_楽00][return]
+*sample_楽01
+[lay layer=emote label=sample_楽01][return]
+*sample_楽02
+[lay layer=emote label=sample_楽02][return]
+*sample_楽03
+[lay layer=emote label=sample_楽03][return]
+
+*sample_喜00
+[lay layer=emote label=sample_喜00][return]
+*sample_喜01
+[lay layer=emote label=sample_喜01][return]
+*sample_喜02
+[lay layer=emote label=sample_喜02][return]
+*sample_喜03
+[lay layer=emote label=sample_喜03][return]
+*sample_怒00
+[lay layer=emote label=sample_怒00][return]
+*sample_怒01
+[lay layer=emote label=sample_怒01][return]
+*sample_怒02
+[lay layer=emote label=sample_怒02][return]
+*sample_怒03
+[lay layer=emote label=sample_怒03][return]
 
 
 *init
 	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
 	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
 	[toggle_full_screen key=w]	; for browser
+	[event global=true call=true key=F8 label=*dump]
 [return]
 
 *snapshot
 [snapshot fn=pic][return]
+
+*dump
+	[dump_lay]
+;	[dump_val]
+;	[dump_stack]
+[return]

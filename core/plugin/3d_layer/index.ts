@@ -9,7 +9,7 @@ import {IPluginInitArg} from 'skynovel';
 import {ThreeDLayer} from './ThreeDLayer';
 
 exports.init = (plgArg: IPluginInitArg)=> {
-	ThreeDLayer.searchPath = plgArg.searchPath;
+	ThreeDLayer.plgArg = plgArg;
 	(async ()=> {
 		ThreeDLayer.THREE = await import('three');
 		(window as any).THREE = ThreeDLayer.THREE;	// 次のrequireで必須なので

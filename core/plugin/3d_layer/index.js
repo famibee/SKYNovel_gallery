@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const ThreeDLayer_1 = require("./ThreeDLayer");
 exports.init = (plgArg) => {
-    ThreeDLayer_1.ThreeDLayer.searchPath = plgArg.searchPath;
+    ThreeDLayer_1.ThreeDLayer.plgArg = plgArg;
     (async () => {
         ThreeDLayer_1.ThreeDLayer.THREE = await Promise.resolve().then(() => require('three'));
         window.THREE = ThreeDLayer_1.ThreeDLayer.THREE;
