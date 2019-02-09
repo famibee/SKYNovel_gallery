@@ -13,10 +13,11 @@ const CmnLib = CmnLib_1.CmnLib;
 import {HArg, IPluginInitArg} from 'skynovel';
 //import { EmotePlayer } from "./EmotePlayer";
 
-let uniq_num = 0;
-
 export class EmoteLayer extends Layer {
 	static	plgArg	: IPluginInitArg;
+	private	static	uniq_num = 0;
+
+	private	static	initedEMote = false;
 
 	private rt		: PIXI.RenderTexture;
 
@@ -35,45 +36,48 @@ export class EmoteLayer extends Layer {
 		const w = Number(EmoteLayer.plgArg.getVal('const.sn.config.window.width'));
 		const h = Number(EmoteLayer.plgArg.getVal('const.sn.config.window.height'));
 
+		if (! EmoteLayer.initedEMote) {
+			EmoteLayer.initedEMote = true;
+			EmotePlayer.createRenderCanvas(w, h);
+		}
+		if (EmoteLayer.uniq_num++ % 2 == 1) return;
+
 		this.rt = PIXI.RenderTexture.create(w, h);
 		this.cnt.addChild(new PIXI.Sprite(this.rt));
 
 		this.cvs = document.createElement('canvas');
-		this.cvs.id = `emote:${uniq_num++}`;
+		this.cvs.id = `emote:${EmoteLayer.uniq_num}`;
 		this.cvs.width = w;
 		this.cvs.height = h;
 		this.cvs.hidden = true;
 		const cvsSN = document.getElementById('skynovel') as HTMLCanvasElement;
 		cvsSN.parentElement!.appendChild(this.cvs);
-
-		EmotePlayer.createRenderCanvas(w, h);
 		this.player = new EmotePlayer(this.cvs);
 	}
-	private fncTick = ()=> false;
-	private tick = ()=> {if (this.fncTick()) requestAnimationFrame(this.tick)};
-	private startTick() {
-		this.fncTick = ()=> {
-//			if (this.player)
-			EmoteLayer.plgArg.render(new PIXI.Sprite(
-				new PIXI.Texture(new PIXI.BaseTexture(this.cvs))
-			), this.rt, true);
-			return true;
-		};
-		requestAnimationFrame(this.tick);
-	}
+	private sp = new PIXI.Sprite;
 
 	lay(hArg: HArg, fncComp?: ()=> void): boolean {
 		super.lay(hArg);
+		if (! this.player) return false;
 
 		const fn = hArg.fn;
 		if (fn) {
 			const a = {...hArg};
 			delete a.fn;
+			this.state.fn = fn;
+//			this.player.onUpdate = ()=> requestAnimationFrame(()=> {
+			this.player.onUpdate = ()=> {
+//				if (! this.player) return;
+//				if (! this.player.canvas) return;
+
+				this.sp.texture.destroy();
+				this.sp.texture = new PIXI.Texture(new PIXI.BaseTexture(this.cvs));
+				EmoteLayer.plgArg.render(this.sp, this.rt, true);
+//			});
+			};
 			this.player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(fn, 'emtbytes_|emtbytes'))
 			.then(()=> {
-				this.state.fn = fn;
 				this.lay(a, fncComp);
-				this.startTick();
 				EmoteLayer.plgArg.resume(fncComp);
 			});
 			return true;
@@ -88,7 +92,7 @@ export class EmoteLayer extends Layer {
 
 	clearLay(hArg: HArg): void {
 		super.clearLay(hArg);
-		this.fncTick = ()=> false;
+
 		if (this.player) {this.player.unloadData(); this.player = null;}
 		this.state	= {
 			fn		: '',
@@ -103,7 +107,12 @@ export class EmoteLayer extends Layer {
 	}
 
 	destroy() {
+		if (! this.player) return;
+
+		this.cvs.parentElement!.removeChild(this.cvs);
+		this.cnt.removeChildren().map((v: PIXI.Sprite)=> v.destroy());
+
 		this.clearLay({});
-//		this.cnt.removeChildren().map((v: PIXI.Sprite)=> v.destroy());
 	}
+
 }
