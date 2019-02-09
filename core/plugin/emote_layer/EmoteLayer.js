@@ -42,11 +42,11 @@ class EmoteLayer extends Layer {
             const a = Object.assign({}, hArg);
             delete a.fn;
             this.state.fn = fn;
-            this.player.onUpdate = () => {
+            this.player.onUpdate = () => requestAnimationFrame(() => {
                 this.sp.texture.destroy();
                 this.sp.texture = new PIXI.Texture(new PIXI.BaseTexture(this.cvs));
                 EmoteLayer.plgArg.render(this.sp, this.rt, true);
-            };
+            });
             this.player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(fn, 'emtbytes_|emtbytes'))
                 .then(() => {
                 this.lay(a, fncComp);
