@@ -11,18 +11,17 @@ const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
 const CmnLib = CmnLib_1.CmnLib;
 
 import {HArg, IPluginInitArg} from 'skynovel';
-//import { EmotePlayer } from "./emoteplayer";
+//import { EmotePlayer } from "./EmotePlayer";
 
 let uniq_num = 0;
 
 export class EmoteLayer extends Layer {
 	static	plgArg	: IPluginInitArg;
 
+	private rt		: PIXI.RenderTexture;
+
 	private cvs		: HTMLCanvasElement;
 	private	player	: any;
-
-	private	sp		: PIXI.Sprite;
-	private rt		: PIXI.RenderTexture;
 
 	private	state	= {
 		fn		: '',
@@ -37,8 +36,7 @@ export class EmoteLayer extends Layer {
 		const h = Number(EmoteLayer.plgArg.getVal('const.sn.config.window.height'));
 
 		this.rt = PIXI.RenderTexture.create(w, h);
-		this.sp = new PIXI.Sprite(this.rt);
-		this.cnt.addChild(this.sp);
+		this.cnt.addChild(new PIXI.Sprite(this.rt));
 
 		this.cvs = document.createElement('canvas');
 		this.cvs.id = `emote:${uniq_num++}`;
@@ -50,17 +48,19 @@ export class EmoteLayer extends Layer {
 
 		EmotePlayer.createRenderCanvas(w, h);
 		this.player = new EmotePlayer(this.cvs);
-
-		const fncTick = ()=> {
+	}
+	private fncTick = ()=> false;
+	private tick = ()=> {if (this.fncTick()) requestAnimationFrame(this.tick)};
+	private startTick() {
+		this.fncTick = ()=> {
+//			if (this.player)
 			EmoteLayer.plgArg.render(new PIXI.Sprite(
 				new PIXI.Texture(new PIXI.BaseTexture(this.cvs))
 			), this.rt, true);
-
-			requestAnimationFrame(fncTick);
+			return true;
 		};
-		this.tick = ()=> requestAnimationFrame(fncTick);
+		requestAnimationFrame(this.tick);
 	}
-	private tick = ()=> {};
 
 	lay(hArg: HArg, fncComp?: ()=> void): boolean {
 		super.lay(hArg);
@@ -73,7 +73,7 @@ export class EmoteLayer extends Layer {
 			.then(()=> {
 				this.state.fn = fn;
 				this.lay(a, fncComp);
-				this.tick();
+				this.startTick();
 				EmoteLayer.plgArg.resume(fncComp);
 			});
 			return true;
@@ -88,7 +88,8 @@ export class EmoteLayer extends Layer {
 
 	clearLay(hArg: HArg): void {
 		super.clearLay(hArg);
-		this.player.unloadData();
+		this.fncTick = ()=> false;
+		if (this.player) {this.player.unloadData(); this.player = null;}
 		this.state	= {
 			fn		: '',
 			scale	: 1,
@@ -99,5 +100,10 @@ export class EmoteLayer extends Layer {
 	playback(hLay: any, fncComp: undefined | {(): void} = undefined): boolean {
 		super.playback(hLay);
 		return this.lay(hLay, fncComp);
+	}
+
+	destroy() {
+		this.clearLay({});
+//		this.cnt.removeChildren().map((v: PIXI.Sprite)=> v.destroy());
 	}
 }

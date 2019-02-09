@@ -13,13 +13,14 @@ class EmoteLayer extends Layer {
             scale: 1,
             label: '',
         };
-        this.tick = () => { };
+        this.fncTick = () => false;
+        this.tick = () => { if (this.fncTick())
+            requestAnimationFrame(this.tick); };
         this.record = () => Object.assign(super.record(), this.state);
         const w = Number(EmoteLayer.plgArg.getVal('const.sn.config.window.width'));
         const h = Number(EmoteLayer.plgArg.getVal('const.sn.config.window.height'));
         this.rt = PIXI.RenderTexture.create(w, h);
-        this.sp = new PIXI.Sprite(this.rt);
-        this.cnt.addChild(this.sp);
+        this.cnt.addChild(new PIXI.Sprite(this.rt));
         this.cvs = document.createElement('canvas');
         this.cvs.id = `emote:${uniq_num++}`;
         this.cvs.width = w;
@@ -29,11 +30,13 @@ class EmoteLayer extends Layer {
         cvsSN.parentElement.appendChild(this.cvs);
         EmotePlayer.createRenderCanvas(w, h);
         this.player = new EmotePlayer(this.cvs);
-        const fncTick = () => {
+    }
+    startTick() {
+        this.fncTick = () => {
             EmoteLayer.plgArg.render(new PIXI.Sprite(new PIXI.Texture(new PIXI.BaseTexture(this.cvs))), this.rt, true);
-            requestAnimationFrame(fncTick);
+            return true;
         };
-        this.tick = () => requestAnimationFrame(fncTick);
+        requestAnimationFrame(this.tick);
     }
     lay(hArg, fncComp) {
         super.lay(hArg);
@@ -45,7 +48,7 @@ class EmoteLayer extends Layer {
                 .then(() => {
                 this.state.fn = fn;
                 this.lay(a, fncComp);
-                this.tick();
+                this.startTick();
                 EmoteLayer.plgArg.resume(fncComp);
             });
             return true;
@@ -60,7 +63,11 @@ class EmoteLayer extends Layer {
     }
     clearLay(hArg) {
         super.clearLay(hArg);
-        this.player.unloadData();
+        this.fncTick = () => false;
+        if (this.player) {
+            this.player.unloadData();
+            this.player = null;
+        }
         this.state = {
             fn: '',
             scale: 1,
@@ -70,6 +77,9 @@ class EmoteLayer extends Layer {
     playback(hLay, fncComp = undefined) {
         super.playback(hLay);
         return this.lay(hLay, fncComp);
+    }
+    destroy() {
+        this.clearLay({});
     }
 }
 exports.EmoteLayer = EmoteLayer;

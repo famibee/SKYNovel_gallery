@@ -12,7 +12,7 @@
 		"three": "^0.101.1"
 	},
 	"devDependencies": {
-		"@types/node": "^10.12.21",
+		"@types/node": "^10.12.24",
 		"@types/pixi.js": "^4.8.6",
 		"@types/three": "^0.93.19",
 		"css-loader": "^2.1.0",
@@ -20,7 +20,7 @@
 		"electron-builder": "^20.38.5",
 		"imagemin-webpack-plugin": "^2.4.1",
 		"style-loader": "^0.23.1",
-		"typescript": "^3.3.1",
+		"typescript": "^3.3.3",
 		"webpack": "^4.29.3",
 		"webpack-cli": "^3.2.3",
 		"webpack-dev-server": "^3.1.14"
