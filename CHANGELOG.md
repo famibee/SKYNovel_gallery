@@ -1,11 +1,13 @@
 # Change Log
 
+## v1.1.4
+- えもふりレイヤプラグイン：Android・iOSのみEmotePlayer.maskMode を STENCIL に
 ## v1.1.3
-- えもふりレイヤプラグイン・requestAnimationFrameをかますように
+- えもふりレイヤプラグイン：requestAnimationFrameをかますように
 ## v1.1.2
-- えもふりレイヤプラグイン・裏ページ無しとする変更
+- えもふりレイヤプラグイン：裏ページ無しとする変更
 ## v1.1.1
-- えもふりレイヤプラグイン・destroy修正
+- えもふりレイヤプラグイン：destroy修正
 ## v1.1.0
 - えもふりレイヤプラグイン追加
 ## v1.0.4

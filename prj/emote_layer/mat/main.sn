@@ -24,6 +24,9 @@
 	[button layer=btn text=sample_驚02 left=140 top=260 page=fore label=*sample_驚02 global=true call=true fill_hover=tomato]
 	[button layer=btn text=sample_驚03 left=140 top=300 page=fore label=*sample_驚03 global=true call=true fill_hover=tomato]
 
+;	[button layer=btn text=【通常】 left=270 top=20 page=fore label=*【通常】 global=true call=true fill_hover=tomato]
+;	[button layer=btn text=【軽量】 left=390 top=20 page=fore label=*【軽量】 global=true call=true fill_hover=tomato]
+
 	[button layer=btn text=sample_喜00 left=520 top=20 page=fore label=*sample_喜00 global=true call=true fill_hover=tomato]
 	[button layer=btn text=sample_喜01 left=520 top=60 page=fore label=*sample_喜01 global=true call=true fill_hover=tomato]
 	[button layer=btn text=sample_喜02 left=520 top=100 page=fore label=*sample_喜02 global=true call=true fill_hover=tomato]
@@ -86,6 +89,11 @@
 *sample_驚03
 [lay layer=emote label=sample_驚03][return]
 
+;*【通常】
+;[lay layer=emote light=false][return]
+;*【軽量】
+;[lay layer=emote light=true][return]
+
 *sample_哀00
 [lay layer=emote label=sample_哀00][return]
 *sample_哀01
@@ -126,6 +134,8 @@
 	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
 	[toggle_full_screen key=w]	; for browser
 	[event global=true call=true key=F8 label=*dump]
+
+	[event global=true call=true key=F7 label=*tst]
 [return]
 
 *snapshot
@@ -136,3 +146,6 @@
 ;	[dump_val]
 ;	[dump_stack]
 [return]
+
+*tst
+[lay layer=emote tst=true][return]

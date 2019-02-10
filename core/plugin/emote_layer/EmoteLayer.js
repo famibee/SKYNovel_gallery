@@ -11,12 +11,22 @@ class EmoteLayer extends Layer {
             fn: '',
             scale: 1,
             label: '',
+            grayscale: 1,
+            windSpeed: 0,
+            windPowerMin: 0,
+            windPowerMax: 0,
         };
         this.sp = new PIXI.Sprite;
         this.record = () => Object.assign(super.record(), this.state);
         const w = Number(EmoteLayer.plgArg.getVal('const.sn.config.window.width'));
         const h = Number(EmoteLayer.plgArg.getVal('const.sn.config.window.height'));
         if (!EmoteLayer.initedEMote) {
+            switch (String(EmoteLayer.plgArg.getVal('const.sn.platform.os.family'))) {
+                case 'Android':
+                case 'iOS':
+                    EmotePlayer.maskMode = EmotePlayer.MaskMode.STENCIL;
+                    break;
+            }
             EmoteLayer.initedEMote = true;
             EmotePlayer.createRenderCanvas(w, h);
         }
@@ -43,6 +53,8 @@ class EmoteLayer extends Layer {
             delete a.fn;
             this.state.fn = fn;
             this.player.onUpdate = () => requestAnimationFrame(() => {
+                if (!this.player)
+                    return;
                 this.sp.texture.destroy();
                 this.sp.texture = new PIXI.Texture(new PIXI.BaseTexture(this.cvs));
                 EmoteLayer.plgArg.render(this.sp, this.rt, true);
@@ -60,6 +72,16 @@ class EmoteLayer extends Layer {
             this.state.scale = this.player.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
         if ('label' in hArg)
             this.state.label = this.player.mainTimelineLabel = hArg.label || '';
+        if ('grayscale' in hArg)
+            this.state.grayscale = this.player.grayscale = CmnLib.argChk_Num(hArg, 'grayscale', 0);
+        if ('windSpeed' in hArg)
+            this.state.windSpeed = this.player.windSpeed = CmnLib.argChk_Num(hArg, 'windSpeed', 0);
+        if ('windPowerMin' in hArg)
+            this.state.windPowerMin = this.player.windPowerMin = CmnLib.argChk_Num(hArg, 'windPowerMin', 0);
+        if ('windPowerMax' in hArg)
+            this.state.windPowerMax = this.player.windPowerMax = CmnLib.argChk_Num(hArg, 'windPowerMax', 0);
+        if ('tst' in hArg && this.player) {
+        }
         return false;
     }
     clearLay(hArg) {
@@ -72,6 +94,10 @@ class EmoteLayer extends Layer {
             fn: '',
             scale: 1,
             label: '',
+            grayscale: 1,
+            windSpeed: 0,
+            windPowerMin: 0,
+            windPowerMax: 0,
         };
     }
     playback(hLay, fncComp = undefined) {
