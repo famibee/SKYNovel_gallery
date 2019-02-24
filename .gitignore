@@ -11,6 +11,8 @@ build/mac
 build/gallery*
 build/cordova
 
+Cubism*/
+
 # gallery、famibeeの作業中なので公開してないが、いずれは無くして公開していきたい
 prj/3d_f*
 prj/3d_m*
