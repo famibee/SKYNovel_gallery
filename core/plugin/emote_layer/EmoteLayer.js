@@ -67,7 +67,13 @@ class EmoteLayer extends Layer {
         }
         if (!this.state.fn)
             return false;
+        const old_x = this.cnt.x;
+        const old_y = this.cnt.y;
         Layer.setXY(this.sp, hArg, this.cnt, true);
+        if (old_x != this.cnt.x || old_y != this.cnt.y) {
+            this.cnt.x -= this.rt.width / 2 - 1;
+            this.cnt.y -= this.rt.height - 1;
+        }
         if ('scale' in hArg)
             this.state.scale = this.player.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
         if ('label' in hArg)

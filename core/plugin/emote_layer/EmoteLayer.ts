@@ -92,8 +92,14 @@ export class EmoteLayer extends Layer {
 		}
 		if (! this.state.fn) return false;
 
+		const old_x = this.cnt.x;
+		const old_y = this.cnt.y;
 		Layer.setXY(this.sp, hArg, this.cnt, true);
-		// TODO: width, height 指定で程良い大きさにトリム・処理軽量化
+		if (old_x != this.cnt.x || old_y != this.cnt.y) {
+			this.cnt.x -= this.rt.width /2 -1;
+			this.cnt.y -= this.rt.height -1;
+		}
+		// TODO: width, height 指定で程良い大きさにトリム・処理軽量化したい
 
 		if ('scale' in hArg) this.state.scale = this.player.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
 		if ('label' in hArg) this.state.label = this.player.mainTimelineLabel = hArg.label || '';
