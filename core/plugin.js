@@ -1,1 +1,1 @@
-export default {"3d_layer":0,"emote_layer":0};
+export default {"3d_layer":0,"cubism3_layer":0,"emote_layer":0};

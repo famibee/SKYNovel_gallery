@@ -1,10 +1,16 @@
-[title text='Cubism3レイヤ'][call label=*init]
+[title text='Live2D Cubism3レイヤ'][call label=*init]
 
 [add_lay layer=bg class=grp]
 	[lay layer=bg fn=bg]
 [add_lay layer=cubism3 class=cubism3]
 [add_lay layer=mes class=txt]
 	[lay layer=mes b_color=0xFFFFFF b_alpha=0.3 left=16 top=350 style="width: 718px; height: 140px; padding-top: 24x; padding-left: 8px; padding-right: 8px; color: black;"]
+
+
+	[lay layer=cubism3 id=0 fn=Koharu label=pyoko scale=300]
+[s]
+
+
 [add_lay layer=btn class=txt]
 	[button layer=btn text=初期化 left=20 top=20 page=fore label=*初期化 global=true call=true fill_hover=tomato]
 	[button layer=btn text=喜ぶ02 left=20 top=60 page=fore label=*喜ぶ02 global=true call=true fill_hover=tomato]

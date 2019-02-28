@@ -26,8 +26,8 @@ export class EmoteLayer extends Layer {
 
 	private	state	= {
 		fn			: '',
-		scale		: 1,
 		label		: '',
+		scale		: 1,
 		grayscale	: 1,
 		windSpeed	: 0,
 		windPowerMin: 0,
@@ -38,9 +38,6 @@ export class EmoteLayer extends Layer {
 	constructor() {
 		super();
 
-		const w = Number(EmoteLayer.plgArg.getVal('const.sn.config.window.width'));
-		const h = Number(EmoteLayer.plgArg.getVal('const.sn.config.window.height'));
-
 		if (! EmoteLayer.initedEMote) {
 			switch (String(EmoteLayer.plgArg.getVal('const.sn.platform.os.family'))) {
 				case 'Android':
@@ -50,17 +47,17 @@ export class EmoteLayer extends Layer {
 			//		EmotePlayer.maskMode = EmotePlayer.MaskMode.ALPHA;
 			}
 			EmoteLayer.initedEMote = true;
-			EmotePlayer.createRenderCanvas(w, h);
+			EmotePlayer.createRenderCanvas(CmnLib.stageW, CmnLib.stageH);
 		}
 		if (EmoteLayer.uniq_num++ % 2 == 1) return;
 
-		this.rt = PIXI.RenderTexture.create(w, h);
+		this.rt = PIXI.RenderTexture.create(CmnLib.stageW, CmnLib.stageH);
 		this.cnt.addChild(new PIXI.Sprite(this.rt));
 
 		this.cvs = document.createElement('canvas');
 		this.cvs.id = `emote:${EmoteLayer.uniq_num}`;
-		this.cvs.width = w;
-		this.cvs.height = h;
+		this.cvs.width = CmnLib.stageW;
+		this.cvs.height = CmnLib.stageH;
 		this.cvs.hidden = true;
 		const cvsSN = document.getElementById('skynovel') as HTMLCanvasElement;
 		cvsSN.parentElement!.appendChild(this.cvs);
@@ -77,7 +74,7 @@ export class EmoteLayer extends Layer {
 			const a = {...hArg};
 			delete a.fn;
 			this.state.fn = fn;
-			this.player.onUpdate = ()=> requestAnimationFrame(()=> {
+			this.player.onUpdate = ()=> this.hdl_tick = requestAnimationFrame(()=> {
 				if (! this.player) return;
 //				if (! this.player.canvas) return;
 //				if (this.state.light && this.player.animating) return;
@@ -95,6 +92,9 @@ export class EmoteLayer extends Layer {
 		}
 		if (! this.state.fn) return false;
 
+		Layer.setXY(this.sp, hArg, this.cnt, true);
+		// TODO: width, height 指定で程良い大きさにトリム・処理軽量化
+
 		if ('scale' in hArg) this.state.scale = this.player.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
 		if ('label' in hArg) this.state.label = this.player.mainTimelineLabel = hArg.label || '';
 		if ('grayscale' in hArg) this.state.grayscale = this.player.grayscale = CmnLib.argChk_Num(hArg, 'grayscale', 0);
@@ -103,25 +103,22 @@ export class EmoteLayer extends Layer {
 		if ('windPowerMax' in hArg) this.state.windPowerMax = this.player.windPowerMax = CmnLib.argChk_Num(hArg, 'windPowerMax', 0);
 //		if ('light' in hArg) this.state.light = CmnLib.argChk_Boolean(hArg, 'light', false);
 
-		if ('tst' in hArg && this.player) {
-//console.log(`fn:EmoteLayer.ts line:89 `);
-			//this.player.stopTimeline();	// x
-			//this.player.hide = true;		// err
-//console.log(`fn:EmoteLayer.ts line:102 playingTimelineInfoList:%o`, this.player.playingTimelineInfoList);	// Array, val=[]
-//console.log(`fn:EmoteLayer.ts line:103 apiLog:%o`, this.player.apiLog); // ''
-		}
-
 		return false;
 	}
+	private hdl_tick = 0;
 
 	clearLay(hArg: HArg): void {
 		super.clearLay(hArg);
 
-		if (this.player) {this.player.unloadData(); this.player = null;}
+		if (this.player) {
+			cancelAnimationFrame(this.hdl_tick);
+			this.player.unloadData();
+			this.player = null;
+		}
 		this.state	= {
 			fn		: '',
-			scale	: 1,
 			label	: '',
+			scale	: 1,
 			grayscale	: 1,
 			windSpeed	: 0,
 			windPowerMin: 0,
