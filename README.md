@@ -13,7 +13,7 @@
 ## description（説明）
 
 SKYNovelにはどんな事ができるのか？　というサンプルをまとめたプロジェクトです。
-[ブラウザから直接動かせるサンプル](https://famibee.github.io/SKYNovel_gallery/index.html)があります。
+- [ブラウザから直接動かせるサンプル](https://famibee.github.io/SKYNovel_gallery/)があります。
 
 ![桜の樹の下には](man/manual_th.jpg)
 
