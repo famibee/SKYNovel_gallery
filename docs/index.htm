@@ -18,14 +18,14 @@
 	window.addEventListener('load', setBodyPT);
 	window.addEventListener('resize', setBodyPT);
 </script>
-<script src="web/web.js"></script><script src="web/web.three.js"></script>
+<script src="web.js"></script><script src="web.three.js"></script>
 	<!-- プラグイン系のスクリプト -->
-	<script src="core/plugin/cubism3_layer/js/live2dcubismcore.js"></script>
-	<script src="core/plugin/cubism3_layer/js/live2dcubismframework.js"></script>
-	<script src="core/plugin/cubism3_layer/js/live2dcubismpixi.js"></script>
+	<script src="plugin_lib/live2dcubismcore.js"></script>
+	<script src="plugin_lib/live2dcubismframework.js"></script>
+	<script src="plugin_lib/live2dcubismpixi.js"></script>
 
-	<script src="core/plugin/emote_layer/emotedriver.js"></script>
-	<script src="core/plugin/emote_layer/emoteplayer.js"></script>
+	<script src="plugin_lib/emotedriver.js"></script>
+	<script src="plugin_lib/emoteplayer.js"></script>
 </head><body oncontextmenu="return false;">
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
@@ -42,16 +42,14 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav float-right ml-auto">
-<!--
 			<li class="nav-item">
-				<a class="nav-link" href="http://famibee.blog38.fc2.com/" target="_blank"><i class="fas fa-file-alt"></i> tag reference</a>
-			</li>
--->
-			<li class="nav-item">
-				<a class="nav-link" href="http://famibee.blog38.fc2.com/" target="_blank"><i class="fas fa-home"></i> home</a>
+				<a class="nav-link" href="//famibee.github.io/SKYNovel/tag.htm" target="_blank"><i class="fas fa-file-alt"></i> tag reference</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="https://twitter.com/famibee" target="_blank"><i class="fab fa-twitter"></i> contact</a>
+				<a class="nav-link" href="//famibee.blog38.fc2.com/" target="_blank"><i class="fas fa-home"></i> home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="//twitter.com/famibee" target="_blank"><i class="fab fa-twitter"></i> contact</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="mailto:ugainovel@gmail.com" target="_blank"><i class="far fa-envelope"></i> to famibee</a>
@@ -227,17 +225,6 @@
 			</div>
 			<div class="col-sm-4 card p-0 border border-secondary">
 				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> Live2D Cubismレイヤ</h5>
-					<img class="card-img p-0" src="grp/cubism3_layer.jpg"/>
-					<p class="card-text"><a href="https://emote.mtwo.co.jp/emofuri/" target="_blank">Live2D® Cubism</a>を表示するレイヤです。</p>
-					<p class="card-text text-right"><small class="text-muted">※暫定版です</small></p>
-					<p class="card-text"><small class="text-muted">※実際の使用時は、Live2D社の<a href="https://www.live2d.com/ja/products/releaselicense" target="_blank">SDKリリース(出版許諾)ライセンス</a>を確認して下さい。</small></p>
-					<span class="btn btn-block btn-primary" data-prj="cubism3_layer">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted">Live2D Cubism Powered by Live2D Inc.</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
 					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> えもふりレイヤ</h5>
 					<img class="card-img p-0" src="grp/emote_layer.jpg"/>
 					<p class="card-text"><a href="https://emote.mtwo.co.jp/emofuri/" target="_blank">えもふり</a>を表示するレイヤです。</p>
@@ -245,6 +232,17 @@
 					<p class="card-text"><small class="text-muted">※実際の開発時は、えもふり制作元の有限会社エムツーさんへ<a href="https://emote.mtwo.co.jp/purchase-indies.php" target="_blank">E-moteインディーズプランの申し込み</a>（または<a href="https://emote.mtwo.co.jp/purchase-commercial.php" target="_blank">コマーシャルプラン</a>）をして下さい。</small></p>
 					<span class="btn btn-block btn-primary" data-prj="emote_layer">RUN sample</span>
 					<p class="card-text text-right"><small class="text-muted">E-mote Powered by M2 Co.,Ltd.</small></p>
+				</div>
+			</div>
+			<div class="col-sm-4 card p-0 border border-secondary">
+				<div class="card-body">
+					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> Live2D Cubismレイヤ</h5>
+					<img class="card-img p-0" src="grp/cubism3_layer.jpg"/>
+					<p class="card-text"><a href="https://emote.mtwo.co.jp/emofuri/" target="_blank">Live2D® Cubism</a>を表示するレイヤです。</p>
+					<p class="card-text text-right"><small class="text-muted">※暫定版です</small></p>
+					<p class="card-text"><small class="text-muted">※実際の使用時は、Live2D社の<a href="https://www.live2d.com/ja/products/releaselicense" target="_blank">SDKリリース(出版許諾)ライセンス</a>を確認して下さい。</small></p>
+					<span class="btn btn-block btn-primary" data-prj="cubism3_layer">RUN sample</span>
+					<p class="card-text text-right"><small class="text-muted">Live2D Cubism Powered by Live2D Inc.</small></p>
 				</div>
 			</div>
 			<div class="col-sm-4 card p-0 border border-secondary">

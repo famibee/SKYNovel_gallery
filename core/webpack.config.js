@@ -3,18 +3,10 @@ const ImageminPlugin = require('imagemin-webpack-plugin').default;
 // 変更後は「npm run webpack:dev」
 module.exports = [
 	{
-		entry: `./core/app4webpack.js`,
-		target: 'electron-renderer',
-		output: {
-			path: process.cwd() +'/app',
-			filename: 'index.js',
-		},
-	},
-	{
 		entry: `./core/web4webpack.js`,
 		target: 'web',
 		output: {
-			path: process.cwd() +'/web',
+			path: process.cwd() +'/docs',
 			filename: 'web.js',
 			chunkFilename: 'web.[name].js'
 		},

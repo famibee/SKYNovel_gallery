@@ -3,14 +3,14 @@ module.exports = {
 	target: 'web',
 	mode: 'development',
 	output: {
-		path: process.cwd() +'/web',
+		path: process.cwd() +'/docs',
 		filename: 'web.js',
 	},
 
 	devServer: {
-		contentBase: './',
+		contentBase: './docs',
 		port: 8081,
-		openPage: 'web.htm',
+		openPage: 'index.htm',
 		watchContentBase: true,
 		open: true,
 		headers: {
