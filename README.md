@@ -5,7 +5,7 @@
 [![dependencies](https://david-dm.org/famibee/SKYNovel/status.svg)](https://david-dm.org/famibee/SKYNovel)
 [![dependencies](https://david-dm.org/famibee/SKYNovel/dev-status.svg)](https://david-dm.org/famibee/SKYNovel?type=dev)
 
-![logo.svg](build/icon/icon.svg)
+![logo.svg](man/icon.svg)
 
 [CHANGELOG.md](CHANGELOG.md)
 
@@ -13,8 +13,9 @@
 ## description（説明）
 
 SKYNovelにはどんな事ができるのか？　というサンプルをまとめたプロジェクトです。
+[ブラウザから直接動かせるサンプル](https://famibee.github.io/SKYNovel_gallery/index.html)があります。
 
-![桜の樹の下には](build/manual_th.jpg)
+![桜の樹の下には](man/manual_th.jpg)
 
 ## usage（使用法）
 
@@ -43,8 +44,8 @@ SKYNovelにはどんな事ができるのか？　というサンプルをまと
 
 ### タスクの説明
 - npm start ... Electronでアプリとして起動します。
+- npm plg:w ... ローカルサーバーを起動し、ブラウザ版を起動できます。（プラグインビルド込み）
 - npm web ... ローカルサーバーを起動し、ブラウザ版を起動できます。
-- npm pack:win ... アプリパッケージを作成します。（Macなら pack:mac）
 
 ---
 ## 拡張機能 / Extension

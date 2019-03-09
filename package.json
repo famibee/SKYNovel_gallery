@@ -37,10 +37,7 @@
 		"upd": "npx ncu -a && npm update",
 		"npm_check_updates": "ncu",
 		"npm_check_updates -g": "ncu -g",
-		"npm_check_updates_do": "ncu -a && npm update && npm i -D",
-		"webpack:pro": "webpack --mode production --config ./core/webpack.config.js",
-		"pack:win": "npm run webpack:pro && electron-builder ./build/win32-x64 --platform=win --arch=x64",
-		"pack:mac": "npm run webpack:pro && electron-builder ./build/darwin-x64 --platform=mac --arch=x64"
+		"npm_check_updates_do": "ncu -a && npm update && npm i -D"
 	},
 	"build": {
 		"appId": "com.fc2.blog.famibee.gallery",
