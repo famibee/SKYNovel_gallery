@@ -11,14 +11,13 @@ const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
 const CmnLib = CmnLib_1.CmnLib;
 
 import {HArg, IPluginInitArg} from 'skynovel';
-import {loaders, utils} from 'pixi.js';
 
 export class Cubism3Layer extends Layer {
 	static	plgArg	: IPluginInitArg;
 
 	private	model	: any;	// Model extends PIXI.Container
 
-	private ldr		= new loaders.Loader
+	private ldr		= new PIXI.loaders.Loader
 
 	private	state	= {
 		fn		: '',
@@ -40,12 +39,12 @@ export class Cubism3Layer extends Layer {
 			['moc', 'tex', 'mot'].map((type, i)=> {
 				const rn = `l2d:${fn}_${type}`;
 				if (rn in this.ldr.resources) return;
-				//if (rn in utils.TextureCache) return;
+				//if (rn in PIXI.utils.TextureCache) return;
 					// これでキャッシュを使うと表示されない
-				if (rn in utils.TextureCache) utils.TextureCache[rn].destroy(true);
+				if (rn in PIXI.utils.TextureCache) PIXI.utils.TextureCache[rn].destroy(true);
 
 				needLoad = true;
-				if (this.ldr.loading) this.ldr = new loaders.Loader();
+				if (this.ldr.loading) this.ldr = new PIXI.loaders.Loader();
 				switch (i) {
 					case 0:
 						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'), { xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER });
