@@ -12,17 +12,17 @@
 		"three": "^0.102.1"
 	},
 	"devDependencies": {
-		"@types/node": "^11.11.0",
+		"@types/node": "^11.11.3",
 		"@types/pixi.js": "^4.8.6",
-		"@types/three": "^0.93.26",
+		"@types/three": "^0.93.27",
 		"css-loader": "^2.1.1",
-		"electron": "^4.0.8",
-		"electron-builder": "^20.38.5",
+		"electron": "^4.1.0",
+		"electron-builder": "^20.39.0",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^0.23.1",
 		"typescript": "^3.3.3333",
 		"webpack": "^4.29.6",
-		"webpack-cli": "^3.2.3",
+		"webpack-cli": "^3.3.0",
 		"webpack-dev-server": "^3.2.1"
 	},
 	"scripts": {

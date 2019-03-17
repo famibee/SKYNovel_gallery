@@ -17,7 +17,6 @@ class EmoteLayer extends Layer {
             windPowerMax: 0,
         };
         this.sp = new PIXI.Sprite;
-        this.hdl_tick = 0;
         this.record = () => Object.assign(super.record(), this.state);
         if (!EmoteLayer.initedEMote) {
             switch (String(EmoteLayer.plgArg.getVal('const.sn.platform.os.family'))) {
@@ -51,13 +50,13 @@ class EmoteLayer extends Layer {
             const a = Object.assign({}, hArg);
             delete a.fn;
             this.state.fn = fn;
-            this.player.onUpdate = () => this.hdl_tick = requestAnimationFrame(() => {
+            this.player.onUpdate = () => {
                 if (!this.player)
                     return;
                 this.sp.texture.destroy();
                 this.sp.texture = new PIXI.Texture(new PIXI.BaseTexture(this.cvs));
                 EmoteLayer.plgArg.render(this.sp, this.rt, true);
-            });
+            };
             this.player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(fn, 'emtbytes_|emtbytes'))
                 .then(() => {
                 this.lay(a, fncComp);
@@ -91,7 +90,6 @@ class EmoteLayer extends Layer {
     clearLay(hArg) {
         super.clearLay(hArg);
         if (this.player) {
-            cancelAnimationFrame(this.hdl_tick);
             this.player.unloadData();
             this.player = null;
         }

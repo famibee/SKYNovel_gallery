@@ -74,7 +74,7 @@ export class EmoteLayer extends Layer {
 			const a = {...hArg};
 			delete a.fn;
 			this.state.fn = fn;
-			this.player.onUpdate = ()=> this.hdl_tick = requestAnimationFrame(()=> {
+			this.player.onUpdate = ()=> {
 				if (! this.player) return;
 //				if (! this.player.canvas) return;
 //				if (this.state.light && this.player.animating) return;
@@ -82,7 +82,7 @@ export class EmoteLayer extends Layer {
 				this.sp.texture.destroy();
 				this.sp.texture = new PIXI.Texture(new PIXI.BaseTexture(this.cvs));
 				EmoteLayer.plgArg.render(this.sp, this.rt, true);
-			});
+			}
 			this.player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(fn, 'emtbytes_|emtbytes'))
 			.then(()=> {
 				this.lay(a, fncComp);
@@ -111,13 +111,11 @@ export class EmoteLayer extends Layer {
 
 		return false;
 	}
-	private hdl_tick = 0;
 
 	clearLay(hArg: HArg): void {
 		super.clearLay(hArg);
 
 		if (this.player) {
-			cancelAnimationFrame(this.hdl_tick);
 			this.player.unloadData();
 			this.player = null;
 		}
@@ -141,7 +139,7 @@ export class EmoteLayer extends Layer {
 	destroy() {
 		if (! this.player) return;
 
-		this.cvs.parentElement!.removeChild(this.cvs);
+		this.cvs!.parentElement!.removeChild(this.cvs);
 		this.cnt.removeChildren().map((v: PIXI.Sprite)=> v.destroy());
 
 		this.clearLay({});

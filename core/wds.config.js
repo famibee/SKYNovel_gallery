@@ -10,7 +10,7 @@ module.exports = {
 	devServer: {
 		contentBase: './docs',
 		port: 8081,
-		openPage: 'index.htm',
+		openPage: 'index.html',
 		watchContentBase: true,
 		open: true,
 		headers: {
