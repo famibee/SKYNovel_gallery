@@ -11,11 +11,14 @@ const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
 const CmnLib = CmnLib_1.CmnLib;
 
 import {HArg, IPluginInitArg} from 'skynovel';
+import {loaders, utils} from 'pixi.js';
 
 export class Cubism3Layer extends Layer {
 	static	plgArg	: IPluginInitArg;
 
 	private	model	: any;	// Model extends PIXI.Container
+
+	private ldr		= new loaders.Loader
 
 	private	state	= {
 		fn		: '',
@@ -33,20 +36,37 @@ export class Cubism3Layer extends Layer {
 			const label = hArg.label;
 			if (! label) throw `label属性でモーションjsonファイル（${fn}_(label).json）を指定して下さい`;
 
-			const fn_moc = Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3');
-			const fn_tex = Cubism3Layer.plgArg.searchPath(fn, 'png_|png|jpg_|jpg|jpeg_|jpeg');
-			const fn_mot = Cubism3Layer.plgArg.searchPath(fn +'_'+ label, 'json_|json');
-			// TODO: キャッシュ考慮
-			PIXI.loader
-			.add('l2d:'+ fn +'_moc', fn_moc, { xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER })
-			.add('l2d:'+ fn +'_tex', fn_tex)
-			.add('l2d:'+ fn +'_mot', fn_mot, { xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.JSON })
-			.load((_loader: any, res: any)=> {
+			let needLoad = false;
+			['moc', 'tex', 'mot'].map((type, i)=> {
+				const rn = `l2d:${fn}_${type}`;
+				if (rn in this.ldr.resources) return;
+				//if (rn in utils.TextureCache) return;
+					// これでキャッシュを使うと表示されない
+				if (rn in utils.TextureCache) utils.TextureCache[rn].destroy(true);
+
+				needLoad = true;
+				if (this.ldr.loading) this.ldr = new loaders.Loader();
+				switch (i) {
+					case 0:
+						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'), { xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER });
+						break;
+
+					case 1:
+						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'png_|png|jpg_|jpg|jpeg_|jpeg'));
+						break;
+
+					case 2:
+						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn +'_'+ label, 'json_|json'), { xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.JSON })
+						break;
+				}
+			});
+
+			const fncLoaded = (res: any)=> {
 				const moc = Live2DCubismCore.Moc.fromArrayBuffer(res['l2d:'+ fn +'_moc'].data);
 				this.model = new LIVE2DCUBISMPIXI.ModelBuilder()
 					.setMoc(moc)
 					.setTimeScale(1)
-					.addTexture(0, res['l2d:'+ fn +'_tex'].texture)
+					.addTexture(0, (res['l2d:'+ fn +'_tex'] || utils.TextureCache['l2d:'+ fn +'_tex']).texture)
 					.addAnimatorLayer(id, LIVE2DCUBISMFRAMEWORK.BuiltinAnimationBlenders.OVERRIDE, 1)
 					.build();
 				this.cnt.addChild(this.model);
@@ -68,7 +88,9 @@ export class Cubism3Layer extends Layer {
 				this.state.label = label;
 				this.lay(a, fncComp);
 				Cubism3Layer.plgArg.resume(fncComp);
-			});
+			};
+			if (needLoad) this.ldr.load((_loader: any, res: any)=> fncLoaded(res));
+			else fncLoaded(this.ldr.resources);
 
 			return true;
 		}
@@ -90,7 +112,6 @@ export class Cubism3Layer extends Layer {
 					this.model.animator
 						.getLayer(id)
 						.play(ani);
-
 				});
 			}
 		}
