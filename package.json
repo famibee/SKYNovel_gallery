@@ -8,11 +8,12 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"skynovel": "^0.3.2",
-		"three": "^0.102.1"
+		"skynovel": "^0.3.3",
+		"three": "^0.102.1",
+		"three-gltf-loader": "^1.102.0"
 	},
 	"devDependencies": {
-		"@types/node": "^11.11.3",
+		"@types/node": "^11.11.4",
 		"@types/pixi.js": "^4.8.6",
 		"@types/three": "^0.93.27",
 		"css-loader": "^2.1.1",
@@ -20,7 +21,7 @@
 		"electron-builder": "^20.39.0",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^0.23.1",
-		"typescript": "^3.3.3333",
+		"typescript": "^3.3.4000",
 		"webpack": "^4.29.6",
 		"webpack-cli": "^3.3.0",
 		"webpack-dev-server": "^3.2.1"

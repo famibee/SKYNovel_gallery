@@ -1,0 +1,24 @@
+[title text='３Ｄレイヤ・gltfモデル表示'][call label=*init]
+
+[add_lay layer=bg class=grp]
+[add_lay layer=3d class=3d]
+[add_lay layer=mes class=txt]
+
+	[lay layer=bg fn=wp1680]
+	[lay layer=3d gltf=Spacesuit x=0 y=-1.9 z=-10 scale=1,1,1 grid=6,-4,0 light=-15,4,10 ani=mixamo.com]
+;	[lay layer=3d gltf=Spacesuit x=14 y=-2.5 scale=1,1,1 grid=6,-4,0 light=-15,4,10 controls=true ani=mixamo.com]
+
+	画像・文字レイヤに続き第三のレイヤ「３Ｄレイヤ」を[r]
+	使えます。[r]
+	※３Ｄモデルを表示しています。
+[s]
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

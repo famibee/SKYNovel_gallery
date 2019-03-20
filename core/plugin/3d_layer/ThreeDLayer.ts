@@ -16,6 +16,7 @@ const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 
 export class ThreeDLayer extends Layer {
 	static	plgArg	: IPluginInitArg;
+	private	static	uniq_num = 0;
 
 	static	THREE		: any;
 	private scene_3D	: THREE.Scene;
@@ -23,8 +24,14 @@ export class ThreeDLayer extends Layer {
 	private sprite_3D	: PIXI.Sprite;
 	private camera		: THREE.Camera;
 
+	private fncMixerUpd	= ()=> {};
+	private clock		: THREE.Clock;
+	private mixer		: THREE.AnimationMixer;
+
 	constructor() {
 		super();
+
+		if (ThreeDLayer.uniq_num++ % 2 == 1) return;
 
 		this.scene_3D = new ThreeDLayer.THREE.Scene();
 		const log = console.log;	// 「THREE.WebGLRenderer 100」を消したい
@@ -33,7 +40,7 @@ export class ThreeDLayer extends Layer {
 		console.log = log;
 
 		// 3D Scene canvas
-		this.canvas_3D.setSize(CmnLib.stageW, CmnLib.stageW);
+		this.canvas_3D.setSize(CmnLib.stageW, CmnLib.stageH);
 		this.canvas_3D.setPixelRatio(window.devicePixelRatio);
 
 		// Map 3D canvas to 2D Canvas
@@ -46,8 +53,11 @@ export class ThreeDLayer extends Layer {
 	private tick = ()=> {
 		this.canvas_3D.render(this.scene_3D, this.camera);
 		this.sprite_3D.texture.update();	//tell pixi that threejs changed
+		this.fncCtrl();
+		this.fncMixerUpd();
 		requestAnimationFrame(this.tick);
 	}
+	private fncCtrl = ()=> {};
 	private isStart = false;
 
 /*
@@ -105,13 +115,7 @@ export class ThreeDLayer extends Layer {
 */
 
 	lay(hArg: HArg): boolean {
-		// TODO: ３Ｄレイヤ（仕様未確定・曳光弾）
-		let fncCtrl = ()=> {};
-
-//		const fbx = hArg['fbx'];
-		const dae = hArg.dae;
-		const celestial_sphere = hArg.celestial_sphere;	// 天球
-		if ('fbx' in hArg) {	// FBX
+		if ('fbx' in hArg) {
 /*			/// テスト用 Object3D
 			this.camera = new ThreeDLayer.THREE.PerspectiveCamera(75, CmnLib.stageW / CmnLib.stageH, 1, 10000);
 			this.camera.position.set(0, 0, 700);	// カメラ位置
@@ -128,7 +132,8 @@ console.log(`fn:ThreeDLayer.ts line:76 load:%o:`, obj);
 */
 			return false;
 		}
-		else if (dae) {	// dae
+		else if ('dae' in hArg) {
+//			const dae = hArg['dae'];
 			/// テスト用 Object3D
 			this.camera = new ThreeDLayer.THREE.PerspectiveCamera(75, CmnLib.stageW / CmnLib.stageH, 1, 10000);
 			this.camera.position.set(0, 0, 700);	// カメラ位置
@@ -150,36 +155,11 @@ console.log(`fn:ThreeDLayer.ts line:76 load:%o:`, obj);
 
 				this.camera.lookAt(obj.position);	// カメラ視野の中心座標
 				this.tick();
-				fncCtrl = ()=> {};
 			});
 */
 			return false;
 		}
-		else if (celestial_sphere) {	// 天球
-			// カメラ
-			this.camera = new ThreeDLayer.THREE.PerspectiveCamera(
-				45,
-				CmnLib.stageW / CmnLib.stageH,
-				1,
-				10000);
-			// new ThreeDLayer.THREE.PerspectiveCamera(画角, アスペクト比, 描画開始距離, 描画終了距離)
-			this.camera.position.set(0, 0, 0.1);	// カメラ位置
-
-			// theta画像
-			const geometry = new ThreeDLayer.THREE.SphereGeometry(5, 60, 40);
-			geometry.scale(-1, 1, 1);
-			const ldr = new ThreeDLayer.THREE.TextureLoader();
-			const tx = ldr.load(ThreeDLayer.plgArg.searchPath(celestial_sphere, EXT_STILL_IMG));
-			tx.minFilter = ThreeDLayer.THREE.LinearFilter;
-			const material = new ThreeDLayer.THREE.MeshBasicMaterial({map: tx});
-			const obj = new ThreeDLayer.THREE.Mesh(geometry, material);
-			this.scene_3D.add(obj);
-
-			this.camera.lookAt(obj.position);	// カメラ視野の中心座標
-			fncCtrl = ()=> {obj.rotation.y += 0.004;};
-		}
-		else if ('box' in hArg) {
-			/// テスト用 Object3D
+		else if ('box' in hArg) {	// 立方体
 			this.camera = new ThreeDLayer.THREE.PerspectiveCamera(75, CmnLib.stageW / CmnLib.stageH, 1, 10000);
 			this.camera.position.set(0, 0, 700);	// カメラ位置
 
@@ -192,11 +172,98 @@ console.log(`fn:ThreeDLayer.ts line:76 load:%o:`, obj);
 			obj.rotation.z = -45;
 			this.scene_3D.add(obj);
 
-			fncCtrl = ()=> {
+			this.fncCtrl = ()=> {
 				obj.rotation.x += 0.01;
 				obj.rotation.y += 0.01;
 				obj.rotation.z += 0.01;
 			};
+		}
+		else if ('gltf' in hArg) {
+			// カメラ
+			this.camera = new ThreeDLayer.THREE.PerspectiveCamera(45, CmnLib.stageW / CmnLib.stageH, 1, 10000);
+			// PerspectiveCamera(画角, アスペクト比, 描画開始距離, 描画終了距離)
+			//this.camera.position.set(0, 0, 0);	// カメラ位置
+
+			const ldr = new ThreeDLayer.THREE.GLTFLoader();
+			const onProgress = ('debug' in hArg)
+				? (xhr: {loaded: number; total: number;})=>
+					console.log(`${( xhr.loaded /xhr.total *100 )}% loaded`)
+				: ()=> {};
+			ldr.load(
+				ThreeDLayer.plgArg.searchPath(hArg['gltf'], 'gltf|glb'),
+				(gltf: any)=> {	// called when the resource is loaded
+					const grid = new ThreeDLayer.THREE.GridHelper(10, 5);
+						// size：グリッド全体のサイズ
+						// step：1分割のサイズ
+						// colorCenterLine：中央十字ラインの色
+						// colorGrid：中央十字ライン以外の色
+					const csv_grid = hArg['grid'] || '0,0,0';
+					const g = csv_grid.split(',').map(v=>Number(v));
+					grid.position.set(g[0], g[1], g[2]);
+					this.scene_3D.add(grid);
+
+					const mdl = gltf.scene;
+					const csv_scale = hArg['scale'] || '0,0,0';
+					const s = csv_scale.split(',').map(v=> Number(v));
+					mdl.scale.set(s[0], s[1], s[2]);
+					const x = CmnLib.argChk_Num(hArg, 'x', 0);
+					const y = CmnLib.argChk_Num(hArg, 'y', 0);
+					const z = CmnLib.argChk_Num(hArg, 'z', 0);
+					mdl.position.set(x, y, z);
+					this.scene_3D.add(gltf.scene);
+
+				//	this.camera.lookAt(mdl.position);	// カメラ視野の中心座標
+
+					const ani = hArg['ani'];
+					if (! ani) return;
+					const aAni: THREE.AnimationClip[] = gltf.animations;
+					const idx = aAni.findIndex(v=> v.name === ani);
+					if (idx == -1) throw `glTF内に存在しないアニメクリップ（ani=${ani}）です`;
+
+					if (! this.mixer) this.mixer = new ThreeDLayer.THREE.AnimationMixer(mdl);
+					const ca = this.mixer.clipAction(aAni[idx]);
+					ca.play();
+
+					if (! this.clock) this.clock = new ThreeDLayer.THREE.Clock();
+					this.fncMixerUpd = ()=> this.mixer.update(this.clock.getDelta());
+
+//					this.scene_3D.add(mdl);
+/* NOTE: 終了・停止など
+mixer.stopAllAction();
+ca.setLoop(ThreeDLayer.THREE.LoopOnce)
+ca.clampWhenFinished = true;	// アニメーションの最後のフレームで終了
+*/
+				},
+				onProgress,
+				(err: any)=> console.error('An error happened', err),
+			);
+
+			// 平行光源
+			const light = new ThreeDLayer.THREE.DirectionalLight(0xFFFFFF);
+//			light.intensity = 2; // 光の強さを倍に
+			const csv_light = hArg['light'] || '0,0,0';
+			const l = csv_light.split(',').map(v=> Number(v));
+			light.position.set(l[0], l[1], l[2]);
+			this.scene_3D.add(light);
+		}
+		else if ('celestial_sphere' in hArg) {	// 天球
+			// カメラ
+			this.camera = new ThreeDLayer.THREE.PerspectiveCamera(45, CmnLib.stageW / CmnLib.stageH, 1, 10000);
+			// new ThreeDLayer.THREE.PerspectiveCamera(画角, アスペクト比, 描画開始距離, 描画終了距離)
+			this.camera.position.set(0, 0, 0.1);	// カメラ位置
+
+			// theta画像
+			const geometry = new ThreeDLayer.THREE.SphereGeometry(5, 60, 40);
+			geometry.scale(-1, 1, 1);
+			const ldr = new ThreeDLayer.THREE.TextureLoader();
+			const tx = ldr.load(ThreeDLayer.plgArg.searchPath(hArg['celestial_sphere'], EXT_STILL_IMG));
+			tx.minFilter = ThreeDLayer.THREE.LinearFilter;
+			const material = new ThreeDLayer.THREE.MeshBasicMaterial({map: tx});
+			const obj = new ThreeDLayer.THREE.Mesh(geometry, material);
+			this.scene_3D.add(obj);
+
+			this.camera.lookAt(obj.position);	// カメラ視野の中心座標
+			this.fncCtrl = ()=> {obj.rotation.y += 0.004};
 		}
 
 		if ('controls' in hArg) {
@@ -215,17 +282,11 @@ console.log(`fn:ThreeDLayer.ts line:76 load:%o:`, obj);
 			controls.rotateSpeed = 0.1;
 			controls.zoomSpeed = 2;
 
-			fncCtrl = ()=> controls.update();	// 毎回呼ぶと慣性がつく
+			this.fncCtrl = ()=> controls.update();	// 毎回呼ぶと慣性がつく
 		}
 		if (! this.isStart && this.camera) {
 			this.isStart = true;
 			this.tick();
-
-			const anime = ()=> {
-				fncCtrl();
-				requestAnimationFrame(anime);
-			}
-			anime();
 		}
 
 		return false;
