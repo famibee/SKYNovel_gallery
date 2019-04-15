@@ -8,7 +8,7 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"skynovel": "file:../npm_core",
+		"skynovel": "^0.3.4",
 		"three": "^0.103.0",
 		"three-gltf-loader": "^1.103.0"
 	},
