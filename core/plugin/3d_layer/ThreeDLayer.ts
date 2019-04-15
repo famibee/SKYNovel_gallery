@@ -20,7 +20,7 @@ export class ThreeDLayer extends Layer {
 
 	static	THREE		: any;
 	private scene_3D	: THREE.Scene;
-	private	canvas_3D	: THREE.CanvasRenderer;
+	private	canvas_3D	: THREE.WebGLRenderer;
 	private sprite_3D	: PIXI.Sprite;
 	private camera		: THREE.Camera;
 

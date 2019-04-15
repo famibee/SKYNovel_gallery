@@ -36,13 +36,13 @@ class Cubism3Layer extends Layer {
                     this.ldr = new PIXI.loaders.Loader();
                 switch (i) {
                     case 0:
-                        this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'), { xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER });
+                        this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'), { xhrType: PIXI.loaders.XHR_RESPONSE_TYPE.BUFFER });
                         break;
                     case 1:
                         this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'png_|png|jpg_|jpg|jpeg_|jpeg'));
                         break;
                     case 2:
-                        this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn + '_' + label, 'json_|json'), { xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.JSON });
+                        this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn + '_' + label, 'json_|json'), { xhrType: PIXI.loaders.TYPE.JSON });
                         break;
                 }
             });
@@ -51,7 +51,7 @@ class Cubism3Layer extends Layer {
                 this.model = new LIVE2DCUBISMPIXI.ModelBuilder()
                     .setMoc(moc)
                     .setTimeScale(1)
-                    .addTexture(0, (res['l2d:' + fn + '_tex'] || utils.TextureCache['l2d:' + fn + '_tex']).texture)
+                    .addTexture(0, (res['l2d:' + fn + '_tex'] || PIXI.utils.TextureCache['l2d:' + fn + '_tex']).texture)
                     .addAnimatorLayer(id, LIVE2DCUBISMFRAMEWORK.BuiltinAnimationBlenders.OVERRIDE, 1)
                     .build();
                 this.cnt.addChild(this.model);
@@ -88,7 +88,7 @@ class Cubism3Layer extends Layer {
                 const fn = this.state.fn;
                 const fn_mot = Cubism3Layer.plgArg.searchPath(fn + '_' + label, 'json_|json');
                 PIXI.loader
-                    .add('l2d:' + fn + '_mot', fn_mot, { xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.JSON })
+                    .add('l2d:' + fn + '_mot', fn_mot, { xhrType: PIXI.loaders.XHR_RESPONSE_TYPE.JSON })
                     .load((_loader, res) => {
                     const ani = LIVE2DCUBISMFRAMEWORK.Animation.fromMotion3Json(res['l2d:' + fn + '_mot'].data);
                     this.model.animator
