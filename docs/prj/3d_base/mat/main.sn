@@ -21,7 +21,10 @@
 	左へ一つ追加[l][r]
 	[lay layer=3d name=てすと2 type=box pos=-100,0,0]
 
-	クリックで消去[l][r]
+	クリックで右を消去[l][r]
+	[lay layer=3d del=てすと]
+
+	クリックで全消去[l][r]
 	[clear_lay layer=3d]
 
 	クリックで再度表示[l][er]

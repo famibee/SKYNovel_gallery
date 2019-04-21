@@ -9,7 +9,6 @@ const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 class ThreeDLayer extends Layer {
     constructor() {
         super();
-        this.type = '';
         this.tick = () => {
             if (!this.running)
                 return;
@@ -80,7 +79,8 @@ class ThreeDLayer extends Layer {
         const name = hArg.name || '';
         let mdl = new ThreeDLayer.THREE.Mesh();
         if (type) {
-            this.type = type;
+            if (name in this.hInf)
+                throw `name（=${name}）が重複しています`;
             if (!this.running) {
                 this.running = true;
                 this.tick();
@@ -132,7 +132,7 @@ class ThreeDLayer extends Layer {
                             const mdl = gltf.scene;
                             mdl.name = name;
                             this.scene_3D.add(mdl);
-                            this.hInf[name] = { gltf: gltf };
+                            this.hInf[name] = { type: type, gltf: gltf };
                             this.arg2mdl(hArg, mdl);
                         }, onProgress, (err) => console.error('An error happened', err));
                     }
@@ -146,10 +146,20 @@ class ThreeDLayer extends Layer {
                     }
                     break;
                 default:
-                    throw `サポートしない type=${this.type} です`;
+                    throw `サポートしない type=${type} です`;
             }
+            this.hInf[name] = { type: type };
             mdl.name = name;
             this.scene_3D.add(mdl);
+        }
+        else if ('del' in hArg) {
+            const del = hArg['del'];
+            const mdl2 = this.scene_3D.children.find(e => e.name === del);
+            if (!mdl2)
+                throw `３Ｄレイヤに存在しないモデル name=${del} です`;
+            this.clearObject3D(mdl2);
+            delete this.hInf[del];
+            return false;
         }
         else if ('name' in hArg) {
             const mdl2 = this.scene_3D.children.find(e => e.name === name);
@@ -218,7 +228,6 @@ class ThreeDLayer extends Layer {
             return;
         if (!this.running)
             return;
-        this.type = '';
         this.running = false;
         this.fncCtrl = () => { };
         this.fncMixerUpd = () => { };
@@ -229,29 +238,30 @@ class ThreeDLayer extends Layer {
         delete this.camera;
     }
     clearScene(sc) {
-        sc.children.slice().map(o => {
-            sc.remove(o);
-            const s = o;
-            if (s) {
-                const inf = this.hInf[s.name];
-                if (inf && inf.mixer)
-                    inf.mixer.stopAllAction();
-                this.clearScene(s);
-                return;
-            }
-            const m = o;
-            if (!m)
-                return;
-            m.geometry.dispose();
-            if (m.material instanceof three_1.Material) {
-                m.material.dispose();
-                if (m.material)
-                    delete m.material;
-            }
-            else {
-                m.material.map(v => v.dispose());
-            }
-        });
+        sc.children.slice().map(o => this.clearObject3D(o));
+    }
+    clearObject3D(o) {
+        o.parent.remove(o);
+        const s = o;
+        if (s) {
+            const inf = this.hInf[s.name];
+            if (inf && inf.mixer)
+                inf.mixer.stopAllAction();
+            this.clearScene(s);
+            return;
+        }
+        const m = o;
+        if (!m)
+            return;
+        m.geometry.dispose();
+        if (m.material instanceof three_1.Material) {
+            m.material.dispose();
+            if (m.material)
+                delete m.material;
+        }
+        else {
+            m.material.map(v => v.dispose());
+        }
     }
     playback(hLay, fncComp = undefined) {
         super.playback(hLay);
@@ -259,7 +269,6 @@ class ThreeDLayer extends Layer {
             fncComp();
         if (!this.scene_3D)
             return false;
-        this.type = hLay.type;
         return false;
     }
     dump() {

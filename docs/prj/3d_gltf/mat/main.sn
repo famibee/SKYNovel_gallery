@@ -16,6 +16,7 @@
 
 	クリックで別アニメ[l][r]
 	[lay layer=3d name=てすと ani=mixamo.com2 time=1000]
+;	[lay layer=3d name=てすと type=gltf fn=Spacesuit ani=mixamo.com2]	; ロードname重複エラー
 
 	クリックで元のアニメ、終端停止[l][r]
 	[lay layer=3d name=てすと ani=mixamo.com time=1000 loop=false]

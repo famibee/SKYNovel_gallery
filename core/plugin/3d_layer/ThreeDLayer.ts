@@ -24,7 +24,6 @@ export class ThreeDLayer extends Layer {
 	private	canvas_3D	: THREE.WebGLRenderer;
 	private sprite_3D	: PIXI.Sprite;
 
-	private type		: string	= '';
 	private camera		: THREE.Camera;
 
 	constructor() {
@@ -174,7 +173,7 @@ export class ThreeDLayer extends Layer {
 		const name = hArg.name || '';
 		let mdl: Object3D = new ThreeDLayer.THREE.Mesh();
 		if (type) {
-			this.type = type;
+			if (name in this.hInf) throw `name（=${name}）が重複しています`;
 
 			// gltfなどでは return false; で抜けるのでここで
 			if (! this.running) {this.running = true; this.tick();}
@@ -232,7 +231,7 @@ export class ThreeDLayer extends Layer {
 							const mdl = gltf.scene;
 							mdl.name = name;
 							this.scene_3D.add(mdl);
-							this.hInf[name] = {gltf: gltf}
+							this.hInf[name] = {type: type, gltf: gltf}
 							this.arg2mdl(hArg, mdl);
 						},
 						onProgress,
@@ -282,10 +281,20 @@ export class ThreeDLayer extends Layer {
 					break;
 
 				default:
-					throw `サポートしない type=${this.type} です`;
+					throw `サポートしない type=${type} です`;
 			}
+
+			this.hInf[name] = {type: type};
 			mdl.name = name;
 			this.scene_3D.add(mdl);
+		}
+		else if ('del' in hArg) {
+			const del = hArg['del'];
+			const mdl2 = this.scene_3D.children.find(e=> e.name === del);
+			if (! mdl2) throw `３Ｄレイヤに存在しないモデル name=${del} です`;
+			this.clearObject3D(mdl2);
+			delete this.hInf[del];
+			return false;
 		}
 		else if ('name' in hArg) {
 			const mdl2 = this.scene_3D.children.find(e=> e.name === name);
@@ -341,6 +350,7 @@ export class ThreeDLayer extends Layer {
 		}
 	}
 	private hInf: {[name: string]: {
+		type	: string,
 		ani?	: string,
 		gltf?	: any,
 		mixer?	: THREE.AnimationMixer,
@@ -363,7 +373,6 @@ export class ThreeDLayer extends Layer {
 		if (! this.scene_3D) return;
 		if (! this.running) return;
 
-		this.type = '';
 		this.running = false;
 		this.fncCtrl = ()=> {};
 		this.fncMixerUpd = ()=> {};
@@ -374,27 +383,29 @@ export class ThreeDLayer extends Layer {
 		delete this.camera;
 	}
 	private clearScene(sc: THREE.Scene) {
-		sc.children.slice().map(o=> {	// slice()で参照コピーしてる
-			sc.remove(o);
+		sc.children.slice().map(o=> this.clearObject3D(o));
+			// slice()で参照コピーしてる
+	}
+	private clearObject3D(o: THREE.Object3D) {
+		o.parent!.remove(o);
 
-			const s = o as THREE.Scene;
-			if (s) {
-				const inf = this.hInf[s.name];
-				if (inf && inf.mixer) inf.mixer.stopAllAction();
-				this.clearScene(s); return;
-			}
+		const s = o as THREE.Scene;
+		if (s) {
+			const inf = this.hInf[s.name];
+			if (inf && inf.mixer) inf.mixer.stopAllAction();
+			this.clearScene(s); return;
+		}
 
-			const m = o as THREE.Mesh;
-			if (! m) return;
-			m.geometry.dispose();
-			if (m.material instanceof Material)	{
-				m.material.dispose();
-				if (m.material as THREE.MeshBasicMaterial) delete m.material;
-			}
-			else {
-				m.material.map(v=> v.dispose());
-			}
-		});
+		const m = o as THREE.Mesh;
+		if (! m) return;
+		m.geometry.dispose();
+		if (m.material instanceof Material)	{
+			m.material.dispose();
+			if (m.material as THREE.MeshBasicMaterial) delete m.material;
+		}
+		else {
+			m.material.map(v=> v.dispose());
+		}
 	}
 
 	record = ()=> Object.assign(super.record(), {
@@ -405,7 +416,6 @@ export class ThreeDLayer extends Layer {
 		if (fncComp != undefined) fncComp();
 		if (! this.scene_3D) return false;
 
-		this.type = hLay.type;
 		/*switch (this.type) {	// TODO: record()とセットで作成
 			case '':
 				break;
