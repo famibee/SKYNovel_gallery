@@ -10,9 +10,7 @@
 ;	[lay layer=3d type=gltf fn=Spacesuit ani=mixamo.com camera=0,2,10 directional_light=-15,4,10 grid=0,-2,-10]
 	[lay layer=3d camera=0,2,10 directional_light=-15,4,10 grid=0,-2,-10]
 	[lay layer=3d name=てすと type=gltf fn=Spacesuit ani=mixamo.com]
-	画像・文字レイヤに続き第三のレイヤ「３Ｄレイヤ」を[r]
-	使えます。[r]
-	※３Ｄモデルを表示しています。[r]
+	３Ｄレイヤに glTF モデルを表示しています。[r]
 
 	クリックで別アニメ[l][r]
 	[lay layer=3d name=てすと ani=mixamo.com2 time=1000]

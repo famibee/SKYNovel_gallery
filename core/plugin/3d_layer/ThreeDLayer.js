@@ -67,6 +67,7 @@ class ThreeDLayer extends Layer {
         }
         if ('controls' in hArg) {
             const elm = document.getElementById('skynovel');
+            require('three/examples/js/controls/OrbitControls');
             const controls = new ThreeDLayer.THREE.OrbitControls(this.camera, elm);
             controls.target.set(this.camera.position.x + 0.15, this.camera.position.y, this.camera.position.z);
             controls.enableDamping = true;
@@ -128,6 +129,7 @@ class ThreeDLayer extends Layer {
                         const onProgress = ('debug' in hArg)
                             ? (xhr) => console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`)
                             : () => { };
+                        require('three/examples/js/loaders/GLTFLoader');
                         (new ThreeDLayer.THREE.GLTFLoader()).load(ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'), (gltf) => {
                             const mdl = gltf.scene;
                             mdl.name = name;
@@ -182,8 +184,12 @@ class ThreeDLayer extends Layer {
             inf.ani = hArg['ani'];
             if (inf.gltf) {
                 const ac = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.ani);
-                if (!ac)
+                if (!ac) {
+                    console.log(`glTF内に存在するアニメクリップ名を列挙します`);
+                    const a = inf.gltf.animations;
+                    a.map(v => console.log(`  ani name=${v.name}`));
                     throw `glTF内に存在しないアニメクリップ（ani=${inf.ani}）です`;
+                }
                 if (inf.mixer) {
                     const t = CmnLib.argChk_Num(hArg, 'time', 1000) / 1000;
                     const aa = inf.mixer.clipAction(ac);

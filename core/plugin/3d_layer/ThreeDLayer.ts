@@ -152,6 +152,7 @@ export class ThreeDLayer extends Layer {
 		}
 		if ('controls' in hArg) {	// マウスドラッグで操作
 			const elm = document.getElementById('skynovel');
+			require('three/examples/js/controls/OrbitControls');
 			const controls = new ThreeDLayer.THREE.OrbitControls(this.camera, elm);
 			controls.target.set(
 				this.camera.position.x + 0.15,
@@ -225,13 +226,14 @@ export class ThreeDLayer extends Layer {
 						? (xhr: {loaded: number; total: number;})=>
 							console.log(`${( xhr.loaded /xhr.total *100 )}% loaded`)
 						: ()=> {};
+					require('three/examples/js/loaders/GLTFLoader');
 					(new ThreeDLayer.THREE.GLTFLoader()).load(
 						ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'),
 						(gltf: any)=> {	// called when the resource is loaded
 							const mdl = gltf.scene;
 							mdl.name = name;
 							this.scene_3D.add(mdl);
-							this.hInf[name] = {type: type, gltf: gltf}
+							this.hInf[name] = {type: type, gltf: gltf};
 							this.arg2mdl(hArg, mdl);
 						},
 						onProgress,
@@ -239,7 +241,34 @@ export class ThreeDLayer extends Layer {
 					);
 				}
 					return false;
-
+/*
+				case 'mmd':	// MMDモデル
+				{
+					if (! fn) throw 'fnがありません';
+					const onProgress = ()=> {};
+console.log(`fn:ThreeDLayer.ts line:249 `);
+					require('three/examples/js/libs/mmdparser.min');
+					require('three/examples/js/loaders/MMDLoader');
+// NOTE: ここで止まってる {E} (fn:main line:14) [undefined]タグ解析中例外 mes=THREE.MMDLoader: Import MMDParser
+//x	(window as any).MMDParser = ThreeDLayer.THREE.MMDParser;
+console.log(`fn:ThreeDLayer.ts line:250 par:${( typeof MMDParser === 'undefined' )}`);
+					const loader = new ThreeDLayer.THREE.MMDLoader();
+console.log(`fn:ThreeDLayer.ts line:256 `);
+					loader.load(
+						ThreeDLayer.plgArg.searchPath(fn, 'pmd'),
+						(mdl: any)=> {
+							mdl.name = name;
+							this.scene_3D.add(mdl);
+							this.hInf[name] = {type: type};
+							this.arg2mdl(hArg, mdl);
+						},
+						onProgress,
+						(err: any)=> console.error('An error happened', err),
+					);
+console.log(`fn:ThreeDLayer.ts line:268 `);
+				}
+					return false;
+*/
 				case 'fbx':	//
 				{
 	/*				const ldrFBX = new FBXLoader();
@@ -319,7 +348,12 @@ export class ThreeDLayer extends Layer {
 			inf.ani = hArg['ani'];
 			if (inf.gltf) {
 				const ac: THREE.AnimationClip = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.ani);
-				if (! ac) throw `glTF内に存在しないアニメクリップ（ani=${inf.ani}）です`;
+				if (! ac) {
+					console.log(`glTF内に存在するアニメクリップ名を列挙します`);
+					const a = inf.gltf.animations as THREE.AnimationClip[];
+					a.map(v=> console.log(`  ani name=${v.name}`));
+					throw `glTF内に存在しないアニメクリップ（ani=${inf.ani}）です`;
+				}
 
 				if (inf.mixer) {
 					const t = CmnLib.argChk_Num(hArg, 'time', 1000) /1000;
