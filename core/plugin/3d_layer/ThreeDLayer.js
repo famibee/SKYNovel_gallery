@@ -4,20 +4,31 @@ const Layer_1 = require('skynovel/core/lib/sn/Layer');
 const Layer = Layer_1.Layer;
 const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
 const CmnLib = CmnLib_1.CmnLib;
+const three_1 = require("three");
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 class ThreeDLayer extends Layer {
     constructor() {
         super();
-        this.fncMixerUpd = () => { };
+        this.type = '';
         this.tick = () => {
+            if (!this.running)
+                return;
             this.canvas_3D.render(this.scene_3D, this.camera);
+            if (this.sprite_3D.texture.baseTexture.source == null)
+                return;
             this.sprite_3D.texture.update();
             this.fncCtrl();
             this.fncMixerUpd();
             requestAnimationFrame(this.tick);
         };
+        this.running = false;
         this.fncCtrl = () => { };
-        this.isStart = false;
+        this.fncMixerUpd = () => { };
+        this.clock = new ThreeDLayer.THREE.Clock();
+        this.hInf = {};
+        this.record = () => Object.assign(super.record(), {
+            type: this.type,
+        });
         if (ThreeDLayer.uniq_num++ % 2 == 1)
             return;
         this.scene_3D = new ThreeDLayer.THREE.Scene();
@@ -34,84 +45,26 @@ class ThreeDLayer extends Layer {
         this.sprite_3D.y = (CmnLib.stageH - this.sprite_3D.height) / 2;
     }
     lay(hArg) {
-        if ('fbx' in hArg) {
+        if (!this.scene_3D)
             return false;
+        if ('grid' in hArg) {
+            const grid = new ThreeDLayer.THREE.GridHelper(CmnLib.argChk_Num(hArg, 'grid_size', 10), CmnLib.argChk_Num(hArg, 'grid_step', 5));
+            this.csv2pos(hArg, 'grid', grid);
+            grid.name = '_grid';
+            this.scene_3D.add(grid);
         }
-        else if ('dae' in hArg) {
-            this.camera = new ThreeDLayer.THREE.PerspectiveCamera(75, CmnLib.stageW / CmnLib.stageH, 1, 10000);
-            this.camera.position.set(0, 0, 700);
-            return false;
+        if ('camera' in hArg) {
+            if (!this.camera) {
+                this.camera = new ThreeDLayer.THREE.PerspectiveCamera(CmnLib.argChk_Num(hArg, 'camera_fov', 50), CmnLib.stageW / CmnLib.stageH, CmnLib.argChk_Num(hArg, 'camera_near', 0.1), CmnLib.argChk_Num(hArg, 'camera_far', 2000));
+            }
+            this.csv2pos(hArg, 'camera', this.camera);
         }
-        else if ('box' in hArg) {
-            this.camera = new ThreeDLayer.THREE.PerspectiveCamera(75, CmnLib.stageW / CmnLib.stageH, 1, 10000);
-            this.camera.position.set(0, 0, 700);
-            const geometry = new ThreeDLayer.THREE.BoxGeometry(500, 500, 500);
-            const material = new ThreeDLayer.THREE.MeshNormalMaterial();
-            const obj = new ThreeDLayer.THREE.Mesh(geometry, material);
-            obj.position.z = -500;
-            obj.rotation.z = -45;
-            this.scene_3D.add(obj);
-            this.fncCtrl = () => {
-                obj.rotation.x += 0.01;
-                obj.rotation.y += 0.01;
-                obj.rotation.z += 0.01;
-            };
-        }
-        else if ('gltf' in hArg) {
-            this.camera = new ThreeDLayer.THREE.PerspectiveCamera(45, CmnLib.stageW / CmnLib.stageH, 1, 10000);
-            const ldr = new ThreeDLayer.THREE.GLTFLoader();
-            const onProgress = ('debug' in hArg)
-                ? (xhr) => console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`)
-                : () => { };
-            ldr.load(ThreeDLayer.plgArg.searchPath(hArg['gltf'], 'gltf|glb'), (gltf) => {
-                const grid = new ThreeDLayer.THREE.GridHelper(10, 5);
-                const csv_grid = hArg['grid'] || '0,0,0';
-                const g = csv_grid.split(',').map(v => Number(v));
-                grid.position.set(g[0], g[1], g[2]);
-                this.scene_3D.add(grid);
-                const mdl = gltf.scene;
-                const csv_scale = hArg['scale'] || '0,0,0';
-                const s = csv_scale.split(',').map(v => Number(v));
-                mdl.scale.set(s[0], s[1], s[2]);
-                const x = CmnLib.argChk_Num(hArg, 'x', 0);
-                const y = CmnLib.argChk_Num(hArg, 'y', 0);
-                const z = CmnLib.argChk_Num(hArg, 'z', 0);
-                mdl.position.set(x, y, z);
-                this.scene_3D.add(gltf.scene);
-                const ani = hArg['ani'];
-                if (!ani)
-                    return;
-                const aAni = gltf.animations;
-                const idx = aAni.findIndex(v => v.name === ani);
-                if (idx == -1)
-                    throw `glTF内に存在しないアニメクリップ（ani=${ani}）です`;
-                if (!this.mixer)
-                    this.mixer = new ThreeDLayer.THREE.AnimationMixer(mdl);
-                const ca = this.mixer.clipAction(aAni[idx]);
-                ca.play();
-                if (!this.clock)
-                    this.clock = new ThreeDLayer.THREE.Clock();
-                this.fncMixerUpd = () => this.mixer.update(this.clock.getDelta());
-            }, onProgress, (err) => console.error('An error happened', err));
+        if ('directional_light' in hArg) {
             const light = new ThreeDLayer.THREE.DirectionalLight(0xFFFFFF);
-            const csv_light = hArg['light'] || '0,0,0';
-            const l = csv_light.split(',').map(v => Number(v));
-            light.position.set(l[0], l[1], l[2]);
+            light.intensity = CmnLib.argChk_Num(hArg, 'intensity', 1);
+            this.csv2pos(hArg, 'directional_light', light);
+            light.name = '_light';
             this.scene_3D.add(light);
-        }
-        else if ('celestial_sphere' in hArg) {
-            this.camera = new ThreeDLayer.THREE.PerspectiveCamera(45, CmnLib.stageW / CmnLib.stageH, 1, 10000);
-            this.camera.position.set(0, 0, 0.1);
-            const geometry = new ThreeDLayer.THREE.SphereGeometry(5, 60, 40);
-            geometry.scale(-1, 1, 1);
-            const ldr = new ThreeDLayer.THREE.TextureLoader();
-            const tx = ldr.load(ThreeDLayer.plgArg.searchPath(hArg['celestial_sphere'], EXT_STILL_IMG));
-            tx.minFilter = ThreeDLayer.THREE.LinearFilter;
-            const material = new ThreeDLayer.THREE.MeshBasicMaterial({ map: tx });
-            const obj = new ThreeDLayer.THREE.Mesh(geometry, material);
-            this.scene_3D.add(obj);
-            this.camera.lookAt(obj.position);
-            this.fncCtrl = () => { obj.rotation.y += 0.004; };
         }
         if ('controls' in hArg) {
             const elm = document.getElementById('skynovel');
@@ -123,18 +76,206 @@ class ThreeDLayer extends Layer {
             controls.zoomSpeed = 2;
             this.fncCtrl = () => controls.update();
         }
-        if (!this.isStart && this.camera) {
-            this.isStart = true;
-            this.tick();
+        const type = hArg.type;
+        const name = hArg.name || '';
+        let mdl = new ThreeDLayer.THREE.Mesh();
+        if (type) {
+            this.type = type;
+            if (!this.running) {
+                this.running = true;
+                this.tick();
+            }
+            const fn = hArg.fn;
+            switch (type) {
+                case 'box':
+                    {
+                        const size = CmnLib.argChk_Num(hArg, 'size', 100);
+                        const geometry = new ThreeDLayer.THREE.BoxGeometry(size, size, size);
+                        const material = new ThreeDLayer.THREE.MeshNormalMaterial();
+                        mdl = new ThreeDLayer.THREE.Mesh(geometry, material);
+                        mdl.rotation.z = -45;
+                        this.fncCtrl = () => {
+                            this.scene_3D.children.map(o => {
+                                const m = o;
+                                if (!m)
+                                    return;
+                                m.rotation.x += 0.01;
+                                m.rotation.y += 0.01;
+                                m.rotation.z += 0.01;
+                            });
+                        };
+                    }
+                    break;
+                case 'celestial_sphere':
+                    {
+                        const geometry = new ThreeDLayer.THREE.SphereGeometry(5, 60, 40);
+                        geometry.scale(-1, 1, 1);
+                        const ldr = new ThreeDLayer.THREE.TextureLoader();
+                        if (!fn)
+                            throw 'fnがありません';
+                        const tx = ldr.load(ThreeDLayer.plgArg.searchPath(fn, EXT_STILL_IMG));
+                        tx.minFilter = ThreeDLayer.THREE.LinearFilter;
+                        const material = new ThreeDLayer.THREE.MeshBasicMaterial({ map: tx });
+                        mdl = new ThreeDLayer.THREE.Mesh(geometry, material);
+                        this.camera.lookAt(mdl.position);
+                        this.fncCtrl = () => { mdl.rotation.y += 0.001; };
+                    }
+                    break;
+                case 'gltf':
+                    {
+                        if (!fn)
+                            throw 'fnがありません';
+                        const onProgress = ('debug' in hArg)
+                            ? (xhr) => console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`)
+                            : () => { };
+                        (new ThreeDLayer.THREE.GLTFLoader()).load(ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'), (gltf) => {
+                            const mdl = gltf.scene;
+                            mdl.name = name;
+                            this.scene_3D.add(mdl);
+                            this.hInf[name] = { gltf: gltf };
+                            this.arg2mdl(hArg, mdl);
+                        }, onProgress, (err) => console.error('An error happened', err));
+                    }
+                    return false;
+                case 'fbx':
+                    {
+                    }
+                    break;
+                case 'dae':
+                    {
+                    }
+                    break;
+                default:
+                    throw `サポートしない type=${this.type} です`;
+            }
+            mdl.name = name;
+            this.scene_3D.add(mdl);
         }
+        else if ('name' in hArg) {
+            const mdl2 = this.scene_3D.children.find(e => e.name === name);
+            if (!mdl2)
+                throw `３Ｄレイヤに存在しないモデル name=${name} です`;
+            mdl = mdl2;
+        }
+        else
+            return false;
+        this.arg2mdl(hArg, mdl);
         return false;
+    }
+    arg2mdl(hArg, o) {
+        this.csv2pos(hArg, 'pos', o);
+        this.csv2scale(hArg, 'scale', o);
+        const inf = this.hInf[o.name];
+        if (!inf)
+            return;
+        if ('ani' in hArg) {
+            inf.ani = hArg['ani'];
+            if (inf.gltf) {
+                const ac = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.ani);
+                if (!ac)
+                    throw `glTF内に存在しないアニメクリップ（ani=${inf.ani}）です`;
+                if (inf.mixer) {
+                    const t = CmnLib.argChk_Num(hArg, 'time', 1000) / 1000;
+                    const aa = inf.mixer.clipAction(ac);
+                    aa.crossFadeFrom(inf.aa, t, true);
+                    inf.aa = aa;
+                }
+                else {
+                    inf.mixer = new ThreeDLayer.THREE.AnimationMixer(o);
+                    inf.aa = inf.mixer.clipAction(ac);
+                    this.fncMixerUpd = () => {
+                        this.scene_3D.children.map(v => {
+                            const inf2 = this.hInf[v.name];
+                            if (inf2)
+                                inf2.mixer.update(this.clock.getDelta());
+                        });
+                    };
+                }
+                inf.aa.enabled = true;
+                inf.aa.clampWhenFinished = true;
+                inf.aa.loop = CmnLib.argChk_Boolean(hArg, 'loop', true)
+                    ? ThreeDLayer.THREE.LoopRepeat
+                    : ThreeDLayer.THREE.LoopOnce;
+                inf.aa.play();
+            }
+        }
+    }
+    csv2pos(hArg, name, o) {
+        if (!(name in hArg))
+            return;
+        const p = String(hArg[name]).split(',').map(v => Number(v));
+        o.position.set(p[0], p[1], p[2]);
+    }
+    csv2scale(hArg, name, o) {
+        if (!(name in hArg))
+            return;
+        const p = String(hArg[name]).split(',').map(v => Number(v));
+        o.scale.set(p[0], p[1], p[2]);
+    }
+    clearLay(hArg) {
+        super.clearLay(hArg);
+        if (!this.scene_3D)
+            return;
+        if (!this.running)
+            return;
+        this.type = '';
+        this.running = false;
+        this.fncCtrl = () => { };
+        this.fncMixerUpd = () => { };
+        this.hInf = {};
+        this.clearScene(this.scene_3D);
+        this.canvas_3D.clear();
+        this.sprite_3D.texture.update();
+        delete this.camera;
+    }
+    clearScene(sc) {
+        sc.children.slice().map(o => {
+            sc.remove(o);
+            const s = o;
+            if (s) {
+                const inf = this.hInf[s.name];
+                if (inf && inf.mixer)
+                    inf.mixer.stopAllAction();
+                this.clearScene(s);
+                return;
+            }
+            const m = o;
+            if (!m)
+                return;
+            m.geometry.dispose();
+            if (m.material instanceof three_1.Material) {
+                m.material.dispose();
+                if (m.material)
+                    delete m.material;
+            }
+            else {
+                m.material.map(v => v.dispose());
+            }
+        });
     }
     playback(hLay, fncComp = undefined) {
         super.playback(hLay);
         if (fncComp != undefined)
             fncComp();
+        if (!this.scene_3D)
+            return false;
+        this.type = hLay.type;
         return false;
     }
+    dump() {
+        if (!this.scene_3D)
+            return `"is":"nothing"`;
+        const aChi = [];
+        this.scene_3D.children.map(o => {
+            let s = `{name:${o.name}, type:${o.type}`;
+            const inf = this.hInf[o.name];
+            if (inf && inf.mixer)
+                s += `, ani:${inf.ani}`;
+            aChi.push(s + `}`);
+        });
+        return super.dump() + `, "chi":"${aChi.join(',')}"`;
+    }
+    ;
 }
 ThreeDLayer.uniq_num = 0;
 exports.ThreeDLayer = ThreeDLayer;
