@@ -7,17 +7,16 @@ const CmnLib = CmnLib_1.CmnLib;
 class EmoteLayer extends Layer {
     constructor() {
         super();
-        this.state = {
-            fn: '',
-            label: '',
-            scale: 1,
-            grayscale: 1,
-            windSpeed: 0,
-            windPowerMin: 0,
-            windPowerMax: 0,
-        };
         this.sp = new PIXI.Sprite;
-        this.record = () => Object.assign(super.record(), this.state);
+        this.record = () => Object.assign(super.record(), {
+            fn: this.fn,
+            label: (this.player) ? this.player.mainTimelineLabel : '',
+            scale: (this.player) ? this.player.scale : 1,
+            grayscale: (this.player) ? this.player.grayscale : 1,
+            windSpeed: (this.player) ? this.player.windSpeed : 0,
+            windPowerMin: (this.player) ? this.player.windPowerMin : 0,
+            windPowerMax: (this.player) ? this.player.windPowerMax : 0,
+        });
         if (!EmoteLayer.initedEMote) {
             switch (String(EmoteLayer.plgArg.getVal('const.sn.platform.os.family'))) {
                 case 'Android':
@@ -39,17 +38,15 @@ class EmoteLayer extends Layer {
         this.cvs.hidden = true;
         const cvsSN = document.getElementById('skynovel');
         cvsSN.parentElement.appendChild(this.cvs);
-        this.player = new EmotePlayer(this.cvs);
     }
     lay(hArg, fncComp) {
         super.lay(hArg);
-        if (!this.player)
-            return false;
-        const fn = hArg.fn;
-        if (fn) {
+        if (hArg.fn) {
+            this.fn = hArg.fn;
+            this.player = new EmotePlayer(this.cvs);
             const a = Object.assign({}, hArg);
             delete a.fn;
-            this.state.fn = fn;
+            a['タグ名'] = 'lay';
             this.player.onUpdate = () => {
                 if (!this.player)
                     return;
@@ -57,14 +54,14 @@ class EmoteLayer extends Layer {
                 this.sp.texture = new PIXI.Texture(new PIXI.BaseTexture(this.cvs));
                 EmoteLayer.plgArg.render(this.sp, this.rt, true);
             };
-            this.player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(fn, 'emtbytes_|emtbytes'))
+            this.player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(this.fn, 'emtbytes_|emtbytes'))
                 .then(() => {
                 this.lay(a, fncComp);
                 EmoteLayer.plgArg.resume(fncComp);
             });
             return true;
         }
-        if (!this.state.fn)
+        else if (hArg['タグ名'] == 'add_lay')
             return false;
         const old_x = this.cnt.x;
         const old_y = this.cnt.y;
@@ -73,46 +70,51 @@ class EmoteLayer extends Layer {
             this.cnt.x -= this.rt.width / 2 - 1;
             this.cnt.y -= this.rt.height - 1;
         }
-        if ('scale' in hArg)
-            this.state.scale = this.player.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
         if ('label' in hArg)
-            this.state.label = this.player.mainTimelineLabel = hArg.label || '';
+            this.player.mainTimelineLabel = hArg.label || '';
+        if ('scale' in hArg)
+            this.player.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
         if ('grayscale' in hArg)
-            this.state.grayscale = this.player.grayscale = CmnLib.argChk_Num(hArg, 'grayscale', 0);
+            this.player.grayscale = CmnLib.argChk_Num(hArg, 'grayscale', 1);
         if ('windSpeed' in hArg)
-            this.state.windSpeed = this.player.windSpeed = CmnLib.argChk_Num(hArg, 'windSpeed', 0);
+            this.player.windSpeed = CmnLib.argChk_Num(hArg, 'windSpeed', 0);
         if ('windPowerMin' in hArg)
-            this.state.windPowerMin = this.player.windPowerMin = CmnLib.argChk_Num(hArg, 'windPowerMin', 0);
+            this.player.windPowerMin = CmnLib.argChk_Num(hArg, 'windPowerMin', 0);
         if ('windPowerMax' in hArg)
-            this.state.windPowerMax = this.player.windPowerMax = CmnLib.argChk_Num(hArg, 'windPowerMax', 0);
+            this.player.windPowerMax = CmnLib.argChk_Num(hArg, 'windPowerMax', 0);
         return false;
     }
     clearLay(hArg) {
+        if (!this.cvs)
+            return;
         super.clearLay(hArg);
         if (this.player) {
+            this.player.onUpdate = () => { };
+            this.sp.visible = false;
+            EmoteLayer.plgArg.render(this.sp, this.rt, true);
+            this.sp.visible = true;
             this.player.unloadData();
             this.player = null;
+            this.fn = '';
         }
-        this.state = {
-            fn: '',
-            label: '',
-            scale: 1,
-            grayscale: 1,
-            windSpeed: 0,
-            windPowerMin: 0,
-            windPowerMax: 0,
-        };
+        ;
     }
     playback(hLay, fncComp = undefined) {
         super.playback(hLay);
-        return this.lay(hLay, fncComp);
+        if (hLay.fn)
+            return this.lay(hLay, fncComp);
+        this.clearLay(hLay);
+        return false;
     }
+    dump() {
+        if (!this.cvs)
+            return `"is":"nothing"`;
+        return super.dump() + `, "mdl":{"fn":"${this.fn}","label":"${this.player.mainTimelineLabel}"}`;
+    }
+    ;
     destroy() {
-        if (!this.player)
-            return;
-        this.cvs.parentElement.removeChild(this.cvs);
-        this.cnt.removeChildren().map((v) => v.destroy());
         this.clearLay({});
+        this.cvs.parentElement.removeChild(this.cvs);
     }
 }
 EmoteLayer.uniq_num = 0;

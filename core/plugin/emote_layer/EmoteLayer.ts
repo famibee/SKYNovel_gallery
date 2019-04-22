@@ -22,20 +22,7 @@ export class EmoteLayer extends Layer {
 	private	static	initedEMote = false;
 
 	private rt		: PIXI.RenderTexture;
-
 	private cvs		: HTMLCanvasElement;
-	private	player	: any;
-
-	private	state	= {
-		fn			: '',
-		label		: '',
-		scale		: 1,
-		grayscale	: 1,
-		windSpeed	: 0,
-		windPowerMin: 0,
-		windPowerMax: 0,
-//		light		: false,
-	};
 
 	constructor() {
 		super();
@@ -63,37 +50,39 @@ export class EmoteLayer extends Layer {
 		this.cvs.hidden = true;
 		const cvsSN = document.getElementById('skynovel') as HTMLCanvasElement;
 		cvsSN.parentElement!.appendChild(this.cvs);
-		this.player = new EmotePlayer(this.cvs);
 	}
-	private sp = new PIXI.Sprite;
+	private readonly sp = new PIXI.Sprite;
 
 	lay(hArg: HArg, fncComp?: ()=> void): boolean {
 		super.lay(hArg);
-		if (! this.player) return false;
 
-		const fn = hArg.fn;
-		if (fn) {
+		if (hArg.fn) {	// 最初のロード
+			this.fn = hArg.fn;
+			this.player = new EmotePlayer(this.cvs);
+
 			const a = {...hArg};
 			delete a.fn;
-			this.state.fn = fn;
+			a['タグ名'] = 'lay';
+
 			this.player.onUpdate = ()=> {
 				if (! this.player) return;
-//				if (! this.player.canvas) return;
-//				if (this.state.light && this.player.animating) return;
+			//	if (! this.player.canvas) return;
+			//	if (this.state.light && this.player.animating) return;
 
 				this.sp.texture.destroy();
 				this.sp.texture = new PIXI.Texture(new PIXI.BaseTexture(this.cvs));
 				EmoteLayer.plgArg.render(this.sp, this.rt, true);
 			}
-			this.player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(fn, 'emtbytes_|emtbytes'))
+			this.player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(this.fn, 'emtbytes_|emtbytes'))
 			.then(()=> {
 				this.lay(a, fncComp);
 				EmoteLayer.plgArg.resume(fncComp);
 			});
 			return true;
 		}
-		if (! this.state.fn) return false;
+		else if (hArg['タグ名'] == 'add_lay') return false;
 
+		// 以後の操作
 		const old_x = this.cnt.x;
 		const old_y = this.cnt.y;
 		Layer.setXY(this.sp, hArg, this.cnt, true);
@@ -103,48 +92,60 @@ export class EmoteLayer extends Layer {
 		}
 		// TODO: width, height 指定で程良い大きさにトリム・処理軽量化したい
 
-		if ('scale' in hArg) this.state.scale = this.player.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
-		if ('label' in hArg) this.state.label = this.player.mainTimelineLabel = hArg.label || '';
-		if ('grayscale' in hArg) this.state.grayscale = this.player.grayscale = CmnLib.argChk_Num(hArg, 'grayscale', 0);
-		if ('windSpeed' in hArg) this.state.windSpeed = this.player.windSpeed = CmnLib.argChk_Num(hArg, 'windSpeed', 0);
-		if ('windPowerMin' in hArg) this.state.windPowerMin = this.player.windPowerMin = CmnLib.argChk_Num(hArg, 'windPowerMin', 0);
-		if ('windPowerMax' in hArg) this.state.windPowerMax = this.player.windPowerMax = CmnLib.argChk_Num(hArg, 'windPowerMax', 0);
-//		if ('light' in hArg) this.state.light = CmnLib.argChk_Boolean(hArg, 'light', false);
+		if ('label' in hArg) this.player.mainTimelineLabel = hArg.label || '';
+		if ('scale' in hArg) this.player.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
+		if ('grayscale' in hArg) this.player.grayscale = CmnLib.argChk_Num(hArg, 'grayscale', 1);
+		if ('windSpeed' in hArg) this.player.windSpeed = CmnLib.argChk_Num(hArg, 'windSpeed', 0);
+		if ('windPowerMin' in hArg) this.player.windPowerMin = CmnLib.argChk_Num(hArg, 'windPowerMin', 0);
+		if ('windPowerMax' in hArg) this.player.windPowerMax = CmnLib.argChk_Num(hArg, 'windPowerMax', 0);
 
 		return false;
 	}
+	private player	: any;
+	private fn		: string;
 
 	clearLay(hArg: HArg): void {
+		if (! this.cvs) return;
+
 		super.clearLay(hArg);
 
 		if (this.player) {
+			this.player.onUpdate = ()=> {};
+			this.sp.visible = false;
+			EmoteLayer.plgArg.render(this.sp, this.rt, true);
+			this.sp.visible = true;
+
 			this.player.unloadData();
 			this.player = null;
-		}
-		this.state	= {
-			fn		: '',
-			label	: '',
-			scale	: 1,
-			grayscale	: 1,
-			windSpeed	: 0,
-			windPowerMin: 0,
-			windPowerMax: 0,
-//			light		: false,
+			this.fn = '';
 		};
 	}
-	record = ()=> Object.assign(super.record(), this.state);
+	record = ()=> Object.assign(super.record(), {
+		fn		: this.fn,
+		label	: (this.player)	?this.player.mainTimelineLabel : '',
+		scale	: (this.player) ?this.player.scale : 1,
+		grayscale	: (this.player) ?this.player.grayscale : 1,
+		windSpeed	: (this.player) ?this.player.windSpeed : 0,
+		windPowerMin	: (this.player) ?this.player.windPowerMin : 0,
+		windPowerMax	: (this.player) ?this.player.windPowerMax : 0,
+	});
 	playback(hLay: any, fncComp: undefined | {(): void} = undefined): boolean {
 		super.playback(hLay);
-		return this.lay(hLay, fncComp);
+		if (hLay.fn) return this.lay(hLay, fncComp);
+
+		this.clearLay(hLay);
+		return false;
 	}
 
+	dump(): string {
+		if (! this.cvs) return `"is":"nothing"`;
+
+		return super.dump() +`, "mdl":{"fn":"${this.fn}","label":"${this.player.mainTimelineLabel}"}`;
+	};
+
 	destroy() {
-		if (! this.player) return;
-
-		this.cvs!.parentElement!.removeChild(this.cvs);
-		this.cnt.removeChildren().map((v: PIXI.Sprite)=> v.destroy());
-
 		this.clearLay({});
+		this.cvs!.parentElement!.removeChild(this.cvs);
 	}
 
 }

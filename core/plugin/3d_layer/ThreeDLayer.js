@@ -282,13 +282,13 @@ class ThreeDLayer extends Layer {
             return `"is":"nothing"`;
         const aChi = [];
         this.scene_3D.children.map(o => {
-            let s = `{name:${o.name}, type:${o.type}`;
+            let s = `"${o.name}": {"type":"${o.type}"`;
             const inf = this.hInf[o.name];
             if (inf && inf.mixer)
-                s += `, label:${inf.label}`;
+                s += `, "label":"${inf.label}"`;
             aChi.push(s + `}`);
         });
-        return super.dump() + `, "chi":"${aChi.join(',')}"`;
+        return super.dump() + `, "mdl":{${aChi.join(',')}}`;
     }
     ;
 }

@@ -466,12 +466,12 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 
 		const aChi: string[] = [];
 		this.scene_3D.children.map(o=> {
-			let s = `{name:${o.name}, type:${o.type}`;
+			let s = `"${o.name}": {"type":"${o.type}"`;
 			const inf = this.hInf[o.name];
-			if (inf && inf.mixer) s += `, label:${inf.label}`;
+			if (inf && inf.mixer) s += `, "label":"${inf.label}"`;
 			aChi.push(s +`}`);
 		});
-		return super.dump() +`, "chi":"${aChi.join(',')}"`;
+		return super.dump() +`, "mdl":{${aChi.join(',')}}`;
 	};
 
 }

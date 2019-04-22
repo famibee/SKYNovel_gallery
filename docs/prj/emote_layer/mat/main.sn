@@ -6,6 +6,7 @@
 [add_lay layer=mes class=txt]
 	[lay layer=mes b_color=0xFFFFFF b_alpha=0.3 left=16 top=350 style="width: 718px; height: 140px; padding-top: 24x; padding-left: 8px; padding-right: 8px; color: black;"]
 [add_lay layer=btn class=txt]
+
 	[button layer=btn text=初期化 left=20 top=20 page=fore label=*初期化 global=true call=true fill_hover=tomato]
 	[button layer=btn text=喜ぶ02 left=20 top=60 page=fore label=*喜ぶ02 global=true call=true fill_hover=tomato]
 	[button layer=btn text=怒る01 left=20 top=100 page=fore label=*怒る01 global=true call=true fill_hover=tomato]
@@ -46,12 +47,15 @@
 	[button layer=btn text=sample_怒03 left=640 top=300 page=fore label=*sample_怒03 global=true call=true fill_hover=tomato]
 
 
+*loop
 	[lay layer=emote fn=emote_test2 scale=0.5]
 ロード完了[l][r]
 
-*loop
 	[lay layer=emote label=sample_全自動_test]
-全自動_test[l][er]
+全自動_test[l][r]
+
+	[clear_lay layer=emote]
+レイヤクリア[l][er]
 
 [jump label=*loop]
 
