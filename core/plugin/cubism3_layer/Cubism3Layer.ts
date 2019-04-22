@@ -47,7 +47,9 @@ export class Cubism3Layer extends Layer {
 				if (this.ldr.loading) this.ldr = new PIXI.loaders.Loader();
 				switch (i) {
 					case 0:
-						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'), { xhrType: PIXI.loaders.XHR_RESPONSE_TYPE.BUFFER });
+						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'), { xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.BUFFER });
+						// Cannot read property 'BUFFER' of undefined(TypeError)
+						// になる場合、【npm i -D @types/pixi.js@4.8.6】する
 						break;
 
 					case 1:
@@ -55,7 +57,7 @@ export class Cubism3Layer extends Layer {
 						break;
 
 					case 2:
-						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn +'_'+ label, 'json_|json'), { xhrType: PIXI.loaders.TYPE.JSON })
+						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn +'_'+ label, 'json_|json'), { xhrType: PIXI.loaders.Resource.XHR_RESPONSE_TYPE.JSON })
 						break;
 				}
 			});
