@@ -180,15 +180,15 @@ class ThreeDLayer extends Layer {
         const inf = this.hInf[o.name];
         if (!inf)
             return;
-        if ('ani' in hArg) {
-            inf.ani = hArg['ani'];
+        if ('label' in hArg) {
+            inf.label = hArg['label'];
             if (inf.gltf) {
-                const ac = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.ani);
+                const ac = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.label);
                 if (!ac) {
                     console.log(`glTF内に存在するアニメクリップ名を列挙します`);
                     const a = inf.gltf.animations;
-                    a.map(v => console.log(`  ani name=${v.name}`));
-                    throw `glTF内に存在しないアニメクリップ（ani=${inf.ani}）です`;
+                    a.map(v => console.log(`  label name=${v.name}`));
+                    throw `glTF内に存在しないアニメクリップ（ani=${inf.label}）です`;
                 }
                 if (inf.mixer) {
                     const t = CmnLib.argChk_Num(hArg, 'time', 1000) / 1000;
@@ -285,7 +285,7 @@ class ThreeDLayer extends Layer {
             let s = `{name:${o.name}, type:${o.type}`;
             const inf = this.hInf[o.name];
             if (inf && inf.mixer)
-                s += `, ani:${inf.ani}`;
+                s += `, label:${inf.label}`;
             aChi.push(s + `}`);
         });
         return super.dump() + `, "chi":"${aChi.join(',')}"`;

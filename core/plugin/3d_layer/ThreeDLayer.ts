@@ -64,60 +64,6 @@ export class ThreeDLayer extends Layer {
 	private fncMixerUpd	= ()=> {};
 	private	readonly clock		= new ThreeDLayer.THREE.Clock();
 
-/*
-		if ('mmd' in hArg) {
-			const mmd = searchPath(hArg['mmd'], 'pmd|pmx');
-			const vmd = searchPath(hArg['vmd'], 'vmd');
-
-
-	//const object = require('three/examples/js/loaders/MMDLoader').default;
-	//const object2 = require('three/examples/js/loaders/MMDLoader');
-	//const object2 = require('./mo');
-	//const object2 = require('./three/examples/js/loaders/MMDLoader');
-	console.log(`fn:ThreeDLayer.ts line:63 %o`, object2);
-	const instance = new object2();
-	console.log(`fn:ThreeDLayer.ts line:65 ${instance}`);
-	console.log(`fn:ThreeDLayer.ts line:67 ${instance.getName()}`);
-
-	console.log(`fn:ThreeDLayer.ts line:63 %o`, THREE);
-	console.log(`fn:ThreeDLayer.ts line:63 %o`, MMDAnimationHelper);
-
-
-		//	const loader = new ThreeDLayer.THREE.MMDLoader();
-			const loader = new MMDLoader();
-//			const mesh = await loader.load(mmd, [vmd]);
-//			const mesh = loader.load(mmd, [vmd]);
-
-			async function f1() {
-				const mesh = await loader.load(mmd, [vmd]);
-			}
-			f1();
-
-
-//const helper = new ThreeDLayer.THREE.MMDHelper();
-//const helper = new MMDAnimationHelper();
-
-			const helper = new MMDHelper();
-			new MMDLoader().loadWithAnimation(
-				mmd,
-				vmd,
-				mmd=> {
-					helper.add(mmd.mesh, {
-						animation	: mmd.animation,
-						physics		: true,
-					});
-					this.scene_3D.add( mmd.mesh );
-				}
-			);
-
-			const clock = new ThreeDLayer.THREE.Clock();
-			const anime = ()=> {
-				helper.update(clock.getDelta());
-				requestAnimationFrame(anime);
-			}
-			anime();
-*/
-
 	lay(hArg: HArg): boolean {
 		if (! this.scene_3D) return false;
 
@@ -269,6 +215,60 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 				}
 					return false;
 */
+
+/*
+		if ('mmd' in hArg) {
+			const mmd = searchPath(hArg['mmd'], 'pmd|pmx');
+			const vmd = searchPath(hArg['vmd'], 'vmd');
+
+
+	//const object = require('three/examples/js/loaders/MMDLoader').default;
+	//const object2 = require('three/examples/js/loaders/MMDLoader');
+	//const object2 = require('./mo');
+	//const object2 = require('./three/examples/js/loaders/MMDLoader');
+	console.log(`fn:ThreeDLayer.ts line:63 %o`, object2);
+	const instance = new object2();
+	console.log(`fn:ThreeDLayer.ts line:65 ${instance}`);
+	console.log(`fn:ThreeDLayer.ts line:67 ${instance.getName()}`);
+
+	console.log(`fn:ThreeDLayer.ts line:63 %o`, THREE);
+	console.log(`fn:ThreeDLayer.ts line:63 %o`, MMDAnimationHelper);
+
+
+		//	const loader = new ThreeDLayer.THREE.MMDLoader();
+			const loader = new MMDLoader();
+	//		const mesh = await loader.load(mmd, [vmd]);
+	//		const mesh = loader.load(mmd, [vmd]);
+
+			async function f1() {
+				const mesh = await loader.load(mmd, [vmd]);
+			}
+			f1();
+
+
+	//const helper = new ThreeDLayer.THREE.MMDHelper();
+	//const helper = new MMDAnimationHelper();
+
+			const helper = new MMDHelper();
+			new MMDLoader().loadWithAnimation(
+				mmd,
+				vmd,
+				mmd=> {
+					helper.add(mmd.mesh, {
+						animation	: mmd.animation,
+						physics		: true,
+					});
+					this.scene_3D.add( mmd.mesh );
+				}
+			);
+
+			const clock = new ThreeDLayer.THREE.Clock();
+			const anime = ()=> {
+				helper.update(clock.getDelta());
+				requestAnimationFrame(anime);
+			}
+			anime();
+*/
 				case 'fbx':	//
 				{
 	/*				const ldrFBX = new FBXLoader();
@@ -344,15 +344,15 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 		const inf = this.hInf[o.name];
 		if (! inf) return;
 
-		if ('ani' in hArg) {
-			inf.ani = hArg['ani'];
+		if ('label' in hArg) {
+			inf.label = hArg['label'];
 			if (inf.gltf) {
-				const ac: THREE.AnimationClip = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.ani);
+				const ac: THREE.AnimationClip = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.label);
 				if (! ac) {
 					console.log(`glTF内に存在するアニメクリップ名を列挙します`);
 					const a = inf.gltf.animations as THREE.AnimationClip[];
-					a.map(v=> console.log(`  ani name=${v.name}`));
-					throw `glTF内に存在しないアニメクリップ（ani=${inf.ani}）です`;
+					a.map(v=> console.log(`  label name=${v.name}`));
+					throw `glTF内に存在しないアニメクリップ（ani=${inf.label}）です`;
 				}
 
 				if (inf.mixer) {
@@ -385,7 +385,7 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 	}
 	private hInf: {[name: string]: {
 		type	: string,
-		ani?	: string,
+		label?	: string,
 		gltf?	: any,
 		mixer?	: THREE.AnimationMixer,
 		aa?		: THREE.AnimationAction,
@@ -468,7 +468,7 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 		this.scene_3D.children.map(o=> {
 			let s = `{name:${o.name}, type:${o.type}`;
 			const inf = this.hInf[o.name];
-			if (inf && inf.mixer) s += `, ani:${inf.ani}`;
+			if (inf && inf.mixer) s += `, label:${inf.label}`;
 			aChi.push(s +`}`);
 		});
 		return super.dump() +`, "chi":"${aChi.join(',')}"`;

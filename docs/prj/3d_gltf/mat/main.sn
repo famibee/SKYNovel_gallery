@@ -7,17 +7,17 @@
 	[lay layer=bg fn=wp1680]
 
 *loop
-;	[lay layer=3d type=gltf fn=Spacesuit ani=mixamo.com camera=0,2,10 directional_light=-15,4,10 grid=0,-2,-10]
+;	[lay layer=3d type=gltf fn=Spacesuit label=mixamo.com camera=0,2,10 directional_light=-15,4,10 grid=0,-2,-10]
 	[lay layer=3d camera=0,2,10 directional_light=-15,4,10 grid=0,-2,-10]
-	[lay layer=3d name=てすと type=gltf fn=Spacesuit ani=mixamo.com]
+	[lay layer=3d name=てすと type=gltf fn=Spacesuit label=mixamo.com]
 	３Ｄレイヤに glTF モデルを表示しています。[r]
 
 	クリックで別アニメ[l][r]
-	[lay layer=3d name=てすと ani=mixamo.com2 time=1000]
-;	[lay layer=3d name=てすと type=gltf fn=Spacesuit ani=mixamo.com2]	; ロードname重複エラー
+	[lay layer=3d name=てすと label=mixamo.com2 time=1000]
+;	[lay layer=3d name=てすと type=gltf fn=Spacesuit label=mixamo.com2]	; ロードname重複エラー
 
 	クリックで元のアニメ、終端停止[l][r]
-	[lay layer=3d name=てすと ani=mixamo.com time=1000 loop=false]
+	[lay layer=3d name=てすと label=mixamo.com time=1000 loop=false]
 
 	クリックで消去[l][r]
 	[clear_lay layer=3d]
