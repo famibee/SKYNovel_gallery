@@ -11,6 +11,9 @@ const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
 const CmnLib = CmnLib_1.CmnLib;
 
 import {HArg, IPluginInitArg} from 'skynovel';
+declare const Live2DCubismCore: any;	// 【名前 '〜' が見つかりません。】対策
+declare const LIVE2DCUBISMPIXI: any;
+declare const LIVE2DCUBISMFRAMEWORK: any;
 
 export class Cubism3Layer extends Layer {
 	static	plgArg	: IPluginInitArg;

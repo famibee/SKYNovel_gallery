@@ -13,6 +13,8 @@ const CmnLib = CmnLib_1.CmnLib;
 import {HArg, IPluginInitArg} from 'skynovel';
 //import { EmotePlayer } from "./EmotePlayer";
 
+declare const EmotePlayer: any;	// 【名前 '〜' が見つかりません。】対策
+
 export class EmoteLayer extends Layer {
 	static	plgArg	: IPluginInitArg;
 	private	static	uniq_num = 0;
