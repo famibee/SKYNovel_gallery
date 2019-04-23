@@ -126,6 +126,7 @@ export class ThreeDLayer extends Layer {
 			if (! this.running) {this.running = true; this.tick();}
 
 			const fn = hArg.fn;
+			if (! fn) throw 'fnは必須です';
 			switch (type) {
 				case 'box':	// 立方体サンプル
 				{
@@ -179,7 +180,7 @@ export class ThreeDLayer extends Layer {
 							const mdl = gltf.scene;
 							mdl.name = name;
 							this.scene_3D.add(mdl);
-							this.hInf[name] = {type: type, gltf: gltf};
+							this.hInf[name] = {type: type, fn: fn, gltf: gltf};
 							this.arg2mdl(hArg, mdl);
 						},
 						onProgress,
@@ -313,7 +314,7 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 					throw `サポートしない type=${type} です`;
 			}
 
-			this.hInf[name] = {type: type};
+			this.hInf[name] = {type: type, fn: fn};
 			mdl.name = name;
 			this.scene_3D.add(mdl);
 		}
@@ -349,10 +350,10 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 			if (inf.gltf) {
 				const ac: THREE.AnimationClip = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.label);
 				if (! ac) {
-					console.log(`glTF内に存在するアニメクリップ名を列挙します`);
+					console.info(`エラーが発生しました。参考までに ${inf.fn}(glTF)内に存在するアニメ名を列挙します`);
 					const a = inf.gltf.animations as THREE.AnimationClip[];
-					a.map(v=> console.log(`  label name=${v.name}`));
-					throw `glTF内に存在しないアニメクリップ（ani=${inf.label}）です`;
+					a.map(v=> console.info(`  label=${v.name}`));
+					throw `${inf.fn}(glTF)内に存在しないアニメ（label=${inf.label}）です`;
 				}
 
 				if (inf.mixer) {
@@ -385,6 +386,7 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 	}
 	private hInf: {[name: string]: {
 		type	: string,
+		fn		: string,
 		label?	: string,
 		gltf?	: any,
 		mixer?	: THREE.AnimationMixer,

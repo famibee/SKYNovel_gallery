@@ -3,6 +3,7 @@
 [add_lay layer=bg class=grp]
 	[lay layer=bg fn=bg]
 [add_lay layer=emote class=emote]
+[add_lay layer=emote2 class=emote]
 [add_lay layer=mes class=txt]
 	[lay layer=mes b_color=0xFFFFFF b_alpha=0.3 left=16 top=350 style="width: 718px; height: 140px; padding-top: 24x; padding-left: 8px; padding-right: 8px; color: black;"]
 [add_lay layer=btn class=txt]
@@ -49,13 +50,21 @@
 
 *loop
 	[lay layer=emote fn=emote_test2 scale=0.5]
-ロード完了[l][r]
+ロード完了、[l][r]
 
-	[lay layer=emote label=sample_全自動_test]
-全自動_test[l][r]
+もう一人増やす、
+	[lay layer=emote2 fn=emote_test left=-240 top=40 scale=0.5 label=sample_全自動_test alpha=0]
+	[tsy layer=emote2 time=3500 x=260 alpha=1 ease=Bounce.Out]
+	[wait_tsy layer=emote2]
+[l]
+
+	[tsy layer=emote2 time=500 alpha=0]
+	[wait_tsy layer=emote2]
+	[clear_lay layer=emote2]
+やっぱり消去、[l][r]
 
 	[clear_lay layer=emote]
-レイヤクリア[l][er]
+全レイヤクリア[l][er]
 
 [jump label=*loop]
 
