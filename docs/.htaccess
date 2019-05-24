@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	RewriteCond %{HTTP:Accept-Encoding} gzip
+	RewriteCond %{REQUEST_URI} (\.js|\.emtbytes)$
+	RewriteCond %{REQUEST_FILENAME}.gz -s
+	RewriteRule .* %{REQUEST_URI}.gz [L]
+
+	<files *.js.gz>
+		AddType "text/javascript;charset=utf-8" .gz
+	</files>
+	<files *.emtbytes.gz>
+		AddType "application/octet-stream" .gz
+	</files>
+</IfModule>
