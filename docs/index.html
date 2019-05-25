@@ -1,11 +1,10 @@
 <!DOCTYPE html><html lang="ja">
 <head><meta charset="utf-8"/><title>SKYNovel</title>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<meta name="Description" content="SKYNovel Sample Gallery"/>
+<meta name="description" content="SKYNovel Sample Gallery"/>
 <!--[if IE]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-<link rel="preload" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" as="style">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 <link rel="preload" href="https://use.fontawesome.com/releases/v5.8.2/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="https://use.fontawesome.com/releases/v5.8.2/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -18,6 +17,8 @@
 	:-moz-full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
 	:full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
 	:-webkit-full-screen .navbar {display: none;}
+	.nav-pills a {color: black;};
+	.nav-pills a.active {color: white;};
 </style>
 <script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<!-- https://code.jquery.com/ -->
@@ -43,12 +44,12 @@
 	<script defer src="plugin_lib/emoteplayer.js"></script>
 </head><body oncontextmenu="return false;">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top text-body">
 	<a class="navbar-brand" href="#" data-prj="top" onclick="return false;" aria-label="Title" title="Return to Top">SKYNovel</a>
 
-	<span class="navbar-text" data-title>top page</span>
-	<span class="navbar-btn btn" aria-label="Reload" data-reload title="Reload"><i class="fas fa-redo-alt text-dark"></i></span>
-	<span class="navbar-btn btn" aria-label="Snapshot" id="snapshot" title="Snapshot"><i class="fas fa-camera text-dark"></i></span>
+	<span class="navbar-text text-body" data-title>top page</span>
+	<span class="navbar-btn btn" aria-label="Reload" data-reload title="Reload"><i class="fas fa-redo-alt"></i></span>
+	<span class="navbar-btn btn" aria-label="Snapshot" id="snapshot" title="Snapshot"><i class="fas fa-camera"></i></span>
 	<span class="navbar-btn btn" aria-label="Look Code" title="Look Code" data-toggle="collapse" aria-expanded="false" data-target="#clpCode"><i class="fas fa-code"></i></span>
 
 	<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -58,16 +59,16 @@
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav float-right ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="//famibee.github.io/SKYNovel/tag.htm" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> tag reference</a>
+				<a class="nav-link text-body" href="//famibee.github.io/SKYNovel/tag.htm" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> tag reference</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="//famibee.blog38.fc2.com/" target="_blank" rel="noopener"><i class="fas fa-home"></i> home</a>
+				<a class="nav-link text-body" href="//famibee.blog38.fc2.com/" target="_blank" rel="noopener"><i class="fas fa-home"></i> home</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="//twitter.com/famibee" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> contact</a>
+				<a class="nav-link text-body" href="//twitter.com/famibee" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> contact</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="mailto:famibee@gmail.com" target="_blank" rel="noopener"><i class="far fa-envelope"></i> to famibee</a>
+				<a class="nav-link text-body" href="mailto:famibee@gmail.com" target="_blank" rel="noopener"><i class="far fa-envelope"></i> to famibee</a>
 			</li>
 		</ul>
 	</div>
