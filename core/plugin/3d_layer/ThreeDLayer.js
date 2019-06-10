@@ -5,6 +5,7 @@ const Layer = Layer_1.Layer;
 const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
 const CmnLib = CmnLib_1.CmnLib;
 const three_1 = require("three");
+const pixi_js_1 = require("pixi.js");
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 class ThreeDLayer extends Layer {
     constructor() {
@@ -13,8 +14,6 @@ class ThreeDLayer extends Layer {
             if (!this.running)
                 return;
             this.canvas_3D.render(this.scene_3D, this.camera);
-            if (this.sprite_3D.texture.baseTexture.source == null)
-                return;
             this.sprite_3D.texture.update();
             this.fncCtrl();
             this.fncMixerUpd();
@@ -37,8 +36,8 @@ class ThreeDLayer extends Layer {
         console.log = log;
         this.canvas_3D.setSize(CmnLib.stageW, CmnLib.stageH);
         this.canvas_3D.setPixelRatio(window.devicePixelRatio);
-        const texture_3D = PIXI.Texture.fromCanvas(this.canvas_3D.domElement);
-        this.sprite_3D = new PIXI.Sprite(texture_3D);
+        const texture_3D = pixi_js_1.Texture.from(this.canvas_3D.domElement);
+        this.sprite_3D = new pixi_js_1.Sprite(texture_3D);
         this.cnt.addChild(this.sprite_3D);
         this.sprite_3D.x = (CmnLib.stageW - this.sprite_3D.width) / 2;
         this.sprite_3D.y = (CmnLib.stageH - this.sprite_3D.height) / 2;

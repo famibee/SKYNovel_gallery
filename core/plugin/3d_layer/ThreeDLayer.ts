@@ -13,6 +13,8 @@ const CmnLib = CmnLib_1.CmnLib;
 import {HArg, IPluginInitArg} from 'skynovel';
 import { Material, Object3D } from 'three';
 
+import {Sprite, Texture} from 'pixi.js';
+
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 
 export class ThreeDLayer extends Layer {
@@ -22,7 +24,7 @@ export class ThreeDLayer extends Layer {
 	static	THREE		: any;
 	private scene_3D	: THREE.Scene;
 	private	canvas_3D	: THREE.WebGLRenderer;
-	private sprite_3D	: PIXI.Sprite;
+	private sprite_3D	: Sprite;
 
 	private camera		: THREE.Camera;
 
@@ -42,8 +44,8 @@ export class ThreeDLayer extends Layer {
 		this.canvas_3D.setPixelRatio(window.devicePixelRatio);
 
 		// Map 3D canvas to 2D Canvas
-		const texture_3D = PIXI.Texture.fromCanvas(this.canvas_3D.domElement);
-		this.sprite_3D = new PIXI.Sprite(texture_3D);
+		const texture_3D = Texture.from(this.canvas_3D.domElement);
+		this.sprite_3D = new Sprite(texture_3D);
 		this.cnt.addChild(this.sprite_3D);
 		this.sprite_3D.x = (CmnLib.stageW -this.sprite_3D.width) /2
 		this.sprite_3D.y = (CmnLib.stageH -this.sprite_3D.height) /2
@@ -52,7 +54,6 @@ export class ThreeDLayer extends Layer {
 		if (! this.running) return;
 
 		this.canvas_3D.render(this.scene_3D, this.camera);
-		if (this.sprite_3D.texture.baseTexture.source == null) return;
 		this.sprite_3D.texture.update();	//tell pixi that threejs changed
 		this.fncCtrl();
 		this.fncMixerUpd();

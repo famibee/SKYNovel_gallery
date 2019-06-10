@@ -13,6 +13,8 @@ const CmnLib = CmnLib_1.CmnLib;
 import {HArg, IPluginInitArg} from 'skynovel';
 declare const EmotePlayer: any;	// 【名前 '〜' が見つかりません。】対策
 
+import {RenderTexture, Sprite, Texture, BaseTexture} from 'pixi.js';
+
 export interface IInf {
 	fn		: string,
 	player	: any,
@@ -22,9 +24,9 @@ export class EmoteLayer extends Layer {
 	static	plgArg	: IPluginInitArg;
 	private	static	uniq_num = 0;
 
-	private rt		: PIXI.RenderTexture;
+	private rt		: RenderTexture;
 	private cvs		: HTMLCanvasElement;
-	private readonly sp		= new PIXI.Sprite;
+	private readonly sp		= new Sprite;
 	private inf		: IInf | null;
 
 	constructor() {
@@ -42,8 +44,8 @@ export class EmoteLayer extends Layer {
 			EmotePlayer.createRenderCanvas(CmnLib.stageW, CmnLib.stageH);
 		}
 
-		this.rt = PIXI.RenderTexture.create(CmnLib.stageW, CmnLib.stageH);
-		this.cnt.addChild(new PIXI.Sprite(this.rt));
+		this.rt = RenderTexture.create({width: CmnLib.stageW, height: CmnLib.stageH});
+		this.cnt.addChild(new Sprite(this.rt));
 
 		this.cvs = document.createElement('canvas');
 		this.cvs.id = `emote:${EmoteLayer.uniq_num}`;
@@ -87,7 +89,7 @@ export class EmoteLayer extends Layer {
 			//	if (this.state.light && player.animating) return;
 
 				this.sp.texture.destroy();
-				this.sp.texture = new PIXI.Texture(new PIXI.BaseTexture(this.cvs));
+				this.sp.texture = new Texture(new BaseTexture(this.cvs));
 				EmoteLayer.plgArg.render(this.sp, this.rt, true);
 			}
 			player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(fn, 'emtbytes_|emtbytes'))
@@ -174,7 +176,7 @@ export class EmoteLayer extends Layer {
 
 		this.clearLay({});
 		this.cvs!.parentElement!.removeChild(this.cvs);
-		this.cnt.removeChildren().map((v: PIXI.Sprite)=> v.destroy());
+		this.cnt.removeChildren().map((v: Sprite)=> v.destroy());
 	}
 
 }

@@ -4,10 +4,11 @@ const Layer_1 = require('skynovel/core/lib/sn/Layer');
 const Layer = Layer_1.Layer;
 const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
 const CmnLib = CmnLib_1.CmnLib;
+const pixi_js_1 = require("pixi.js");
 class EmoteLayer extends Layer {
     constructor() {
         super();
-        this.sp = new PIXI.Sprite;
+        this.sp = new pixi_js_1.Sprite;
         this.record = () => Object.assign(super.record(), (this.inf)
             ? {
                 fn: this.inf.fn,
@@ -30,8 +31,8 @@ class EmoteLayer extends Layer {
             }
             EmotePlayer.createRenderCanvas(CmnLib.stageW, CmnLib.stageH);
         }
-        this.rt = PIXI.RenderTexture.create(CmnLib.stageW, CmnLib.stageH);
-        this.cnt.addChild(new PIXI.Sprite(this.rt));
+        this.rt = pixi_js_1.RenderTexture.create({ width: CmnLib.stageW, height: CmnLib.stageH });
+        this.cnt.addChild(new pixi_js_1.Sprite(this.rt));
         this.cvs = document.createElement('canvas');
         this.cvs.id = `emote:${EmoteLayer.uniq_num}`;
         this.cvs.width = CmnLib.stageW;
@@ -66,7 +67,7 @@ class EmoteLayer extends Layer {
                 if (!player)
                     return;
                 this.sp.texture.destroy();
-                this.sp.texture = new PIXI.Texture(new PIXI.BaseTexture(this.cvs));
+                this.sp.texture = new pixi_js_1.Texture(new pixi_js_1.BaseTexture(this.cvs));
                 EmoteLayer.plgArg.render(this.sp, this.rt, true);
             };
             player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(fn, 'emtbytes_|emtbytes'))
