@@ -15,7 +15,8 @@ module.exports = [
 				cacheGroups: {
 					three: {test: /three/, name: 'three', chunks: 'initial'},
 				}
-			}
+			},
+			minimize: true,
 		},
 		plugins: [
 			new ImageminPlugin({
