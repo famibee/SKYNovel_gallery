@@ -1,6 +1,5 @@
 {
-	"save_ns": "skynovel.gallery",
-	"search": ["mat"],
+	"save_ns": "gallery",
 	"window": {
 		"width": 750,
 		"height": 500
