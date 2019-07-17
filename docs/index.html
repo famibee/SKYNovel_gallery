@@ -395,6 +395,17 @@
 			const ses = code.getSession();
 			ses.setMode("ace/mode/skynovel");
 			ses.setUseWrapMode(true);
+			// 以下も絶対必要
+			window.set_ed = (txt)=> code.setValue(txt, -1);
+			window.break_ed = (line, set)=> {
+				if (set) {code.gotoLine(line, 0, true); code.scrollToRow(line -5);}
+				ses.clearAnnotations();
+				ses.setAnnotations([{
+					row: line -1,
+					type: "info",
+					text: "script stop",
+				}]);
+			};
 			//code.resize();
 		});
 	</script>
