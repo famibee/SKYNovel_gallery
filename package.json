@@ -10,16 +10,16 @@
 	"dependencies": {
 		"crypto-js": "^3.1.9-1",
 		"pixi.js": "^5.0.4",
-		"skynovel": "^0.5.14",
+		"skynovel": "file:../npm_core",
 		"three": "^0.106.2"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^8.0.0",
-		"@types/node": "^12.6.2",
+		"@types/node": "^12.6.6",
 		"@types/three": "^0.103.2",
 		"@types/tween.js": "^17.2.0",
 		"css-loader": "^3.0.0",
-		"electron": "^5.0.6",
+		"electron": "^5.0.7",
 		"electron-builder": "^21.0.15",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^0.23.1",

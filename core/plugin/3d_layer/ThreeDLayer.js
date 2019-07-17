@@ -85,29 +85,31 @@ class ThreeDLayer extends Layer {
                 this.running = true;
                 this.tick();
             }
+            if (type == 'box') {
+                const size = CmnLib.argChk_Num(hArg, 'size', 100);
+                const geometry = new ThreeDLayer.THREE.BoxGeometry(size, size, size);
+                const material = new ThreeDLayer.THREE.MeshNormalMaterial();
+                mdl = new ThreeDLayer.THREE.Mesh(geometry, material);
+                mdl.rotation.z = -45;
+                this.fncCtrl = () => {
+                    this.scene_3D.children.map(o => {
+                        const m = o;
+                        if (!m)
+                            return;
+                        m.rotation.x += 0.01;
+                        m.rotation.y += 0.01;
+                        m.rotation.z += 0.01;
+                    });
+                };
+                this.hInf[name] = { type: type, fn: '' };
+                mdl.name = name;
+                this.scene_3D.add(mdl);
+                return false;
+            }
             const fn = hArg.fn;
             if (!fn)
                 throw 'fnは必須です';
             switch (type) {
-                case 'box':
-                    {
-                        const size = CmnLib.argChk_Num(hArg, 'size', 100);
-                        const geometry = new ThreeDLayer.THREE.BoxGeometry(size, size, size);
-                        const material = new ThreeDLayer.THREE.MeshNormalMaterial();
-                        mdl = new ThreeDLayer.THREE.Mesh(geometry, material);
-                        mdl.rotation.z = -45;
-                        this.fncCtrl = () => {
-                            this.scene_3D.children.map(o => {
-                                const m = o;
-                                if (!m)
-                                    return;
-                                m.rotation.x += 0.01;
-                                m.rotation.y += 0.01;
-                                m.rotation.z += 0.01;
-                            });
-                        };
-                    }
-                    break;
                 case 'celestial_sphere':
                     {
                         const geometry = new ThreeDLayer.THREE.SphereGeometry(5, 60, 40);
