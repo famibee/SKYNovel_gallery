@@ -10,21 +10,21 @@
 	"dependencies": {
 		"crypto-js": "^3.1.9-1",
 		"pixi.js": "^5.0.4",
-		"skynovel": "^0.5.17",
+		"skynovel": "^0.6.0",
 		"three": "^0.106.2"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^8.0.0",
-		"@types/node": "^12.6.6",
+		"@types/node": "^12.6.8",
 		"@types/three": "^0.103.2",
 		"@types/tween.js": "^17.2.0",
-		"css-loader": "^3.0.0",
+		"css-loader": "^3.1.0",
 		"electron": "^5.0.7",
-		"electron-builder": "^21.0.15",
+		"electron-builder": "^21.1.1",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^0.23.1",
 		"typescript": "^3.5.3",
-		"webpack": "^4.35.3",
+		"webpack": "^4.36.1",
 		"webpack-cli": "^3.3.6",
 		"webpack-dev-server": "^3.7.2"
 	},
