@@ -10,7 +10,7 @@
 	"dependencies": {
 		"crypto-js": "^3.1.9-1",
 		"pixi.js": "^5.0.4",
-		"skynovel": "^0.6.0",
+		"skynovel": "^0.6.2",
 		"three": "^0.106.2"
 	},
 	"devDependencies": {
