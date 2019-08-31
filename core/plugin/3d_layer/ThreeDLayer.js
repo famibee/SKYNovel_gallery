@@ -295,6 +295,6 @@ class ThreeDLayer extends Layer {
     }
     ;
 }
-ThreeDLayer.uniq_num = 0;
 exports.ThreeDLayer = ThreeDLayer;
+ThreeDLayer.uniq_num = 0;
 //# sourceMappingURL=ThreeDLayer.js.map

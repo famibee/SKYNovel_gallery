@@ -3,6 +3,7 @@
 [add_lay layer=bg class=grp]
 	[lay layer=bg fn=bg_0 visible=true]
 [add_lay layer=mes class=txt]
+	[lay layer=mes style="color: black;"]
 [add_lay layer=3 class=grp]
 
 	[call fn=ext_*]
