@@ -9,24 +9,24 @@
 	"license": "MIT",
 	"dependencies": {
 		"crypto-js": "^3.1.9-1",
-		"pixi.js": "^5.0.4",
-		"skynovel": "^0.6.12",
-		"three": "^0.108.0"
+		"pixi.js": "^5.1.5",
+		"skynovel": "^0.6.16",
+		"three": "^0.110.0"
 	},
 	"devDependencies": {
-		"@types/fs-extra": "^8.0.0",
-		"@types/node": "^12.7.3",
+		"@types/fs-extra": "^8.0.1",
+		"@types/node": "^12.12.5",
 		"@types/three": "^0.103.2",
 		"@types/tween.js": "^17.2.0",
 		"css-loader": "^3.2.0",
-		"electron": "^6.0.6",
-		"electron-builder": "^21.2.0",
+		"electron": "^7.0.1",
+		"electron-builder": "^22.1.0",
 		"imagemin-webpack-plugin": "^2.4.2",
 		"style-loader": "^1.0.0",
-		"typescript": "^3.6.2",
-		"webpack": "^4.39.3",
-		"webpack-cli": "^3.3.7",
-		"webpack-dev-server": "^3.8.0"
+		"typescript": "^3.6.4",
+		"webpack": "^4.41.2",
+		"webpack-cli": "^3.3.10",
+		"webpack-dev-server": "^3.9.0"
 	},
 	"scripts": {
 		"plg": "tsc -p core/plugin/",
