@@ -1,4 +1,4 @@
-[title text='レイヤのクロスフェードと画像変更と動きの拡張機能'][call label=*init]
+[title text='レイヤのクロスフェードと画像変更と動き'][call label=*init]
 
 [add_lay layer=base class=grp]
 [add_lay layer=0 class=grp]
