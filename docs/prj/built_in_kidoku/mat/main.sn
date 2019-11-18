@@ -1,0 +1,34 @@
+[title text='既読スキップ'][call label=*init]
+
+[add_lay layer=mes class=txt]
+
+[button text=既読スキップ left=340 top=80 page=fore label=*go_skip arg='go skip' global=true call=true style='fill: white;']
+
+　一ページ目[l][r]
+　　２行目[l][r]
+　　３行目[p][clear_text]
+
+　二ページ目[l][r]
+　　２行目[l][r]
+　　３行目[p][clear_text]
+
+　三ページ目[l][r]
+　　２行目[l][r]
+　　３行目[p][clear_text]
+
+[s]
+
+
+*go_skip
+	&tmp:sn.skip.enabled = true
+	[set_cancel_skip]
+[return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]
