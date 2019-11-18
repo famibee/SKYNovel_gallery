@@ -63,6 +63,7 @@
 [event key=a label=*title arg='a Key' global=true call=true]
 [event key=Shift label=*title arg='Shift Key' global=true call=true]
 [event key=wheel.y<0 label=*title arg='wheel down' global=true call=true]
+[event key=f label=*toggle_skip global=true call=true]
 
 [event key=gamepadconnected label=*title arg='USB gamepad connected' global=true call=true]
 
@@ -88,6 +89,11 @@
 [title text="&sn.eventArg +' pointers:'+ sn.eventArg.pointers +' !'"][return]
 
 
+
+*toggle_skip
+	&tmp:sn.skip.enabled = true
+	[set_cancel_skip]
+	[return]
 
 *stats
 [event key=F7 global=true del=true][stats][return]
