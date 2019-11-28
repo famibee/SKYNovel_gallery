@@ -1,6 +1,7 @@
 [title text='既読スキップ'][call label=*init]
 
 [add_lay layer=mes class=txt]
+;	[lay layer=mes page=fore left=0 top=0 style='width: 750px; height: 500px; padding-top: 16px; padding-bottom: 16px; padding-left: 16px; padding-right: 16px;']
 
 [button text=既読スキップ left=340 top=80 page=fore label=*go_skip arg='go skip' global=true call=true style='fill: white;']
 
@@ -8,13 +9,13 @@
 　　２行目[l][r]
 　　３行目[p][clear_text]
 
-　二ページ目[l][r]
+　二ペ[graph pic=breakpage]ージ目[l][r]
 　　２行目[l][r]
 　　３行目[p][clear_text]
 
-　三ページ目[l][r]
+　三ペー[graph pic=breakpage]ジ目[l][r]
 　　２行目[l][r]
-　　３行目[p][clear_text]
+　　３行目[p]
 
 [s]
 
