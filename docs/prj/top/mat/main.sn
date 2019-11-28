@@ -2,7 +2,8 @@
 **
 	[fg layer=0 fn=face_柊24_制服 face=face_柊24_表情_口_笑顔,face_柊24_表情_目_瞬き通常,face_柊24_表情_マユゲ_通常,face_柊24_前髪 time=0]
 
-　革新的ノベルゲームエンジン登場──。WebGLによる高速描画。[r]
+　革新的ノベルゲームエンジン登場──。[r]
+WebGLによる高速描画。[r]
 　𩸽《ほっけ》なルビや[tcy t="451" r=縦中横]、👺《てんぐ》など絵文字も。[r]
 　文字修飾は[span style='color: tomato;']CSS Style[span]で指定。[span style='font-size: 40px;']	🌈[span][r]
 　[span style='font-family: my_himajihoso; color: skyblue;']フォント[span]も自由に変更。[r]
@@ -14,7 +15,7 @@
 
 	[lay layer=bg page=back fn=013ELLY18412_TP_V4]
 ;	[lay layer=0 page=back fn=tor_斬撃_曲線 left=100 top=120]
-	[lay layer=mes page=back b_alpha=0 filter="DropShadowFilter"]
+	[lay layer=mes page=back b_alpha=0 filter='1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000']
 	[trans layer='bg,mes' time=2000 rule='r_uzumaki']
 	[wt]
 
@@ -52,7 +53,7 @@
 	[add_lay layer=mes class=txt]
 
 	[lay layer=bg page=back fn=002kumakichi0327_TP_V4 face=bg_mask]
-	[lay layer=mes page=back left=8 top=6 style="width: 718px; height: 480px; writing-mode: vertical-rl; padding-top: 12px; padding-bottom: 8px; padding-left: 10px; padding-right: 22px;" filter="DropShadowFilter"]
+	[lay layer=mes page=back left=8 top=6 style='width: 718px; height: 480px; writing-mode: vertical-rl; padding-top: 12px; padding-bottom: 8px; padding-left: 10px; padding-right: 22px;' filter='1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000']
 	; color: white; b_alpha=0.5 b_color=0x880000
 	[trans layer='bg,mes' time=0][wt]
 [event key=F7 label=*stats global=true call=true]

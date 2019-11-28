@@ -4,7 +4,7 @@
 
 [button text=既読スキップ left=340 top=80 page=fore label=*go_skip arg='go skip' global=true call=true style='fill: white;']
 
-　一ページ目[l][r]
+　一[graph pic=breakpage]ページ目[l][r]
 　　２行目[l][r]
 　　３行目[p][clear_text]
 
