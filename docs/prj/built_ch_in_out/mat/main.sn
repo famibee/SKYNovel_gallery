@@ -1,0 +1,52 @@
+[title text='文字出現演出（制作中）'][call label=*init]
+
+[ch_in_style name=転がり入り x='=-0.3' scale_x=0.5 scale_y=0.5 rotate=45]
+[ch_in_style name=左端から x='-30']
+
+[add_lay layer=mes class=txt]
+	[lay layer=mes left=0 top=0 style='width: 750px; height: 500px; line-height: 2; padding-top: 16px; padding-bottom: 16px; padding-left: 16px; padding-right: 16px;']
+
+[button text=デフォルト left=20 top=460 page=fore label=*ch_in_default global=true call=false style='fill: tomato;']
+[button text=転がり入り left=140 top=460 page=fore label=*ch_in_rolling global=true call=false style='fill: tomato;']
+[button text=左端から left=260 top=460 page=fore label=*ch_in_leftout global=true call=false style='fill: tomato;']
+
+[button text=横書き left=540 top=460 page=fore label=*yoko global=true call=false style='fill: bisque;']
+[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='fill: bisque;']
+**
+　「母様《おっかさん》[graph pic=breakpage]、愉快《おも｜しろ》[tcy t="451" r=縦横][span style='color: skyblue;']CSS Style[span][link label=***after global=true call=true]文字リンク[tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][l][r]
+
+　愉快《おもしろ》いな、愉快いな、お天気が悪くって外へ出て遊べなくっても可《い》いや、笠《かさ》を着て、蓑《みの》を着て、雨の降るなかをびしょびしょ濡れながら、橋の上を渡って行《ゆ》くのは猪《いのしし》だ。[l][r]
+　菅笠《すげがさ》を目深《まぶか》に被《かぶ》って、｜氵散《しぶき》に濡れまいと思って向風《むかいかぜ》に俯向《うつむ》いてるから顔も見えない、着ている蓑の裙《すそ》が引摺《ひきず》って長いから、脚も見えないで歩行《ある》いて行《ゆ》く、脊の高さは五尺ばかりあろうかな、猪、としては大《おおき》なものよ、大方猪ン中の王様があんな三角｜形《なり》の冠を被《き》て、市《まち》へ出て来て、そして、私の母様《おっかさん》の橋の上を通るのであろう。[p][clear_text]
+
+　トこう思って見ていると愉快《おもしろ》い、愉快い、愉快い。[l][r]
+　寒い日の朝、雨の降ってる時、私の小さな時分、何日《いつか》でしたっけ、窓から顔を出して見ていました。[l][r]
+「母様《おっかさん》、愉快《おもしろ》いものが歩行《ある》いて行《ゆ》くよ。」[l][r]
+　その時母様は私の手袋を拵《こしら》えていて下すって、[l][r]
+「そうかい、何が通りました。」[l][r]
+「あのウ猪。」[l][r]
+「そう。」といって笑っていらっしゃる。[p][clear_text]
+
+[jump label=**before]
+
+
+*ch_in_default
+	[span in_style=default][clear_text][jump label=**before]
+*ch_in_rolling
+	[span in_style=転がり入り][clear_text][jump label=**before]
+*ch_in_leftout
+	[span in_style=左端から][clear_text][jump label=**before]
+*yoko
+	[lay layer=mes style='writing-mode: horizontal-tb;'][clear_text][jump label=**before]
+*tate
+	[lay layer=mes style='writing-mode: vertical-rl;'][clear_text][jump label=**before]
+***
+[clear_text][jump label=**before]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

@@ -5,7 +5,7 @@
 		"height": 500
 	},
 	"debug"	: {
-		"devtool"		: false,
+		"devtool"		: true,
 		"token"			: false,
 		"tag"			: false,
 		"putCh"			: false,

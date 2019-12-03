@@ -4,18 +4,18 @@
 
 　革新的ノベルゲームエンジン登場──。[r]
 WebGLによる高速描画。[r]
-　𩸽《ほっけ》なルビや[tcy t="451" r=縦中横]、👺《てんぐ》など絵文字も。[r]
+　𩸽《ほっけ》なルビや[tcy t=縦横][tcy t="451" r=縦中横]、👺《てんぐ》など絵文字も。[r]
 　文字修飾は[span style='color: tomato;']CSS Style[span]で指定。[span style='font-size: 40px;']	🌈[span][r]
 　[span style='font-family: my_himajihoso; color: skyblue;']フォント[span]も自由に変更。[r]
 [r][r][r][r][r][r][r]
 　スプライトシートも簡単に作れ、[r]インライン表示[graph pic=sankaku]する事も。[r]
 　[link label=*目を輝かせる global=true call=true]文字リンク[endlink]を押すと柊《ひいらぎ》さんが[r]目を輝かせます。[r]
-　クリックでアニメを止めないまま[ch text='[trans]']します。
-[l][clear_text]
+　クリックでアニメを止めないまま[r]
+[ch text='[trans]']します。[l][clear_text]
 
 	[lay layer=bg page=back fn=013ELLY18412_TP_V4]
 ;	[lay layer=0 page=back fn=tor_斬撃_曲線 left=100 top=120]
-	[lay layer=mes page=back b_alpha=0 filter='1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000']
+	[lay layer=mes page=back left=8 top=6 b_alpha=0 filter='1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000']
 	[trans layer='bg,mes' time=2000 rule='r_uzumaki']
 	[wt]
 
