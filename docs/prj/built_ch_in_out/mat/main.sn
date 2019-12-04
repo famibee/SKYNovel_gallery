@@ -1,22 +1,47 @@
-[title text='文字出現演出（制作中）'][call label=*init]
+[call label=*init]
+[ch_in_style name=転がり入り x='=1.5' y='=0.3' scale_x=0.5 scale_y=0.5 rotate=45]
+[ch_in_style name=右端から x=&const.sn.config.window.width]
+[ch_in_style name=右奥から x=&const.sn.config.window.width scale_x=0.5 scale_y=0.5]
+[ch_in_style name=下奥から y=&const.sn.config.window.height]
 
-[ch_in_style name=転がり入り x='=-0.3' scale_x=0.5 scale_y=0.5 rotate=45]
-[ch_in_style name=左端から x='-30']
+[ch_out_style name=転がり出る x='=-1.5' y='=-0.3' scale_x=0.5 scale_y=0.5 rotate=45]
+[ch_out_style name=左端へ x=-30 wait=1000]
+[ch_out_style name=やや左へ x='=-1.5']
+[ch_out_style name=上奥へ y=-30 wait=1000]
 
+&ch_in = '右端から'
+&ch_out = 'default'
+&wm = '横'
 [add_lay layer=mes class=txt]
-	[lay layer=mes left=0 top=0 style='width: 750px; height: 500px; line-height: 2; padding-top: 16px; padding-bottom: 16px; padding-left: 16px; padding-right: 16px;']
+	[lay layer=mes left=0 top=0 style='width: 750px; height: 500px; padding-top: 16px; padding-bottom: 16px; padding-left: 16px; padding-right: 16px;' in_style=&ch_in out_style=&ch_out]
 
-[button text=デフォルト left=20 top=460 page=fore label=*ch_in_default global=true call=false style='fill: tomato;']
-[button text=転がり入り left=140 top=460 page=fore label=*ch_in_rolling global=true call=false style='fill: tomato;']
-[button text=左端から left=260 top=460 page=fore label=*ch_in_leftout global=true call=false style='fill: tomato;']
+[button text=デフォルト left=20 top=430 page=fore label=*ch_in arg=default global=true call=false style='fill: deepskyblue;']
+[button text=転がり入り left=130 top=430 page=fore label=*ch_in arg=転がり入り global=true call=false style='fill: deepskyblue;']
+[button text=右端から left=240 top=430 page=fore label=*ch_in arg=右端から global=true call=false style='fill: deepskyblue;']
+[button text=右奥から left=350 top=430 page=fore label=*ch_in arg=右奥から global=true call=false style='fill: deepskyblue;']
+[button text=下奥から left=460 top=430 page=fore label=*ch_in arg=下奥から global=true call=false style='fill: deepskyblue;']
 
-[button text=横書き left=540 top=460 page=fore label=*yoko global=true call=false style='fill: bisque;']
+[button text=デフォルト left=20 top=460 page=fore label=*ch_out arg=default global=true call=false style='fill: tomato;']
+[button text=転がり出る left=130 top=460 page=fore label=*ch_out arg=転がり出る global=true call=false style='fill: tomato;']
+[button text=左端へ left=240 top=460 page=fore label=*ch_out arg=左端へ global=true call=false style='fill: tomato;']
+[button text=やや左へ left=350 top=460 page=fore label=*ch_out arg=やや左へ global=true call=false style='fill: tomato;']
+[button text=上奥へ left=460 top=460 page=fore label=*ch_out arg=上奥へ global=true call=false style='fill: tomato;']
+
+[button text=既読スキップ left=640 top=400 page=fore label=*go_skip global=true call=true style='fill: bisque;']
+
+[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='fill: bisque;']
 [button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='fill: bisque;']
+
 **
-　「母様《おっかさん》[graph pic=breakpage]、愉快《おも｜しろ》[tcy t="451" r=縦横][span style='color: skyblue;']CSS Style[span][link label=***after global=true call=true]文字リンク[tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][l][r]
+[title text="&'文字出現演出（in=$ch_in/out=$ch_out/#{wm}書き）'"]
+&sn.tagL.enabled = true		; 頁末まで一気に読み進むか(l無視)
+&sn.skip.enabled = false	; 次の選択肢(/未読)まで進むが有効か
+&sn.auto.enabled = false	; 自動読みすすみモードかどうか
+
+「母様《おっかさん》[graph pic=breakpage]、愉快《おも｜しろ》[tcy t="451" r=縦横][span style='color: skyblue;']CSS Style[span][link label=***after global=true call=true]文字リンク[tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][span style='font-size: 64px;']🌈[span][l][r]
 
 　愉快《おもしろ》いな、愉快いな、お天気が悪くって外へ出て遊べなくっても可《い》いや、笠《かさ》を着て、蓑《みの》を着て、雨の降るなかをびしょびしょ濡れながら、橋の上を渡って行《ゆ》くのは猪《いのしし》だ。[l][r]
-　菅笠《すげがさ》を目深《まぶか》に被《かぶ》って、｜氵散《しぶき》に濡れまいと思って向風《むかいかぜ》に俯向《うつむ》いてるから顔も見えない、着ている蓑の裙《すそ》が引摺《ひきず》って長いから、脚も見えないで歩行《ある》いて行《ゆ》く、脊の高さは五尺ばかりあろうかな、猪、としては大《おおき》なものよ、大方猪ン中の王様があんな三角｜形《なり》の冠を被《き》て、市《まち》へ出て来て、そして、私の母様《おっかさん》の橋の上を通るのであろう。[p][clear_text]
+　菅笠《すげがさ》を目深《まぶか》に被《かぶ》って、｜氵散《しぶき》に濡れまいと思って向風《むかいかぜ》に俯向《うつむ》いてるから顔も見えない、着ている蓑の裙《すそ》が引摺《ひきず》って長いから、脚も見えないで歩行《ある》いて行《ゆ》く、脊の高さは五尺ばかりあろうかな、猪、としては大《おおき》なものよ、大方猪ン中の王様があんな三角｜形《なり》の冠を被《き》て、市《まち》へ出て来て、そして[graph pic=breakpage]、私の母様《おっかさん》の橋の上を通るのであろう。[p][clear_text]
 
 　トこう思って見ていると愉快《おもしろ》い、愉快い、愉快い。[l][r]
 　寒い日の朝、雨の降ってる時、私の小さな時分、何日《いつか》でしたっけ、窓から顔を出して見ていました。[l][r]
@@ -29,18 +54,27 @@
 [jump label=**before]
 
 
-*ch_in_default
-	[span in_style=default][clear_text][jump label=**before]
-*ch_in_rolling
-	[span in_style=転がり入り][clear_text][jump label=**before]
-*ch_in_leftout
-	[span in_style=左端から][clear_text][jump label=**before]
+*ch_in
+	&ch_in = sn.eventArg
+	[span in_style=&sn.eventArg][clear_text][jump label=**before]
+*ch_out
+	&ch_out = sn.eventArg
+	[span out_style=&sn.eventArg][clear_text][jump label=**before]
+
 *yoko
+	&wm = '横'
 	[lay layer=mes style='writing-mode: horizontal-tb;'][clear_text][jump label=**before]
 *tate
+	&wm = '縦'
 	[lay layer=mes style='writing-mode: vertical-rl;'][clear_text][jump label=**before]
+
 ***
 [clear_text][jump label=**before]
+
+*go_skip
+	&sn.skip.enabled = true
+	[set_cancel_skip]
+[return]
 
 *init
 	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]

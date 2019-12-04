@@ -21,7 +21,7 @@
 
 
 *go_skip
-	&tmp:sn.skip.enabled = true
+	&sn.skip.enabled = true
 	[set_cancel_skip]
 [return]
 
