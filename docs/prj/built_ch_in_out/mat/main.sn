@@ -1,17 +1,23 @@
 [call label=*init]
 ; 文字出現演出・文字消去演出の定義
-[ch_in_style name=転がり入り x='=1.5' y='=0.3' scale_x=0.5 scale_y=0.5 rotate=45]
+;[ch_in_style name=default x='=0.3']	; 定義済み
+	; 以上は最初から定義済みの「文字出現演出」で、内部で上記の宣言をしているのと同じ
+[ch_in_style name=転がり入り x='=1.5' y='=0.3' scale_x=0.5 scale_y=0.5 rotate=45 ease='cubic-bezier(0.175, 0.885, 0.320, 1.275)']	; easeOutBack
+	; ease属性のcubic-bezier()は、以下のサイトで手軽に動作確認・引用できます
+	; Ceaser - CSS Easing Animation Tool - Matthew Lein https://matthewlein.com/tools/ceaser
 [ch_in_style name=右端から x=&const.sn.config.window.width]
 [ch_in_style name=右奥から x=&const.sn.config.window.width scale_x=0.5 scale_y=0.5]
 [ch_in_style name=下奥から y=&const.sn.config.window.height]
 
+;[ch_out_style name=default wait=0 join=false]	; 定義済み
+	; 以上は最初から定義済みの「文字消去演出」で、内部で上記の宣言をしているのと同じ
 [ch_out_style name=転がり出る x='=-1.5' y='=-0.3' scale_x=0.5 scale_y=0.5 rotate=45]
 [ch_out_style name=左端へ x=-30 wait=1000]
 [ch_out_style name=やや左へ x='=-1.5']
 [ch_out_style name=上奥へ y=-30 wait=1000]
 
 ; 文字出現演出・文字消去演出の使用と切り替え
-&ch_in = '右端から'
+&ch_in = 'default'
 &ch_out = 'default'
 &wm = '横'
 [add_lay layer=mes class=txt]
@@ -35,7 +41,7 @@
 [button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='fill: bisque;']
 
 **
-[title text="&'文字出現演出（in=$ch_in/out=$ch_out/#{wm}書き）'"]
+[title text="&'文字出現演出（in=#{ch_in}・out=#{ch_out}・#{wm}書き）'"]
 
 「母様《おっかさん》[graph pic=breakpage]、愉快《おも｜しろ》[tcy t="451" r=縦横][span style='color: skyblue;']CSS Style[span][link label=***after global=true call=true]文字リンク[tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][span style='font-size: 64px;']🌈[span][l][r]
 
