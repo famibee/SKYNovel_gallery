@@ -1,4 +1,5 @@
 [call label=*init]
+; 文字出現演出・文字消去演出の定義
 [ch_in_style name=転がり入り x='=1.5' y='=0.3' scale_x=0.5 scale_y=0.5 rotate=45]
 [ch_in_style name=右端から x=&const.sn.config.window.width]
 [ch_in_style name=右奥から x=&const.sn.config.window.width scale_x=0.5 scale_y=0.5]
@@ -9,6 +10,7 @@
 [ch_out_style name=やや左へ x='=-1.5']
 [ch_out_style name=上奥へ y=-30 wait=1000]
 
+; 文字出現演出・文字消去演出の使用と切り替え
 &ch_in = '右端から'
 &ch_out = 'default'
 &wm = '横'
@@ -34,9 +36,6 @@
 
 **
 [title text="&'文字出現演出（in=$ch_in/out=$ch_out/#{wm}書き）'"]
-&sn.tagL.enabled = true		; 頁末まで一気に読み進むか(l無視)
-&sn.skip.enabled = false	; 次の選択肢(/未読)まで進むが有効か
-&sn.auto.enabled = false	; 自動読みすすみモードかどうか
 
 「母様《おっかさん》[graph pic=breakpage]、愉快《おも｜しろ》[tcy t="451" r=縦横][span style='color: skyblue;']CSS Style[span][link label=***after global=true call=true]文字リンク[tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][span style='font-size: 64px;']🌈[span][l][r]
 
@@ -51,6 +50,10 @@
 「あのウ猪。」[l][r]
 「そう。」といって笑っていらっしゃる。[p][clear_text]
 
+	; サンプルは最初に戻るが、既読スキップすると永久ループになるので、その対策
+	&sn.tagL.enabled = true		; 頁末まで一気に読み進むか(l無視)
+	&sn.skip.enabled = false	; 次の選択肢(/未読)まで進むが有効か
+	&sn.auto.enabled = false	; 自動読みすすみモードかどうか
 [jump label=**before]
 
 
