@@ -1,0 +1,84 @@
+<!doctype html><html lang="ja">
+<head><meta charset="utf-8"/><title>&nbsp;</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">html {user-select: none; -webkit-user-select: none;}</style>
+<script>
+	document.addEventListener('DOMContentLoaded', ()=> {
+		// コンポーネントにイベント処理（変数更新）追加
+		// ラジオボタン
+		document.querySelectorAll('input[type=radio]')
+		.forEach(e=> e.addEventListener('click', ()=> {
+			window[`val_${e.name}`] = e.value;
+		}));
+
+		// テキストボックスなど
+		const elms = document.getElementsByClassName('sn_dsp');
+		for (let i=0, max=elms.length; i<max; ++i) {
+			const elm = elms[i];
+			elm.addEventListener('input', ()=> {
+				if (elm.type == 'checkbox') {
+					window[`val_${elm.id}`] = elm.checked;
+					return;
+				}
+				window[`val_${elm.id}`] = elm.value;
+			});
+		}
+	}, false);
+
+	function val2ctrl() {	// 変数→コンポーネント
+		// ラジオボタン
+		const rads = document.querySelectorAll('input[type=radio]');
+		let hRadNm = {};
+		for (let i=0, max=rads.length; i<max; ++i) hRadNm[rads[i].name] = 0;
+		for (const name in hRadNm) {
+			const rads = document.getElementsByName(name);
+			for (let i=0, max=rads.length; i<max; ++i) {
+				const rad = rads[i];
+				if (rad.value == window[`val_${rad.name}`]) {
+					rads[i].checked = true;
+					break;
+				}
+			}
+		}
+
+		// テキストボックスなど
+//		const elm = document.getElementById('rngTst');
+//		elm.value = window.val_rngTst;	// ひとずつやるより以下が楽
+		const elms = document.getElementsByClassName('sn_dsp');
+		for (let i=0, max=elms.length; i<max; ++i) {
+			const elm = elms[i];
+			if (elm.type == 'checkbox') {
+				elm.checked = (window[`val_${elm.id}`] == 'true');
+				continue;
+			}
+			elm.value = window[`val_${elm.id}`];
+		}
+	}
+</script>
+</head>
+<body oncontextmenu="return false;">
+
+<button id="close" type="button">フレームを閉じます</button>
+
+<br/>
+<p>
+	<input type="checkbox" id="chkTst" name="chk0" class="sn_dsp"/>
+	<label for="chk0">チェックボックス</label>
+</p>
+
+<label>レンジ：<input type="range" id="rngTst" value="20" max="100" min="0" class="sn_dsp"/></label>
+
+<p id="radTst">
+	<label><input type="radio" name="radTst" value="a" checked>Ａ</label>
+	<label><input type="radio" name="radTst" value="b">Ｂ</label>
+	<label><input type="radio" name="radTst" value="c">Ｃ</label>
+</p>
+
+<input type="text" id="txtTst" value="" autocomplete="off" class="sn_dsp"/>
+
+<p>
+	<label for="area0">テキストエリア：</label><br>
+	<textarea id="txtArea" name="area0" cols="40" rows="4" maxlength="20" placeholder="エリアの説明" class="sn_dsp"></textarea>
+</p>
+
+</body></html>

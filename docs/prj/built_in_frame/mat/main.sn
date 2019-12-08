@@ -1,0 +1,61 @@
+[call label=*init]
+
+[add_lay layer=mes class=txt]
+	[button text=フレーム表示 left=20 top=460 page=fore label=*show global=true call=true style='fill: deepskyblue;']
+
+[add_frame id=tst src="mat/frame.htm" visible=false b_color=lightgray height=&const.sn.config.window.height*2/3]
+	; フレームのJavaScript変数を変更
+	[set_frame id=tst var_name=val_chkTst text=true]
+	[set_frame id=tst var_name=val_rngTst text=70]
+	[set_frame id=tst var_name=val_radTst text=b]
+	[set_frame id=tst var_name=val_txtTst text='t']
+	[set_frame id=tst var_name=val_txtArea text='a']
+	; フレームのJavaScript関数をコール
+	[let_frame id=tst var_name=val2ctrl function=true]
+
+	; フレームで発生したイベントを検知
+	[event key='dom=tst:#close' label=*hide global=true call=true]
+	[event key='dom=tst:#chkTst' label=*chkTst global=true call=true]
+	[event key='dom=tst:#rngTst' label=*rngTst global=true call=true]
+	[event key='dom=tst:#radTst' label=*radTst global=true call=true]
+	[event key='dom=tst:#txtTst' label=*txtTst global=true call=true]
+	[event key='dom=tst:#txtArea' label=*txtArea global=true call=true]
+
+	[call label=*title_disp]
+
+**
+　フレーム利用サンプルです。[p][clear_text]
+
+[jump label=**before]
+
+
+*title_disp
+	[title text="&'HTMLフレーム C=#{const.sn.frm.tst.val_chkTst} RNG=#{const.sn.frm.tst.val_rngTst} RAD=#{const.sn.frm.tst.val_radTst} T=#{const.sn.frm.tst.val_txtTst} A=#{const.sn.frm.tst.val_txtArea}'"][return]
+
+*show
+	[frame id=tst visible=true y=109][return]
+*hide
+	[frame id=tst visible=false][return]
+
+*chkTst
+	[let_frame id=tst var_name=val_chkTst][call label=*title_disp][return]
+*rngTst
+	[let_frame id=tst var_name=val_rngTst][call label=*title_disp][return]
+*radTst
+	[let_frame id=tst var_name=val_radTst][call label=*title_disp]
+	[let_frame id=tst var_name=val2ctrl function=true]
+		; これがないとラジオボタンが動かない
+	[return]
+*txtTst
+	[let_frame id=tst var_name=val_txtTst][call label=*title_disp][return]
+*txtArea
+	[let_frame id=tst var_name=val_txtArea][call label=*title_disp][return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]
