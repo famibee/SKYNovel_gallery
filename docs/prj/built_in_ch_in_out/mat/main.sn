@@ -23,30 +23,30 @@
 [add_lay layer=mes class=txt]
 	[lay layer=mes left=0 top=0 style='width: 750px; height: 500px; padding-top: 16px; padding-bottom: 16px; padding-left: 16px; padding-right: 16px;' in_style=&ch_in out_style=&ch_out]
 
-[button text=デフォルト left=20 top=430 page=fore label=*ch_in arg=default global=true call=false style='fill: deepskyblue;']
-[button text=転がり入り left=130 top=430 page=fore label=*ch_in arg=転がり入り global=true call=false style='fill: deepskyblue;']
-[button text=右端から left=240 top=430 page=fore label=*ch_in arg=右端から global=true call=false style='fill: deepskyblue;']
-[button text=右奥から left=350 top=430 page=fore label=*ch_in arg=右奥から global=true call=false style='fill: deepskyblue;']
-[button text=下奥から left=460 top=430 page=fore label=*ch_in arg=下奥から global=true call=false style='fill: deepskyblue;']
+[button text=デフォルト left=20 top=430 page=fore label=*ch_in arg=default global=true style='fill: deepskyblue;']
+[button text=転がり入り left=130 top=430 page=fore label=*ch_in arg=転がり入り global=true style='fill: deepskyblue;']
+[button text=右端から left=240 top=430 page=fore label=*ch_in arg=右端から global=true style='fill: deepskyblue;']
+[button text=右奥から left=350 top=430 page=fore label=*ch_in arg=右奥から global=true style='fill: deepskyblue;']
+[button text=下奥から left=460 top=430 page=fore label=*ch_in arg=下奥から global=true style='fill: deepskyblue;']
 
-[button text=デフォルト left=20 top=460 page=fore label=*ch_out arg=default global=true call=false style='fill: tomato;']
-[button text=転がり出る left=130 top=460 page=fore label=*ch_out arg=転がり出る global=true call=false style='fill: tomato;']
-[button text=左端へ left=240 top=460 page=fore label=*ch_out arg=左端へ global=true call=false style='fill: tomato;']
-[button text=やや左へ left=350 top=460 page=fore label=*ch_out arg=やや左へ global=true call=false style='fill: tomato;']
-[button text=上奥へ left=460 top=460 page=fore label=*ch_out arg=上奥へ global=true call=false style='fill: tomato;']
+[button text=デフォルト left=20 top=460 page=fore label=*ch_out arg=default global=true style='fill: tomato;']
+[button text=転がり出る left=130 top=460 page=fore label=*ch_out arg=転がり出る global=true style='fill: tomato;']
+[button text=左端へ left=240 top=460 page=fore label=*ch_out arg=左端へ global=true style='fill: tomato;']
+[button text=やや左へ left=350 top=460 page=fore label=*ch_out arg=やや左へ global=true style='fill: tomato;']
+[button text=上奥へ left=460 top=460 page=fore label=*ch_out arg=上奥へ global=true style='fill: tomato;']
 
 [button text=既読スキップ left=640 top=400 page=fore label=*go_skip global=true call=true style='fill: bisque;']
 
-[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='fill: bisque;']
-[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='fill: bisque;']
+[button text=横書き left=640 top=430 page=fore label=*yoko global=true style='fill: bisque;']
+[button text=縦書き left=640 top=460 page=fore label=*tate global=true style='fill: bisque;']
 
 **
 [title text="&'文字出現演出（in=#{ch_in}・out=#{ch_out}・#{wm}書き）'"]
 
-「母様《おっかさん》[graph pic=breakpage]、愉快《おも｜しろ》[tcy t="451" r=縦横][span style='color: skyblue;']CSS Style[span][link label=***after global=true call=true]文字リンク[tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][span style='font-size: 64px;']🌈[span][l][r]
+「母様《おっかさん》、愉快《おも｜しろ》[tcy t="451" r=縦横][span style='color: skyblue;']CSS Style[span][link label=***after global=true call=true]リンク[graph pic=breakpage style='background-color: rgba(200,0,200,0.5);'][tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][span style='font-size: 64px;']🌈[span][l][r]
 
 　愉快《おもしろ》いな、愉快いな、お天気が悪くって外へ出て遊べなくっても可《い》いや、笠《かさ》を着て、蓑《みの》を着て、雨の降るなかをびしょびしょ濡れながら、橋の上を渡って行《ゆ》くのは猪《いのしし》だ。[l][r]
-　菅笠《すげがさ》を目深《まぶか》に被《かぶ》って、｜氵散《しぶき》に濡れまいと思って向風《むかいかぜ》に俯向《うつむ》いてるから顔も見えない、着ている蓑の裙《すそ》が引摺《ひきず》って長いから、脚も見えないで歩行《ある》いて行《ゆ》く、脊の高さは五尺ばかりあろうかな、猪、としては大《おおき》なものよ、大方猪ン中の王様があんな三角｜形《なり》の冠を被《き》て、市《まち》へ出て来て、そして[graph pic=breakpage]、私の母様《おっかさん》の橋の上を通るのであろう。[p][clear_text]
+　菅笠《すげがさ》を目深《まぶか》に被《かぶ》って、｜氵散《しぶき》に濡れまいと思って向風《むかいかぜ》に俯向《うつむ》いてるから顔も見えない、着ている蓑の裙《すそ》が引摺《ひきず》って長いから、脚も見えないで歩行《ある》いて行《ゆ》く、脊の高さは五尺ばかりあろうかな、猪、としては大《おおき》なものよ、大方猪ン中の王様があんな三角｜形《なり》の冠を被《き》て、市《まち》へ出て来て、そして[graph pic=breakpage style='background-color: rgba(200,0,200,0.5);']、私の母様《おっかさん》の橋の上を通るのであろう。[p][clear_text]
 
 　トこう思って見ていると愉快《おもしろ》い、愉快い、愉快い。[l][r]
 　寒い日の朝、雨の降ってる時、私の小さな時分、何日《いつか》でしたっけ、窓から顔を出して見ていました。[l][r]

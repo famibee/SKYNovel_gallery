@@ -1,0 +1,69 @@
+[title text='文字ボタン・リンク'][call label=*init]
+
+[add_lay layer=mes class=txt]
+	[lay layer=mes left=0 top=0 style='width: 750px; height: 500px; padding-top: 16px; padding-bottom: 16px; padding-left: 16px; padding-right: 16px;']
+[button text=既読スキップ left=640 top=400 page=fore label=*go_skip global=true call=true style='fill: bisque;']
+
+[macro name=rs][r][s][endmacro]
+[char2macro char=/ name=rs]
+
+[macro name=plc][p][er][endmacro]
+[char2macro char=¥ name=plc]
+
+*main
+　Ｑ１．【戎橋】の読み方を選択して下さい。
+
+[button text=かいばし left=120 top=230 page=fore rotation=45 label=**after arg=かいばし style='fill: deepskyblue;' b_pic=ele_mini1]
+[button text=えびすばし left=260 top=260 page=fore rotation=-20 label=***after arg=えびすばし style='fill: mediumslateblue;' b_pic=ele_mini1]
+[button text=いかいのばし left=460 top=210 page=fore rotation=25 label=**after arg=いかいのばし style='fill: tomato;' b_pic=ele_mini1]
+[s]
+**
+[er][r]
+？「ええいお話にならぬわぁぁぁ！！　道頓堀の水で顔を洗ってで直してくるがいい！！」¥
+[jump label=*main]
+
+***
+[er][r]
+[button text=えびすばし left=260 top=260 page=fore rotation=-20 label=***after arg=えびすばし style='fill: mediumslateblue;' b_pic=ele_mini1 enabled=false]
+　正解！¥
+
+　Ｑ２．【日本橋】の読み方は？[r]
+　　[link label=**after wait=1000]にほんばし[endlink][r]
+　　[link label=***after style='background-color: rgba(200,255,200,0.5);']にっぽんばし[endlink]
+[s]
+**
+[er][r]
+？「貴様関東人だな！　初めからやり直すが良い！」¥
+[jump label=*main]
+
+***
+[er][r]
+　正解！¥
+
+　Ｑ３．？[r]
+
+
+
+
+「そう。」といって笑っていらっしゃる。[p][er]
+
+	; サンプルは最初に戻るが、既読スキップすると永久ループになるので、その対策
+	&sn.tagL.enabled = true		; 頁末まで一気に読み進むか(l無視)
+	&sn.skip.enabled = false	; 次の選択肢(/未読)まで進むが有効か
+	&sn.auto.enabled = false	; 自動読みすすみモードかどうか
+[jump label=*main]
+
+
+*go_skip
+	&sn.skip.enabled = true
+	[set_cancel_skip]
+[return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

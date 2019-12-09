@@ -1,0 +1,74 @@
+[title text='複数メッセージウインドウ'][call label=*init]
+
+[add_lay layer=mes class=txt]
+	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
+		; ele1 = 750x230
+[button text=既読スキップ left=640 top=10 page=fore label=*go_skip global=true call=true style='fill: bisque;']
+
+[add_lay layer=mes_aite class=txt]	; 文字レイヤ複数のサンプルも
+	[lay layer=mes_aite left=0 top=0 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
+
+[macro name=lr][l][r][endmacro]
+[char2macro char=@ name=lr]
+;[macro name=plc][p][er][endmacro]	; システムボタン（既読スキップ）も消える
+;[macro name=plc][p][clear_text][endmacro]
+[macro name=plc][p][endmacro]	; 文字レイヤ複数に対応するため、[clear_text]はよそで
+[char2macro char=¥ name=plc]
+
+[macro name=地の文]
+	[lay layer=mes_aite style='opacity: 0.5;']	; 別の文字レイヤの文字を暗く(薄く)
+	[current layer=mes][clear_text]			; 文字レイヤのフォーカスを移動
+	[lay layer=mes style='opacity: 1;']
+	[ch text='　[r]' wait=0 style='line-height: 2.7em;']
+[endmacro]
+[char2macro char=/ name=地の文]
+
+[macro name=彩女]
+	[lay layer=mes style='opacity: 0.5;']	; 別の文字レイヤの文字を暗く(薄く)
+	[current layer=mes_aite][clear_text]	; 文字レイヤのフォーカスを移動
+	[lay layer=mes_aite style='opacity: 1;']
+	[ch text='　　　彩女[r]' wait=0 style='line-height: 2.7em; color: tomato;']
+[endmacro]
+[char2macro char=- name=彩女]
+
+[macro name=汐見]
+	[lay layer=mes_aite style='opacity: 0.5;']	; 別の文字レイヤの文字を暗く(薄く)
+	[current layer=mes][clear_text]			; 文字レイヤのフォーカスを移動
+	[lay layer=mes style='opacity: 1;']
+	[ch text='　　　汐見[r]' wait=0 style='line-height: 2.7em; color: limegreen;']
+[endmacro]
+[char2macro char=+ name=汐見]
+
+*main
+;もちろん[彩女]、でもよい。このサンプルでは「一文字マクロ」を積極的に使用してみる
+-「ようこそ。我が図書館列車へ！」¥
+
+/　女がよく通る声を張り上げ、両手を芝居がかった調子でゆったり広げた。@
+　閑散とした車内をはつらつとした声が駆け抜ける。¥
+
+/　汐見が“なんだこいつ？”と体をのけぞらせて引きまくる。@
+　そして汐見は羞恥心に包まれ始めた。大袈裟な身振りをしているのは、この目の前の女の方だというのに。¥
+
++「急に大きい声出すなよ……！」¥
+-「馬鹿もん。声を出すと元気も出る。キミのようにぼそぼそ喋っていては、胸を張って歩いていけんぞ！」¥
+
+	; サンプルは最初に戻るが、既読スキップすると永久ループになるので、その対策
+	&sn.tagL.enabled = true		; 頁末まで一気に読み進むか(l無視)
+	&sn.skip.enabled = false	; 次の選択肢(/未読)まで進むが有効か
+	&sn.auto.enabled = false	; 自動読みすすみモードかどうか
+[jump label=*main]
+
+
+*go_skip
+	&sn.skip.enabled = true
+	[set_cancel_skip]
+[return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]
