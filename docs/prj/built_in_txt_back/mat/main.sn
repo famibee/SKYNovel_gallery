@@ -5,23 +5,28 @@
 		; ele1 = 750x230
 [button text=既読スキップ left=640 top=10 page=fore label=*go_skip global=true call=true style='fill: bisque;']
 
+; 一文字マクロで省略記法
 [macro name=lr][l][r][endmacro]
 [char2macro char=@ name=lr]
-;[macro name=plc][p][er][endmacro]	; システムボタン（既読スキップ）も消える
-[macro name=plc][p][clear_text][endmacro]
+[macro name=plc][p][地の文][endmacro]
 [char2macro char=¥ name=plc]
 
+; 名前とレイヤ切り替え
 [macro name=地の文]
+	[clear_text]
+	;[er]	; これだとシステムボタン（既読スキップ）も消える
 	[ch text='　[r]' wait=0 style='line-height: 2.7em;']
 [endmacro]
-[char2macro char=/ name=地の文]
+	[地の文]
 
 [macro name=彩女]
+	[clear_text]
 	[ch text='　　　彩女[r]' wait=0 style='line-height: 2.7em; color: tomato;']
 [endmacro]
 [char2macro char=- name=彩女]
 
 [macro name=汐見]
+	[clear_text]
 	[ch text='　　　汐見[r]' wait=0 style='line-height: 2.7em; color: limegreen;']
 [endmacro]
 [char2macro char=+ name=汐見]
@@ -32,7 +37,7 @@
 　女がよく通る声を張り上げ、両手を芝居がかった調子でゆったり広げた。@
 　閑散とした車内をはつらつとした声が駆け抜ける。¥
 
-/　汐見が“なんだこいつ？”と体をのけぞらせて引きまくる。@
+　汐見が“なんだこいつ？”と体をのけぞらせて引きまくる。@
 　そして汐見は羞恥心に包まれ始めた。大袈裟な身振りをしているのは、この目の前の女の方だというのに。¥
 
 +「急に大きい声出すなよ……！」¥

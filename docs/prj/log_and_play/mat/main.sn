@@ -1,0 +1,124 @@
+[title text='履歴と機能追加'][call label=*init]
+
+[add_lay layer=mes class=txt]
+	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
+		; ele1 = 750x230
+[button text=既読スキップ left=640 top=10 page=fore label=*go_skip global=true call=true style='fill: bisque;']
+
+; 一文字マクロで省略記法
+[macro name=lr][l][r][endmacro]
+[char2macro char=@ name=lr]
+[macro name=plc][p][地の文][endmacro]
+[char2macro char=\ name=plc]
+
+; 名前とレイヤ切り替え
+[macro name=地の文]
+	[clear_text]
+	[ch record=false text='　[r]' wait=0 style='line-height: 2.7em;']
+	[rec_ch name='' color='white']
+[endmacro]
+	[地の文]
+
+&save:sn.doRecLog = true	; テキスト履歴の記録開始
+
+; 名前とレイヤ切り替え、連番ファイル名の音声再生
+[macro name=voice]
+	[stopse buf=%buf|音声]
+	[playse * buf=%buf|音声 fn=%fn cache=false]
+[endmacro]
+
+[let_ml name=const.db]
+{
+	"紀子": {
+		"fn"	: "nori",
+		"col"	: "lightskyblue"
+	},
+	"晶": {
+		"fn"	: "akir",
+		"col"	: "gold"
+	}
+}
+[endlet_ml]
+&save:db_v_cnt.紀子 = 8	; 音声ファイル名の連番開始番号
+&save:db_v_cnt.晶 = 15
+
+[macro name=hu]
+	; この辺に顔アイコン変更とか追加したり
+	&fn = const.db[mp:text].fn	; 音声ファイル名取得
+	[break_macro cond=fn==null]	; 音声無しは無処理
+
+	&c = save:db_v_cnt[mp:text]	; 音声ファイル名の連番開始番号
+	&col = const.db[mp:text].col; 名前表示のcss色名前
+
+	; 音声再生
+	[let_substr name=cnt text="&'000'+ c" pos=-3 len=all cast=str]
+	[let name=v text="&fn +'_'+ cnt@str"]
+	[voice fn=&v]
+	[let name="&'save:db_v_cnt.'+ mp:text" text=&c+1]	; 連番加算
+
+	; 名前表示
+	[clear_text]
+	[ch record=false text="&'　　　#{mp:text}[r]'" wait=0 style="&'line-height: 2.7em; color: #{col};'"]
+
+	; 現在ページの履歴に情報を渡す
+	[rec_ch name=%text col=&col v=&v]
+[endmacro]
+	; 括弧マクロ（この辺は好みだが、使うと便利）
+	[bracket2macro text='〔〕' name=hu]
+
+; 履歴画面
+[add_frame id=log src="mat/log.htm" b_color=lightgray y=&-57+1 height=&const.sn.config.window.height*2/3 visible=false]	; この-57は、SKYNovelのcanvas要素の高さ
+	[button text=履歴表示 left=530 top=10 page=fore label=*show_log global=true call=true style='fill: deepskyblue;']
+	[event key='dom=log:#close' label=*hide_log global=true call=true]
+
+*main
+（音量注意、音声《ボイス》が流れます）[tcy t="451" r=縦横][span style='color: skyblue;']Style[span][ch text="&'&'"]'`"<>[link label=*show_log global=true call=true]リンク[graph pic=breakline style='background-color: rgba(200,0,200,0.5);'][tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][span style='font-size: 64px;']🌈[span]\
+
+〔紀子〕「ちょっと！　また掃除サボってるの[tcy t=!?]」\
+
+〔晶〕「そ・う・じッ！　の話だってば」\
+
+　ズカズカと割り込んできた紀子に、晶が煙《けむ》たそうに答える。\
+
+〔紀子〕「獅童さん。ちょっと失礼」\
+
+　紀子が冷たく云い放ち、晶の身体をまさぐり始めた。\
+
+〔晶〕「うひゃひゃひゃひゃ[tcy t=!?]　くすぐったいぃぃ！[quake time=500][wq]　なにすんだよおっ！」\
+
+〔紀子〕「トランプのカードはどこに隠したの？　出しなさい」\
+
+	; サンプルは最初に戻るが、既読スキップすると永久ループになるので、その対策
+	&sn.tagL.enabled = true		; 頁末まで一気に読み進むか(l無視)
+	&sn.skip.enabled = false	; 次の選択肢(/未読)まで進むが有効か
+	&sn.auto.enabled = false	; 自動読みすすみモードかどうか
+[jump label=*main]
+
+
+*show_log
+	[set_frame id=log var_name=val_dic text=&const.sn.log.json]
+	[let_frame id=log var_name=val2ctrl function=true]
+		[event key='dom=log:[data-vfn]' label=*log_btn_voice global=true call=true need_err=false]
+	[enable_event enabled=false]	; 文字レイヤをクリックできないように
+	[frame id=log visible=true][return]
+*hide_log
+	[enable_event enabled=true]
+	[frame id=log visible=false][return]
+
+*log_btn_voice
+	[voice fn=&sn.event.domdata.vfn]
+[return]
+
+*go_skip
+	&sn.skip.enabled = true
+	[set_cancel_skip]
+[return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

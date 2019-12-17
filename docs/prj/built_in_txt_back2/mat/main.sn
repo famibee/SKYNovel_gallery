@@ -8,20 +8,19 @@
 [add_lay layer=mes_aite class=txt]	; 文字レイヤ複数のサンプルも
 	[lay layer=mes_aite left=0 top=0 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
 
+; 一文字マクロで省略記法
 [macro name=lr][l][r][endmacro]
 [char2macro char=@ name=lr]
-;[macro name=plc][p][er][endmacro]	; システムボタン（既読スキップ）も消える
-;[macro name=plc][p][clear_text][endmacro]
-[macro name=plc][p][endmacro]	; 文字レイヤ複数に対応するため、[clear_text]はよそで
+[macro name=plc][p][地の文][endmacro]
 [char2macro char=¥ name=plc]
 
+; 名前とレイヤ切り替え
 [macro name=地の文]
 	[lay layer=mes_aite style='opacity: 0.5;']	; 別の文字レイヤの文字を暗く(薄く)
 	[current layer=mes][clear_text]			; 文字レイヤのフォーカスを移動
 	[lay layer=mes style='opacity: 1;']
 	[ch text='　[r]' wait=0 style='line-height: 2.7em;']
 [endmacro]
-[char2macro char=/ name=地の文]
 
 [macro name=彩女]
 	[lay layer=mes style='opacity: 0.5;']	; 別の文字レイヤの文字を暗く(薄く)
@@ -43,10 +42,10 @@
 ;もちろん[彩女]、でもよい。このサンプルでは「一文字マクロ」を積極的に使用してみる
 -「ようこそ。我が図書館列車へ！」¥
 
-/　女がよく通る声を張り上げ、両手を芝居がかった調子でゆったり広げた。@
+　女がよく通る声を張り上げ、両手を芝居がかった調子でゆったり広げた。@
 　閑散とした車内をはつらつとした声が駆け抜ける。¥
 
-/　汐見が“なんだこいつ？”と体をのけぞらせて引きまくる。@
+　汐見が“なんだこいつ？”と体をのけぞらせて引きまくる。@
 　そして汐見は羞恥心に包まれ始めた。大袈裟な身振りをしているのは、この目の前の女の方だというのに。¥
 
 +「急に大きい声出すなよ……！」¥
