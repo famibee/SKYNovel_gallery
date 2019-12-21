@@ -1,0 +1,21 @@
+[title text='エスケープ文字'][call label=*init]
+
+[add_lay layer=mes class=txt]
+
+[macro name=lr][l][r][endmacro]
+[char2macro char=@ name=lr]
+
+**
+¥｜¥¥母様《おっかさん》¥;¥&¥[¥*、¥@
+愉快《おも｜しろ》@
+[jump label=**before]
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

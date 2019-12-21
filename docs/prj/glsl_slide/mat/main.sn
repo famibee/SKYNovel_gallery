@@ -4,9 +4,6 @@
 	[lay layer=bg fn=013ELLY18412_TP_V4]
 [add_lay layer=mes class=txt]
 
-	[char2macro char=, name=s]	; 不具合チェック
-
-
 [let_ml name=ml]
 	precision mediump float;
 	varying vec2 vTextureCoord;

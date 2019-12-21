@@ -72,7 +72,8 @@
 	[event key='dom=log:#close' label=*hide_log global=true call=true]
 
 *main
-（音量注意、音声《ボイス》が流れます）[tcy t="451" r=縦横][span style='color: skyblue;']Style[span][ch text="&'&'"]'`"<>[link label=*show_log global=true call=true]リンク[graph pic=breakline style='background-color: rgba(200,0,200,0.5);'][tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][span style='font-size: 64px;']🌈[span]\
+（音量注意、音声《ボイス》が流れます）[tcy t="451" r=縦横][span style='color: skyblue;']Style[span]'`"<>¥¥¥&¥@
+[link label=*show_log global=true call=true]リンク[graph pic=breakline style='background-color: rgba(200,0,200,0.5);'][tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][span style='font-size: 64px;']🌈[span]\
 
 〔紀子〕「ちょっと！　また掃除サボってるの[tcy t=!?]」\
 
