@@ -10,7 +10,7 @@
 	"dependencies": {
 		"crypto-js": "^3.1.9-1",
 		"pixi.js": "^5.2.0",
-		"skynovel": "^0.9.4",
+		"skynovel": "^0.9.5",
 		"three": "^0.110.0"
 	},
 	"devDependencies": {
@@ -22,7 +22,7 @@
 		"electron": "^7.1.7",
 		"electron-builder": "^22.2.0",
 		"imagemin-webpack-plugin": "^2.4.2",
-		"style-loader": "^1.1.1",
+		"style-loader": "^1.1.2",
 		"typescript": "^3.7.4",
 		"webpack": "^4.41.4",
 		"webpack-cli": "^3.3.10",

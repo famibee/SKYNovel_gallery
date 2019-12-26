@@ -3,10 +3,12 @@
 [add_lay layer=mes class=txt]
 	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
 		; ele1 = 750x230
-[button text=既読スキップ left=640 top=10 page=fore label=*go_skip global=true call=true style='fill: bisque;']
+[button text=既読スキップ left=520 top=10 page=fore label=*go_skip global=true call=true style='fill: bisque;']
+[button text=TestB left=640 top=10 page=fore label=*test arg=B global=true call=true style='fill: bisque;']
 
 [add_lay layer=mes_aite class=txt]	; 文字レイヤ複数のサンプルも
 	[lay layer=mes_aite left=0 top=0 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
+[button layer=mes_aite text=TestA left=640 top=10 page=fore label=*test arg=A global=true call=true style='fill: bisque;']
 
 ; 一文字マクロで省略記法
 [macro name=lr][l][r][endmacro]
@@ -16,24 +18,30 @@
 
 ; 名前とレイヤ切り替え
 [macro name=地の文]
-	[lay layer=mes_aite style='opacity: 0.5;']	; 別の文字レイヤの文字を暗く(薄く)
+	[lay layer=mes_aite alpha=0.5]	; 別の文字レイヤの文字を暗く(薄く)
+	[enable_event layer=mes_aite enabled=false]
 	[current layer=mes][clear_text]			; 文字レイヤのフォーカスを移動
-	[lay layer=mes style='opacity: 1;']
+	[enable_event layer=mes enabled=true]
+	[lay layer=mes alpha=1]
 	[ch text='　[r]' wait=0 style='line-height: 2.7em;']
 [endmacro]
 
 [macro name=彩女]
-	[lay layer=mes style='opacity: 0.5;']	; 別の文字レイヤの文字を暗く(薄く)
+	[lay layer=mes alpha=0.5]	; 別の文字レイヤの文字を暗く(薄く)
+	[enable_event layer=mes enabled=false]
 	[current layer=mes_aite][clear_text]	; 文字レイヤのフォーカスを移動
-	[lay layer=mes_aite style='opacity: 1;']
+	[enable_event layer=mes_aite enabled=true]
+	[lay layer=mes_aite alpha=1]
 	[ch text='　　　彩女[r]' wait=0 style='line-height: 2.7em; color: tomato;']
 [endmacro]
 [char2macro char=- name=彩女]
 
 [macro name=汐見]
-	[lay layer=mes_aite style='opacity: 0.5;']	; 別の文字レイヤの文字を暗く(薄く)
+	[lay layer=mes_aite alpha=0.5]	; 別の文字レイヤの文字を暗く(薄く)
+	[enable_event layer=mes_aite enabled=false]
 	[current layer=mes][clear_text]			; 文字レイヤのフォーカスを移動
-	[lay layer=mes style='opacity: 1;']
+	[enable_event layer=mes enabled=true]
+	[lay layer=mes alpha=1]
 	[ch text='　　　汐見[r]' wait=0 style='line-height: 2.7em; color: limegreen;']
 [endmacro]
 [char2macro char=+ name=汐見]
@@ -61,6 +69,10 @@
 *go_skip
 	&sn.skip.enabled = true
 	[set_cancel_skip]
+[return]
+
+*test
+	[title text="&'test='+ sn.eventArg"][return]
 [return]
 
 *init
