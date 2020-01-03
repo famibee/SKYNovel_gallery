@@ -1,5 +1,5 @@
 /* ***** BEGIN LICENSE BLOCK *****
-	Copyright (c) 2019 Famibee (famibee.blog38.fc2.com)
+	Copyright (c) 2020 Famibee (famibee.blog38.fc2.com)
 
 	This software is released under the MIT License.
 	http://opensource.org/licenses/mit-license.php
@@ -11,7 +11,7 @@ const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
 const CmnLib = CmnLib_1.CmnLib;
 
 import {HArg, IPluginInitArg} from 'skynovel';
-import { Material, Object3D } from 'three';
+import {Scene, WebGLRenderer, Camera, Clock, GridHelper, PerspectiveCamera, DirectionalLight, Mesh, BoxGeometry, MeshNormalMaterial, SphereGeometry, TextureLoader, LinearFilter, MeshBasicMaterial, AnimationClip, LoopRepeat, LoopOnce, Material, Object3D, AnimationMixer } from 'three';
 
 import {Sprite, Texture} from 'pixi.js';
 
@@ -22,21 +22,21 @@ export class ThreeDLayer extends Layer {
 	private	static	uniq_num = 0;
 
 	static	THREE		: any;
-	private scene_3D	: THREE.Scene;
-	private	canvas_3D	: THREE.WebGLRenderer;
+	private scene_3D	: Scene;
+	private	canvas_3D	: WebGLRenderer;
 	private sprite_3D	: Sprite;
 
-	private camera		: THREE.Camera;
+	private camera		: Camera;
 
 	constructor() {
 		super();
 
 		if (ThreeDLayer.uniq_num++ % 2 == 1) return;
 
-		this.scene_3D = new ThreeDLayer.THREE.Scene();
+		this.scene_3D = new Scene();
 		const log = console.log;	// 「THREE.WebGLRenderer 100」を消したい
 		console.log = ()=> {};
-		this.canvas_3D	= new ThreeDLayer.THREE.WebGLRenderer({antialias: true, alpha: true});
+		this.canvas_3D	= new WebGLRenderer({antialias: true, alpha: true});
 		console.log = log;
 
 		// 3D Scene canvas
@@ -63,13 +63,13 @@ export class ThreeDLayer extends Layer {
 	private fncCtrl = ()=> {};
 
 	private fncMixerUpd	= ()=> {};
-	private	readonly clock		= new ThreeDLayer.THREE.Clock();
+	private	readonly clock		= new Clock();
 
 	lay(hArg: HArg): boolean {
 		if (! this.scene_3D) return false;
 
 		if ('grid' in hArg) {	// 開発者用基準グリッド
-			const grid = new ThreeDLayer.THREE.GridHelper(
+			const grid = new GridHelper(
 				CmnLib.argChk_Num(hArg, 'grid_size', 10),	// グリッド全体のサイズ
 				CmnLib.argChk_Num(hArg, 'grid_step', 5)		// 1分割のサイズ
 				// colorCenterLine：中央十字ラインの色
@@ -81,7 +81,7 @@ export class ThreeDLayer extends Layer {
 		}
 		if ('camera' in hArg) {	// カメラ
 			if (! this.camera) {
-				this.camera = new ThreeDLayer.THREE.PerspectiveCamera(
+				this.camera = new PerspectiveCamera(
 					CmnLib.argChk_Num(hArg, 'camera_fov', 50),
 					CmnLib.stageW / CmnLib.stageH,
 					CmnLib.argChk_Num(hArg, 'camera_near', 0.1),
@@ -91,7 +91,7 @@ export class ThreeDLayer extends Layer {
 			this.csv2pos(hArg, 'camera', this.camera);
 		}
 		if ('directional_light' in hArg) {	// 平行光源
-			const light = new ThreeDLayer.THREE.DirectionalLight(0xFFFFFF);
+			const light = new DirectionalLight(0xFFFFFF);
 			light.intensity = CmnLib.argChk_Num(hArg, 'intensity', 1); // 光の強さ
 			this.csv2pos(hArg, 'directional_light', light);
 			light.name = '_light';
@@ -119,7 +119,7 @@ export class ThreeDLayer extends Layer {
 
 		const type = hArg.type;
 		const name = hArg.name || '';
-		let mdl: Object3D = new ThreeDLayer.THREE.Mesh();
+		let mdl: Object3D = new Mesh();
 		if (type) {
 			if (name in this.hInf) throw `name（=${name}）が重複しています`;
 
@@ -128,15 +128,15 @@ export class ThreeDLayer extends Layer {
 
 			if (type == 'box') {	// 立方体サンプル
 				const size = CmnLib.argChk_Num(hArg, 'size', 100);
-				const geometry = new ThreeDLayer.THREE.BoxGeometry(size, size, size);
-				// new ThreeDLayer.THREE.BoxGeometry(幅, 高さ, 奥行き)
-				const material = new ThreeDLayer.THREE.MeshNormalMaterial();
-				mdl = new ThreeDLayer.THREE.Mesh(geometry, material);
+				const geometry = new BoxGeometry(size, size, size);
+				// new BoxGeometry(幅, 高さ, 奥行き)
+				const material = new MeshNormalMaterial();
+				mdl = new Mesh(geometry, material);
 				mdl.rotation.z = -45;
 
 				this.fncCtrl = ()=> {
 					this.scene_3D.children.map(o=> {
-						const m = o as THREE.Mesh;
+						const m = o as Mesh;
 						if (! m) return;
 
 						m.rotation.x += 0.01;
@@ -156,14 +156,14 @@ export class ThreeDLayer extends Layer {
 			switch (type) {
 				case 'celestial_sphere':	// 天球サンプル(theta画像)
 				{
-					const geometry = new ThreeDLayer.THREE.SphereGeometry(5, 60,40);
+					const geometry = new SphereGeometry(5, 60,40);
 					geometry.scale(-1, 1, 1);
-					const ldr = new ThreeDLayer.THREE.TextureLoader();
+					const ldr = new TextureLoader();
 					if (! fn) throw 'fnがありません';
 					const tx = ldr.load(ThreeDLayer.plgArg.searchPath(fn, EXT_STILL_IMG));
-					tx.minFilter = ThreeDLayer.THREE.LinearFilter;
-					const material = new ThreeDLayer.THREE.MeshBasicMaterial({map: tx});
-					mdl = new ThreeDLayer.THREE.Mesh(geometry, material);
+					tx.minFilter = LinearFilter;
+					const material = new MeshBasicMaterial({map: tx});
+					mdl = new Mesh(geometry, material);
 
 					this.camera.lookAt(mdl.position);	// カメラ視野の中心座標
 					this.fncCtrl = ()=> {mdl.rotation.y += 0.001};
@@ -341,7 +341,7 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 
 		return false;
 	}
-	private arg2mdl(hArg: any, o: THREE.Object3D) {
+	private arg2mdl(hArg: any, o: Object3D) {
 		// TODO: pos,scale,alpha トゥイーン変化欲しい
 		this.csv2pos(hArg, 'pos', o);
 		this.csv2scale(hArg, 'scale', o);
@@ -352,10 +352,10 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 		if ('label' in hArg) {
 			inf.label = hArg['label'];
 			if (inf.gltf) {
-				const ac: THREE.AnimationClip = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.label);
+				const ac: AnimationClip = AnimationClip.findByName(inf.gltf.animations, inf.label ?? '');
 				if (! ac) {
 					console.info(`エラーが発生しました。参考までに ${inf.fn}(glTF)内に存在するアニメ名を列挙します`);
-					const a = inf.gltf.animations as THREE.AnimationClip[];
+					const a = inf.gltf.animations as AnimationClip[];
 					a.map(v=> console.info(`  label=${v.name}`));
 					throw `${inf.fn}(glTF)内に存在しないアニメ（label=${inf.label}）です`;
 				}
@@ -368,7 +368,7 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 					inf.aa = aa;
 				}
 				else {
-					inf.mixer = new ThreeDLayer.THREE.AnimationMixer(o);
+					inf.mixer = new AnimationMixer(o);
 					inf.aa = inf.mixer!.clipAction(ac);
 
 					this.fncMixerUpd = ()=> {
@@ -382,8 +382,8 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 				inf.aa.clampWhenFinished = true;
 					// ループしない際、終端フレームで停止しデフォルトポーズに戻さない
 				inf.aa.loop = CmnLib.argChk_Boolean(hArg, 'loop', true)
-					? ThreeDLayer.THREE.LoopRepeat
-					: ThreeDLayer.THREE.LoopOnce;
+					? LoopRepeat
+					: LoopOnce;
 				inf.aa.play();
 			}
 		}
@@ -393,16 +393,17 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 		fn		: string,
 		label?	: string,
 		gltf?	: any,
-		mixer?	: THREE.AnimationMixer,
-		aa?		: THREE.AnimationAction,
+		mixer?	: AnimationMixer,
+//		aa?		: THREE.AnimationAction,
+		aa?		: any,	// NOTE: コンパイル通し
 	}} = {};
-	private csv2pos(hArg: any, name: string, o: THREE.Object3D) {
+	private csv2pos(hArg: any, name: string, o: Object3D) {
 		if (! (name in hArg)) return;
 
 		const p = String(hArg[name]).split(',').map(v => Number(v));
 		o.position.set(p[0], p[1], p[2]);
 	}
-	private csv2scale(hArg: any, name: string, o: THREE.Object3D) {
+	private csv2scale(hArg: any, name: string, o: Object3D) {
 		if (! (name in hArg)) return;
 
 		const p = String(hArg[name]).split(',').map(v => Number(v));
@@ -422,26 +423,26 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 		this.sprite_3D.texture.update();	//tell pixi that threejs changed
 		delete this.camera;
 	}
-	private clearScene(sc: THREE.Scene) {
+	private clearScene(sc: Scene) {
 		sc.children.slice().map(o=> this.clearObject3D(o));
 			// slice()で参照コピーしてる
 	}
-	private clearObject3D(o: THREE.Object3D) {
+	private clearObject3D(o: Object3D) {
 		o.parent!.remove(o);
 
-		const s = o as THREE.Scene;
+		const s = o as Scene;
 		if (s) {
 			const inf = this.hInf[s.name];
 			if (inf && inf.mixer) inf.mixer.stopAllAction();
 			this.clearScene(s); return;
 		}
 
-		const m = o as THREE.Mesh;
+		const m = o as Mesh;
 		if (! m) return;
 		m.geometry.dispose();
 		if (m.material instanceof Material)	{
 			m.material.dispose();
-			if (m.material as THREE.MeshBasicMaterial) delete m.material;
+			if (m.material as MeshBasicMaterial) delete m.material;
 		}
 		else {
 			m.material.map(v=> v.dispose());

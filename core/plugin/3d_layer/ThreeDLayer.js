@@ -22,17 +22,17 @@ class ThreeDLayer extends Layer {
         this.running = false;
         this.fncCtrl = () => { };
         this.fncMixerUpd = () => { };
-        this.clock = new ThreeDLayer.THREE.Clock();
+        this.clock = new three_1.Clock();
         this.hInf = {};
         this.record = () => Object.assign(super.record(), {
             type: this.type,
         });
         if (ThreeDLayer.uniq_num++ % 2 == 1)
             return;
-        this.scene_3D = new ThreeDLayer.THREE.Scene();
+        this.scene_3D = new three_1.Scene();
         const log = console.log;
         console.log = () => { };
-        this.canvas_3D = new ThreeDLayer.THREE.WebGLRenderer({ antialias: true, alpha: true });
+        this.canvas_3D = new three_1.WebGLRenderer({ antialias: true, alpha: true });
         console.log = log;
         this.canvas_3D.setSize(CmnLib.stageW, CmnLib.stageH);
         this.canvas_3D.setPixelRatio(window.devicePixelRatio);
@@ -46,19 +46,19 @@ class ThreeDLayer extends Layer {
         if (!this.scene_3D)
             return false;
         if ('grid' in hArg) {
-            const grid = new ThreeDLayer.THREE.GridHelper(CmnLib.argChk_Num(hArg, 'grid_size', 10), CmnLib.argChk_Num(hArg, 'grid_step', 5));
+            const grid = new three_1.GridHelper(CmnLib.argChk_Num(hArg, 'grid_size', 10), CmnLib.argChk_Num(hArg, 'grid_step', 5));
             this.csv2pos(hArg, 'grid', grid);
             grid.name = '_grid';
             this.scene_3D.add(grid);
         }
         if ('camera' in hArg) {
             if (!this.camera) {
-                this.camera = new ThreeDLayer.THREE.PerspectiveCamera(CmnLib.argChk_Num(hArg, 'camera_fov', 50), CmnLib.stageW / CmnLib.stageH, CmnLib.argChk_Num(hArg, 'camera_near', 0.1), CmnLib.argChk_Num(hArg, 'camera_far', 2000));
+                this.camera = new three_1.PerspectiveCamera(CmnLib.argChk_Num(hArg, 'camera_fov', 50), CmnLib.stageW / CmnLib.stageH, CmnLib.argChk_Num(hArg, 'camera_near', 0.1), CmnLib.argChk_Num(hArg, 'camera_far', 2000));
             }
             this.csv2pos(hArg, 'camera', this.camera);
         }
         if ('directional_light' in hArg) {
-            const light = new ThreeDLayer.THREE.DirectionalLight(0xFFFFFF);
+            const light = new three_1.DirectionalLight(0xFFFFFF);
             light.intensity = CmnLib.argChk_Num(hArg, 'intensity', 1);
             this.csv2pos(hArg, 'directional_light', light);
             light.name = '_light';
@@ -77,7 +77,7 @@ class ThreeDLayer extends Layer {
         }
         const type = hArg.type;
         const name = hArg.name || '';
-        let mdl = new ThreeDLayer.THREE.Mesh();
+        let mdl = new three_1.Mesh();
         if (type) {
             if (name in this.hInf)
                 throw `name（=${name}）が重複しています`;
@@ -87,9 +87,9 @@ class ThreeDLayer extends Layer {
             }
             if (type == 'box') {
                 const size = CmnLib.argChk_Num(hArg, 'size', 100);
-                const geometry = new ThreeDLayer.THREE.BoxGeometry(size, size, size);
-                const material = new ThreeDLayer.THREE.MeshNormalMaterial();
-                mdl = new ThreeDLayer.THREE.Mesh(geometry, material);
+                const geometry = new three_1.BoxGeometry(size, size, size);
+                const material = new three_1.MeshNormalMaterial();
+                mdl = new three_1.Mesh(geometry, material);
                 mdl.rotation.z = -45;
                 this.fncCtrl = () => {
                     this.scene_3D.children.map(o => {
@@ -112,15 +112,15 @@ class ThreeDLayer extends Layer {
             switch (type) {
                 case 'celestial_sphere':
                     {
-                        const geometry = new ThreeDLayer.THREE.SphereGeometry(5, 60, 40);
+                        const geometry = new three_1.SphereGeometry(5, 60, 40);
                         geometry.scale(-1, 1, 1);
-                        const ldr = new ThreeDLayer.THREE.TextureLoader();
+                        const ldr = new three_1.TextureLoader();
                         if (!fn)
                             throw 'fnがありません';
                         const tx = ldr.load(ThreeDLayer.plgArg.searchPath(fn, EXT_STILL_IMG));
-                        tx.minFilter = ThreeDLayer.THREE.LinearFilter;
-                        const material = new ThreeDLayer.THREE.MeshBasicMaterial({ map: tx });
-                        mdl = new ThreeDLayer.THREE.Mesh(geometry, material);
+                        tx.minFilter = three_1.LinearFilter;
+                        const material = new three_1.MeshBasicMaterial({ map: tx });
+                        mdl = new three_1.Mesh(geometry, material);
                         this.camera.lookAt(mdl.position);
                         this.fncCtrl = () => { mdl.rotation.y += 0.001; };
                     }
@@ -178,6 +178,7 @@ class ThreeDLayer extends Layer {
         return false;
     }
     arg2mdl(hArg, o) {
+        var _a;
         this.csv2pos(hArg, 'pos', o);
         this.csv2scale(hArg, 'scale', o);
         const inf = this.hInf[o.name];
@@ -186,7 +187,7 @@ class ThreeDLayer extends Layer {
         if ('label' in hArg) {
             inf.label = hArg['label'];
             if (inf.gltf) {
-                const ac = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.label);
+                const ac = three_1.AnimationClip.findByName(inf.gltf.animations, (_a = inf.label, (_a !== null && _a !== void 0 ? _a : '')));
                 if (!ac) {
                     console.info(`エラーが発生しました。参考までに ${inf.fn}(glTF)内に存在するアニメ名を列挙します`);
                     const a = inf.gltf.animations;
@@ -200,7 +201,7 @@ class ThreeDLayer extends Layer {
                     inf.aa = aa;
                 }
                 else {
-                    inf.mixer = new ThreeDLayer.THREE.AnimationMixer(o);
+                    inf.mixer = new three_1.AnimationMixer(o);
                     inf.aa = inf.mixer.clipAction(ac);
                     this.fncMixerUpd = () => {
                         this.scene_3D.children.map(v => {
@@ -213,8 +214,8 @@ class ThreeDLayer extends Layer {
                 inf.aa.enabled = true;
                 inf.aa.clampWhenFinished = true;
                 inf.aa.loop = CmnLib.argChk_Boolean(hArg, 'loop', true)
-                    ? ThreeDLayer.THREE.LoopRepeat
-                    : ThreeDLayer.THREE.LoopOnce;
+                    ? three_1.LoopRepeat
+                    : three_1.LoopOnce;
                 inf.aa.play();
             }
         }
