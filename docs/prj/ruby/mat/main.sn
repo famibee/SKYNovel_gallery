@@ -1,8 +1,6 @@
 [call label=*init]
 
-&wm = '横'
 [add_lay layer=mes class=txt]
-	[lay layer=mes left=0 top=0 style='width: 750px; height: 500px; padding-top: 16px; padding-bottom: 16px; padding-left: 16px; padding-right: 16px;']
 
 &r_align = ''
 [button text=デフォルト left=20 top=460 page=fore label=*r_align arg='' global=true style='fill: plum;']
@@ -11,12 +9,13 @@
 [button text=121 left=350 top=460 page=fore label=*r_align arg=121 global=true style='fill: plum;']
 [button text=1ruby left=460 top=460 page=fore label=*r_align arg=1ruby global=true style='fill: plum;']
 
+&wm = '横'
 [button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='fill: bisque;']
 [button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='fill: bisque;']
 
 **
 [title text="&'直感的なルビ文法（r_align=#{r_align}・#{wm}書き）'"]
-; Webフォントの利用
+
 [span style='font-size: 30px; color: plum;']｜奇妙奇天烈摩訶不思議《るびもじ》・蜊《あさり》[span style='color: plum;']無指定[span]
 	　[span style='font-size: 30px; color: plum;']
 	[tcy t=628 r=炎][tcy t=451 r=華氏][span]

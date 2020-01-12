@@ -19,9 +19,8 @@
 ; 文字出現演出・文字消去演出の使用と切り替え
 &ch_in = 'default'
 &ch_out = 'default'
-&wm = '横'
 [add_lay layer=mes class=txt]
-	[lay layer=mes left=0 top=0 style='width: 750px; height: 500px; padding-top: 16px; padding-bottom: 16px; padding-left: 16px; padding-right: 16px;' in_style=&ch_in out_style=&ch_out]
+	[lay layer=mes in_style=&ch_in out_style=&ch_out]
 
 [button text=デフォルト left=20 top=430 page=fore label=*ch_in arg=default global=true style='fill: deepskyblue;']
 [button text=転がり入り left=130 top=430 page=fore label=*ch_in arg=転がり入り global=true style='fill: deepskyblue;']
@@ -37,6 +36,7 @@
 
 [button text=既読スキップ left=640 top=400 page=fore label=*go_skip global=true call=true style='fill: bisque;']
 
+&wm = '横'
 [button text=横書き left=640 top=430 page=fore label=*yoko global=true style='fill: bisque;']
 [button text=縦書き left=640 top=460 page=fore label=*tate global=true style='fill: bisque;']
 

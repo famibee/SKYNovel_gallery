@@ -1,0 +1,134 @@
+[call label=*init]
+
+;	&ffs = ''
+;	&ffs = '"palt"'
+	&ffs = '"pwid"'
+[add_lay layer=mes class=txt]
+	[lay layer=mes style='padding-bottom: 64px;' ffs=&ffs noffs='・']
+
+[button text=デフォルト left=20 top=460 page=fore label=*ffs arg='' global=true style='fill: plum;']
+[button text=palt left=130 top=460 page=fore label=*ffs arg='"palt"' global=true style='fill: plum;']
+[button text=pwid left=240 top=460 page=fore label=*ffs arg='"pwid"' global=true style='fill: plum;']
+
+&marker = true
+[button text=要点文字着色 left=530 top=430 page=fore label=*marker arg=true global=true call=false style='fill: limegreen;']
+[button text=無着色 left=530 top=460 page=fore label=*marker arg=false global=true call=false style='fill: limegreen;']
+
+&wm = '横'
+[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='fill: bisque;']
+[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='fill: bisque;']
+
+**
+[title text="&'禁則処理と文字詰め（文字詰め=#{ffs}・#{wm}書き）'"]
+
+	　禁則処理《きん そく しょ り》とは、特に日本語の文書作
+		[if exp="wm == '横'"]
+			[if exp=#ffs == '"palt"'#]・・[endif]
+			成・組版において、「約物
+			[if exp="ffs != ''"]な[endif]
+		[endif]
+	[span style='background-color: skyblue;' cond=marker]ゞ[span]
+		→(行頭禁則文字)[r]
+
+	て約物などが行頭・行末などにあってはならない」等とされる
+		[if exp="wm == '横'"]
+			[if exp=#ffs == '"palt"'#]禁禁禁[endif]
+			[if exp=#ffs == '"pwid"'#]禁禁[endif]
+		[else]
+			[if exp=#ffs == '"pwid"'#]禁[endif]
+			禁禁禁禁禁
+		[endif]
+	[span style='background-color: limegreen;' cond=marker]『[span]
+		→(行末禁則文字)[r]
+
+	止事項、または、それらを回避するために、字詰めや文の
+		[if exp="ffs != ''"]長さ[endif]
+		[if exp="wm == '横'"]
+			[if exp=#ffs == '"palt"'#]・・・[endif]
+		[else]
+			[if exp=#ffs == '"pwid"'#]り[endif]
+			[if exp="ffs == ''"]りり[endif]
+			りりり
+		[endif]
+	[span style='background-color: limegreen;' cond=marker]【[span]
+	[span style='background-color: limegreen;' cond=marker]【[span]
+	[span style='background-color: skyblue;' cond=marker]】[span]
+	[span style='background-color: skyblue;' cond=marker]】[span]
+		→(行頭禁則x2＋行末禁則x2)[r]
+
+	を調整したりすること。それらを回避するために、字詰めや
+		[if exp="ffs != ''"]文の[endif]
+		[if exp="wm == '横'"]
+			[if exp=#ffs == '"palt"'#]・・[endif]
+		[else]
+			[if exp=#ffs == '"pwid"'#]の[endif]
+			[if exp="ffs == ''"]のの[endif]
+			ののの
+		[endif]
+	[span style='background-color: limegreen;' cond=marker]【[span]
+	[span style='background-color: limegreen;' cond=marker]【[span]
+	[span style='background-color: skyblue;' cond=marker]】[span]
+		→(行頭禁則＋行末禁則x2)[r]
+
+	　禁則処理《きん そく しょ り》とは、特に日本語の文
+		[if exp="wm == '横'"]
+			[if exp=#ffs == '"palt"'#]・・・[endif]
+			[if exp=#ffs == '"pwid"'#]・[endif]
+			書作成・組版において、約
+		[else]
+		[endif]
+	[span style='background-color: limegreen;' cond=marker]【[span]
+	[span style='background-color: limegreen;' cond=marker]【[span]
+		→(行末禁則x2)
+
+	　　　　　　　　
+		[if exp="ffs != ''"]　[endif]
+		[if exp="wm == '横'"]
+			[if exp=#ffs == '"palt"'#]　[endif]
+		[else]
+			[if exp="ffs == ''"]　[endif]
+			　　　　
+		[endif]
+	ハイフンなどは分割禁止
+	[span style='background-color: orangered;' cond=marker]─[span]
+	[span style='background-color: orangered;' cond=marker]─[span]
+	最終行
+
+;	　禁則処理《きん そく しょ り》とは、特に日本語の文書作成・組版において、「約物などが行頭・行末などにあってはならない」等とされる・禁止事項、または、それらを回避するために、字詰めや文の長さを調整したりすること。
+
+[p][clear_text]
+
+[jump label=**before]
+
+
+*ffs
+	&ffs = sn.eventArg
+	[lay layer=mes ffs=&ffs][clear_text][jump label=**before]
+
+*marker
+	&marker = sn.eventArg
+	[clear_text][jump label=**before]
+
+*yoko
+	&wm = '横'
+	[lay layer=mes style='writing-mode: horizontal-tb;'][clear_text][jump label=**before]
+*tate
+	&wm = '縦'
+	[lay layer=mes style='writing-mode: vertical-rl;'][clear_text][jump label=**before]
+
+***
+[clear_text][jump label=**before]
+
+*go_skip
+	&sn.skip.enabled = true
+	[set_cancel_skip]
+[return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]
