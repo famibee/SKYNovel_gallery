@@ -2,6 +2,7 @@
 .vscode/
 
 # gallery、famibeeの作業中なので公開してないが、いずれは無くして公開していきたい
+docs/precache*
 docs/prj/3d_f*
 docs/prj/3d_m*
 docs/prj/glsl_/

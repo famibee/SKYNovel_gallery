@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
 	<!-- https://cdnjs.com/libraries/font-awesome -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="manifest" href="manifest.json"/>
+<meta name="theme-color" content="#2196f3"/>
 
 <style type="text/css">
 	:-webkit-full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
@@ -25,6 +27,15 @@
 	};
 	window.addEventListener('load', setBodyPT);
 	window.addEventListener('resize', setBodyPT);
+
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('/sw.js')
+		.then(reg=> {
+//console.log(`fn:index.html line:35 Service Worker Registered:%o`, reg);
+		})
+		.catch(e=> console.error(`Service worker is not registered.`, e));
+	}
+	else console.error(`Not Found serviceWorker`);
 </script>
 <script defer src="web.js"></script><script defer src="web.three.js"></script>
 <link rel="preload" href="js_ace/theme-dracula.js" as="script">
@@ -46,6 +57,11 @@
 	<span class="navbar-btn btn" aria-label="Reload" data-reload title="Reload"><i class="fas fa-redo-alt"></i></span>
 	<span class="navbar-btn btn" aria-label="Snapshot" id="snapshot" title="Snapshot"><i class="fas fa-camera"></i></span>
 	<span class="navbar-btn btn" aria-label="Look Code" title="Look Code" data-toggle="collapse" aria-expanded="false" data-target="#clpCode"><i class="fas fa-code"></i></span>
+<!--
+	<a class="nav-link text-body" href="index_menu.html" target="_top" rel="noopener">
+		<span class="navbar-btn btn badge badge-secondary" aria-label="to Mobile" title="to Mobile" data-toggle="collapse" aria-expanded="false">モバイル版サイトへ</span>
+	</a>
+-->
 
 	<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
 		aria-label="Toggle navigation">
