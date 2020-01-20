@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="web_cache/bootstrap.min.css"/>
 <link rel="manifest" href="manifest.json"/>
 <meta name="theme-color" content="#696969"/>
-<meta name="apple-mobile-web-app-title" content="SKYNovel例"/>
+<meta name="apple-mobile-web-app-title" content="PWAテスト"/>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:site" content="@ugainovel">
@@ -53,7 +53,6 @@
 	}
 
 	const en = 'ontouchend' in document ?'touchstart' :'click';
-console.log(`fn:index_aptst.html line:37 init en:${en}`);
 	document.addEventListener('DOMContentLoaded', e=> {
 		document.querySelector('.cnt').addEventListener(en, e=> {
 console.log(`fn:index_aptst.html line:37 ${en}:%`, e);
