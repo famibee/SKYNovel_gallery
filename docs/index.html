@@ -2,12 +2,19 @@
 <head><meta charset="utf-8"/><title>SKYNovel</title>
 <meta name="viewport" content="width=device-width"/>
 <meta name="description" content="SKYNovel Sample Gallery"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+<link rel="stylesheet" href="web_cache/all.min.css"/>
 	<!-- https://cdnjs.com/libraries/font-awesome -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#2196f3"/>
-
+<link rel="stylesheet" href="web_cache/bootstrap.min.css"/>
+<!--	<link rel="manifest" href="manifest.json"/>	-->
+<meta name="theme-color" content="#696969"/>
+<meta name="apple-mobile-web-app-title" content="SKYNovel例"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@ugainovel">
+<meta property="og:url" content="https://famibee.github.io/SKYNovel_gallery/index.html"/>
+<meta property="og:title" content="SKYNovel機能ギャラリー"/>
+<meta property="og:description" content="SKYNovelにはどんな事ができるのか？　というサンプルをまとめたPWAアプリです。ブラウザからも直接動かせます。 What can SKYNovel do? 'sample gallery'"/>
+<meta property="og:image" content="https://famibee.github.io/SKYNovel_gallery/web_cache/snapshot.jpg"/>
 <style type="text/css">
 	:-webkit-full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
 	:-moz-full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
@@ -16,30 +23,34 @@
 	.nav-pills a {color: black;};
 	.nav-pills a.active {color: white;};
 </style>
-<script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script defer src="web_cache/jquery-3.4.1.slim.min.js"></script>
 	<!-- https://code.jquery.com/ -->
-<script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script defer src="web_cache/bootstrap.min.js"></script>
 	<!-- https://www.bootstrapcdn.com/ 必ずjqueryの後 -->
 <script defer>
 	const setBodyPT = ()=> {
 		const h = document.getElementsByClassName('navbar')[0].clientHeight;
 		document.getElementsByTagName('body')[0].style.paddingTop = (h +1) +'px';
 	};
-	window.addEventListener('load', setBodyPT);
-	window.addEventListener('resize', setBodyPT);
-
+	window.addEventListener('load', setBodyPT, {once: true, passive: true});
+	window.addEventListener('resize', setBodyPT, {passive: true});
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/sw.js')
-		.then(reg=> {
-//console.log(`fn:index.html line:35 Service Worker Registered:%o`, reg);
-		})
+		// NOTE: 制作中に付き削除
+		navigator.serviceWorker.getRegistrations().then(rg=> rg.map(r=> r.unregister()));
+
+		if (false)
+//		if (! navigator.serviceWorker.controller)
+		navigator.serviceWorker.register(
+			document.location.hostname == 'localhost'
+			? 'sw.js'
+			: 'https://famibee.github.io/SKYNovel_gallery/sw.js'
+		)
+		.then(reg=> {/*console.log(`Service Worker Registered:%o`, reg);*/})
 		.catch(e=> console.error(`Service worker is not registered.`, e));
 	}
 	else console.error(`Not Found serviceWorker`);
 </script>
 <script defer src="web.js"></script><script defer src="web.three.js"></script>
-<link rel="preload" href="js_ace/theme-dracula.js" as="script">
-<link rel="preload" href="js_ace/mode-skynovel.js" as="script">
 	<!-- プラグイン系のスクリプト -->
 <!--
 	<script defer src="plugin_lib/live2dcubismcore.js"></script>
@@ -538,5 +549,7 @@
 			//code.resize();
 		});
 	</script>
+	<script defer src="js_ace/theme-dracula.js"></script>
+	<script defer src="js_ace/mode-skynovel.js"></script>
 
 </body></html>
