@@ -35,7 +35,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index_aptst.html",
-    "revision": "74c3c649c91a6a43cd9a00620d1dc3d0"
+    "revision": "176496314a97702d7a6916f666f85392"
   },
   {
     "url": "index_menu.html",
@@ -43,7 +43,23 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "f6d0c8d26e022bb9f2fd0fab2d58fbb8"
+    "revision": "382bd416cf484daabe2627a86783b472"
+  },
+  {
+    "url": "precache-manifest.beb173946c6e6ccb062a43c84d879ba7.js",
+    "revision": "beb173946c6e6ccb062a43c84d879ba7"
+  },
+  {
+    "url": "sw.js",
+    "revision": "4ab3fd690b9ee8970ab03a9f61b5f386"
+  },
+  {
+    "url": "web.js",
+    "revision": "83e8e5fb8767a6409abb0124cf0fcfee"
+  },
+  {
+    "url": "web.three.js",
+    "revision": "b0c754d49d22e040b0b1fb56da8a41cd"
   },
   {
     "url": "grp/3d_base.jpg",
