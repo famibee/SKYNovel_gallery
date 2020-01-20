@@ -28,12 +28,14 @@ module.exports = [
 			}),
 			new GenerateSW({
 				cacheId: cacheId,
-				swDest:  process.cwd() +'/docs/sw.js',
+				swDest:  'sw.js',
+				globDirectory: process.cwd() +'/docs',
+				globPatterns: ['*.html','{grp,icons,js_ace,plugin_lib}/*.{jpg,png,js,css}','web_cache/*.{css,js}','webfonts/*.{ttf,woff,woff2}','prj/**/*.*'],
+				maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,	// MB
 				clientsClaim: true,
 				skipWaiting: true,
 				offlineGoogleAnalytics: false,
 				directoryIndex: '/',
-				cleanupOutdatedCaches: true,
 			}),
 		],
 	}
