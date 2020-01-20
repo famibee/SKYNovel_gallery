@@ -30,7 +30,7 @@ module.exports = [
 				cacheId: cacheId,
 				swDest:  'sw.js',
 				globDirectory: process.cwd() +'/docs',
-				globPatterns: ['*.{html,js}','{grp,icons,js_ace,plugin_lib}/*.{jpg,png,js,css}','web_cache/*.{css,js}','webfonts/*.{ttf,woff,woff2}','prj/**/*.*'],
+				globPatterns: ['*.html','{grp,icons,js_ace,plugin_lib}/*.{jpg,png,js,css}','web_cache/*.{css,js}','webfonts/*.{ttf,woff,woff2}','prj/**/*.*'],
 				maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,	// MB
 				clientsClaim: true,
 				skipWaiting: true,
