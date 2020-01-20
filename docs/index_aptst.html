@@ -5,7 +5,7 @@
 <meta name="description" content="SKYNovel Sample Gallery"/>
 <link rel="stylesheet" href="web_cache/all.min.css"/>
 <link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#2196f3"/>
+<meta name="theme-color" content="#696969"/>
 <meta name="apple-mobile-web-app-title" content="SKYNovel例"/>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="twitter:card" content="summary_large_image"/>
@@ -34,7 +34,11 @@
 <script defer src="web_cache/bootstrap.min.js"></script>
 <script defer>
 	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('/sw.js')
+		navigator.serviceWorker.register(
+			document.location.hostname == 'localhost'
+			? 'sw.js'
+			: 'https://famibee.github.io/SKYNovel_gallery/sw.js'
+		)
 		.then(reg=> {
 //console.log(`fn:index.html line:35 Service Worker Registered:%o`, reg);
 		})
@@ -43,12 +47,12 @@
 	else console.error(`Not Found serviceWorker`);
 
 
-console.log(`fn:index_aptst.html line:37 init`);
 	const log = txt=> {
 		document.querySelector('#log').insertAdjacentText('beforeend', txt);
 	}
 
 	const en = 'ontouchend' in document ?'touchstart' :'click';
+console.log(`fn:index_aptst.html line:37 init en:${en}`);
 	document.addEventListener('DOMContentLoaded', e=> {
 		document.querySelector('.cnt').addEventListener(en, e=> {
 console.log(`fn:index_aptst.html line:37 ${en}:%`, e);

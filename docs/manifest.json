@@ -1,12 +1,12 @@
 {
 	"name": "SKYNovel Gallery",
 	"short_name": "SKYNovel例",
-	"theme_color": "#2196f3",
-	"background_color": "#2196f3",
+	"theme_color": "#696969",
+	"background_color": "#696969",
 	"display": "standalone",
 	"orientation": "landscape",
-	"Scope": "/",
-	"start_url": "/",
+	"lang" : "Japanese",
+	"start_url": "/index_aptst.html",
 	"icons": [
 	{
 		"src": "icons/icon-72x72.png",
