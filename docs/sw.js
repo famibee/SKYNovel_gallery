@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.0dee1348f76e2539fcba61fcb1ccddc9.js"
+  "precache-manifest.92ff0110c65ee4176c4301809328c983.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Gallery"});
@@ -43,7 +43,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "1d4db8f1b074704b656eed37c308cc96"
+    "revision": "2729079c88360d875623e46c88b2334c"
   },
   {
     "url": "grp/3d_base.jpg",
@@ -362,78 +362,6 @@ self.__precacheManifest = [
     "revision": "231cbd514948953d2422adc323e695d2"
   },
   {
-    "url": "prj/3d_fbx/mat/013ELLY18412_TP_V4.jpg",
-    "revision": "aa249656fb09466af35306409f2e1a07"
-  },
-  {
-    "url": "prj/3d_fbx/mat/cube.dae",
-    "revision": "38cb65a40a280d53fa24167fa601ce93"
-  },
-  {
-    "url": "prj/3d_fbx/mat/Lat_Miku.pmd",
-    "revision": "f11a07c12908cbd2c0a8e1287de3801a"
-  },
-  {
-    "url": "prj/3d_fbx/mat/main.sn",
-    "revision": "96be59c781877c024c749c57d561af48"
-  },
-  {
-    "url": "prj/3d_fbx/mat/squat.vmd",
-    "revision": "78d675863ce67fd652ba8154990cee2f"
-  },
-  {
-    "url": "prj/3d_fbx/path.json",
-    "revision": "a8b69e806d32d51d778f9091a37f1d9c"
-  },
-  {
-    "url": "prj/3d_fbx/prj.json",
-    "revision": "06c8e27509d81e664db2710cf65f5946"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/eye_c.png",
-    "revision": "0c27726ea48319b159de78fa8fbfb75f"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/hair_sphere.png",
-    "revision": "7f45be5f873afcf74454f26758577865"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/hair.png",
-    "revision": "c46d9ea1438dbe2f650ef4603861a7e9"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/hane.png",
-    "revision": "06e2934cb82a74e22e0417b2259fbfc5"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/huku1024.png",
-    "revision": "04b7cccbb271aa81d7e8403d46aa242a"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/huku2.png",
-    "revision": "a218b7e551d9578b6682b9594721aef3"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/shimapan.png",
-    "revision": "bc07aec8dedb3eea35e6b1ca823a9cd6"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/TohokuZunko_FromClipStudio.fbx",
-    "revision": "7c96498a1f8d982aae891a71c59b478f"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/touhoku_zunko_20140620_3.blend",
-    "revision": "afbd0e5800392c0e8f462aeaf070fef7"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/TouhokuZunko_FromBlender_20140620_3.fbx",
-    "revision": "20922bd52d6e417eac953799541024e4"
-  },
-  {
-    "url": "prj/3d_fbx/zunko/zunko_skin1024_1a.png",
-    "revision": "ae8222434ded0f16d327ba8081bf2864"
-  },
-  {
     "url": "prj/3d_gltf/mat/main.sn",
     "revision": "17742d025bfb30ec92800e97f4a4e435"
   },
@@ -460,58 +388,6 @@ self.__precacheManifest = [
   {
     "url": "prj/3d_gltf/prj.json",
     "revision": "8a4564deb439731c8aba176ce6801c2c"
-  },
-  {
-    "url": "prj/3d_mmd/mat/bg.jpg",
-    "revision": "aa249656fb09466af35306409f2e1a07"
-  },
-  {
-    "url": "prj/3d_mmd/mat/Lat_Miku.pmd",
-    "revision": "f11a07c12908cbd2c0a8e1287de3801a"
-  },
-  {
-    "url": "prj/3d_mmd/mat/Lat_Miku0.pmd",
-    "revision": "f11a07c12908cbd2c0a8e1287de3801a"
-  },
-  {
-    "url": "prj/3d_mmd/mat/main.sn",
-    "revision": "0140b078c7dafde095a202de52bd4105"
-  },
-  {
-    "url": "prj/3d_mmd/mat/squat.vmd",
-    "revision": "78d675863ce67fd652ba8154990cee2f"
-  },
-  {
-    "url": "prj/3d_mmd/mmd_layer/index.js",
-    "revision": "1b992d9a4e17915cb77b180f5168f839"
-  },
-  {
-    "url": "prj/3d_mmd/mmd_layer/index.js.map",
-    "revision": "3594c139819ead665f105146a3e0e739"
-  },
-  {
-    "url": "prj/3d_mmd/mmd_layer/index.ts",
-    "revision": "b7230b955910b5c5638a8a85df9a4072"
-  },
-  {
-    "url": "prj/3d_mmd/mmd_layer/MMDLayer.js",
-    "revision": "c57383da769af04c30a8dcd7dc037c40"
-  },
-  {
-    "url": "prj/3d_mmd/mmd_layer/MMDLayer.js.map",
-    "revision": "5a09db90c15408221464f6afde8ad371"
-  },
-  {
-    "url": "prj/3d_mmd/mmd_layer/MMDLayer.ts",
-    "revision": "fa5e7787d5d7ae06c22574e5a670df32"
-  },
-  {
-    "url": "prj/3d_mmd/path.json",
-    "revision": "795014700aea82ecf30001cb9549ffc8"
-  },
-  {
-    "url": "prj/3d_mmd/prj.json",
-    "revision": "c39d5fa6ae2f00392d1947eb08325d8a"
   },
   {
     "url": "prj/3d_theta/mat/EWHQ1887.jpg",
@@ -1316,30 +1192,6 @@ self.__precacheManifest = [
   {
     "url": "prj/frame/prj.json",
     "revision": "62e949c4cd6ab6da6b402813f6a0ee3e"
-  },
-  {
-    "url": "prj/glsl_/mat/013ELLY18412_TP_V4.jpg",
-    "revision": "aa249656fb09466af35306409f2e1a07"
-  },
-  {
-    "url": "prj/glsl_/mat/fg_22.jpg",
-    "revision": "9abca210091c322dbc04acdcf844e793"
-  },
-  {
-    "url": "prj/glsl_/mat/main.sn",
-    "revision": "25181e97275f8942e4c0eba70f8086b2"
-  },
-  {
-    "url": "prj/glsl_/mat/ruleFog.png",
-    "revision": "d1cc73cf2fd8c46198a31301372ce9c2"
-  },
-  {
-    "url": "prj/glsl_/path.json",
-    "revision": "04082f5e6146e614d5bdc00fdbb810e1"
-  },
-  {
-    "url": "prj/glsl_/prj.json",
-    "revision": "c39d5fa6ae2f00392d1947eb08325d8a"
   },
   {
     "url": "prj/glsl_slide/mat/013ELLY18412_TP_V4.jpg",
