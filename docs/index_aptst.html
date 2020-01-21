@@ -4,6 +4,7 @@
 <meta name="description" content="SKYNovel Sample Gallery"/>
 <link rel="stylesheet" href="web_cache/all.min.css"/>
 <link rel="stylesheet" href="web_cache/bootstrap.min.css"/>
+<link rel="canonical" href="https://famibee.github.io/SKYNovel_gallery/"/>
 <link rel="manifest" href="manifest.json"/>
 <meta name="theme-color" content="#696969"/>
 <meta name="apple-mobile-web-app-title" content="PWAテスト"/>
@@ -36,9 +37,7 @@
 	if ('serviceWorker' in navigator) {
 		if (! navigator.serviceWorker.controller)
 		navigator.serviceWorker.register('./sw.js', {scope: './'})
-		.then(reg=> {
-//console.log(`fn:index.html line:35 Service Worker Registered:%o`, reg);
-		})
+		.then(reg=> {/*console.log(`Service Worker Registered:%o`, reg);*/})
 		.catch(e=> console.error(`Service worker is not registered.`, e));
 	}
 	else console.error(`Not Found serviceWorker`);

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.0dee1348f76e2539fcba61fcb1ccddc9.js"
+  "precache-manifest.92ff0110c65ee4176c4301809328c983.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Gallery"});
@@ -30,20 +30,20 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "index_ap.html",
-    "revision": "a6f79b51ee847a401532db7362fe11a0"
+    "url": "index_app.html",
+    "revision": "506a5fe182e7ea6dc9548f5332400d79"
   },
   {
     "url": "index_aptst.html",
-    "revision": "df89aa098fd4dc499e1a82fc78f507d9"
+    "revision": "a30d340fd770ab943b2c05a7a163112c"
   },
   {
-    "url": "index_menu.html",
-    "revision": "66531e32e642078290bfbd666631712f"
+    "url": "index_sn.html",
+    "revision": "fd06c58c02b7db587d9e08bcb8700eed"
   },
   {
     "url": "index.html",
-    "revision": "2729079c88360d875623e46c88b2334c"
+    "revision": "c717273bec7608598442ca0ed9eb6bb8"
   },
   {
     "url": "grp/3d_base.jpg",

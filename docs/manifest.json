@@ -6,7 +6,7 @@
 	"display": "standalone",
 	"orientation": "landscape",
 	"lang" : "Japanese",
-	"start_url": "/index_aptst.html",
+	"start_url": "/index_app.html",
 	"icons": [
 	{
 		"src": "icons/icon-72x72.png",
