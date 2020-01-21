@@ -50,37 +50,30 @@
 [s]
 
 
-; col 4
-*連続再生（効果音）fadese0.2
-	[demo][playse fn=&m loop=true]
-	click 2 fadese 0.2@
-	[fadese volume=0.2 time=2000]wf...[wf]ok.[r]
+; col 1
+*単発再生（効果音）stopse
+	[demo][playse fn=&m]
+	click 2 stopse@[stopse][r]
 	end.[p]
 [jump label=**before]
 
-*連続再生（効果音）fadese0wf
-	[demo][playse fn=&m loop=true]
-	click 2 fadese 0@
-	[fadese volume=0 time=2000]wf...[wf]ok.[r]
+*単発再生（効果音）stop_allse
+	[demo][playse fn=&m]
+	click 2 stop_allse@[stop_allse][r]
 	end.[p]
 [jump label=**before]
 
-*連続再生（効果音）fadese0sfs
-	[demo][playse fn=&m loop=true]
-	click 2 fadese 0@
-	[fadese volume=0 time=2000][r]
-	click 2 stopfadese 0@
-	[stopfadese][r]
+*単発再生（効果音）ws
+	[demo][playse fn=&m]
+	ws(can not skip)...[ws]ok.[r]
 	end.[p]
 [jump label=**before]
 
-*連続再生（効果音）fadeoutse
-	[demo][playse fn=&m loop=true]
-	click 2 fadeoutse@
-	[fadeoutse time=2000]wf...[wf]ok.[r]
+*単発再生（効果音）ws_canskip
+	[demo][playse fn=&m]
+	ws(canskip)...[ws canskip=true]ok.[r]
 	end.[p]
 [jump label=**before]
-
 
 
 ; col 2
@@ -115,29 +108,6 @@
 [jump label=**before]
 
 
-
-;	連[playse fn=&m loop=true ret_ms=20]@s[stopse]@.[s]
-;	連[playse fn=&m loop=true ret_ms=30 end_ms=2500]@s[stopse]@.[s]
-;--	連[playse fn=&m loop=true]@fo[fadeoutse time=3000]w[playse fn=&m loop=true]@.[s]	; 考慮不要か
-
-;	[playse fn=dew14 loop=true]@.[stopse][s]
-
-;	竪琴[playse fn=jngl0005 loop=true ret_ms=2755][s]	; mp3 前に無音
-;	竪琴[playse fn=jngl0005 loop=true ret_ms=2000 end_ms=3000][s]
-;
-;===	[playse fn=jngl0005b loop=true ret_ms=1000][s]	; m4a
-
-
-45king_aac
-beat0004b_m4a
-beat0004b_mp3
-jngl0005_mp3
-jngl0005b_m4a
-rain01_m4a
-rain01_wav
-
-
-
 ; col 3
 *連続再生（ＢＧＭ）stopse
 	[demo][playse fn=&m loop=true]
@@ -164,30 +134,37 @@ rain01_wav
 [jump label=**before]
 
 
-; col 1
-*単発再生（効果音）stopse
-	[demo][playse fn=&m]
-	click 2 stopse@[stopse][r]
+; col 4
+*連続再生（効果音）fadese0.2
+	[demo][playse fn=&m loop=true]
+	click 2 fadese 0.2@
+	[fadese volume=0.2 time=2000]wf...[wf]ok.[r]
 	end.[p]
 [jump label=**before]
 
-*単発再生（効果音）stop_allse
-	[demo][playse fn=&m]
-	click 2 stop_allse@[stop_allse][r]
+*連続再生（効果音）fadese0wf
+	[demo][playse fn=&m loop=true]
+	click 2 fadese 0@
+	[fadese volume=0 time=2000]wf...[wf]ok.[r]
 	end.[p]
 [jump label=**before]
 
-*単発再生（効果音）ws
-	[demo][playse fn=&m]
-	ws(can not skip)...[ws]ok.[r]
+*連続再生（効果音）fadese0sfs
+	[demo][playse fn=&m loop=true]
+	click 2 fadese 0@
+	[fadese volume=0 time=2000][r]
+	click 2 stopfadese 0@
+	[stopfadese][r]
 	end.[p]
 [jump label=**before]
 
-*単発再生（効果音）ws_canskip
-	[demo][playse fn=&m]
-	ws(canskip)...[ws canskip=true]ok.[r]
+*連続再生（効果音）fadeoutse
+	[demo][playse fn=&m loop=true]
+	click 2 fadeoutse@
+	[fadeoutse time=2000]wf...[wf]ok.[r]
 	end.[p]
 [jump label=**before]
+
 
 
 

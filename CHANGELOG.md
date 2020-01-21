@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.6.1
+- upd：ライブラリ更新
 ## v1.6.0
 - add：Service WorkerによるPWA化作成中
 - upd：ライブラリ更新

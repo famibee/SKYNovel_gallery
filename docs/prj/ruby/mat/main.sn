@@ -27,6 +27,7 @@
 [span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《121｜るびもじ》・蜊《121｜あさり》[span]121[r]
 [span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《even｜るびもじ》・蜊《even｜あさり》[span]even[r]
 [span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《1ruby｜るびもじ》・蜊《1ruby｜あさり》[span]1ruby
+	[ch text='[r]※ご覧の環境はFirefoxですが、rightは未サポートです' cond="const.sn.platform.name == 'Firefox'"]
 [p][clear_text]
 
 [jump label=**before]

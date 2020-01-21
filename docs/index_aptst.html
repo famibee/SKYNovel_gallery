@@ -35,11 +35,7 @@
 <script defer>
 	if ('serviceWorker' in navigator) {
 		if (! navigator.serviceWorker.controller)
-		navigator.serviceWorker.register(
-			document.location.hostname == 'localhost'
-			? 'sw.js'
-			: 'https://famibee.github.io/SKYNovel_gallery/sw.js'
-		)
+		navigator.serviceWorker.register('./sw.js', {scope: './'})
 		.then(reg=> {
 //console.log(`fn:index.html line:35 Service Worker Registered:%o`, reg);
 		})

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.beb173946c6e6ccb062a43c84d879ba7.js"
+  "precache-manifest.0dee1348f76e2539fcba61fcb1ccddc9.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Gallery"});
@@ -35,7 +35,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index_aptst.html",
-    "revision": "176496314a97702d7a6916f666f85392"
+    "revision": "df89aa098fd4dc499e1a82fc78f507d9"
   },
   {
     "url": "index_menu.html",
@@ -302,8 +302,16 @@ self.__precacheManifest = [
     "revision": "7cc40c199d128af6b01e74a28c5900b0"
   },
   {
+    "url": "web_cache/bootstrap.min.css.map",
+    "revision": "2e863a645ac3bf565ae480c5b8b97fe7"
+  },
+  {
     "url": "web_cache/bootstrap.min.js",
     "revision": "61f338f870fcd0ff46362ef109d28533"
+  },
+  {
+    "url": "web_cache/bootstrap.min.js.map",
+    "revision": "e7faa89b97bef24e1db09c1894b638d1"
   },
   {
     "url": "web_cache/jquery-3.4.1.slim.min.js",
@@ -1511,7 +1519,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ruby/mat/main.sn",
-    "revision": "8055d5cc40a92176dea84e0e0d38be56"
+    "revision": "cbd1c8972fd6a88ed1874045f1204706"
   },
   {
     "url": "prj/ruby/path.json",
@@ -1551,7 +1559,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/sound/mat/main.sn",
-    "revision": "5ca477d5541ce4310d9295cae08bd385"
+    "revision": "2686d5f522ca1cc985a8037932ee69c6"
   },
   {
     "url": "prj/sound/mat/rain01_m4a.m4a",
