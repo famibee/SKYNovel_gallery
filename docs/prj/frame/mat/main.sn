@@ -1,7 +1,7 @@
 [call label=*init]
 
 [add_lay layer=mes class=txt]
-	[button text=フレーム表示 left=20 top=460 page=fore label=*show global=true call=true style='fill: deepskyblue;']
+	[button text=フレーム表示 left=640 top=460 page=fore label=*show global=true call=true style='fill: deepskyblue;']
 
 [add_frame id=tst src="mat/frame.htm" visible=false b_color=lightgray height=&const.sn.config.window.height*2/3]
 	; フレームのJavaScript変数を変更
@@ -33,7 +33,7 @@
 	[title text="&'HTMLフレーム C=#{const.sn.frm.tst.val_chkTst} RNG=#{const.sn.frm.tst.val_rngTst} RAD=#{const.sn.frm.tst.val_radTst} T=#{const.sn.frm.tst.val_txtTst} A=#{const.sn.frm.tst.val_txtArea}'"][return]
 
 *show
-	[frame id=tst visible=true y=109][return]
+	[frame id=tst visible=true y=80][return]
 *hide
 	[frame id=tst visible=false][return]
 
