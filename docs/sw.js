@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.385c866c7e6fb70dd1d8c93ad83008ae.js"
+  "precache-manifest.52f893b3e9c0b43888566e7bfe4eca42.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Gallery"});
