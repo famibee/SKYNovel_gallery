@@ -77,8 +77,8 @@ window.addEventListener('load', ()=> {
 	const cvs = document.getElementById('skynovel');
 	const m = document.querySelector('.modal');
 	M.Modal.init(m, {
-		onOpenEnd: ()=> globalThis.runSN(prj),
-		onCloseStart: ()=> globalThis.stopSN(),
+		onOpenEnd: ()=> window.runSN(prj),
+		onCloseStart: ()=> window.stopSN(),
 		endingTop: (window.innerHeight < 500) ?'0%' :undefined,
 	});
 

@@ -1,4 +1,3 @@
-//@ts-check
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 
@@ -7,11 +6,10 @@ const h = require('./plugin.js').default;
 for (const nm in h) hPlg[nm] = require(`./plugin/${nm}/index.js`);
 
 const {SysWeb} = require('skynovel/core/lib/sn/SysWeb');
-//@ts-ignore
 const sys = new SysWeb(hPlg, {cur: 'prj/top/', dip: '{"expanding": false}'});
 //const sys = new SysWeb(hPlg, {cur: 'prj/top/'});
-globalThis.runSN = (cur = 'top')=> sys.run(cur);
-globalThis.stopSN = ()=> sys.stop();
+window.runSN = (cur = 'top')=> sys.run(cur);
+window.stopSN = ()=> sys.stop();
 
 
 /*
