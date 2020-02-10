@@ -37,8 +37,8 @@
 		// NOTE: 制作中に付き削除
 		navigator.serviceWorker.getRegistrations().then(rg=> rg.map(r=> r.unregister()));
 
-		if (false)
-//		if (! navigator.serviceWorker.controller)
+//		if (false)
+		if (! navigator.serviceWorker.controller)
 		navigator.serviceWorker.register('./sw.js', {scope: './'})
 		.then(reg=> {/*console.log(`Service Worker Registered:%o`, reg);*/})
 		.catch(e=> console.error(`Service worker is not registered.`, e));
@@ -91,7 +91,7 @@
 	<span class="navbar-btn btn" aria-label="Snapshot" id="snapshot" title="Snapshot"><i class="fas fa-camera"></i></span>
 	<span class="navbar-btn btn" aria-label="Look Code" title="Look Code" data-toggle="collapse" aria-expanded="false" data-target="#clpCode"><i class="fas fa-code"></i></span>
 	<span class="navbar-text text-body">
-		<a class="nav-link text-body" href="index_app.html" target="_blank" rel="noopener">Mobile site</a>
+		<a class="nav-link text-body" href="index_app.html">Mobile site</a>
 	</span>
 
 	<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"

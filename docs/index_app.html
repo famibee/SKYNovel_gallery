@@ -64,7 +64,16 @@ window.addEventListener('load', ()=> {
 	M.Sidenav.init(document.querySelector('.sidenav'), {});
 	M.Tabs.init(document.querySelector('.tabs'), {swipeable: true});
 
-	document.querySelector('.tabs-content').style.height = `${document.documentElement.scrollHeight -document.querySelector('.nav-extended').clientHeight}px`;
+	const adjSize = ()=> {
+		document.querySelector('.tabs-content').style.height = `${document.documentElement.scrollHeight -document.querySelector('.nav-extended').clientHeight}px`;
+	};
+
+	let tid = 0;
+	window.addEventListener('resize', ()=> {
+		clearTimeout(tid);
+		tid = setTimeout(()=> {tid = 0; adjSize();}, 500);
+	}, {passive: true});
+	adjSize();
 
 	let prj = '';
 	for (const v of document.querySelectorAll('[data-prj]')) {
