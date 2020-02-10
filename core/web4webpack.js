@@ -8,7 +8,7 @@ for (const nm in h) hPlg[nm] = require(`./plugin/${nm}/index.js`);
 
 const {SysWeb} = require('skynovel/core/lib/sn/SysWeb');
 const dip = {'expanding': false};
-if (location.pathname == '/index_app.html') dip['oninit_run'] = false;
+if (location.pathname.slice(-15) == '/index_app.html') dip['oninit_run'] = false;
 //@ts-ignore
 const sys = new SysWeb(hPlg, {cur: 'prj/top/', dip: JSON.stringify(dip)});
 globalThis.runSN = (cur = 'top')=> sys.run(cur);
