@@ -6,16 +6,6 @@
 	<!-- https://cdnjs.com/libraries/font-awesome -->
 <link rel="stylesheet" href="web_cache/bootstrap.min.css"/>
 <link rel="canonical" href="https://famibee.github.io/SKYNovel_gallery/"/>
-<link rel="manifest" href="manifest.json"/>
-<meta name="theme-color" content="#696969"/>
-<meta name="apple-mobile-web-app-title" content="SKYNovel例"/>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:site" content="@ugainovel">
-<meta property="og:url" content="https://famibee.github.io/SKYNovel_gallery/index.html"/>
-<meta property="og:title" content="SKYNovel機能ギャラリー"/>
-<meta property="og:description" content="SKYNovelにはどんな事ができるのか？　というサンプルをまとめたPWAアプリです。ブラウザからも直接動かせます。 What can SKYNovel do? 'sample gallery'"/>
-<meta property="og:image" content="https://famibee.github.io/SKYNovel_gallery/web_cache/snapshot.jpg"/>
 <style type="text/css">
 	:-webkit-full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
 	:-moz-full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
@@ -33,42 +23,6 @@
 	};
 	window.addEventListener('load', setBodyPT, {once: true, passive: true});
 	window.addEventListener('resize', setBodyPT, {passive: true});
-	if ('serviceWorker' in navigator) {
-		// NOTE: 制作中に付き削除
-		navigator.serviceWorker.getRegistrations().then(rg=> rg.map(r=> r.unregister()));
-
-//		if (false)
-		if (! navigator.serviceWorker.controller)
-		navigator.serviceWorker.register('./sw.js', {scope: './'})
-		.then(reg=> {/*console.log(`Service Worker Registered:%o`, reg);*/})
-		.catch(e=> console.error(`Service worker is not registered.`, e));
-	}
-	else console.error(`Not Found serviceWorker`);
-</script>
-<script type="application/ld+json">
-{
-	"@context": "http://schema.org",
-	"@type": "Article",
-	"headline": "SKYNovel機能ギャラリー",
-	"description": "ノベルゲームエンジン SKYNovelの、実際に動かして体験できる機能ギャラリーです",
-	"datePublished": "2020-01-12T17:43:00+09:00",
-	"publisher": {
-		"@type": "Organization",
-		"name": "電子演劇部",
-		"logo": {
-			"@type": "ImageObject",
-			"url": "https://raw.githubusercontent.com/famibee/SKYNovel_gallery/master/man/icon.svg",
-			"width": "300",
-			"height": "300"
-		}
-	},
-	"image": {
-		"@type": "ImageObject",
-		"url": "https://raw.githubusercontent.com/famibee/SKYNovel_gallery/master/man/manual_th.jpg",
-		"width": 1500,
-		"height": 1118
-	}
-}
 </script>
 <script defer src="web.js"></script>
 <script defer src="web.vendor.js"></script>

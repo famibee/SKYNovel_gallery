@@ -9,6 +9,12 @@
 <meta name="theme-color" content="#696969"/>
 <meta name="apple-mobile-web-app-title" content="SKYNovel例"/>
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@ugainovel">
+<meta property="og:url" content="https://famibee.github.io/SKYNovel_gallery/index.html"/>
+<meta property="og:title" content="SKYNovel機能ギャラリー"/>
+<meta property="og:description" content="SKYNovelにはどんな事ができるのか？　というサンプルをまとめたPWAアプリです。ブラウザからも直接動かせます。 What can SKYNovel do? 'sample gallery'"/>
+<meta property="og:image" content="https://famibee.github.io/SKYNovel_gallery/web_cache/snapshot.jpg"/>
 <style type="text/css">
 html,body {overflow: hidden; height:100%;}
 html {user-select: none; -webkit-user-select: none;}
@@ -39,7 +45,7 @@ html {user-select: none; -webkit-user-select: none;}
 	"@type": "Article",
 	"headline": "SKYNovel機能ギャラリー",
 	"description": "ノベルゲームエンジン SKYNovelの、実際に動かして体験できる機能ギャラリーです",
-	"datePublished": "2020-01-12T17:43:00+09:00",
+	"datePublished": "2020-02-10T22:22:00+09:00",
 	"publisher": {
 		"@type": "Organization",
 		"name": "電子演劇部",
@@ -92,6 +98,17 @@ window.addEventListener('load', ()=> {
 	});
 
 }, {once: true});
+	if ('serviceWorker' in navigator) {
+		// NOTE: 制作中に付き削除
+		navigator.serviceWorker.getRegistrations().then(rg=> rg.map(r=> r.unregister()));
+
+//		if (false)
+		if (! navigator.serviceWorker.controller)
+		navigator.serviceWorker.register('./sw.js', {scope: './'})
+		.then(reg=> {/*console.log(`Service Worker Registered:%o`, reg);*/})
+		.catch(e=> console.error(`Service worker is not registered.`, e));
+	}
+	else console.error(`Not Found serviceWorker`);
 </script>
 <script defer src="web.js"></script>
 <script defer src="web.vendor.js"></script>
