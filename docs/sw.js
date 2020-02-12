@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.c41657741b1e8de18bdc99e9fa455e80.js"
+  "precache-manifest.9848c81ffbc6f04e032c22bc14c2b49f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Gallery"});
@@ -31,7 +31,7 @@ workbox.core.clientsClaim();
 self.__precacheManifest = [
   {
     "url": "index_app.html",
-    "revision": "435c36b6ff97dcbc64d0aed576fdd168"
+    "revision": "b46e1f0e68258f8b7bc93e5714a9f5c8"
   },
   {
     "url": "index_aptst.html",
@@ -43,7 +43,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "ca0312370ddba08879f4d9d6745a2b1a"
+    "revision": "4ada860b4e671629711e24d7236222fc"
   },
   {
     "url": "grp/3d_base.jpg",
@@ -595,7 +595,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/77slide/mat/main.sn",
-    "revision": "343d59751ea928361acd6dd8f420c064"
+    "revision": "47bb8466627d28eb7437d3d24cc2e294"
   },
   {
     "url": "prj/77slide/mat/pixijs-banner.png",
@@ -606,16 +606,12 @@ self.__precacheManifest = [
     "revision": "d14f1b153edf5e123f25b6182354cbf3"
   },
   {
-    "url": "prj/77slide/mat/tor_突撃_5x1.png",
-    "revision": "8b6ac275c2b30c8df8a3afd94a0c91b2"
-  },
-  {
-    "url": "prj/77slide/mat/tor_突撃.5x1.png",
+    "url": "prj/77slide/mat/tor_5x1.png",
     "revision": "00798688a5a87d3449f1bac40525414b"
   },
   {
-    "url": "prj/77slide/mat/tor_突撃.json",
-    "revision": "f0fbd43c7e991a641dc2aed1c3cf1c26"
+    "url": "prj/77slide/mat/tor.json",
+    "revision": "2e10b2b4dfa3797de827366dd295398a"
   },
   {
     "url": "prj/77slide/mat/vscode.png",
@@ -623,11 +619,11 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/77slide/path.json",
-    "revision": "119d914076402c9df8deb35306da74ff"
+    "revision": "328b0dd4343fb256280d413f3d52e7b4"
   },
   {
     "url": "prj/77slide/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "3f3a0f56d4280440c03344092471bd4e"
   },
   {
     "url": "prj/anime_png/mat/blink_big.4x1.png",
@@ -1319,7 +1315,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/log_and_play/mat/main.sn",
-    "revision": "31eac0e7c154b14c3ba8ded33a2a5d3f"
+    "revision": "779eb3bc5e158e5b5063d1145e8d85d4"
   },
   {
     "url": "prj/log_and_play/mat/nori_008.mp3",

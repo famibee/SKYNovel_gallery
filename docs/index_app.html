@@ -82,9 +82,9 @@ window.addEventListener('load', ()=> {
 	adjSize();
 
 	let prj = '';
-	for (const v of document.querySelectorAll('[data-prj]')) {
+	for (const v of document.querySelectorAll('[data-prjnm]')) {
 		v.addEventListener('click', ()=> {
-			const elm = v.attributes.getNamedItem('data-prj');
+			const elm = v.attributes.getNamedItem('data-prjnm');
 			if (elm) prj = elm.value;
 		});
 	}
@@ -133,7 +133,7 @@ window.addEventListener('load', ()=> {
 	</div>
 
 	<nav class="nav-extended light-blue darken-2"><div class="nav-wrapper">
-		<a href="#" class="brand-logo" data-prj="top" onclick="return false;" aria-label="Title" title="Return to Top">SKYNovel ギャラリー</a>
+		<a href="#" class="brand-logo" data-prjnm="top" onclick="return false;" aria-label="Title" title="Return to Top">SKYNovel ギャラリー</a>
 
 		<a href="#" class="hide-on-large-only" data-title>top page</a>
 
@@ -172,7 +172,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/top.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="top"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="top"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">ごちゃまぜサンプル</span>
@@ -234,7 +234,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/glsl_slide.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="glsl_slide"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="glsl_slide"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> フラグメントシェーダで[trans]</span>
@@ -245,7 +245,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/ext_fg.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="ext_fg"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="ext_fg"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> レイヤのクロスフェードと画像変更と動きの拡張スクリプト</span>
@@ -255,7 +255,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/tag_quake.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="tag_quake"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="tag_quake"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">画面を揺らす</span>
@@ -265,7 +265,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/tag_tsy.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="tag_tsy"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="tag_tsy"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">トゥイーンアニメを行なう</span>
@@ -275,7 +275,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/ext_fg2.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="ext_fg2"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="ext_fg2"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">立ち絵を簡単に扱う拡張スクリプト</span>
@@ -288,7 +288,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/3d_gltf.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="3d_gltf"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="3d_gltf"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> ３Ｄレイヤ（glTF表示）</span>
@@ -299,7 +299,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/emote_layer.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="emote_layer"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="emote_layer"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> えもふりレイヤ</span>
@@ -311,7 +311,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/cubism3_layer.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="glsl_slide"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="glsl_slide"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> Live2D Cubismレイヤ</span>
@@ -325,7 +325,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/3d_theta.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="3d_theta"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="3d_theta"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> ３Ｄレイヤ・天球表示（実験機能）</span>
@@ -335,7 +335,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/3d_base.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="3d_base"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="3d_base"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> ３Ｄレイヤ</span>
@@ -345,7 +345,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/tag_lay_face.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="tag_lay_face"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="tag_lay_face"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> 画像も動画も重ねて表示</span>
@@ -355,7 +355,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/anime_png.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="anime_png"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="anime_png"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> アニメpng</span>
@@ -366,7 +366,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/tag_lay_mov.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="tag_lay_mov"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="tag_lay_mov"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">mp4, webp動画再生</span>
@@ -380,7 +380,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/ruby.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="ruby"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="ruby"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">直感的なルビ文法</span>
@@ -391,7 +391,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/ch_in_out.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="ch_in_out"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="ch_in_out"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">文字出現演出</span>
@@ -401,7 +401,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/font.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="font"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="font"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">フォント利用</span>
@@ -415,7 +415,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/txt_back.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="txt_back"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="txt_back"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">メッセージウインドウ</span>
@@ -428,7 +428,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/txt_back2.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="txt_back2"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="txt_back2"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">複数メッセージウインドウ</span>
@@ -441,7 +441,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/ch_button.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="ch_button"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="ch_button"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">文字ボタン・リンク</span>
@@ -455,7 +455,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/kidoku.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="kidoku"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="kidoku"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">既読スキップ</span>
@@ -465,7 +465,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/log_and_play.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="log_and_play"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="log_and_play"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">履歴と機能追加</span>
@@ -475,7 +475,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/line_breaking_rules.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="line_breaking_rules"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="line_breaking_rules"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">禁則処理と文字詰め</span>
@@ -506,7 +506,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/debug.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="debug"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="debug"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> デバッグ機能</span>
@@ -516,7 +516,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/tag_if.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="tag_if"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="tag_if"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">if文を使える</span>
@@ -526,7 +526,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/multiline.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="multiline"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="multiline"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">複数行タグやマクロ</span>
@@ -537,7 +537,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/ext_for_call.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="ext_for_call"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="ext_for_call"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">for文を使える</span>
@@ -547,7 +547,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/let_zenkaku.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="let_zenkaku"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="let_zenkaku"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">変数名に全角文字</span>
@@ -558,7 +558,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/anon_label.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="anon_label"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="anon_label"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">無名ラベル</span>
@@ -568,7 +568,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/escape.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="escape"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="escape"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> エスケープ文字</span>
@@ -581,7 +581,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/sound.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="sound"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="sound"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">サウンド再生</span>
@@ -594,7 +594,7 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/frame.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="frame"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="frame"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">HTMLフレーム</span>
@@ -622,11 +622,11 @@ window.addEventListener('load', ()=> {
 		<div class="col s12 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="grp/77slide.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prj="77slide"><i class="fa fa-play"></i></a>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="77slide"><i class="fa fa-play"></i></a>
 			</div>
 			<div class="card-content"><p>
 				<span class="card-title">SKYNovel発表スライド</span>
-				2018/7/7 SKYNovel発表時のスライドプロジェクトです
+				2018/7/7 SKYNovel発表時のスライドプロジェクトです（多少メンテナンスしてます）
 			</p></div>
 		</div></div>
 
