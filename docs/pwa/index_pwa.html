@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://misc.laboradian.com/pwa/1/ -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="manifest" href="https://famibee.github.io/SKYNovel_gallery/pwa/manifest.json">
+  <title>インストール可能なウェブサイト</title>
+</head>
+<body>
+  <h1>インストール可能なウェブサイト</h1>
+...
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').then(function(registration) {
+    // 登録成功
+    console.log('ServiceWorker の登録に成功しました。スコープ: ', registration.scope);
+  }).catch(function(err) {
+    // 登録失敗
+    console.log('ServiceWorker の登録に失敗しました。', err);
+  });
+}
+</script>
+
+
+</body></html>
