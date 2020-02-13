@@ -478,7 +478,7 @@ self.__precacheManifest = [
     "revision": "4b639c9505039e1364e128cdcd8738a8"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_maegami.png.png",
+    "url": "prj/77slide/face/face_hiiragi_maegami.png",
     "revision": "44f4a039960da05c411014bd7e465a42"
   },
   {
@@ -543,7 +543,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/77slide/face/face_hiiragi_me_matataki_tsujyo.json",
-    "revision": "45e39a68c85397bcb1f68f26561fb3f7"
+    "revision": "cf361118774226e1bb98a35c7c5bf5de"
   },
   {
     "url": "prj/77slide/face/face_hiiragi_me_toji.png",
@@ -999,7 +999,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ext_fg/face/face_hiiragi_me_matataki_tsujyo.json",
-    "revision": "45e39a68c85397bcb1f68f26561fb3f7"
+    "revision": "cf361118774226e1bb98a35c7c5bf5de"
   },
   {
     "url": "prj/ext_fg/face/face_hiiragi_me_toji.png",
@@ -1731,7 +1731,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/top/face/face_hiiragi_me_matataki_tsujyo.json",
-    "revision": "45e39a68c85397bcb1f68f26561fb3f7"
+    "revision": "cf361118774226e1bb98a35c7c5bf5de"
   },
   {
     "url": "prj/top/face/face_hiiragi_me_toji.png",
