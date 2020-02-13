@@ -406,152 +406,152 @@ self.__precacheManifest = [
     "revision": "231cbd514948953d2422adc323e695d2"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_（遊び用）たくらみ.png",
-    "revision": "4b639c9505039e1364e128cdcd8738a8"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_（遊び用）ニコニコ口.png",
-    "revision": "e99e65540310cdfb1aa85caa1857e80e"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_（遊び用）ラブ＋口.png",
-    "revision": "c811ff639961aa0c6d6a9e31864260bc"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_（遊び用）超bikkuri.png",
-    "revision": "3ca5524f74d0ac5c9175134cd360f5f8"
+    "url": "prj/77slide/face/face_hiiragi_kuchi_akkanbe.png",
+    "revision": "6ac37f4a836e1b0ec1137999821fead1"
   },
   {
     "url": "prj/77slide/face/face_hiiragi_kuchi_bikkuri.png",
     "revision": "391682546d7be40368ca52229c2a241f"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_あっかんべ～.png",
-    "revision": "6ac37f4a836e1b0ec1137999821fead1"
+    "url": "prj/77slide/face/face_hiiragi_kuchi_cho_bikkuri.png",
+    "revision": "3ca5524f74d0ac5c9175134cd360f5f8"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_おちょぼ口.png",
-    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_ガマン.png",
-    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_怒り大.png",
-    "revision": "6f3802f5d141042ddebe49cb6fdc98f9"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_怒り小.png",
-    "revision": "2507406b5bd7991dcb1ec313275ca127"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_悲しみ.png",
-    "revision": "fdd3613ed0e1d09361712afad341eaf3"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_悲しみ(泣いた時に…).png",
-    "revision": "1a9a5e411618cb74b35e5b32a03e515e"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_更に笑顔.png",
-    "revision": "3fc6caf93f614a9f81b321191258297f"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_無表情.png",
-    "revision": "0f18cf27d4434627e026e777798e4c20"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_笑顔・中.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_egao_chu.png",
     "revision": "cd6a3bb8d1ffd08ce8a39e7910005b3e"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_笑顔・大.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_egao_dai.png",
     "revision": "f8ba8cbb763bad0299c504ee126b917d"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_笑顔.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_egao.png",
     "revision": "2808cfabf3c17a0673c3ac3111b1c7de"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_kuchi_鬼太郎口.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_gaman.png",
+    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_ikari_dai.png",
+    "revision": "6f3802f5d141042ddebe49cb6fdc98f9"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_ikari_sho.png",
+    "revision": "2507406b5bd7991dcb1ec313275ca127"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_kanashimi_naki.png",
+    "revision": "1a9a5e411618cb74b35e5b32a03e515e"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_kanashimi.png",
+    "revision": "fdd3613ed0e1d09361712afad341eaf3"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_kitaro.png",
     "revision": "d2ddca5f6c1813095fb9820c6bca2c77"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_love.png",
+    "revision": "c811ff639961aa0c6d6a9e31864260bc"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_muhyoujyou.png",
+    "revision": "0f18cf27d4434627e026e777798e4c20"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_nikoniko.png",
+    "revision": "e99e65540310cdfb1aa85caa1857e80e"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_ochobo.png",
+    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_saraniegao.png",
+    "revision": "3fc6caf93f614a9f81b321191258297f"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_takurami.png",
+    "revision": "4b639c9505039e1364e128cdcd8738a8"
   },
   {
     "url": "prj/77slide/face/face_hiiragi_maegami.png.png",
     "revision": "44f4a039960da05c411014bd7e465a42"
   },
   {
+    "url": "prj/77slide/face/face_hiiragi_mayu_asobi.png",
+    "revision": "b4350a9938bf7ae80beb308179d37a68"
+  },
+  {
     "url": "prj/77slide/face/face_hiiragi_mayu_bikkuri.png",
     "revision": "5aa482cc3262250f1c7489d9dad61bcd"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_mayu_困り.png",
-    "revision": "1220510d7cb14965c167ab89caccbacd"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_mayu_怒り.png",
-    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_mayu_悲しみ.png",
-    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_mayu_笑顔.png",
+    "url": "prj/77slide/face/face_hiiragi_mayu_egao.png",
     "revision": "eba482023fbbab48eec7719ee3bf1a65"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_mayu_通常.png",
+    "url": "prj/77slide/face/face_hiiragi_mayu_ikari.png",
+    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_mayu_kanashimi.png",
+    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_mayu_komari.png",
+    "revision": "1220510d7cb14965c167ab89caccbacd"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_mayu_tsujyo.png",
     "revision": "f909d8d5788aea915f02aaf8db1027fe"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_mayu_遊び用.png",
-    "revision": "b4350a9938bf7ae80beb308179d37a68"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_me_怒り.png",
-    "revision": "bf46db0274a1d7137c65078f4eee0eea"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_me_目閉じ.png",
-    "revision": "012ee823461dcd25de73abe97da22a27"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_me_瞬きbikkuri_b.png",
-    "revision": "ab6559c8d97f5027c68e495649a4b33d"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_me_瞬きbikkuri.json",
-    "revision": "f168523d865debe692482b01d6c21178"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_me_瞬き通常_b.png",
-    "revision": "f3ad1a9391547df27105565f36071d90"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_me_瞬き通常.json",
-    "revision": "0707233e0c303262e6fecc58d26b6cce"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_me_笑顔.png",
-    "revision": "bd3a0e0e6ec528ec69abdf4dcfbcb1ad"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_me_通常.png",
-    "revision": "e4475aa53a009d791fd33394e09d7cba"
-  },
-  {
-    "url": "prj/77slide/face/face_hiiragi_me_遊び用1.png",
+    "url": "prj/77slide/face/face_hiiragi_me_asobi1.png",
     "revision": "05679702222468a01eb89fd9a7b960dd"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_me_遊び用2.png",
+    "url": "prj/77slide/face/face_hiiragi_me_asobi2.png",
     "revision": "aa2820c883f9ed2fb2492b0bb1dcbdd7"
   },
   {
-    "url": "prj/77slide/face/face_hiiragi_me_遊び用3.png",
+    "url": "prj/77slide/face/face_hiiragi_me_asobi3.png",
     "revision": "aaf64cfdaa4e72f0aabd46e79bdbbf51"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_me_egao.png",
+    "revision": "bd3a0e0e6ec528ec69abdf4dcfbcb1ad"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_me_ikari.png",
+    "revision": "bf46db0274a1d7137c65078f4eee0eea"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_me_matataki_bikkuri_b.png",
+    "revision": "ab6559c8d97f5027c68e495649a4b33d"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_me_matataki_bikkuri.json",
+    "revision": "f168523d865debe692482b01d6c21178"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_me_matataki_tsujyo_b.png",
+    "revision": "f3ad1a9391547df27105565f36071d90"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_me_matataki_tsujyo.json",
+    "revision": "0707233e0c303262e6fecc58d26b6cce"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_me_toji.png",
+    "revision": "012ee823461dcd25de73abe97da22a27"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_me_tsujyo.png",
+    "revision": "e4475aa53a009d791fd33394e09d7cba"
   },
   {
     "url": "prj/77slide/face/face_hiiragi_seifuku.png",
@@ -559,7 +559,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/77slide/face/face_hiiragi.sn",
-    "revision": "e04465c553cd8f12ab85886cc5836e88"
+    "revision": "747e1ee1407e22cd80beabe90cf796c7"
   },
   {
     "url": "prj/77slide/mat/anbooks.png",
@@ -595,7 +595,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/77slide/mat/main.sn",
-    "revision": "8b8e3dd0365bd8497d5082669269423c"
+    "revision": "f97688611316da4c57c09e77aa5147f1"
   },
   {
     "url": "prj/77slide/mat/pixijs-banner.png",
@@ -619,7 +619,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/77slide/path.json",
-    "revision": "5bd4579a4fd6148cc1bbfb8da7803b63"
+    "revision": "fc6e6fc29065a1c10b13931c943ae789"
   },
   {
     "url": "prj/77slide/prj.json",
@@ -787,7 +787,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/cubism3_layer/mat/main.sn",
-    "revision": "7554f63312ca801cc5145d286beca505"
+    "revision": "bb8fc52a67bb15d252da0f0edfe11f33"
   },
   {
     "url": "prj/cubism3_layer/path.json",
@@ -831,7 +831,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/emote_layer/mat/main.sn",
-    "revision": "a11a771421232787ec10c317d22da676"
+    "revision": "6584734c035865657c03ffa6be60e4b6"
   },
   {
     "url": "prj/emote_layer/path.json",
@@ -862,152 +862,152 @@ self.__precacheManifest = [
     "revision": "4c405f8a4f0d1d673ba473ab52228856"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_（遊び用）たくらみ.png",
-    "revision": "4b639c9505039e1364e128cdcd8738a8"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_（遊び用）ニコニコ口.png",
-    "revision": "e99e65540310cdfb1aa85caa1857e80e"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_（遊び用）ラブ＋口.png",
-    "revision": "c811ff639961aa0c6d6a9e31864260bc"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_（遊び用）超bikkuri.png",
-    "revision": "3ca5524f74d0ac5c9175134cd360f5f8"
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_akkanbe.png",
+    "revision": "6ac37f4a836e1b0ec1137999821fead1"
   },
   {
     "url": "prj/ext_fg/face/face_hiiragi_kuchi_bikkuri.png",
     "revision": "391682546d7be40368ca52229c2a241f"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_あっかんべ～.png",
-    "revision": "6ac37f4a836e1b0ec1137999821fead1"
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_cho_bikkuri.png",
+    "revision": "3ca5524f74d0ac5c9175134cd360f5f8"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_おちょぼ口.png",
-    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_ガマン.png",
-    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_怒り大.png",
-    "revision": "6f3802f5d141042ddebe49cb6fdc98f9"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_怒り小.png",
-    "revision": "2507406b5bd7991dcb1ec313275ca127"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_悲しみ.png",
-    "revision": "fdd3613ed0e1d09361712afad341eaf3"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_悲しみ(泣いた時に…).png",
-    "revision": "1a9a5e411618cb74b35e5b32a03e515e"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_更に笑顔.png",
-    "revision": "3fc6caf93f614a9f81b321191258297f"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_無表情.png",
-    "revision": "0f18cf27d4434627e026e777798e4c20"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_笑顔・中.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_egao_chu.png",
     "revision": "cd6a3bb8d1ffd08ce8a39e7910005b3e"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_笑顔・大.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_egao_dai.png",
     "revision": "f8ba8cbb763bad0299c504ee126b917d"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_笑顔.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_egao.png",
     "revision": "2808cfabf3c17a0673c3ac3111b1c7de"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_kuchi_鬼太郎口.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_gaman.png",
+    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_ikari_dai.png",
+    "revision": "6f3802f5d141042ddebe49cb6fdc98f9"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_ikari_sho.png",
+    "revision": "2507406b5bd7991dcb1ec313275ca127"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_kanashimi_naki.png",
+    "revision": "1a9a5e411618cb74b35e5b32a03e515e"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_kanashimi.png",
+    "revision": "fdd3613ed0e1d09361712afad341eaf3"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_kitaro.png",
     "revision": "d2ddca5f6c1813095fb9820c6bca2c77"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_love.png",
+    "revision": "c811ff639961aa0c6d6a9e31864260bc"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_muhyoujyou.png",
+    "revision": "0f18cf27d4434627e026e777798e4c20"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_nikoniko.png",
+    "revision": "e99e65540310cdfb1aa85caa1857e80e"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_ochobo.png",
+    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_saraniegao.png",
+    "revision": "3fc6caf93f614a9f81b321191258297f"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_takurami.png",
+    "revision": "4b639c9505039e1364e128cdcd8738a8"
   },
   {
     "url": "prj/ext_fg/face/face_hiiragi_maegami.png.png",
     "revision": "44f4a039960da05c411014bd7e465a42"
   },
   {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_asobi.png",
+    "revision": "b4350a9938bf7ae80beb308179d37a68"
+  },
+  {
     "url": "prj/ext_fg/face/face_hiiragi_mayu_bikkuri.png",
     "revision": "5aa482cc3262250f1c7489d9dad61bcd"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_mayu_困り.png",
-    "revision": "1220510d7cb14965c167ab89caccbacd"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_mayu_怒り.png",
-    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_mayu_悲しみ.png",
-    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_mayu_笑顔.png",
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_egao.png",
     "revision": "eba482023fbbab48eec7719ee3bf1a65"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_mayu_通常.png",
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_ikari.png",
+    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_kanashimi.png",
+    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_komari.png",
+    "revision": "1220510d7cb14965c167ab89caccbacd"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_tsujyo.png",
     "revision": "f909d8d5788aea915f02aaf8db1027fe"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_mayu_遊び用.png",
-    "revision": "b4350a9938bf7ae80beb308179d37a68"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_me_怒り.png",
-    "revision": "bf46db0274a1d7137c65078f4eee0eea"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_me_目閉じ.png",
-    "revision": "012ee823461dcd25de73abe97da22a27"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_me_瞬きbikkuri_b.png",
-    "revision": "ab6559c8d97f5027c68e495649a4b33d"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_me_瞬きbikkuri.json",
-    "revision": "f168523d865debe692482b01d6c21178"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_me_瞬き通常_b.png",
-    "revision": "f3ad1a9391547df27105565f36071d90"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_me_瞬き通常.json",
-    "revision": "0707233e0c303262e6fecc58d26b6cce"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_me_笑顔.png",
-    "revision": "bd3a0e0e6ec528ec69abdf4dcfbcb1ad"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_me_通常.png",
-    "revision": "e4475aa53a009d791fd33394e09d7cba"
-  },
-  {
-    "url": "prj/ext_fg/face/face_hiiragi_me_遊び用1.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_asobi1.png",
     "revision": "05679702222468a01eb89fd9a7b960dd"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_me_遊び用2.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_asobi2.png",
     "revision": "aa2820c883f9ed2fb2492b0bb1dcbdd7"
   },
   {
-    "url": "prj/ext_fg/face/face_hiiragi_me_遊び用3.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_asobi3.png",
     "revision": "aaf64cfdaa4e72f0aabd46e79bdbbf51"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_me_egao.png",
+    "revision": "bd3a0e0e6ec528ec69abdf4dcfbcb1ad"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_me_ikari.png",
+    "revision": "bf46db0274a1d7137c65078f4eee0eea"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_me_matataki_bikkuri_b.png",
+    "revision": "ab6559c8d97f5027c68e495649a4b33d"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_me_matataki_bikkuri.json",
+    "revision": "f168523d865debe692482b01d6c21178"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_me_matataki_tsujyo_b.png",
+    "revision": "f3ad1a9391547df27105565f36071d90"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_me_matataki_tsujyo.json",
+    "revision": "0707233e0c303262e6fecc58d26b6cce"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_me_toji.png",
+    "revision": "012ee823461dcd25de73abe97da22a27"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_me_tsujyo.png",
+    "revision": "e4475aa53a009d791fd33394e09d7cba"
   },
   {
     "url": "prj/ext_fg/face/face_hiiragi_seifuku.png",
@@ -1015,7 +1015,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ext_fg/face/face_hiiragi.sn",
-    "revision": "e04465c553cd8f12ab85886cc5836e88"
+    "revision": "747e1ee1407e22cd80beabe90cf796c7"
   },
   {
     "url": "prj/ext_fg/mat/bg_0.jpg",
@@ -1039,11 +1039,11 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ext_fg/mat/main.sn",
-    "revision": "a2e8c232d52aed16d0009d90f8b7fc3d"
+    "revision": "4f3a8745a007af31781d8de4027cd918"
   },
   {
     "url": "prj/ext_fg/path.json",
-    "revision": "0c69b2433d603e715f24d1850df90514"
+    "revision": "7c56461a90ea280435999cb5af5e8072"
   },
   {
     "url": "prj/ext_fg/prj.json",
@@ -1075,7 +1075,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ext_fg2/mat/main.sn",
-    "revision": "451511f266a4ddd369240cac88f65238"
+    "revision": "1ede00d04b8cded1fadd9ac378392205"
   },
   {
     "url": "prj/ext_fg2/mat/医師_会話.png",
@@ -1111,7 +1111,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ext_fg2/path.json",
-    "revision": "ce2ea91da0a227edea41995268063ef7"
+    "revision": "ba96ead966700f73494651fbab0b3401"
   },
   {
     "url": "prj/ext_fg2/prj.json",
@@ -1439,7 +1439,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/tag_lay_face/face/face蓑浦.sn",
-    "revision": "5d2ab52a3a93064a1d19141464fedef5"
+    "revision": "e51950a5ace9be73ddff0d5f11cb202f"
   },
   {
     "url": "prj/tag_lay_face/face/蓑浦_ほほ染め.png",
@@ -1507,11 +1507,11 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/tag_lay_face/mat/main.sn",
-    "revision": "4cfe2d03485904a83034c6a4c987f888"
+    "revision": "b69c3abda83ce323d99109985d36ab70"
   },
   {
     "url": "prj/tag_lay_face/path.json",
-    "revision": "d254d012ce55336643008d698ed849f6"
+    "revision": "1e7d5d35229098e3bf377d3e4a71082f"
   },
   {
     "url": "prj/tag_lay_face/prj.json",
@@ -1594,152 +1594,152 @@ self.__precacheManifest = [
     "revision": "231cbd514948953d2422adc323e695d2"
   },
   {
-    "url": "prj/top/face/face_hiiragi_kuchi_（遊び用）たくらみ.png",
-    "revision": "4b639c9505039e1364e128cdcd8738a8"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_（遊び用）ニコニコ口.png",
-    "revision": "e99e65540310cdfb1aa85caa1857e80e"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_（遊び用）ラブ＋口.png",
-    "revision": "c811ff639961aa0c6d6a9e31864260bc"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_（遊び用）超bikkuri.png",
-    "revision": "3ca5524f74d0ac5c9175134cd360f5f8"
+    "url": "prj/top/face/face_hiiragi_kuchi_akkanbe.png",
+    "revision": "6ac37f4a836e1b0ec1137999821fead1"
   },
   {
     "url": "prj/top/face/face_hiiragi_kuchi_bikkuri.png",
     "revision": "391682546d7be40368ca52229c2a241f"
   },
   {
-    "url": "prj/top/face/face_hiiragi_kuchi_あっかんべ～.png",
-    "revision": "6ac37f4a836e1b0ec1137999821fead1"
+    "url": "prj/top/face/face_hiiragi_kuchi_cho_bikkuri.png",
+    "revision": "3ca5524f74d0ac5c9175134cd360f5f8"
   },
   {
-    "url": "prj/top/face/face_hiiragi_kuchi_おちょぼ口.png",
-    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_ガマン.png",
-    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_怒り大.png",
-    "revision": "6f3802f5d141042ddebe49cb6fdc98f9"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_怒り小.png",
-    "revision": "2507406b5bd7991dcb1ec313275ca127"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_悲しみ.png",
-    "revision": "fdd3613ed0e1d09361712afad341eaf3"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_悲しみ(泣いた時に…).png",
-    "revision": "1a9a5e411618cb74b35e5b32a03e515e"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_更に笑顔.png",
-    "revision": "3fc6caf93f614a9f81b321191258297f"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_無表情.png",
-    "revision": "0f18cf27d4434627e026e777798e4c20"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_kuchi_笑顔・中.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_egao_chu.png",
     "revision": "cd6a3bb8d1ffd08ce8a39e7910005b3e"
   },
   {
-    "url": "prj/top/face/face_hiiragi_kuchi_笑顔・大.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_egao_dai.png",
     "revision": "f8ba8cbb763bad0299c504ee126b917d"
   },
   {
-    "url": "prj/top/face/face_hiiragi_kuchi_笑顔.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_egao.png",
     "revision": "2808cfabf3c17a0673c3ac3111b1c7de"
   },
   {
-    "url": "prj/top/face/face_hiiragi_kuchi_鬼太郎口.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_gaman.png",
+    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_ikari_dai.png",
+    "revision": "6f3802f5d141042ddebe49cb6fdc98f9"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_ikari_sho.png",
+    "revision": "2507406b5bd7991dcb1ec313275ca127"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_kanashimi_naki.png",
+    "revision": "1a9a5e411618cb74b35e5b32a03e515e"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_kanashimi.png",
+    "revision": "fdd3613ed0e1d09361712afad341eaf3"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_kitaro.png",
     "revision": "d2ddca5f6c1813095fb9820c6bca2c77"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_love.png",
+    "revision": "c811ff639961aa0c6d6a9e31864260bc"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_muhyoujyou.png",
+    "revision": "0f18cf27d4434627e026e777798e4c20"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_nikoniko.png",
+    "revision": "e99e65540310cdfb1aa85caa1857e80e"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_ochobo.png",
+    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_saraniegao.png",
+    "revision": "3fc6caf93f614a9f81b321191258297f"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_takurami.png",
+    "revision": "4b639c9505039e1364e128cdcd8738a8"
   },
   {
     "url": "prj/top/face/face_hiiragi_maegami.png",
     "revision": "44f4a039960da05c411014bd7e465a42"
   },
   {
+    "url": "prj/top/face/face_hiiragi_mayu_asobi.png",
+    "revision": "b4350a9938bf7ae80beb308179d37a68"
+  },
+  {
     "url": "prj/top/face/face_hiiragi_mayu_bikkuri.png",
     "revision": "5aa482cc3262250f1c7489d9dad61bcd"
   },
   {
-    "url": "prj/top/face/face_hiiragi_mayu_困り.png",
-    "revision": "1220510d7cb14965c167ab89caccbacd"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_mayu_怒り.png",
-    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_mayu_悲しみ.png",
-    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_mayu_笑顔.png",
+    "url": "prj/top/face/face_hiiragi_mayu_egao.png",
     "revision": "eba482023fbbab48eec7719ee3bf1a65"
   },
   {
-    "url": "prj/top/face/face_hiiragi_mayu_通常.png",
+    "url": "prj/top/face/face_hiiragi_mayu_ikari.png",
+    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_mayu_kanashimi.png",
+    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_mayu_komari.png",
+    "revision": "1220510d7cb14965c167ab89caccbacd"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_mayu_tsujyo.png",
     "revision": "f909d8d5788aea915f02aaf8db1027fe"
   },
   {
-    "url": "prj/top/face/face_hiiragi_mayu_遊び用.png",
-    "revision": "b4350a9938bf7ae80beb308179d37a68"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_me_怒り.png",
-    "revision": "bf46db0274a1d7137c65078f4eee0eea"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_me_目閉じ.png",
-    "revision": "012ee823461dcd25de73abe97da22a27"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_me_瞬きbikkuri_b.png",
-    "revision": "ab6559c8d97f5027c68e495649a4b33d"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_me_瞬きbikkuri.json",
-    "revision": "f168523d865debe692482b01d6c21178"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_me_瞬き通常_b.png",
-    "revision": "f3ad1a9391547df27105565f36071d90"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_me_瞬き通常.json",
-    "revision": "0707233e0c303262e6fecc58d26b6cce"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_me_笑顔.png",
-    "revision": "bd3a0e0e6ec528ec69abdf4dcfbcb1ad"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_me_通常.png",
-    "revision": "e4475aa53a009d791fd33394e09d7cba"
-  },
-  {
-    "url": "prj/top/face/face_hiiragi_me_遊び用1.png",
+    "url": "prj/top/face/face_hiiragi_me_asobi1.png",
     "revision": "05679702222468a01eb89fd9a7b960dd"
   },
   {
-    "url": "prj/top/face/face_hiiragi_me_遊び用2.png",
+    "url": "prj/top/face/face_hiiragi_me_asobi2.png",
     "revision": "aa2820c883f9ed2fb2492b0bb1dcbdd7"
   },
   {
-    "url": "prj/top/face/face_hiiragi_me_遊び用3.png",
+    "url": "prj/top/face/face_hiiragi_me_asobi3.png",
     "revision": "aaf64cfdaa4e72f0aabd46e79bdbbf51"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_me_egao.png",
+    "revision": "bd3a0e0e6ec528ec69abdf4dcfbcb1ad"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_me_ikari.png",
+    "revision": "bf46db0274a1d7137c65078f4eee0eea"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_me_matataki_bikkuri_b.png",
+    "revision": "ab6559c8d97f5027c68e495649a4b33d"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_me_matataki_bikkuri.json",
+    "revision": "f168523d865debe692482b01d6c21178"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_me_matataki_tsujyo_b.png",
+    "revision": "f3ad1a9391547df27105565f36071d90"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_me_matataki_tsujyo.json",
+    "revision": "0707233e0c303262e6fecc58d26b6cce"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_me_toji.png",
+    "revision": "012ee823461dcd25de73abe97da22a27"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_me_tsujyo.png",
+    "revision": "e4475aa53a009d791fd33394e09d7cba"
   },
   {
     "url": "prj/top/face/face_hiiragi_seifuku.png",
@@ -1747,7 +1747,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/top/face/face_hiiragi.sn",
-    "revision": "e04465c553cd8f12ab85886cc5836e88"
+    "revision": "747e1ee1407e22cd80beabe90cf796c7"
   },
   {
     "url": "prj/top/mat/002kumakichi0327_TP_V4.jpg",
@@ -1795,7 +1795,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/top/mat/main.sn",
-    "revision": "9c82b0c81019de7552d97b9e164668a5"
+    "revision": "d5d1c368bf4a6288709693f272e156ca"
   },
   {
     "url": "prj/top/mat/my_himajihoso.woff2",
@@ -1831,7 +1831,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/top/path.json",
-    "revision": "dc8994c1fbb9cf9ce9cb60c0909f36f8"
+    "revision": "2138b26b4ef197df6b21f464dd11d21e"
   },
   {
     "url": "prj/top/prj.json",

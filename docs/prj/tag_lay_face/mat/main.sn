@@ -11,18 +11,18 @@
 
 *loop
 	[r]
-	[fg fn="蓑浦_身体_和装" face="蓑浦_kuchi_普通,蓑浦_眼_普通,蓑浦_眉_普通"]
+	[fg fn="minoura_wasou" face="minoura_kuchi_futsu,minoura_me_futsu,minoura_mayu_futsu"]
 口＝普通、眼＝普通、眉＝普通。[l][r]
 
-	[fg fn="蓑浦_身体_和装" face="蓑浦_kuchi_普通,蓑浦_眼_普通,蓑浦_眉_普通"]再度[l][r]
-	[fg fn="蓑浦_身体_和装" face="蓑浦_kuchi_普通,蓑浦_眼_普通"]眉消し[l][r]
+	[fg fn="minoura_wasou" face="minoura_kuchi_futsu,minoura_me_futsu,minoura_mayu_futsu"]再度[l][r]
+	[fg fn="minoura_wasou" face="minoura_kuchi_futsu,minoura_me_futsu"]眉消し[l][r]
 	[fg]クリア[l][r]
 
-	[fg fn="蓑浦_身体_和装" face="蓑浦_kuchi_微笑,蓑浦_眼_普通,蓑浦_眉_憂い"]
+	[fg fn="minoura_wasou" face="minoura_kuchi_hohoemi,minoura_me_futsu,minoura_mayu_urei"]
 口＝微笑、眼＝普通、眉＝憂い。[l][r]
-	[fg fn="蓑浦_身体_和装" face="蓑浦_kuchi_開き,蓑浦_眼_半開き,蓑浦_眉_怒り"]
+	[fg fn="minoura_wasou" face="minoura_kuchi_hiraki,minoura_me_hanbiraki,minoura_mayu_ikari"]
 口＝開き、眼＝半開き、眉＝怒り。[l][r]
-	[fg fn="蓑浦_身体_和装" face="蓑浦_kuchi_微笑,蓑浦_眼_まばたき,蓑浦_眉_憂い" time=0]
+	[fg fn="minoura_wasou" face="minoura_kuchi_hohoemi,minoura_me_mabataki,minoura_mayu_urei" time=0]
 口＝微笑、眼＝まばたき、眉＝憂い。[l][er]
 [jump label=*loop]
 ;********************************************************

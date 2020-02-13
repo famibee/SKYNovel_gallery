@@ -1,6 +1,6 @@
 [title text='top page'][call label=*init]
 **
-	[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_笑顔,face_hiiragi_me_瞬き通常,face_hiiragi_mayu_通常,face_hiiragi_maegami time=0]
+	[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_egao,face_hiiragi_me_matataki_tsujyo,face_hiiragi_mayu_tsujyo,face_hiiragi_maegami time=0]
 
 　革新的ノベルゲームエンジン登場──。[r]
 WebGLによる高速描画。[r]
@@ -42,7 +42,7 @@ WebGLによる高速描画。[r]
 
 ;*********************
 *目を輝かせる
-	[fg fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_笑顔・中,face_hiiragi_me_瞬きbikkuri,face_hiiragi_mayu_通常,face_hiiragi_maegami]
+	[fg fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_egao_chu,face_hiiragi_me_matataki_bikkuri,face_hiiragi_mayu_tsujyo,face_hiiragi_maegami]
 	[return]
 
 

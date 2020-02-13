@@ -144,7 +144,7 @@
 *pg7
 [pg bg=kuma425008_TP_V4 filter='1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000']
 
-[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_笑顔,face_hiiragi_me_瞬き通常,face_hiiragi_mayu_通常,face_hiiragi_maegami]
+[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_egao,face_hiiragi_me_matataki_tsujyo,face_hiiragi_mayu_tsujyo,face_hiiragi_maegami]
 【２ｂ．その他AIRNovelには無かった機能】[r]
 ●[span style='color: tomato;']静止画像[span]と[span style='color: tomato;']アニメpng[span]と[span style='color: tomato;']動画[span]を同じように扱えるので、全てひとつの立ち絵に重ねて表示することもできます。@
 [r]
@@ -152,9 +152,9 @@
 [r]
 [r]
 ●アニメや動画を動かしたまま[ch text='[']trans]できます……[l]
-	[fg fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_笑顔・中,face_hiiragi_me_瞬きbikkuri,face_hiiragi_mayu_通常,face_hiiragi_maegami]
+	[fg fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_egao_chu,face_hiiragi_me_matataki_bikkuri,face_hiiragi_mayu_tsujyo,face_hiiragi_maegami]
 。[l]
-[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_（遊び用）たくらみ,face_hiiragi_me_瞬き通常,face_hiiragi_mayu_困り,face_hiiragi_maegami]
+[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_takurami,face_hiiragi_me_matataki_tsujyo,face_hiiragi_mayu_komari,face_hiiragi_maegami]
 
 [p]
 
