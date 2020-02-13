@@ -144,7 +144,7 @@
 *pg7
 [pg bg=kuma425008_TP_V4 filter='1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000']
 
-[fg layer=0 fn=face_柊24_制服 face=face_柊24_表情_口_笑顔,face_柊24_表情_目_瞬き通常,face_柊24_表情_マユゲ_通常,face_柊24_前髪]
+[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_笑顔,face_hiiragi_me_瞬き通常,face_hiiragi_mayu_通常,face_hiiragi_maegami]
 【２ｂ．その他AIRNovelには無かった機能】[r]
 ●[span style='color: tomato;']静止画像[span]と[span style='color: tomato;']アニメpng[span]と[span style='color: tomato;']動画[span]を同じように扱えるので、全てひとつの立ち絵に重ねて表示することもできます。@
 [r]
@@ -152,9 +152,9 @@
 [r]
 [r]
 ●アニメや動画を動かしたまま[ch text='[']trans]できます……[l]
-	[fg fn=face_柊24_制服 face=face_柊24_表情_口_笑顔・中,face_柊24_表情_目_瞬きびっくり,face_柊24_表情_マユゲ_通常,face_柊24_前髪]
+	[fg fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_笑顔・中,face_hiiragi_me_瞬きbikkuri,face_hiiragi_mayu_通常,face_hiiragi_maegami]
 。[l]
-[fg layer=0 fn=face_柊24_制服 face=face_柊24_表情_口_（遊び用）たくらみ,face_柊24_表情_目_瞬き通常,face_柊24_表情_マユゲ_困り,face_柊24_前髪]
+[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_（遊び用）たくらみ,face_hiiragi_me_瞬き通常,face_hiiragi_mayu_困り,face_hiiragi_maegami]
 
 [p]
 

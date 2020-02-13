@@ -1,6 +1,6 @@
 [title text='top page'][call label=*init]
 **
-	[fg layer=0 fn=face_柊24_制服 face=face_柊24_表情_口_笑顔,face_柊24_表情_目_瞬き通常,face_柊24_表情_マユゲ_通常,face_柊24_前髪 time=0]
+	[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_笑顔,face_hiiragi_me_瞬き通常,face_hiiragi_mayu_通常,face_hiiragi_maegami time=0]
 
 　革新的ノベルゲームエンジン登場──。[r]
 WebGLによる高速描画。[r]
@@ -42,7 +42,7 @@ WebGLによる高速描画。[r]
 
 ;*********************
 *目を輝かせる
-	[fg fn=face_柊24_制服 face=face_柊24_表情_口_笑顔・中,face_柊24_表情_目_瞬きびっくり,face_柊24_表情_マユゲ_通常,face_柊24_前髪]
+	[fg fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_笑顔・中,face_hiiragi_me_瞬きbikkuri,face_hiiragi_mayu_通常,face_hiiragi_maegami]
 	[return]
 
 

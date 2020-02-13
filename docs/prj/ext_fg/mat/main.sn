@@ -17,8 +17,8 @@
 
 
 
-	[fg layer=0 fn=face_柊24_制服 face=face_柊24_表情_口_笑顔,face_柊24_表情_目_瞬き通常,face_柊24_表情_マユゲ_通常,face_柊24_前髪 time=0]
-;	[fg layer=0 fn=face_柊24_制服 face=face_柊24_表情_口_笑顔,face_柊24_表情_目_瞬き通常,face_柊24_表情_マユゲ_通常,face_柊24_前髪 time=0 visible=false]
+	[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_笑顔,face_hiiragi_me_瞬き通常,face_hiiragi_mayu_通常,face_hiiragi_maegami time=0]
+;	[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_笑顔,face_hiiragi_me_瞬き通常,face_hiiragi_mayu_通常,face_hiiragi_maegami time=0 visible=false]
 ;	[fg_fi layer=0 x=50]
 ;画像立ち絵、[l][r]
 
@@ -28,7 +28,7 @@
 	[fg_sidestep layer=0]
 立ち絵を反復横跳びさせる（楽しそう）[l][r]
 
-	[fg layer=0 fn=face_柊24_制服 face=face_柊24_表情_口_びっくり,face_柊24_表情_目_瞬き通常,face_柊24_表情_マユゲ_通常,face_柊24_前髪 time=0]
+	[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_bikkuri,face_hiiragi_me_瞬き通常,face_hiiragi_mayu_通常,face_hiiragi_maegami time=0]
 表情変化、
 
 	[fg_shake layer=0]

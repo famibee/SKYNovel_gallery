@@ -31,11 +31,11 @@ workbox.core.clientsClaim();
 self.__precacheManifest = [
   {
     "url": "index_app.html",
-    "revision": "b46e1f0e68258f8b7bc93e5714a9f5c8"
+    "revision": "c2325c71e915c7521b69c375d2fc6d0c"
   },
   {
     "url": "index_aptst.html",
-    "revision": "a30d340fd770ab943b2c05a7a163112c"
+    "revision": "0e1a61d6abe256c6a7420eb0870db06a"
   },
   {
     "url": "index_sn.html",
@@ -406,160 +406,160 @@ self.__precacheManifest = [
     "revision": "231cbd514948953d2422adc323e695d2"
   },
   {
-    "url": "prj/77slide/face/face_柊24_制服.png",
-    "revision": "94e50c87579a00f71f6e9a66c5d97735"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_前髪.png",
-    "revision": "44f4a039960da05c411014bd7e465a42"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_マユゲ_びっくり.png",
-    "revision": "5aa482cc3262250f1c7489d9dad61bcd"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_マユゲ_困り.png",
-    "revision": "1220510d7cb14965c167ab89caccbacd"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_マユゲ_怒り.png",
-    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_マユゲ_悲しみ.png",
-    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_マユゲ_笑顔.png",
-    "revision": "eba482023fbbab48eec7719ee3bf1a65"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_マユゲ_通常.png",
-    "revision": "f909d8d5788aea915f02aaf8db1027fe"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_マユゲ_遊び用.png",
-    "revision": "b4350a9938bf7ae80beb308179d37a68"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_口_（遊び用）たくらみ.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_（遊び用）たくらみ.png",
     "revision": "4b639c9505039e1364e128cdcd8738a8"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_（遊び用）ニコニコ口.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_（遊び用）ニコニコ口.png",
     "revision": "e99e65540310cdfb1aa85caa1857e80e"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_（遊び用）ラブ＋口.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_（遊び用）ラブ＋口.png",
     "revision": "c811ff639961aa0c6d6a9e31864260bc"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_（遊び用）超びっくり.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_（遊び用）超bikkuri.png",
     "revision": "3ca5524f74d0ac5c9175134cd360f5f8"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_あっかんべ～.png",
-    "revision": "6ac37f4a836e1b0ec1137999821fead1"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_口_おちょぼ口.png",
-    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_口_ガマン.png",
-    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
-  },
-  {
-    "url": "prj/77slide/face/face_柊24_表情_口_びっくり.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_bikkuri.png",
     "revision": "391682546d7be40368ca52229c2a241f"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_怒り大.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_あっかんべ～.png",
+    "revision": "6ac37f4a836e1b0ec1137999821fead1"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_おちょぼ口.png",
+    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_ガマン.png",
+    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_kuchi_怒り大.png",
     "revision": "6f3802f5d141042ddebe49cb6fdc98f9"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_怒り小.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_怒り小.png",
     "revision": "2507406b5bd7991dcb1ec313275ca127"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_悲しみ.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_悲しみ.png",
     "revision": "fdd3613ed0e1d09361712afad341eaf3"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_悲しみ(泣いた時に…).png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_悲しみ(泣いた時に…).png",
     "revision": "1a9a5e411618cb74b35e5b32a03e515e"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_更に笑顔.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_更に笑顔.png",
     "revision": "3fc6caf93f614a9f81b321191258297f"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_無表情.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_無表情.png",
     "revision": "0f18cf27d4434627e026e777798e4c20"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_笑顔・中.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_笑顔・中.png",
     "revision": "cd6a3bb8d1ffd08ce8a39e7910005b3e"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_笑顔・大.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_笑顔・大.png",
     "revision": "f8ba8cbb763bad0299c504ee126b917d"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_笑顔.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_笑顔.png",
     "revision": "2808cfabf3c17a0673c3ac3111b1c7de"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_口_鬼太郎口.png",
+    "url": "prj/77slide/face/face_hiiragi_kuchi_鬼太郎口.png",
     "revision": "d2ddca5f6c1813095fb9820c6bca2c77"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_怒り.png",
+    "url": "prj/77slide/face/face_hiiragi_maegami.png.png",
+    "revision": "44f4a039960da05c411014bd7e465a42"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_mayu_bikkuri.png",
+    "revision": "5aa482cc3262250f1c7489d9dad61bcd"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_mayu_困り.png",
+    "revision": "1220510d7cb14965c167ab89caccbacd"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_mayu_怒り.png",
+    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_mayu_悲しみ.png",
+    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_mayu_笑顔.png",
+    "revision": "eba482023fbbab48eec7719ee3bf1a65"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_mayu_通常.png",
+    "revision": "f909d8d5788aea915f02aaf8db1027fe"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_mayu_遊び用.png",
+    "revision": "b4350a9938bf7ae80beb308179d37a68"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi_me_怒り.png",
     "revision": "bf46db0274a1d7137c65078f4eee0eea"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_目閉じ.png",
+    "url": "prj/77slide/face/face_hiiragi_me_目閉じ.png",
     "revision": "012ee823461dcd25de73abe97da22a27"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_瞬きびっくり_b.png",
+    "url": "prj/77slide/face/face_hiiragi_me_瞬きbikkuri_b.png",
     "revision": "ab6559c8d97f5027c68e495649a4b33d"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_瞬きびっくり.json",
-    "revision": "2f78b853e8a380855fe22bacc6383da3"
+    "url": "prj/77slide/face/face_hiiragi_me_瞬きbikkuri.json",
+    "revision": "f168523d865debe692482b01d6c21178"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_瞬き通常_b.png",
+    "url": "prj/77slide/face/face_hiiragi_me_瞬き通常_b.png",
     "revision": "f3ad1a9391547df27105565f36071d90"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_瞬き通常.json",
-    "revision": "27139337451169e5cc3923619e969456"
+    "url": "prj/77slide/face/face_hiiragi_me_瞬き通常.json",
+    "revision": "0707233e0c303262e6fecc58d26b6cce"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_笑顔.png",
+    "url": "prj/77slide/face/face_hiiragi_me_笑顔.png",
     "revision": "bd3a0e0e6ec528ec69abdf4dcfbcb1ad"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_通常.png",
+    "url": "prj/77slide/face/face_hiiragi_me_通常.png",
     "revision": "e4475aa53a009d791fd33394e09d7cba"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_遊び用1.png",
+    "url": "prj/77slide/face/face_hiiragi_me_遊び用1.png",
     "revision": "05679702222468a01eb89fd9a7b960dd"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_遊び用2.png",
+    "url": "prj/77slide/face/face_hiiragi_me_遊び用2.png",
     "revision": "aa2820c883f9ed2fb2492b0bb1dcbdd7"
   },
   {
-    "url": "prj/77slide/face/face_柊24_表情_目_遊び用3.png",
+    "url": "prj/77slide/face/face_hiiragi_me_遊び用3.png",
     "revision": "aaf64cfdaa4e72f0aabd46e79bdbbf51"
   },
   {
-    "url": "prj/77slide/face/face_柊24.sn",
-    "revision": "d7edff1caddaef924192a0f1a29dbdc5"
+    "url": "prj/77slide/face/face_hiiragi_seifuku.png",
+    "revision": "94e50c87579a00f71f6e9a66c5d97735"
+  },
+  {
+    "url": "prj/77slide/face/face_hiiragi.sn",
+    "revision": "e04465c553cd8f12ab85886cc5836e88"
   },
   {
     "url": "prj/77slide/mat/anbooks.png",
@@ -595,7 +595,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/77slide/mat/main.sn",
-    "revision": "47bb8466627d28eb7437d3d24cc2e294"
+    "revision": "8b8e3dd0365bd8497d5082669269423c"
   },
   {
     "url": "prj/77slide/mat/pixijs-banner.png",
@@ -619,7 +619,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/77slide/path.json",
-    "revision": "328b0dd4343fb256280d413f3d52e7b4"
+    "revision": "5bd4579a4fd6148cc1bbfb8da7803b63"
   },
   {
     "url": "prj/77slide/prj.json",
@@ -862,160 +862,160 @@ self.__precacheManifest = [
     "revision": "4c405f8a4f0d1d673ba473ab52228856"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_制服.png",
-    "revision": "94e50c87579a00f71f6e9a66c5d97735"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_前髪.png",
-    "revision": "44f4a039960da05c411014bd7e465a42"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_マユゲ_びっくり.png",
-    "revision": "5aa482cc3262250f1c7489d9dad61bcd"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_マユゲ_困り.png",
-    "revision": "1220510d7cb14965c167ab89caccbacd"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_マユゲ_怒り.png",
-    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_マユゲ_悲しみ.png",
-    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_マユゲ_笑顔.png",
-    "revision": "eba482023fbbab48eec7719ee3bf1a65"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_マユゲ_通常.png",
-    "revision": "f909d8d5788aea915f02aaf8db1027fe"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_マユゲ_遊び用.png",
-    "revision": "b4350a9938bf7ae80beb308179d37a68"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_（遊び用）たくらみ.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_（遊び用）たくらみ.png",
     "revision": "4b639c9505039e1364e128cdcd8738a8"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_（遊び用）ニコニコ口.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_（遊び用）ニコニコ口.png",
     "revision": "e99e65540310cdfb1aa85caa1857e80e"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_（遊び用）ラブ＋口.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_（遊び用）ラブ＋口.png",
     "revision": "c811ff639961aa0c6d6a9e31864260bc"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_（遊び用）超びっくり.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_（遊び用）超bikkuri.png",
     "revision": "3ca5524f74d0ac5c9175134cd360f5f8"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_あっかんべ～.png",
-    "revision": "6ac37f4a836e1b0ec1137999821fead1"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_おちょぼ口.png",
-    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_ガマン.png",
-    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
-  },
-  {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_びっくり.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_bikkuri.png",
     "revision": "391682546d7be40368ca52229c2a241f"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_怒り大.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_あっかんべ～.png",
+    "revision": "6ac37f4a836e1b0ec1137999821fead1"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_おちょぼ口.png",
+    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_ガマン.png",
+    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_怒り大.png",
     "revision": "6f3802f5d141042ddebe49cb6fdc98f9"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_怒り小.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_怒り小.png",
     "revision": "2507406b5bd7991dcb1ec313275ca127"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_悲しみ.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_悲しみ.png",
     "revision": "fdd3613ed0e1d09361712afad341eaf3"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_悲しみ(泣いた時に…).png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_悲しみ(泣いた時に…).png",
     "revision": "1a9a5e411618cb74b35e5b32a03e515e"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_更に笑顔.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_更に笑顔.png",
     "revision": "3fc6caf93f614a9f81b321191258297f"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_無表情.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_無表情.png",
     "revision": "0f18cf27d4434627e026e777798e4c20"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_笑顔・中.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_笑顔・中.png",
     "revision": "cd6a3bb8d1ffd08ce8a39e7910005b3e"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_笑顔・大.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_笑顔・大.png",
     "revision": "f8ba8cbb763bad0299c504ee126b917d"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_笑顔.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_笑顔.png",
     "revision": "2808cfabf3c17a0673c3ac3111b1c7de"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_口_鬼太郎口.png",
+    "url": "prj/ext_fg/face/face_hiiragi_kuchi_鬼太郎口.png",
     "revision": "d2ddca5f6c1813095fb9820c6bca2c77"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_怒り.png",
+    "url": "prj/ext_fg/face/face_hiiragi_maegami.png.png",
+    "revision": "44f4a039960da05c411014bd7e465a42"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_bikkuri.png",
+    "revision": "5aa482cc3262250f1c7489d9dad61bcd"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_困り.png",
+    "revision": "1220510d7cb14965c167ab89caccbacd"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_怒り.png",
+    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_悲しみ.png",
+    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_笑顔.png",
+    "revision": "eba482023fbbab48eec7719ee3bf1a65"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_通常.png",
+    "revision": "f909d8d5788aea915f02aaf8db1027fe"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_mayu_遊び用.png",
+    "revision": "b4350a9938bf7ae80beb308179d37a68"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi_me_怒り.png",
     "revision": "bf46db0274a1d7137c65078f4eee0eea"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_目閉じ.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_目閉じ.png",
     "revision": "012ee823461dcd25de73abe97da22a27"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_瞬きびっくり_b.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_瞬きbikkuri_b.png",
     "revision": "ab6559c8d97f5027c68e495649a4b33d"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_瞬きびっくり.json",
-    "revision": "2f78b853e8a380855fe22bacc6383da3"
+    "url": "prj/ext_fg/face/face_hiiragi_me_瞬きbikkuri.json",
+    "revision": "f168523d865debe692482b01d6c21178"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_瞬き通常_b.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_瞬き通常_b.png",
     "revision": "f3ad1a9391547df27105565f36071d90"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_瞬き通常.json",
-    "revision": "27139337451169e5cc3923619e969456"
+    "url": "prj/ext_fg/face/face_hiiragi_me_瞬き通常.json",
+    "revision": "0707233e0c303262e6fecc58d26b6cce"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_笑顔.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_笑顔.png",
     "revision": "bd3a0e0e6ec528ec69abdf4dcfbcb1ad"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_通常.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_通常.png",
     "revision": "e4475aa53a009d791fd33394e09d7cba"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_遊び用1.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_遊び用1.png",
     "revision": "05679702222468a01eb89fd9a7b960dd"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_遊び用2.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_遊び用2.png",
     "revision": "aa2820c883f9ed2fb2492b0bb1dcbdd7"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24_表情_目_遊び用3.png",
+    "url": "prj/ext_fg/face/face_hiiragi_me_遊び用3.png",
     "revision": "aaf64cfdaa4e72f0aabd46e79bdbbf51"
   },
   {
-    "url": "prj/ext_fg/face/face_柊24.sn",
-    "revision": "d7edff1caddaef924192a0f1a29dbdc5"
+    "url": "prj/ext_fg/face/face_hiiragi_seifuku.png",
+    "revision": "94e50c87579a00f71f6e9a66c5d97735"
+  },
+  {
+    "url": "prj/ext_fg/face/face_hiiragi.sn",
+    "revision": "e04465c553cd8f12ab85886cc5836e88"
   },
   {
     "url": "prj/ext_fg/mat/bg_0.jpg",
@@ -1039,11 +1039,11 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ext_fg/mat/main.sn",
-    "revision": "2dc8a22101154fe041d05b12e0641601"
+    "revision": "a2e8c232d52aed16d0009d90f8b7fc3d"
   },
   {
     "url": "prj/ext_fg/path.json",
-    "revision": "3b9d5f864a9450193078275ffca77a62"
+    "revision": "0c69b2433d603e715f24d1850df90514"
   },
   {
     "url": "prj/ext_fg/prj.json",
@@ -1439,7 +1439,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/tag_lay_face/face/face蓑浦.sn",
-    "revision": "dc0a2d81bd6eab40165585bf79e5e46f"
+    "revision": "5d2ab52a3a93064a1d19141464fedef5"
   },
   {
     "url": "prj/tag_lay_face/face/蓑浦_ほほ染め.png",
@@ -1507,11 +1507,11 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/tag_lay_face/mat/main.sn",
-    "revision": "072e4d8c3aaa8add41a0c81e3517d713"
+    "revision": "4cfe2d03485904a83034c6a4c987f888"
   },
   {
     "url": "prj/tag_lay_face/path.json",
-    "revision": "ba67b05a473da6ae667b02de884377bc"
+    "revision": "d254d012ce55336643008d698ed849f6"
   },
   {
     "url": "prj/tag_lay_face/prj.json",
@@ -1594,160 +1594,160 @@ self.__precacheManifest = [
     "revision": "231cbd514948953d2422adc323e695d2"
   },
   {
-    "url": "prj/top/face/face_柊24_制服.png",
-    "revision": "94e50c87579a00f71f6e9a66c5d97735"
-  },
-  {
-    "url": "prj/top/face/face_柊24_前髪.png",
-    "revision": "44f4a039960da05c411014bd7e465a42"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_マユゲ_びっくり.png",
-    "revision": "5aa482cc3262250f1c7489d9dad61bcd"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_マユゲ_困り.png",
-    "revision": "1220510d7cb14965c167ab89caccbacd"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_マユゲ_怒り.png",
-    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_マユゲ_悲しみ.png",
-    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_マユゲ_笑顔.png",
-    "revision": "eba482023fbbab48eec7719ee3bf1a65"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_マユゲ_通常.png",
-    "revision": "f909d8d5788aea915f02aaf8db1027fe"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_マユゲ_遊び用.png",
-    "revision": "b4350a9938bf7ae80beb308179d37a68"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_口_（遊び用）たくらみ.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_（遊び用）たくらみ.png",
     "revision": "4b639c9505039e1364e128cdcd8738a8"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_（遊び用）ニコニコ口.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_（遊び用）ニコニコ口.png",
     "revision": "e99e65540310cdfb1aa85caa1857e80e"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_（遊び用）ラブ＋口.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_（遊び用）ラブ＋口.png",
     "revision": "c811ff639961aa0c6d6a9e31864260bc"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_（遊び用）超びっくり.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_（遊び用）超bikkuri.png",
     "revision": "3ca5524f74d0ac5c9175134cd360f5f8"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_あっかんべ～.png",
-    "revision": "6ac37f4a836e1b0ec1137999821fead1"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_口_おちょぼ口.png",
-    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_口_ガマン.png",
-    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
-  },
-  {
-    "url": "prj/top/face/face_柊24_表情_口_びっくり.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_bikkuri.png",
     "revision": "391682546d7be40368ca52229c2a241f"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_怒り大.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_あっかんべ～.png",
+    "revision": "6ac37f4a836e1b0ec1137999821fead1"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_おちょぼ口.png",
+    "revision": "9a018e0d25afa17d8e6ca68b2d2600d6"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_ガマン.png",
+    "revision": "c6496cc9ae28ddc78b271875c48b86d6"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_kuchi_怒り大.png",
     "revision": "6f3802f5d141042ddebe49cb6fdc98f9"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_怒り小.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_怒り小.png",
     "revision": "2507406b5bd7991dcb1ec313275ca127"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_悲しみ.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_悲しみ.png",
     "revision": "fdd3613ed0e1d09361712afad341eaf3"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_悲しみ(泣いた時に…).png",
+    "url": "prj/top/face/face_hiiragi_kuchi_悲しみ(泣いた時に…).png",
     "revision": "1a9a5e411618cb74b35e5b32a03e515e"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_更に笑顔.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_更に笑顔.png",
     "revision": "3fc6caf93f614a9f81b321191258297f"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_無表情.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_無表情.png",
     "revision": "0f18cf27d4434627e026e777798e4c20"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_笑顔・中.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_笑顔・中.png",
     "revision": "cd6a3bb8d1ffd08ce8a39e7910005b3e"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_笑顔・大.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_笑顔・大.png",
     "revision": "f8ba8cbb763bad0299c504ee126b917d"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_笑顔.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_笑顔.png",
     "revision": "2808cfabf3c17a0673c3ac3111b1c7de"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_口_鬼太郎口.png",
+    "url": "prj/top/face/face_hiiragi_kuchi_鬼太郎口.png",
     "revision": "d2ddca5f6c1813095fb9820c6bca2c77"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_怒り.png",
+    "url": "prj/top/face/face_hiiragi_maegami.png",
+    "revision": "44f4a039960da05c411014bd7e465a42"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_mayu_bikkuri.png",
+    "revision": "5aa482cc3262250f1c7489d9dad61bcd"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_mayu_困り.png",
+    "revision": "1220510d7cb14965c167ab89caccbacd"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_mayu_怒り.png",
+    "revision": "f0b39b9fe10a92b3a8be2e0f2df778e4"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_mayu_悲しみ.png",
+    "revision": "d93eb8fee20e83a3d24eb7644c12a172"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_mayu_笑顔.png",
+    "revision": "eba482023fbbab48eec7719ee3bf1a65"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_mayu_通常.png",
+    "revision": "f909d8d5788aea915f02aaf8db1027fe"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_mayu_遊び用.png",
+    "revision": "b4350a9938bf7ae80beb308179d37a68"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi_me_怒り.png",
     "revision": "bf46db0274a1d7137c65078f4eee0eea"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_目閉じ.png",
+    "url": "prj/top/face/face_hiiragi_me_目閉じ.png",
     "revision": "012ee823461dcd25de73abe97da22a27"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_瞬きびっくり_b.png",
+    "url": "prj/top/face/face_hiiragi_me_瞬きbikkuri_b.png",
     "revision": "ab6559c8d97f5027c68e495649a4b33d"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_瞬きびっくり.json",
-    "revision": "2f78b853e8a380855fe22bacc6383da3"
+    "url": "prj/top/face/face_hiiragi_me_瞬きbikkuri.json",
+    "revision": "f168523d865debe692482b01d6c21178"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_瞬き通常_b.png",
+    "url": "prj/top/face/face_hiiragi_me_瞬き通常_b.png",
     "revision": "f3ad1a9391547df27105565f36071d90"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_瞬き通常.json",
-    "revision": "27139337451169e5cc3923619e969456"
+    "url": "prj/top/face/face_hiiragi_me_瞬き通常.json",
+    "revision": "0707233e0c303262e6fecc58d26b6cce"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_笑顔.png",
+    "url": "prj/top/face/face_hiiragi_me_笑顔.png",
     "revision": "bd3a0e0e6ec528ec69abdf4dcfbcb1ad"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_通常.png",
+    "url": "prj/top/face/face_hiiragi_me_通常.png",
     "revision": "e4475aa53a009d791fd33394e09d7cba"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_遊び用1.png",
+    "url": "prj/top/face/face_hiiragi_me_遊び用1.png",
     "revision": "05679702222468a01eb89fd9a7b960dd"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_遊び用2.png",
+    "url": "prj/top/face/face_hiiragi_me_遊び用2.png",
     "revision": "aa2820c883f9ed2fb2492b0bb1dcbdd7"
   },
   {
-    "url": "prj/top/face/face_柊24_表情_目_遊び用3.png",
+    "url": "prj/top/face/face_hiiragi_me_遊び用3.png",
     "revision": "aaf64cfdaa4e72f0aabd46e79bdbbf51"
   },
   {
-    "url": "prj/top/face/face_柊24.sn",
-    "revision": "d7edff1caddaef924192a0f1a29dbdc5"
+    "url": "prj/top/face/face_hiiragi_seifuku.png",
+    "revision": "94e50c87579a00f71f6e9a66c5d97735"
+  },
+  {
+    "url": "prj/top/face/face_hiiragi.sn",
+    "revision": "e04465c553cd8f12ab85886cc5836e88"
   },
   {
     "url": "prj/top/mat/002kumakichi0327_TP_V4.jpg",
@@ -1795,7 +1795,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/top/mat/main.sn",
-    "revision": "24683c56a26229bec149b93342b9e4e5"
+    "revision": "9c82b0c81019de7552d97b9e164668a5"
   },
   {
     "url": "prj/top/mat/my_himajihoso.woff2",
@@ -1831,7 +1831,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/top/path.json",
-    "revision": "b59dc5bee6c44593e74d2175aed267f4"
+    "revision": "dc8994c1fbb9cf9ce9cb60c0909f36f8"
   },
   {
     "url": "prj/top/prj.json",
