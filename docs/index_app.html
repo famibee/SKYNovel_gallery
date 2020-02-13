@@ -99,14 +99,19 @@ window.addEventListener('load', ()=> {
 
 }, {once: true});
 	if ('serviceWorker' in navigator) {
-		// NOTE: 制作中に付き削除
+		navigator.serviceWorker.register('sw.js')
+		.then(reg=> {/*console.log(`Service Worker Registered:%o`, reg);*/})
+		.catch(e=> console.error(`Service worker is not registered.`, e));
+
+/*		// NOTE: 制作中に付き削除
 		navigator.serviceWorker.getRegistrations().then(rg=> rg.map(r=> r.unregister()));
 
 //		if (false)
 		if (! navigator.serviceWorker.controller)
 		navigator.serviceWorker.register('./sw.js', {scope: './'})
-		.then(reg=> {/*console.log(`Service Worker Registered:%o`, reg);*/})
+		.then(reg=> {/*console.log(`Service Worker Registered:%o`, reg);* /})
 		.catch(e=> console.error(`Service worker is not registered.`, e));
+*/
 	}
 	else console.error(`Not Found serviceWorker`);
 </script>
