@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.ffb2a98113119cc02f14304c232ce42c.js"
+  "precache-manifest.75fd4c3e26ae967733f5d4dab64938c0.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Gallery"});
@@ -31,7 +31,7 @@ workbox.core.clientsClaim();
 self.__precacheManifest = [
   {
     "url": "index_app.html",
-    "revision": "bf4b7d119c8ed0f2978a31e6c48a5165"
+    "revision": "af05e0384f32decf88123d5d580c67b5"
   },
   {
     "url": "grp/3d_base.jpg",
@@ -159,7 +159,7 @@ self.__precacheManifest = [
   },
   {
     "url": "grp/simple_novel.jpg",
-    "revision": "0882fba4638823790808ca5d6e562047"
+    "revision": "f8aafda400f480dc30801a734387c40e"
   },
   {
     "url": "grp/smp_anime_tachie.jpg",
@@ -1370,14 +1370,6 @@ self.__precacheManifest = [
     "revision": "358ed2b67a82b3b76d5e7bae58899c7f"
   },
   {
-    "url": "prj/simple_novel/mat/akir_015.mp3",
-    "revision": "c4834a563fcd13e33c5025a28b19a5ca"
-  },
-  {
-    "url": "prj/simple_novel/mat/akir_016.mp3",
-    "revision": "3ca9532abf80e459d2defe0f78b644c7"
-  },
-  {
     "url": "prj/simple_novel/mat/breakline.5x20.png",
     "revision": "d7d5b944f0457365350b1013748ca6b4"
   },
@@ -1398,28 +1390,40 @@ self.__precacheManifest = [
     "revision": "62d3a16d544858e0566255f833096a2e"
   },
   {
+    "url": "prj/simple_novel/mat/ext_fg.sn",
+    "revision": "d5f3083ec713442b13e29c87567faa60"
+  },
+  {
+    "url": "prj/simple_novel/mat/free29.mp3",
+    "revision": "311c4bbe5178882f757f949fd465ac9e"
+  },
+  {
+    "url": "prj/simple_novel/mat/Lemon.jpg",
+    "revision": "560521fc5740bb6c66152e56c1c1ac5a"
+  },
+  {
     "url": "prj/simple_novel/mat/log.html",
     "revision": "8478a7c78335c946ad357c5da9527590"
   },
   {
+    "url": "prj/simple_novel/mat/ma.png",
+    "revision": "a215b80d25f1923ec911794e2ece156c"
+  },
+  {
     "url": "prj/simple_novel/mat/main.sn",
-    "revision": "329f1541820ada45f89426160165b661"
+    "revision": "c6139a2127de94e89b053e150a25e8e0"
   },
   {
-    "url": "prj/simple_novel/mat/nori_008.mp3",
-    "revision": "fdfeac6f7aa07508e247c252e468e1a8"
+    "url": "prj/simple_novel/mat/yun_1657.jpg",
+    "revision": "07eee53b6bea8751abe02d8b11f4f714"
   },
   {
-    "url": "prj/simple_novel/mat/nori_009.mp3",
-    "revision": "d6fd85c08aa38ff69dc8f56be276574f"
-  },
-  {
-    "url": "prj/simple_novel/mat/nori_010.mp3",
-    "revision": "b03496e3fecf1df0562d8716894e8413"
+    "url": "prj/simple_novel/mat/yun_5744.jpg",
+    "revision": "3165ee36ce6ca0c25ae76e6d643da497"
   },
   {
     "url": "prj/simple_novel/path.json",
-    "revision": "3ecd5dfe827ef04ea7256416f959a5f7"
+    "revision": "3f41a726d8a9967962278f0fa5c62d5a"
   },
   {
     "url": "prj/simple_novel/prj.json",
