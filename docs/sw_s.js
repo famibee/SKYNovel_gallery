@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.ce97f6059acd46fe06785121070c1308.js"
+  "precache-manifest.9770ae9943621bef36ddc58c2e5913c0.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Simple Novel"});
@@ -31,7 +31,7 @@ workbox.core.clientsClaim();
 self.__precacheManifest = [
   {
     "url": "index_sn.html",
-    "revision": "cf909f14f0499365da7ff986c90d00e6"
+    "revision": "5df9675accb5c4aa4ca39b61dfb5dbb7"
   },
   {
     "url": "icons/icon-128x128.png",
