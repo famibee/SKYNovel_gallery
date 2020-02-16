@@ -10,7 +10,7 @@
 	"dependencies": {
 		"crypto-js": "^3.3.0",
 		"pixi.js": "^5.2.1",
-		"skynovel": "^0.12.4",
+		"skynovel": "^0.12.5",
 		"three": "^0.112.1"
 	},
 	"devDependencies": {
@@ -41,6 +41,9 @@
 		"build": "webpack --mode production --config ./core/webpack.config.js",
 		"watch:wds": "webpack-dev-server --config ./core/wds.config.js",
 		"upd": "npx ncu -a && npm update",
+		"dev_simple": "npm run webpack:dev:w_s & npm run watch:wds_s",
+		"watch:wds_s": "webpack-dev-server --config ./core/wds_s.config.js",
+		"webpack:dev:w_s": "webpack --mode development --watch --config ./core/webpack_s.config.js",
 		"npm_check_updates": "ncu",
 		"npm_check_updates -g": "ncu -g",
 		"npm_check_updates_do": "ncu -a && npm update && npm i -D"
