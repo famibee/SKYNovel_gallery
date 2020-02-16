@@ -6,7 +6,7 @@
 	"display": "standalone",
 	"orientation": "landscape",
 	"lang" : "ja-JP",
-	"start_url": "https://famibee.github.io/SKYNovel_gallery/index_app.html",
+	"start_url": "./index_app.html",
 	"icons": [
 	{
 		"src": "icons/icon-72x72.png",

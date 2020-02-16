@@ -31,7 +31,7 @@ workbox.core.clientsClaim();
 self.__precacheManifest = [
   {
     "url": "index_app.html",
-    "revision": "af05e0384f32decf88123d5d580c67b5"
+    "revision": "a2d6402654b9951e256ed9f74aa59e2a"
   },
   {
     "url": "grp/3d_base.jpg",
@@ -227,7 +227,7 @@ self.__precacheManifest = [
   },
   {
     "url": "icons/icon-512x512.png",
-    "revision": "b20c3c3817ce76abc82680103fbb4bc2"
+    "revision": "c4f75dd7fa05d6c793e584010b68a0a5"
   },
   {
     "url": "icons/icon-72x72.png",
