@@ -31,7 +31,7 @@ workbox.core.clientsClaim();
 self.__precacheManifest = [
   {
     "url": "index_sn.html",
-    "revision": "5df9675accb5c4aa4ca39b61dfb5dbb7"
+    "revision": "518b7f123438cf7e71b0057de2ad3beb"
   },
   {
     "url": "icons/icon-128x128.png",

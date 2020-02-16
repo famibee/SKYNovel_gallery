@@ -1,12 +1,12 @@
 {
 	"name": "SKYNovel Simple Novel",
 	"short_name": "SN簡易例",
-	"theme_color": "#696969",
-	"background_color": "#696969",
+	"theme_color": "#FFFF00",
+	"background_color": "#FFFF00",
 	"display": "standalone",
 	"orientation": "landscape",
-	"lang" : "Japanese",
-	"start_url": "https://famibee.github.io/SKYNovel_gallery/index_sn.html",
+	"lang" : "ja-JP",
+	"start_url": "./index_sn.html",
 	"icons": [
 	{
 		"src": "icons/icon-72x72.png",

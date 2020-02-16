@@ -5,7 +5,7 @@
 	"background_color": "#696969",
 	"display": "standalone",
 	"orientation": "landscape",
-	"lang" : "Japanese",
+	"lang" : "ja-JP",
 	"start_url": "https://famibee.github.io/SKYNovel_gallery/index_app.html",
 	"icons": [
 	{
