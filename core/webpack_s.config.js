@@ -1,6 +1,6 @@
 const {default: ImageminPlugin} = require('imagemin-webpack-plugin');
 const {GenerateSW} = require('workbox-webpack-plugin');
-const cacheId = 'SKYNovel Gallery';
+const cacheId = 'SKYNovel Simple Novel';
 
 // 変更後は「npm run webpack:dev」
 module.exports = [
@@ -27,19 +27,17 @@ module.exports = [
 				test: /\.(jpe?g|png|gif|svg)$/i,
 				pngquant: {quality: '95-100',},
 			}),
-/*
 			new GenerateSW({
 				cacheId: cacheId,
 				swDest:  'sw_s.js',
 				globDirectory: process.cwd() +'/docs',
-				globPatterns: ['index_sn.html','icons/*.{jpg,png}','prj/simple_novel/**	/*.*'],
+				globPatterns: ['index_sn.html','icons/*.{jpg,png}','prj/simple_novel/**/*.*'],
 				maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,	// MB
 				clientsClaim: true,
 				skipWaiting: true,
 				offlineGoogleAnalytics: false,
 				directoryIndex: '/',
 			}),
-*/
 		],
 		performance: {
 			maxEntrypointSize: 2000 *1000,

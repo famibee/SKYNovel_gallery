@@ -3,15 +3,14 @@
 [add_lay layer=base class=grp]
 [add_lay layer=0 class=grp]
 [add_lay layer=mes class=txt]
-	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
+	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 55px; padding-right: 55px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
 		; ele1 = 750x230
-[button text=既読スキップ left=640 top=10 page=fore label=*go_skip global=true call=true style='fill: bisque;']
+[button text=既読スキップ left=640 top=10 page=fore label=*go_skip global=true call=true style='fill: plum;']
 
 	[call fn=ext_*]
 
 ; 一文字マクロで省略記法
-[macro name=lr][l][r][endmacro]
-[char2macro char=@ name=lr]
+[char2macro char=@ name=l]
 [macro name=plc][p][地の文][endmacro]
 [char2macro char=\ name=plc]
 
@@ -27,7 +26,7 @@
 
 [macro name=hu]
 	; この辺に顔アイコン変更とか追加したり
-	&col = const.db[mp:text].col; 名前表示のcss色名前
+	&col = 'dodgerblue'; 名前表示のcss色名前
 
 	; 名前表示
 	[clear_text]
@@ -66,9 +65,11 @@
 
 
 *main
+	; *** BGM ***
 ;	[bgm fn="free29" time=2000]
-	[fg fn="Lemon" layer=base]
-　私は何度も何度もその果実を鼻に持っていっては嗅《か》いでみた。それの産地だというカリフォルニヤが想像に上って来る。漢文で習った「売柑者之言」の中に書いてあった「鼻を撲《う》つ」という言葉が断《き》れぎれに浮かんで来る。\
+	; *** BG ***
+	[fg fn=Lemon layer=base]
+　私は何度も何度もその果実を鼻に持っていっては嗅《か》いでみた。それの産地だというカリフォルニヤが想像に上って来る。\漢文で習った「売柑者之言」の中に書いてあった「鼻を撲《う》つ」という言葉が断《き》れぎれに浮かんで来る。\
 
 そしてふかぶかと胸一杯に匂やかな空気を吸い込めば、ついぞ胸一杯に呼吸したことのなかった私の身体や顔には温い血のほとぼりが昇って来てなんだか身内に元気が目覚めて来たのだった。……\
 
@@ -79,40 +80,19 @@
 	; *** BGM ***
 	[fadeoutbgm time=2000]
 	; *** BG ***
-	[grp bg="yun_5744" l0="M顔a"]
+	[fg fn=yun_5744 layer=base]
+	[fg fn=ma layer=0]
 
-　私はもう往来を軽やかな昂奮に弾んで、一種誇りかな気持さえ感じながら、美的装束をして街を歩《かっぽ》した詩人のことなど思い浮かべては歩いていた。汚れた手拭の上へ載せてみたりマントの上へあてがってみたりして色の反映を量《はか》ったり、またこんなことを思ったり、\
+　私はもう往来を軽やかな昂奮に弾んで、一種誇りかな気持さえ感じながら、美的装束をして街を歩《かっぽ》した詩人のことなど思い浮かべては歩いていた。\汚れた手拭の上へ載せてみたりマントの上へあてがってみたりして色の反映を量《はか》ったり、またこんなことを思ったり、\
 
-[r][r][r]
-　――つまりはこの重さなんだな。――\
-
-
-　その重さこそ常《つね》づね尋ねあぐんでいたもので、疑いもなくこの重さはすべての善いものすべての美しいものを重量に換算して来た重さであるとか、思いあがった諧謔心《かいぎゃくしん》からそんな馬鹿げたことを考えてみたり――なにがさて私は幸福だったのだ。\
-
-	; サンプルは最初に戻るが、既読スキップすると永久ループになるので、その対策
-	&sn.tagL.enabled = true		; 頁末まで一気に読み進むか(l無視)
-	&sn.skip.enabled = false	; 次の選択肢(/未読)まで進むが有効か
-	&sn.auto.enabled = false	; 自動読みすすみモードかどうか
-[jump label=*main]
+[r][r]
+〔語り手〕　――つまりはこの重さなんだな。――\
 
 
+　その重さこそ常《つね》づね尋ねあぐんでいたもので、疑いもなくこの重さはすべての善いものすべての美しいものを重量に換算して来た重さであるとか、\思いあがった諧謔心《かいぎゃくしん》からそんな馬鹿げたことを考えてみたり――@なにがさて私は幸福だったのだ。\
 
-（音量注意、音声《ボイス》が流れます）[tcy t="451" r=縦横][span style='color: skyblue;']Style[span]'`"<>¥¥¥& ¥@
-[link label=*show_log global=true call=true]リンク[graph pic=breakline style='background-color: rgba(200,0,200,0.5);'][tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][span style='font-size: 64px;']🌈[span]\
 
-〔紀子〕「ちょっと！　また掃除サボってるの[tcy t=!?]」\
-
-〔晶〕「そ・う・じッ！　の話だってば」\
-
-　ズカズカと割り込んできた紀子に、晶が煙《けむ》たそうに答える。\
-
-〔紀子〕「獅童さん。ちょっと失礼」\
-
-　紀子が冷たく云い放ち、晶の身体をまさぐり始めた。\
-
-〔晶〕「うひゃひゃひゃひゃ[tcy t=!?]　くすぐったいぃぃ！[quake time=500][wq]　なにすんだよおっ！」\
-
-〔紀子〕「トランプのカードはどこに隠したの？　出しなさい」\
+	[fg layer=0]
 
 	; サンプルは最初に戻るが、既読スキップすると永久ループになるので、その対策
 	&sn.tagL.enabled = true		; 頁末まで一気に読み進むか(l無視)
