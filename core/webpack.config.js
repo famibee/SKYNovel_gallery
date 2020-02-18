@@ -9,8 +9,8 @@ module.exports = [
 		target: 'web',
 		output: {
 			path: process.cwd() +'/docs',
-			filename: 'web.js',
-			chunkFilename: 'web.[name].js'
+			filename: 'prj/web.js',
+			chunkFilename: 'prj/web.[name].js'
 		},
 		optimization: {
 			splitChunks: {
@@ -31,7 +31,7 @@ module.exports = [
 				cacheId: cacheId,
 				swDest:  'sw.js',
 				globDirectory: process.cwd() +'/docs',
-				globPatterns: ['index_app.html','{grp,icons,js_ace,plugin_lib}/*.{jpg,png,js,css}','web_cache/*.{css,js,map}','webfonts/*.{ttf,woff,woff2}','prj/**/*.*'],
+				globPatterns: ['favicon.ico','index.html','og_snapshot.jpg','{grp,icons,js_ace,plugin_lib,web_cache}/*.*','webfonts/*.{ttf,woff,woff2}','prj/**/*.*'],
 				maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,	// MB
 				clientsClaim: true,
 				skipWaiting: true,

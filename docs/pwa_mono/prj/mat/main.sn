@@ -1,0 +1,130 @@
+[title text='SKYNovel簡易ノベル'][call label=*init]
+
+[add_lay layer=base class=grp]
+[add_lay layer=0 class=grp]
+[add_lay layer=mes class=txt]
+	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 55px; padding-right: 55px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
+		; ele1 = 750x230
+[button text=既読スキップ left=640 top=10 page=fore label=*go_skip global=true call=true style='fill: plum;']
+
+	[call fn=ext_*]
+
+; 一文字マクロで省略記法
+[char2macro char=@ name=l]
+[macro name=plc][p][地の文][endmacro]
+[char2macro char=\ name=plc]
+
+; 名前とレイヤ切り替え
+[macro name=地の文]
+	[clear_text]
+	[ch record=false text='　[r]' wait=0 style='line-height: 2.7em;']
+	[rec_ch name='' color='white']
+[endmacro]
+	[地の文]
+
+&save:sn.doRecLog = true	; テキスト履歴の記録開始
+
+[macro name=hu]
+	; この辺に顔アイコン変更とか追加したり
+	&col = 'dodgerblue'; 名前表示のcss色名前
+
+	; 名前表示
+	[clear_text]
+	[ch record=false text="&'　　　#{mp:text}[r]'" wait=0 style="&'line-height: 2.7em; color: #{col};'"]
+
+	; 現在ページの履歴に情報を渡す
+	[rec_ch name=%text col=&col]
+[endmacro]
+	; 括弧マクロ（この辺は好みだが、使うと便利）
+	[bracket2macro text='〔〕' name=hu]
+
+
+;********************************************************
+; マクロ ＢＧＭ切り替え
+[macro name="bgm"]
+	[stopbgm cond="mp:time == null || sn.skip.enabled"]
+
+	[let name=t text=%time|500]	;省略した時の初期値
+	[stopse buf=BGM_FO]
+	[xchgbuf buf=BGM buf2=BGM_FO]
+
+	[if exp="mp:time == null || sn.skip.enabled"]
+		[playbgm *]
+	[else]
+		[fadeoutse buf=BGM_FO time=&t]
+		[playbgm * volume=0]
+		[fadebgm * volume=%volume|1 time=&t]
+	[endif]
+[endmacro]
+
+
+; 履歴画面
+[add_frame id=log src="mat/log.html" b_color=lightgray height=&const.sn.config.window.height*2/3 visible=false]
+	[button text=履歴表示 left=530 top=10 page=fore label=*show_log global=true call=true style='fill: deepskyblue;']
+	[event key='dom=log:#close' label=*hide_log global=true call=true]
+
+
+*main
+	; *** BGM ***
+;	[bgm fn="free29" time=2000]
+	; *** BG ***
+	[fg fn=Lemon layer=base]
+　私は何度も何度もその果実を鼻に持っていっては嗅《か》いでみた。それの産地だというカリフォルニヤが想像に上って来る。\漢文で習った「売柑者之言」の中に書いてあった「鼻を撲《う》つ」という言葉が断《き》れぎれに浮かんで来る。\
+
+そしてふかぶかと胸一杯に匂やかな空気を吸い込めば、ついぞ胸一杯に呼吸したことのなかった私の身体や顔には温い血のほとぼりが昇って来てなんだか身内に元気が目覚めて来たのだった。……\
+
+
+　実際あんな単純な冷覚や触覚や嗅覚や視覚が、ずっと昔からこればかり探していたのだと言いたくなったほど私にしっくりしたなんて私は不思議に思える――それがあの頃のことなんだから。\
+
+
+	; *** BGM ***
+	[fadeoutbgm time=2000]
+	; *** BG ***
+	[fg fn=yun_5744 layer=base]
+	[fg fn=ma layer=0]
+
+　私はもう往来を軽やかな昂奮に弾んで、一種誇りかな気持さえ感じながら、美的装束をして街を歩《かっぽ》した詩人のことなど思い浮かべては歩いていた。\汚れた手拭の上へ載せてみたりマントの上へあてがってみたりして色の反映を量《はか》ったり、またこんなことを思ったり、\
+
+[r][r]
+〔語り手〕　――つまりはこの重さなんだな。――\
+
+
+　その重さこそ常《つね》づね尋ねあぐんでいたもので、疑いもなくこの重さはすべての善いものすべての美しいものを重量に換算して来た重さであるとか、\思いあがった諧謔心《かいぎゃくしん》からそんな馬鹿げたことを考えてみたり――@なにがさて私は幸福だったのだ。\
+
+
+	[fg layer=0]
+
+	; サンプルは最初に戻るが、既読スキップすると永久ループになるので、その対策
+	&sn.tagL.enabled = true		; 頁末まで一気に読み進むか(l無視)
+	&sn.skip.enabled = false	; 次の選択肢(/未読)まで進むが有効か
+	&sn.auto.enabled = false	; 自動読みすすみモードかどうか
+[jump label=*main]
+
+
+*show_log
+	[set_frame id=log var_name=val_dic text=&const.sn.log.json]
+	[let_frame id=log var_name=val2ctrl function=true]
+		[event key='dom=log:[data-vfn]' label=*log_btn_voice global=true call=true need_err=false]
+	[enable_event enabled=false]	; 文字レイヤをクリックできないように
+	[frame id=log visible=true][return]
+*hide_log
+	[enable_event enabled=true]
+	[frame id=log visible=false][return]
+
+*log_btn_voice
+	[voice fn=&sn.event.domdata.vfn]
+[return]
+
+*go_skip
+	&sn.skip.enabled = true
+	[set_cancel_skip]
+[return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

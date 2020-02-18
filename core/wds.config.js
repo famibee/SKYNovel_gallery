@@ -4,13 +4,14 @@ module.exports = {
 	mode: 'development',
 	output: {
 		path: process.cwd() +'/docs',
-		filename: 'web.js',
+		filename: 'prj/web.js',
 	},
 
 	devServer: {
 		contentBase: './docs',
 		port: 8082,
-		openPage: 'index.html',
+//		openPage: 'index.html',
+		openPage: 'prj/index_app.html',
 		watchContentBase: true,
 		open: true,
 	},

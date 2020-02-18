@@ -9,8 +9,8 @@ module.exports = [
 		target: 'web',
 		output: {
 			path: process.cwd() +'/docs',
-			filename: 'web_s.js',
-			chunkFilename: 'web_s.[name].js'
+			filename: 'pwa_mono/web.js',
+			chunkFilename: 'pwa_mono/web.[name].js'
 		},
 		optimization: {
 			splitChunks: {
@@ -31,7 +31,7 @@ module.exports = [
 				cacheId: cacheId,
 				swDest:  'sw_s.js',
 				globDirectory: process.cwd() +'/docs',
-				globPatterns: ['index_sn.html','icons/*.{jpg,png}','prj/simple_novel/**/*.*'],
+				globPatterns: ['favicon.ico','icons/*.*','og_snapshot.jpg','pwa_mono/**/*.*'],
 				maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,	// MB
 				clientsClaim: true,
 				skipWaiting: true,

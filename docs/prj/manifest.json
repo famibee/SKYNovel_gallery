@@ -1,12 +1,12 @@
 {
-	"name": "SKYNovel Simple Novel3",
-	"short_name": "SN簡易例3",
-	"theme_color": "#FFFF00",
-	"background_color": "#FFFF00",
+	"name": "SKYNovel Gallery",
+	"short_name": "SKYNovel例",
+	"theme_color": "#696969",
+	"background_color": "#696969",
 	"display": "standalone",
 	"orientation": "landscape",
 	"lang" : "ja-JP",
-	"start_url": "./index.html",
+	"start_url": "./index_app.html",
 	"icons": [
 		{
 			"src": "icons/icon-72x72.png",

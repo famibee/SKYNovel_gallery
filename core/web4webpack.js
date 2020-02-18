@@ -10,6 +10,6 @@ const {SysWeb} = require('skynovel/core/lib/sn/SysWeb');
 const dip = {'expanding': false};
 if (location.pathname.slice(-15) == '/index_app.html') dip['oninit_run'] = false;
 //@ts-ignore
-const sys = new SysWeb(hPlg, {cur: 'prj/top/', dip: JSON.stringify(dip)});
+const sys = new SysWeb(hPlg, {cur: 'top/', dip: JSON.stringify(dip)});
 globalThis.runSN = (cur = 'top')=> sys.run(cur);
 globalThis.stopSN = ()=> sys.stop();

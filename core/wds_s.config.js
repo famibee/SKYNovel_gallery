@@ -4,13 +4,13 @@ module.exports = {
 	mode: 'development',
 	output: {
 		path: process.cwd() +'/docs',
-		filename: 'web_s.js',
+		filename: 'pwa_mono/web.js',
 	},
 
 	devServer: {
 		contentBase: './docs',
 		port: 8083,
-		openPage: 'index_sn.html',
+		openPage: 'pwa_mono/index.html',
 		watchContentBase: true,
 		open: true,
 	},
