@@ -23,10 +23,18 @@
 	};
 	window.addEventListener('load', setBodyPT, {once: true, passive: true});
 	window.addEventListener('resize', setBodyPT, {passive: true});
+
+//	if (false)
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.register('sw.js')
+		.then(reg=> {/*console.log(`Service Worker Registered:%o`, reg);*/})
+		.catch(e=> console.error(`Service worker is not registered.`, e));
+	}
+	else console.error(`Not Found serviceWorker`);
 </script>
-<script defer src="web.js"></script>
-<script defer src="web.vendor.js"></script>
-<script defer src="web.three.js"></script>
+<script defer src="prj/web.js"></script>
+<script defer src="prj/web.vendor.js"></script>
+<script defer src="prj/web.three.js"></script>
 	<!-- プラグイン系のスクリプト -->
 <!--
 	<script defer src="plugin_lib/live2dcubismcore.js"></script>

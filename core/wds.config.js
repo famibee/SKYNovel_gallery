@@ -10,8 +10,8 @@ module.exports = {
 	devServer: {
 		contentBase: './docs',
 		port: 8082,
-//		openPage: 'index.html',
-		openPage: 'prj/index_app.html',
+		openPage: 'index.html',			// PCリッチ版
+	//	openPage: 'prj/index_app.html',	// PWA
 		watchContentBase: true,
 		open: true,
 	},

@@ -15,7 +15,7 @@
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^8.1.0",
-		"@types/node": "^13.7.1",
+		"@types/node": "^13.7.2",
 		"@types/three": "^0.103.2",
 		"@types/tween.js": "^17.2.0",
 		"css-loader": "^3.4.2",
@@ -31,16 +31,13 @@
 		"workbox-webpack-plugin": "^4.3.1"
 	},
 	"scripts": {
-		"plg": "tsc -p core/plugin/",
-		"plg:w": "tsc -p core/plugin/ -w & npm run watch:wds",
+		"dev_gallery": "npm run webpack:dev:w & tsc -p core/plugin/ -w & npm run watch:wds",
+		"watch:wds": "webpack-dev-server --config ./core/wds.config.js",
 		"install": "npm run webpack:dev",
-		"start": "electron ./",
-		"web": "npm run watch:wds",
 		"webpack:dev": "webpack --mode development --config ./core/webpack.config.js",
 		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
+		"start": "electron ./",
 		"build": "webpack --mode production --config ./core/webpack.config.js",
-		"watch:wds": "webpack-dev-server --config ./core/wds.config.js",
-		"upd": "npx ncu -a && npm update",
 		"dev_simple": "npm run webpack:dev:w_s & npm run watch:wds_s",
 		"watch:wds_s": "webpack-dev-server --config ./core/wds_s.config.js",
 		"webpack:dev:w_s": "webpack --mode development --watch --config ./core/webpack_s.config.js",

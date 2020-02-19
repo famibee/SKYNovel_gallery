@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.75fd4c3e26ae967733f5d4dab64938c0.js"
+  "precache-manifest.27c315c36806341a09a861b342681030.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Gallery"});
@@ -30,312 +30,16 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "index_app.html",
-    "revision": "a2d6402654b9951e256ed9f74aa59e2a"
+    "url": "favicon.ico",
+    "revision": "c7b782e839f80f9deaa52ab984e1d482"
   },
   {
-    "url": "grp/3d_base.jpg",
-    "revision": "6a6e5f1f1707753c3797a2a046314020"
+    "url": "index.html",
+    "revision": "5693df54828a2ec1388eee54da563b15"
   },
   {
-    "url": "grp/3d_gltf.jpg",
-    "revision": "3694f0cebeb95e377ac26115d641e0ea"
-  },
-  {
-    "url": "grp/3d_theta.jpg",
-    "revision": "dc029088421b8aee46647214b9779622"
-  },
-  {
-    "url": "grp/77slide.jpg",
-    "revision": "376b03b4bcc61969262ddae0ad1171d5"
-  },
-  {
-    "url": "grp/anime_png.jpg",
-    "revision": "6ea95f93679fabad60692b47b2cea3c0"
-  },
-  {
-    "url": "grp/anon_label.jpg",
-    "revision": "027b8050595f718760e537707cc3b853"
-  },
-  {
-    "url": "grp/ch_button.jpg",
-    "revision": "dff6b7833d38d6db6552b69bb32484b6"
-  },
-  {
-    "url": "grp/ch_in_out.jpg",
-    "revision": "e7890a61aab54fbdd4de272fecd1f810"
-  },
-  {
-    "url": "grp/cubism3_layer.jpg",
-    "revision": "10c2f27ccffd3e33f418135ef0f4c888"
-  },
-  {
-    "url": "grp/debug.jpg",
-    "revision": "e083b22e0029bc2efa065486805b0ebc"
-  },
-  {
-    "url": "grp/emote_layer.jpg",
-    "revision": "c2c52ba6c256178d27fb0962a4c0ac83"
-  },
-  {
-    "url": "grp/escape.jpg",
-    "revision": "b2529b86a67f8b10643dd53a08d3e258"
-  },
-  {
-    "url": "grp/ext_fg.jpg",
-    "revision": "744db3495dc2d93b111841c8b574d2e0"
-  },
-  {
-    "url": "grp/ext_fg2.jpg",
-    "revision": "df2cfd0502a45227c35ebb876b2167e6"
-  },
-  {
-    "url": "grp/ext_for_call.jpg",
-    "revision": "69f004f5bab051948505f9d62abd0f77"
-  },
-  {
-    "url": "grp/ext_voice.jpg",
-    "revision": "c041210c77a986a4f91766e997fa9723"
-  },
-  {
-    "url": "grp/font.jpg",
-    "revision": "18992af580118e57b0d79cd3a369d4b6"
-  },
-  {
-    "url": "grp/frame.jpg",
-    "revision": "1d4556c10b70a83f1fcad8df71afaed5"
-  },
-  {
-    "url": "grp/glsl_slide.jpg",
-    "revision": "408c579b8239b9f14b15aa61e131d602"
-  },
-  {
-    "url": "grp/img_autoupd.jpg",
-    "revision": "a5b6201ed1ac4caeddbd72446743a674"
-  },
-  {
-    "url": "grp/img_char2macro.jpg",
-    "revision": "a470a5aec11ced3161ae859cde40bd1c"
-  },
-  {
-    "url": "grp/img_kag3.jpg",
-    "revision": "3022e30b08bc7e7101571bbb030a7fac"
-  },
-  {
-    "url": "grp/img_multiplat.jpg",
-    "revision": "53448705b12394b635836bedc52857d8"
-  },
-  {
-    "url": "grp/img_opsrc.jpg",
-    "revision": "a3bd3db24948a7951ccd6271de7fd4dc"
-  },
-  {
-    "url": "grp/img_webgl.jpg",
-    "revision": "3504561d85186b4bdfdec4d453db488b"
-  },
-  {
-    "url": "grp/kidoku.jpg",
-    "revision": "c97e9db342d416e9a7429cb76c00a4ae"
-  },
-  {
-    "url": "grp/let_zenkaku.jpg",
-    "revision": "9d670881aae797b4ce1d78b5159c30aa"
-  },
-  {
-    "url": "grp/line_breaking_rules.jpg",
-    "revision": "fc8cae8795b57a00578f781e82b08d5f"
-  },
-  {
-    "url": "grp/log_and_play.jpg",
-    "revision": "425c72b71545b96364cfc6770ec8a62b"
-  },
-  {
-    "url": "grp/multiline.jpg",
-    "revision": "1b78f6dcd47511ccdd3850931313b021"
-  },
-  {
-    "url": "grp/ruby.jpg",
-    "revision": "223470dfd5ce3445d97d5f8f23c6187f"
-  },
-  {
-    "url": "grp/simple_novel.jpg",
-    "revision": "f8aafda400f480dc30801a734387c40e"
-  },
-  {
-    "url": "grp/smp_anime_tachie.jpg",
-    "revision": "0e0b8b6c879f571af45b23f9284c36c4"
-  },
-  {
-    "url": "grp/sound.jpg",
-    "revision": "c3d7fa91881739733acd92193eab3c1b"
-  },
-  {
-    "url": "grp/tag_if.jpg",
-    "revision": "2c82daf778ae9137353429b2419a1272"
-  },
-  {
-    "url": "grp/tag_lay_face.jpg",
-    "revision": "4ac590f4aaf7dd528ced1fd861a4ce8a"
-  },
-  {
-    "url": "grp/tag_lay_mov.jpg",
-    "revision": "5dc89b8a38a9fe63398036d322e15fed"
-  },
-  {
-    "url": "grp/tag_navigate_to.jpg",
-    "revision": "63d98312cf2350c8b33220b58980fc63"
-  },
-  {
-    "url": "grp/tag_quake.jpg",
-    "revision": "eb90c8512393150b6b95d65f4b3ac047"
-  },
-  {
-    "url": "grp/tag_tsy.jpg",
-    "revision": "fd6ee3aeb17af1407409bbf218971e3d"
-  },
-  {
-    "url": "grp/top.jpg",
-    "revision": "98f0273e69195fc2fdf9639da1daabbb"
-  },
-  {
-    "url": "grp/txt_back.jpg",
-    "revision": "189985f9a8d6d88f22e1a01ef736da06"
-  },
-  {
-    "url": "grp/txt_back2.jpg",
-    "revision": "5854571995e736021ab464a347e2ccca"
-  },
-  {
-    "url": "icons/icon-128x128.png",
-    "revision": "5d9d28d5c16e41cc1afbf9b6213611c1"
-  },
-  {
-    "url": "icons/icon-144x144.png",
-    "revision": "07cd0590ecf1d85360aaf5d32d7fed4e"
-  },
-  {
-    "url": "icons/icon-152x152.png",
-    "revision": "26ed8229ed051d06c6c56f3104a9b126"
-  },
-  {
-    "url": "icons/icon-192x192.png",
-    "revision": "c2b3eada9fab63dabd35bbdb07bfaf85"
-  },
-  {
-    "url": "icons/icon-384x384.png",
-    "revision": "ecb0daceb5eaf233910a4b781ad44637"
-  },
-  {
-    "url": "icons/icon-512x512.png",
-    "revision": "c4f75dd7fa05d6c793e584010b68a0a5"
-  },
-  {
-    "url": "icons/icon-72x72.png",
-    "revision": "c8632baa0fc93f17462152972f696a67"
-  },
-  {
-    "url": "icons/icon-96x96.png",
-    "revision": "391cf70eb021e2750d9a71f4464ae725"
-  },
-  {
-    "url": "js_ace/ace.js",
-    "revision": "6dfc19417feb43a154f2db8ae82a7013"
-  },
-  {
-    "url": "js_ace/mode-skynovel_src.js",
-    "revision": "f184adfe3127b5405ad53b4d28a65962"
-  },
-  {
-    "url": "js_ace/mode-skynovel.js",
-    "revision": "8c797a4d3e952c35120b3c14dc501f29"
-  },
-  {
-    "url": "js_ace/theme-dracula.js",
-    "revision": "e8ec479a1c4b920ced029db1287429a1"
-  },
-  {
-    "url": "plugin_lib/emotedriver.js",
-    "revision": "748cb045a416d6a62bc64e098153b1a1"
-  },
-  {
-    "url": "plugin_lib/emoteplayer_src.js",
-    "revision": "783ab5bd7b2b59d7850d806d712aeee3"
-  },
-  {
-    "url": "plugin_lib/emoteplayer.js",
-    "revision": "033ef265552918626b80db1e2d14f7f8"
-  },
-  {
-    "url": "plugin_lib/live2dcubismcore.js",
-    "revision": "0923da04d9c42732427adcef49ff2887"
-  },
-  {
-    "url": "plugin_lib/live2dcubismframework_src.js",
-    "revision": "b534216988afb3b00beb81eb4a559c3e"
-  },
-  {
-    "url": "plugin_lib/live2dcubismframework.js",
-    "revision": "d26f9fe04c94dbb386d41e3608797262"
-  },
-  {
-    "url": "plugin_lib/live2dcubismpixi_src.js",
-    "revision": "efc3e2588c5413d2085fe67787fa3076"
-  },
-  {
-    "url": "plugin_lib/live2dcubismpixi.js",
-    "revision": "4b206a7d2402ffde84a8427a0df79ab7"
-  },
-  {
-    "url": "web_cache/all.min.css",
-    "revision": "500d1a92f875b1d96d37a3a3f8f0438c"
-  },
-  {
-    "url": "web_cache/bootstrap.min.css",
-    "revision": "7cc40c199d128af6b01e74a28c5900b0"
-  },
-  {
-    "url": "web_cache/bootstrap.min.css.map",
-    "revision": "2e863a645ac3bf565ae480c5b8b97fe7"
-  },
-  {
-    "url": "web_cache/bootstrap.min.js",
-    "revision": "61f338f870fcd0ff46362ef109d28533"
-  },
-  {
-    "url": "web_cache/bootstrap.min.js.map",
-    "revision": "e7faa89b97bef24e1db09c1894b638d1"
-  },
-  {
-    "url": "web_cache/jquery-3.4.1.slim.min.js",
-    "revision": "d9b11ca4d877c327889805b73bb79edd"
-  },
-  {
-    "url": "webfonts/fa-brands-400.ttf",
-    "revision": "273dc9bf9778fd37fa61357645d46a28"
-  },
-  {
-    "url": "webfonts/fa-brands-400.woff",
-    "revision": "f4920c94c0861c537f72ba36590f6362"
-  },
-  {
-    "url": "webfonts/fa-brands-400.woff2",
-    "revision": "822d94f19fe57477865209e1242a3c63"
-  },
-  {
-    "url": "webfonts/fa-regular-400.woff",
-    "revision": "a57bcf76c178aee452db7a57b75509b6"
-  },
-  {
-    "url": "webfonts/fa-regular-400.woff2",
-    "revision": "9efb86976bd53e159166c12365f61e25"
-  },
-  {
-    "url": "webfonts/fa-solid-900.woff",
-    "revision": "93f284548b42ab76fe3fd03a9d3a2180"
-  },
-  {
-    "url": "webfonts/fa-solid-900.woff2",
-    "revision": "f6121be597a72928f54e7ab5b95512a1"
+    "url": "og_snapshot.jpg",
+    "revision": "3695a21055135d8e760e0cb225ef8a18"
   },
   {
     "url": "prj/3d_base/mat/013ELLY18412_TP_V4.jpg",
@@ -1206,6 +910,42 @@ self.__precacheManifest = [
     "revision": "231cbd514948953d2422adc323e695d2"
   },
   {
+    "url": "prj/icons/icon-128x128.png",
+    "revision": "5d9d28d5c16e41cc1afbf9b6213611c1"
+  },
+  {
+    "url": "prj/icons/icon-144x144.png",
+    "revision": "07cd0590ecf1d85360aaf5d32d7fed4e"
+  },
+  {
+    "url": "prj/icons/icon-152x152.png",
+    "revision": "26ed8229ed051d06c6c56f3104a9b126"
+  },
+  {
+    "url": "prj/icons/icon-192x192.png",
+    "revision": "c2b3eada9fab63dabd35bbdb07bfaf85"
+  },
+  {
+    "url": "prj/icons/icon-384x384.png",
+    "revision": "ecb0daceb5eaf233910a4b781ad44637"
+  },
+  {
+    "url": "prj/icons/icon-512x512.png",
+    "revision": "c4f75dd7fa05d6c793e584010b68a0a5"
+  },
+  {
+    "url": "prj/icons/icon-72x72.png",
+    "revision": "c8632baa0fc93f17462152972f696a67"
+  },
+  {
+    "url": "prj/icons/icon-96x96.png",
+    "revision": "391cf70eb021e2750d9a71f4464ae725"
+  },
+  {
+    "url": "prj/index_app.html",
+    "revision": "307f3ed541704a3dbb47f329d77f5836"
+  },
+  {
     "url": "prj/kidoku/mat/breakline.5x20.png",
     "revision": "d7d5b944f0457365350b1013748ca6b4"
   },
@@ -1328,6 +1068,10 @@ self.__precacheManifest = [
   {
     "url": "prj/log_and_play/prj.json",
     "revision": "2165ed5439ed7594e6a3de0917bd9cc4"
+  },
+  {
+    "url": "prj/manifest.json",
+    "revision": "7ccc1cca4f1a68e92dfd25d27115c1c1"
   },
   {
     "url": "prj/multiline/mat/main.sn",
