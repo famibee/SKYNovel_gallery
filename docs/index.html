@@ -2,9 +2,9 @@
 <head><meta charset="utf-8"/><title>SKYNovel</title>
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
 <meta name="description" content="SKYNovel Sample Gallery"/>
-<link rel="stylesheet" href="web_cache/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
 	<!-- https://cdnjs.com/libraries/font-awesome -->
-<link rel="stylesheet" href="web_cache/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="canonical" href="https://famibee.github.io/SKYNovel_gallery/"/>
 <style type="text/css">
 	:-webkit-full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
@@ -14,8 +14,10 @@
 	.nav-pills a {color: black;};
 	.nav-pills a.active {color: white;};
 </style>
-<script defer src="web_cache/jquery-3.4.1.slim.min.js"></script>
-<script defer src="web_cache/bootstrap.min.js"></script>
+<script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<!-- https://code.jquery.com/ -->
+<script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<!-- https://www.bootstrapcdn.com/ 必ずjqueryの後 -->
 <script defer>
 	const setBodyPT = ()=> {
 		const h = document.getElementsByClassName('navbar')[0].clientHeight;
@@ -23,14 +25,6 @@
 	};
 	window.addEventListener('load', setBodyPT, {once: true, passive: true});
 	window.addEventListener('resize', setBodyPT, {passive: true});
-
-//	if (false)
-	if ('serviceWorker' in navigator) {
-		navigator.serviceWorker.register('sw.js')
-		.then(reg=> {/*console.log(`Service Worker Registered:%o`, reg);*/})
-		.catch(e=> console.error(`Service worker is not registered.`, e));
-	}
-	else console.error(`Not Found serviceWorker`);
 </script>
 <script defer src="prj/web.js"></script>
 <script defer src="prj/web.vendor.js"></script>
@@ -52,12 +46,8 @@
 	<span class="navbar-btn btn" aria-label="Reload" data-reload title="Reload"><i class="fas fa-redo-alt"></i></span>
 	<span class="navbar-btn btn" aria-label="Snapshot" id="snapshot" title="Snapshot"><i class="fas fa-camera"></i></span>
 	<span class="navbar-btn btn" aria-label="Look Code" title="Look Code" data-toggle="collapse" aria-expanded="false" data-target="#clpCode"><i class="fas fa-code"></i></span>
-	<span class="navbar-text text-body">
-		<a class="nav-link text-body" href="prj/index_app.html">Mobile site</a>
-	</span>
-	<span class="navbar-text text-body">
-		<a class="nav-link text-body" href="pwa_mono/index.html">Simple Ver</a>
-	</span>
+	<span class="navbar-text text-body"><a href="prj/index_app.html">Mobile site</a>　</span>
+	<span class="navbar-text text-body"><a href="pwa_mono/index.html">Simple Ver</a></span>
 
 	<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
 		aria-label="Toggle navigation">

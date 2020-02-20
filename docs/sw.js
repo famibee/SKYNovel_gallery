@@ -35,7 +35,7 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "094a02abd90e230f445b0d478e723131"
+    "revision": "84d60b64dabdd2ff9afb635ce82fb2fc"
   },
   {
     "url": "og_snapshot.jpg",
@@ -943,7 +943,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/index_app.html",
-    "revision": "307f3ed541704a3dbb47f329d77f5836"
+    "revision": "4e5d502dedd47d6dd51161938bd8af3a"
   },
   {
     "url": "prj/kidoku/mat/breakline.5x20.png",

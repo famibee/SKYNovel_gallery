@@ -3,7 +3,8 @@
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
 <meta name="description" content="SKYNovel Sample Gallery"/>
 <link rel="canonical" href="https://famibee.github.io/SKYNovel_gallery/prj/index_app.html"/>
-<link href="//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet"/>
+<link href="../web_cache/materialize.min.css" rel="stylesheet"/>
+	<!-- https://materializecss.com/ -->
 <link rel="stylesheet" href="../web_cache/all.min.css"/>
 	<!-- https://cdnjs.com/libraries/font-awesome -->
 <link rel="manifest" href="manifest.json"/>
@@ -66,7 +67,7 @@ html {user-select: none; -webkit-user-select: none;}
 	}
 }
 </script>
-<script async src="//cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script async src="../web_cache/materialize.min.js"></script>
 <script>
 window.addEventListener('load', ()=> {
 	M.Sidenav.init(document.querySelector('.sidenav'), {});
@@ -123,7 +124,7 @@ window.addEventListener('load', ()=> {
 	<div id="modal1" class="modal cnt">
 		<div class="modal-content">
 			<a class="modal-close btn-floating btn-large red">
-				<i class="waves-effect waves-red large material-icons"><i class="fa fa-close"></i></i>
+				<i class="waves-effect waves-red large material-icons"><i class="fa fa-times-circle"></i></i>
 			</a>
 			<canvas id="skynovel"/>
 		</div>
