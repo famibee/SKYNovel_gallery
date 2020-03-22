@@ -187,7 +187,7 @@ class ThreeDLayer extends Layer {
         if ('label' in hArg) {
             inf.label = hArg['label'];
             if (inf.gltf) {
-                const ac = three_1.AnimationClip.findByName(inf.gltf.animations, (_a = inf.label, (_a !== null && _a !== void 0 ? _a : '')));
+                const ac = three_1.AnimationClip.findByName(inf.gltf.animations, (_a = inf.label) !== null && _a !== void 0 ? _a : '');
                 if (!ac) {
                     console.info(`エラーが発生しました。参考までに ${inf.fn}(glTF)内に存在するアニメ名を列挙します`);
                     const a = inf.gltf.animations;
