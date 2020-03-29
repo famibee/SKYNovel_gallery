@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.469a9e1ce50c24aa2caa9832f9e032eb.js"
+  "precache-manifest.4efe7711903ae82a4221873d21dcdf7a.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Simple Novel"});
