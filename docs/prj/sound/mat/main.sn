@@ -5,6 +5,7 @@
 ;&m = 'jngl0005_mp3'
 ;&m = 'jngl0005b_m4a'
 &m = 'rain01_m4a'
+;&m = 'rain01_wav'
 
 [macro name="lr"][l][r][endmacro]
 [char2macro char=@ name=lr]
@@ -47,7 +48,32 @@
 	[button text='fadese0wf' left=620 top=80 page=fore label=*連続再生（効果音）fadese0wf global=true style='fill: burlywood;' fill_hover=tomato]
 	[button text='fadese0sfs' left=620 top=110 page=fore label=*連続再生（効果音）fadese0sfs global=true style='fill: burlywood;' fill_hover=tomato]
 	[button text='fadeoutse' left=620 top=140 page=fore label=*連続再生（効果音）fadeoutse global=true style='fill: burlywood;' fill_hover=tomato]
+
+
+	; 音声フォーマット別
+	[button text='(m4a)' left=20 top=200 page=fore label=*m4a再生 global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(ogg)' left=120 top=200 page=fore label=*ogg再生 global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(aac)' left=220 top=200 page=fore label=*aac再生 global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(flac)' left=320 top=200 page=fore label=*flac再生 global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(wav)' left=420 top=200 page=fore label=*wav再生 global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(stopse)' left=620 top=200 page=fore label=*stopse global=true style='fill: burlywood;' fill_hover=tomato]
+
+***
 [s]
+
+
+*m4a再生
+	[playse fn=don15][jump label=***before]
+*ogg再生
+	[playse fn=ys001PopFunk][jump label=***before]
+*aac再生
+	[playse fn=45king_aac][jump label=***before]
+*flac再生
+	[playse fn=bgm_ringil_build_good][jump label=***before]
+*wav再生
+	[playse fn=pon][jump label=***before]
+*stopse
+	[jump label=**before]
 
 
 ; col 1
@@ -79,21 +105,21 @@
 ; col 2
 *単発再生（効果音）fadese0.2
 	[demo][playse fn=&m]
-	click 2 fadese 0.2@
+	click 2 fadese 0.2[r]
 	[fadese volume=0.2 time=2000]wf...[wf]ok.[r]
 	end.[p]
 [jump label=**before]
 
 *単発再生（効果音）fadese0wf
 	[demo][playse fn=&m]
-	click 2 fadese 0@
+	click 2 fadese 0[r]
 	[fadese volume=0 time=2000]wf...[wf]ok.[r]
 	end.[p]
 [jump label=**before]
 
 *単発再生（効果音）fadese0sfs
 	[demo][playse fn=&m]
-	click 2 fadese 0@
+	click 2 fadese 0[r]
 	[fadese volume=0 time=2000][r]
 	click 2 stopfadese 0@	; err
 	[stopfadese][r]
@@ -102,7 +128,7 @@
 
 *単発再生（効果音）fadeoutse
 	[demo][playse fn=&m]
-	click 2 fadeoutse@
+	click 2 fadeoutse[r]
 	[fadeoutse time=2000]wf...[wf]ok.[r]	; err
 	end.[p]
 [jump label=**before]

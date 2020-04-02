@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.7.8
+- add：効果音とBGMサンプルに m4a,ogg,aac,webm,flac,wav 再生ボタンを追加
 ## v1.7.7
 - upd：ライブラリ更新
 ## v1.7.6

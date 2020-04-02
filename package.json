@@ -10,12 +10,12 @@
 	"dependencies": {
 		"crypto-js": "^3.3.0",
 		"pixi.js": "^5.2.1",
-		"skynovel": "^0.13.0",
+		"skynovel": "^0.14.0",
 		"three": "^0.112.1"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^8.1.0",
-		"@types/node": "^13.9.5",
+		"@types/node": "^13.9.8",
 		"@types/three": "^0.103.2",
 		"@types/tween.js": "^17.2.0",
 		"css-loader": "^3.4.2",

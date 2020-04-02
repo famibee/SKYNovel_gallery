@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.44bd424219125b1b6a5160c2735b35fb.js"
+  "precache-manifest.182338c9c15a90f63d048bb8dcab50f4.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Gallery"});
@@ -1178,12 +1178,8 @@ self.__precacheManifest = [
     "revision": "d4d3a81dbc43f613de2580f9a1445001"
   },
   {
-    "url": "prj/sound/mat/beat0004b_m4a.m4a",
-    "revision": "125d63d54ba7d6261627e8496557b0f8"
-  },
-  {
-    "url": "prj/sound/mat/beat0004b_mp3.mp3",
-    "revision": "6aff04e97a5727aebe6a6da33bbefc6b"
+    "url": "prj/sound/mat/bgm_ringil_build_good.flac",
+    "revision": "1f9ebc1aa6526ff95415e9eed6638216"
   },
   {
     "url": "prj/sound/mat/breakpage_b.png",
@@ -1192,6 +1188,10 @@ self.__precacheManifest = [
   {
     "url": "prj/sound/mat/breakpage.json",
     "revision": "013f649551a80cfc0d97ce5139d495a1"
+  },
+  {
+    "url": "prj/sound/mat/don15.m4a",
+    "revision": "0eff63940fa542577f5739ff3d4910f9"
   },
   {
     "url": "prj/sound/mat/jngl0005_mp3.mp3",
@@ -1203,7 +1203,11 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/sound/mat/main.sn",
-    "revision": "2686d5f522ca1cc985a8037932ee69c6"
+    "revision": "82fb8ed9bf53e5661343f402d69a2eda"
+  },
+  {
+    "url": "prj/sound/mat/pon.wav",
+    "revision": "0d6da1440e4a85ff3d41a6462447929c"
   },
   {
     "url": "prj/sound/mat/rain01_m4a.m4a",
@@ -1214,8 +1218,12 @@ self.__precacheManifest = [
     "revision": "e8a52cf328369bea1eb0147995e8fd1e"
   },
   {
+    "url": "prj/sound/mat/ys001PopFunk.ogg",
+    "revision": "e27c4ff3e3d753f1a12c123cabc40170"
+  },
+  {
     "url": "prj/sound/path.json",
-    "revision": "2167cb22e48c17c27b179adc83da9f10"
+    "revision": "0116d292b8d0874924d2c065741f05e0"
   },
   {
     "url": "prj/sound/prj.json",
