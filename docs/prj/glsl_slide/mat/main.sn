@@ -1,4 +1,4 @@
-[title text='フラグメントシェーダでTrans'][call label=*init]
+[title text='シェーダでTrans'][call label=*init]
 
 [add_lay layer=bg class=grp]
 	[lay layer=bg fn=013ELLY18412_TP_V4]

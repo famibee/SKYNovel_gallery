@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.182338c9c15a90f63d048bb8dcab50f4.js"
+  "precache-manifest.6009d52a79aaad7cb9cd8d561fa9ce3c.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "SKYNovel Gallery"});
@@ -55,7 +55,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/3d_base/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/3d_gltf/mat/main.sn",
@@ -83,7 +83,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/3d_gltf/prj.json",
-    "revision": "8a4564deb439731c8aba176ce6801c2c"
+    "revision": "466089b3d1f077c2bb7c70a97b2ca374"
   },
   {
     "url": "prj/3d_theta/mat/EWHQ1887.jpg",
@@ -99,7 +99,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/3d_theta/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/77slide/face/face_hiiragi_kuchi_akkanbe.png",
@@ -319,7 +319,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/77slide/prj.json",
-    "revision": "3f3a0f56d4280440c03344092471bd4e"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/anime_png/mat/blink_big.4x1.png",
@@ -371,7 +371,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/anime_png/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/anon_label/mat/breakline.5x20.png",
@@ -391,7 +391,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/anon_label/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/ch_button/mat/breakline.5x20.png",
@@ -423,7 +423,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ch_button/prj.json",
-    "revision": "62e949c4cd6ab6da6b402813f6a0ee3e"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   },
   {
     "url": "prj/ch_in_out/mat/breakline.5x20.png",
@@ -451,7 +451,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ch_in_out/prj.json",
-    "revision": "62e949c4cd6ab6da6b402813f6a0ee3e"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   },
   {
     "url": "prj/cubism3_layer/mat/bg.jpg",
@@ -491,7 +491,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/cubism3_layer/prj.json",
-    "revision": "62e949c4cd6ab6da6b402813f6a0ee3e"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   },
   {
     "url": "prj/debug/mat/main.sn",
@@ -503,7 +503,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/debug/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/emote_layer/mat/bg.jpg",
@@ -535,7 +535,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/emote_layer/prj.json",
-    "revision": "62e949c4cd6ab6da6b402813f6a0ee3e"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   },
   {
     "url": "prj/escape/mat/breakline.5x20.png",
@@ -555,7 +555,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/escape/prj.json",
-    "revision": "4c405f8a4f0d1d673ba473ab52228856"
+    "revision": "d6a57e84a5212bd75b3600c3b536ea48"
   },
   {
     "url": "prj/ext_fg/face/face_hiiragi_kuchi_akkanbe.png",
@@ -743,7 +743,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ext_fg/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/ext_fg2/mat/bg_0.jpg",
@@ -811,7 +811,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ext_fg2/prj.json",
-    "revision": "358ed2b67a82b3b76d5e7bae58899c7f"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   },
   {
     "url": "prj/ext_for_call/mat/ext_for_call.sn",
@@ -827,7 +827,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ext_for_call/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/font/mat/breakline.5x20.png",
@@ -859,7 +859,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/font/prj.json",
-    "revision": "358ed2b67a82b3b76d5e7bae58899c7f"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   },
   {
     "url": "prj/frame/mat/breakpage_b.png",
@@ -883,7 +883,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/frame/prj.json",
-    "revision": "62e949c4cd6ab6da6b402813f6a0ee3e"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   },
   {
     "url": "prj/glsl_slide/mat/013ELLY18412_TP_V4.jpg",
@@ -907,7 +907,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/glsl_slide/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/icons/icon-128x128.png",
@@ -971,7 +971,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/kidoku/prj.json",
-    "revision": "cc6ebadb841837440cd504025265cf15"
+    "revision": "0edac9271363c4449764af7bdfd800a5"
   },
   {
     "url": "prj/let_zenkaku/mat/main.sn",
@@ -983,7 +983,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/let_zenkaku/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/line_breaking_rules/mat/breakline.5x20.png",
@@ -1011,7 +1011,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/line_breaking_rules/prj.json",
-    "revision": "357fe28b38b1376284b67441337c7040"
+    "revision": "5fd7f6d1b7bafad3df81948677cb6d30"
   },
   {
     "url": "prj/log_and_play/mat/akir_015.mp3",
@@ -1067,7 +1067,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/log_and_play/prj.json",
-    "revision": "2165ed5439ed7594e6a3de0917bd9cc4"
+    "revision": "4ccaf5181351aa2c9d90df32757acdc1"
   },
   {
     "url": "prj/manifest.json",
@@ -1075,7 +1075,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/multiline/mat/main.sn",
-    "revision": "8c6b33c6e0cda65f3271876fa343e8b0"
+    "revision": "c6d78d845ff9e88013a5080c5c329a09"
   },
   {
     "url": "prj/multiline/path.json",
@@ -1083,7 +1083,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/multiline/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/ruby/mat/breakline.5x20.png",
@@ -1111,7 +1111,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/ruby/prj.json",
-    "revision": "358ed2b67a82b3b76d5e7bae58899c7f"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   },
   {
     "url": "prj/simple_novel/mat/breakline.5x20.png",
@@ -1171,7 +1171,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/simple_novel/prj.json",
-    "revision": "a4852ccefde5fc4d6b6db6ed67796721"
+    "revision": "3253cd21cf1f8cebfc4ba249ef2ecb5b"
   },
   {
     "url": "prj/sound/mat/45king_aac.aac",
@@ -1227,7 +1227,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/sound/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/tag_if/mat/main.sn",
@@ -1239,7 +1239,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/tag_if/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/tag_lay_face/face/face_minoura.sn",
@@ -1319,7 +1319,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/tag_lay_face/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/tag_lay_face/素材/レイヤ切り出し.jsx",
@@ -1355,7 +1355,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/tag_lay_mov/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/tag_quake/mat/bg.jpg",
@@ -1375,7 +1375,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/tag_quake/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/tag_tsy/mat/bg.jpg",
@@ -1395,7 +1395,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/tag_tsy/prj.json",
-    "revision": "231cbd514948953d2422adc323e695d2"
+    "revision": "0caf1f19eb93175ba1dede68c6295361"
   },
   {
     "url": "prj/top/face/face_hiiragi_kuchi_akkanbe.png",
@@ -1639,7 +1639,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/top/prj.json",
-    "revision": "358ed2b67a82b3b76d5e7bae58899c7f"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   },
   {
     "url": "prj/txt_back/mat/breakline.5x20.png",
@@ -1675,7 +1675,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/txt_back/prj.json",
-    "revision": "358ed2b67a82b3b76d5e7bae58899c7f"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   },
   {
     "url": "prj/txt_back2/mat/breakline.5x20.png",
@@ -1707,7 +1707,7 @@ self.__precacheManifest = [
   },
   {
     "url": "prj/txt_back2/prj.json",
-    "revision": "62e949c4cd6ab6da6b402813f6a0ee3e"
+    "revision": "75e1ed0ccd5c0743c399b634cb432ffe"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {

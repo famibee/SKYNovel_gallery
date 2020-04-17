@@ -1,4 +1,4 @@
-[title text='画像も動画も重ねて表示'][call label=*init]
+[title text='画像も動画も表情差分'][call label=*init]
 	[add_lay layer=base class=grp]
 	[add_lay layer=0 class=grp]
 	[add_lay layer=mes class=txt]

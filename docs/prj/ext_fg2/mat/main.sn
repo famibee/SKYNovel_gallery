@@ -1,4 +1,4 @@
-[title text='レイヤを意識せずに立ち絵を扱う'][call label=*init]
+[title text='簡単立ち絵マクロ'][call label=*init]
 
 [add_lay layer=bg class=grp]
 	[lay layer=bg fn=bg_0 visible=true]

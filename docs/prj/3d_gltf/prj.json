@@ -9,7 +9,7 @@
 		"token"			: false,
 		"tag"			: false,
 		"putCh"			: false,
-		"slideBaseSpan"	: false,
+		"debugLog"		: false,
 		"baseTx"		: false,
 		"masume"		: false
 	}

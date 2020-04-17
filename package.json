@@ -8,27 +8,27 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"crypto-js": "^3.3.0",
+		"crypto-js": "^4.0.0",
 		"pixi.js": "^5.2.1",
-		"skynovel": "^0.14.0",
-		"three": "^0.112.1"
+		"skynovel": "^0.18.0",
+		"three": "^0.115.0"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^8.1.0",
-		"@types/node": "^13.9.8",
+		"@types/node": "^13.11.1",
 		"@types/three": "^0.103.2",
-		"@types/tween.js": "^17.2.0",
-		"css-loader": "^3.4.2",
-		"electron": "^7.2.1",
-		"electron-builder": "^22.4.1",
+		"@types/tween.js": "^18.5.0",
+		"css-loader": "^3.5.2",
+		"electron": "^8.2.2",
+		"electron-builder": "^22.5.1",
 		"imagemin-webpack-plugin": "^2.4.2",
-		"style-loader": "^1.1.3",
+		"style-loader": "^1.1.4",
 		"typescript": "^3.8.3",
 		"webpack": "^4.42.1",
 		"webpack-cli": "^3.3.11",
 		"webpack-dev-server": "^3.10.3",
-		"workbox-sw": "^4.3.1",
-		"workbox-webpack-plugin": "^4.3.1"
+		"workbox-sw": "^5.1.2",
+		"workbox-webpack-plugin": "^5.1.2"
 	},
 	"scripts": {
 		"dev_gallery": "npm run webpack:dev:w & tsc -p core/plugin/ -w & npm run watch:wds",

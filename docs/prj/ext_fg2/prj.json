@@ -5,11 +5,11 @@
 		"height": 500
 	},
 	"debug"	: {
-		"devtool"		: false,
+		"devtool"		: true,
 		"token"			: false,
 		"tag"			: false,
 		"putCh"			: false,
-		"slideBaseSpan"	: false,
+		"debugLog"		: false,
 		"baseTx"		: false,
 		"masume"		: false,
 		"variable"		: false

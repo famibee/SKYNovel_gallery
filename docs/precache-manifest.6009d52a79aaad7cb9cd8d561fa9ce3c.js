@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "prj/web.three.js"
   },
   {
-    "revision": "40de2933d970f97f88e3",
+    "revision": "dc3d6eaa108944c64a5c",
     "url": "prj/web.vendor.js"
   }
 ]);

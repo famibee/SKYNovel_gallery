@@ -1,4 +1,4 @@
-[title text='３Ｄレイヤ・glTFモデル表示'][call label=*init]
+[title text='３Ｄレイヤ'][call label=*init]
 
 [add_lay layer=bg class=grp]
 [add_lay layer=3d class=3d]

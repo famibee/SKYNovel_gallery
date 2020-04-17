@@ -14,6 +14,42 @@ class=txt
 	]
 	タグやマクロは複数行に改行して書ける[r]
 	[span]
+
+	... 次２行が同じならOK[r]
+	AbCd111c="0xa"Efbc="0xb"Gh/undefined[r]
+
+[macro name=disp]
+	&mp:page&	&mp:text&	&mp:layer&	&mp:class&	&mp:abc&
+	&mp:def&	&mp:ghi&	&mp:jkl&	&mp:layerb&	&mp:classb&
+	&mp:layout&	&mp:textb&	&mp:textc&	&mp:a&	&mp:b&
+[endmacro]
+
+	[disp
+	page=A	;===
+	text="b"
+
+	layer=C
+class=d
+		abc
+		def	;=====
+		ghi;=====
+		jkl
+	=
+		'c="0xa"'
+;
+	;=====
+	layerb=E	;=====
+classb=f	;======
+	;=====
+		layout;=====
+	=	;"""""
+'bc="0xb"'	;=====
+textb=G|&0xc;=====
+textc=h|'&0xd';=====
+a='/';=====
+b='#{fcol}'|true;=====
+]
+
 [s]
 
 
