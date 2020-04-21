@@ -5,8 +5,14 @@
 class=txt
 ]
 
+[trace text=@@]
+	... 左上に【〜 line:8】ならOK[r]
+
+[r]
 		multi
 	line tag[r]
+
+[r]
 	[span
 		layout
 	=
