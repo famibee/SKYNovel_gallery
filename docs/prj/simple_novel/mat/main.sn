@@ -59,7 +59,7 @@
 
 
 ; 履歴画面
-[add_frame id=log src="mat/log.html" b_color=lightgray height=&const.sn.config.window.height*2/3 visible=false]
+[add_frame id=log src="log" b_color=lightgray height=&const.sn.config.window.height*2/3 visible=false]
 	[button text=履歴表示 left=530 top=10 page=fore label=*show_log global=true call=true style='fill: deepskyblue;']
 	[event key='dom=log:#close' label=*hide_log global=true call=true]
 

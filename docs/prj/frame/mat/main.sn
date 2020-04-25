@@ -3,7 +3,7 @@
 [add_lay layer=mes class=txt]
 	[button text=フレーム表示 left=640 top=460 page=fore label=*show global=true call=true style='fill: deepskyblue;']
 
-[add_frame id=tst src="mat/frame.htm" visible=false b_color=lightgray height=&const.sn.config.window.height*2/3]
+[add_frame id=tst src="frame" visible=false b_color=lightgray height=&const.sn.config.window.height*2/3]
 	; フレームのJavaScript変数を変更
 	[set_frame id=tst var_name=val_chkTst text=true]
 	[set_frame id=tst var_name=val_rngTst text=70]

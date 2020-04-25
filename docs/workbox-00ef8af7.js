@@ -1,7 +1,7 @@
-define("./workbox-3bd073ed.js",['exports'], function (exports) { 'use strict';
+define("./workbox-00ef8af7.js",['exports'], function (exports) { 'use strict';
 
     try {
-      self['workbox:core:5.1.2'] && _();
+      self['workbox:core:5.1.3'] && _();
     } catch (e) {}
 
     /*
@@ -22,15 +22,6 @@ define("./workbox-3bd073ed.js",['exports'], function (exports) { 'use strict';
         }
 
         return `The '${paramName}' parameter was given a value with an ` + `unexpected value. ${validValueDescription} Received a value of ` + `${JSON.stringify(value)}.`;
-      },
-      'not-in-sw': ({
-        moduleName
-      }) => {
-        if (!moduleName) {
-          throw new Error(`Unexpected input to 'not-in-sw' error.`);
-        }
-
-        return `The '${moduleName}' must be used in a service worker.`;
       },
       'not-an-array': ({
         moduleName,
@@ -101,7 +92,7 @@ define("./workbox-3bd073ed.js",['exports'], function (exports) { 'use strict';
           throw new Error(`Unexpected input to ` + `'add-to-cache-list-duplicate-entries' error.`);
         }
 
-        return `Two of the entries passed to ` + `'workbox-precaching.PrecacheController.addToCacheList()' had the URL ` + `${firstEntry._entryId} but different revision details. Workbox is ` + `is unable to cache and version the asset correctly. Please remove one ` + `of the entries.`;
+        return `Two of the entries passed to ` + `'workbox-precaching.PrecacheController.addToCacheList()' had the URL ` + `${firstEntry._entryId} but different revision details. Workbox is ` + `unable to cache and version the asset correctly. Please remove one ` + `of the entries.`;
       },
       'plugin-error-request-will-fetch': ({
         thrownError
@@ -349,23 +340,11 @@ define("./workbox-3bd073ed.js",['exports'], function (exports) { 'use strict';
       https://opensource.org/licenses/MIT.
     */
     /*
-     * This method returns true if the current context is a service worker.
-     */
-
-    const isSWEnv = moduleName => {
-      if (!('ServiceWorkerGlobalScope' in self)) {
-        throw new WorkboxError('not-in-sw', {
-          moduleName
-        });
-      }
-    };
-    /*
      * This method throws if the supplied value is not an array.
      * The destructed values are required to produce a meaningful error for users.
      * The destructed and restructured object is so it's clear what is
      * needed.
      */
-
 
     const isArray = (value, details) => {
       if (!Array.isArray(value)) {
@@ -422,7 +401,6 @@ define("./workbox-3bd073ed.js",['exports'], function (exports) { 'use strict';
       isArray,
       isInstance,
       isOneOf,
-      isSWEnv,
       isType,
       isArrayOfClass
     };
@@ -1273,7 +1251,7 @@ define("./workbox-3bd073ed.js",['exports'], function (exports) { 'use strict';
     }
 
     try {
-      self['workbox:precaching:5.1.2'] && _();
+      self['workbox:precaching:5.1.3'] && _();
     } catch (e) {}
 
     /*
@@ -2268,4 +2246,4 @@ define("./workbox-3bd073ed.js",['exports'], function (exports) { 'use strict';
     exports.skipWaiting = skipWaiting;
 
 });
-//# sourceMappingURL=workbox-3bd073ed.js.map
+//# sourceMappingURL=workbox-00ef8af7.js.map

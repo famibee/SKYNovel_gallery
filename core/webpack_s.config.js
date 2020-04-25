@@ -30,9 +30,6 @@ module.exports = [
 			new GenerateSW({
 				cacheId: cacheId,
 				swDest:  'sw_s.js',
-				globDirectory: process.cwd() +'/docs',
-				globPatterns: ['favicon.ico','og_snapshot.jpg','pwa_mono/**/*.*'],
-				globIgnores: ['pwa_mono/*.js'],
 				maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,	// MB
 				clientsClaim: true,
 				skipWaiting: true,

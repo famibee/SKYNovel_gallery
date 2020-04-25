@@ -1,0 +1,78 @@
+[title text=プレイデータ][call label=*init]
+
+[add_lay layer=mes class=txt]
+[add_frame id=tst src=frame visible=false b_color=lightgray height=&const.sn.config.window.height*2/3]
+	[frame id=tst visible=true y=80]
+
+	&sys:tst.gallery.import.chkTst = true
+	&sys:tst.gallery.import.rngTst = 70
+	&sys:tst.gallery.import.radTst = 'b'
+	&sys:tst.gallery.import.txtTst = 'textbox'
+	&sys:tst.gallery.import.txtArea = '変更してみてください'
+	[call label=*setFrame]
+
+	; フレームで発生したイベントを検知
+	[event key='dom=tst:#chkTst' label=*chkTst global=true call=true]
+	[event key='dom=tst:#rngTst' label=*rngTst global=true call=true]
+	[event key='dom=tst:#radTst' label=*radTst global=true call=true]
+	[event key='dom=tst:#txtTst' label=*txtTst global=true call=true]
+	[event key='dom=tst:#txtArea' label=*txtArea global=true call=true]
+	; インポート完了イベントを検知
+	[event key='sn:imported' label=*imported global=true call=true]
+
+
+変更し
+	【[link label=*export global=true call=true style='background-color: rgba(180,248,255,0.5);']ｴｸｽﾎﾟｰﾄ[endlink]】
+後、画面リロードしても
+	【[link label=*import global=true call=true]ｲﾝﾎﾟｰﾄ[endlink]】
+で戻ります[s]
+
+
+*export		[export path="app-storage:/bookmark/*"][return]
+*import		[import][return]
+*imported	[call label=*setFrame][return]
+
+
+*setFrame	; フレームのJavaScript変数を変更
+	[set_frame id=tst var_name=val_chkTst text=&sys:tst.gallery.import.chkTst]
+	[set_frame id=tst var_name=val_rngTst text=&sys:tst.gallery.import.rngTst]
+	[set_frame id=tst var_name=val_radTst text=&sys:tst.gallery.import.radTst]
+	[set_frame id=tst var_name=val_txtTst text=&sys:tst.gallery.import.txtTst]
+	[set_frame id=tst var_name=val_txtArea text=&sys:tst.gallery.import.txtArea]
+	[let_frame id=tst var_name=val2ctrl function=true]
+[return]
+
+
+*chkTst
+	[let_frame id=tst var_name=val_chkTst]
+	&sys:tst.gallery.import.chkTst = const.sn.frm.tst.val_chkTst
+	[return]
+*rngTst
+	[let_frame id=tst var_name=val_rngTst]
+	&sys:tst.gallery.import.rngTst = const.sn.frm.tst.val_rngTst
+	[return]
+*radTst
+	[let_frame id=tst var_name=val_radTst]
+	&sys:tst.gallery.import.radTst = const.sn.frm.tst.val_radTst
+
+	[let_frame id=tst var_name=val2ctrl function=true]
+		; これがないとラジオボタンが動かない
+	[return]
+*txtTst
+	[let_frame id=tst var_name=val_txtTst]
+	&sys:tst.gallery.import.txtTst = const.sn.frm.tst.val_txtTst
+	[return]
+*txtArea
+	[let_frame id=tst var_name=val_txtArea]
+	&sys:tst.gallery.import.txtArea = const.sn.frm.tst.val_txtArea
+	[return]
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2018, famibee.
  * All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *     * Redistributions of source code must retain the above copyright
@@ -14,7 +14,7 @@
  *     * Neither the name of Ajax.org B.V. nor the
  *       names of its contributors may be used to endorse or promote products
  *       derived from this software without specific prior written permission.
- * 
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -62,7 +62,7 @@ var anHighlightRules = function() {
 		'keyword':
 			'[|;|*|&|&&'
 	,	'tag.punctuation.begin':
-			'add_face|add_lay|auto_pager|autowc|bracket2macro|break_macro|button|call|ch|char2macro|clear_event|clear_lay|clear_text|clearsysvar|clearvar|close|copybookmark|current|dump_lay|dump_stack|dump_val|else|elsif|enable_event|endif|endlink|endmacro|er|erasebookmark|event|exist_html|export|fadebgm|fadeoutbgm|fadeoutse|fadese|finish_trans|gesture_event|graph|if|import|jump|l|lay|let|let_abs|let_char_at|let_face_frame|let_face_totalframes|let_html|let_index_of|let_length|let_replace|let_round|let_search|let_substr|link|load|loadplugin|macro|mouse|navigate_to|p|pausevideo|play_face|playbgm|playse|plugin|pop_stack|r|rec_ch|rec_r|record_place|reload_script|resumevideo|return|rewindvideo|ruby|ruby2|s|save|seekvideo|set_cancel_skip|set_focus|set_html|snapshot|span|stats|stop_allse|stop_face|stopbgm|stopfadese|stopse|tcy|title|toggle_full_screen|toggle_pausevideo|trace|trans|unloadplugin|update_check|volume|wa|wait|wait_thread|waitclick|wb|wf|window|wl|ws|wt|wv|ask_ync|sys_scenario_start|sys_title_start|for_call|for_call_break|wc|lr|plc|after_choice|txt_lay_v_left|txt_lay_v_center|txt_lay_v_center_wide|txt_lay_fullscreen|fg|grp|img|bgm|se|voice|h_voice|end_h_voice|h_save|h_ss_upd|add_asfilter|clear_asfilter|add_color_transform|clear_color_transform|p3d_lay|p3d_camera|p3d_add_cast|p3d_cast|p3d_clear_lay|quake|wq|stop_quake|scrimg|w_scrimg|let_random|tsy|wait_tsy|stop_tsy|zoom_tsy|tsy_seq_new|tsy_seq_push|tsy_seq_start|tsy_seq_replay|tsy_seq_stop|tsy_seq_yoyo|get_tsy_seq_paused|tsy_seq_pause|tsy_seq_resume|get_tsy_seq_repeatcount|set_tsy_seq_repeatcount|set_tsy_seq_snaptoclosest|add_tsyfx|tsyfx|del_tsyfx|tsyfx_pixelate_effect|initMXML|config_refresh|history_redraw|history_scroll|history_let_page_count|history_let_page|'
+			'add_face|add_frame|add_lay|autowc|bracket2macro|break_macro|button|call|ch|ch_in_style|ch_out_style|char2macro|clear_event|clear_lay|clear_text|clearsysvar|clearvar|close|copybookmark|current|dump_lay|dump_script|dump_stack|dump_val|else|elsif|enable_event|endif|endlink|endmacro|er|erasebookmark|event|export|fadebgm|fadeoutbgm|fadeoutse|fadese|finish_trans|frame|graph|if|import|jump|l|lay|let|let_abs|let_char_at|let_frame|let_index_of|let_length|let_ml|let_replace|let_round|let_search|let_substr|link|load|loadplugin|log|macro|navigate_to|p|pause_tsy|playbgm|playse|pop_stack|quake|r|rec_ch|rec_r|record_place|reload_script|reset_rec|resume_tsy|return|ruby2|s|save|set_cancel_skip|set_focus|set_frame|snapshot|span|stats|stop_allse|stop_quake|stop_tsy|stopbgm|stopfadese|stopse|tcy|title|toggle_full_screen|trace|trans|tsy|tsy_frame|update_check|volume|wait|wait_tsy|waitclick|wb|wf|window|wl|wq|ws|wt|wv|xchgbuf'
 	,	'entity.other.attribute-name.skynovel':
 			'layer|page'
 	,	'constant.language.skynovel':
@@ -205,39 +205,39 @@ oop.inherits(FoldMode, BaseFoldMode);
 	<string>(\[return\]|\[endmacro\])</string>
 */
 
-    this.foldingStartMarker = /^\s*\[([^\])]*)]\s*(?:$|[;#])/;
+	this.foldingStartMarker = /^\s*\[([^\])]*)]\s*(?:$|[;#])/;
 
-    this.getFoldWidgetRange = function(session, foldStyle, row) {
-        var re = this.foldingStartMarker;
-        var line = session.getLine(row);
-        
-        var m = line.match(re);
-        
-        if (!m) return;
-        
-        var startName = m[1] + ".";
-        
-        var startColumn = line.length;
-        var maxRow = session.getLength();
-        var startRow = row;
-        var endRow = row;
+	this.getFoldWidgetRange = function(session, foldStyle, row) {
+		var re = this.foldingStartMarker;
+		var line = session.getLine(row);
 
-        while (++row < maxRow) {
-            line = session.getLine(row);
-            if (/^\s*$/.test(line))
-                continue;
-            m = line.match(re);
-            if (m && m[1].lastIndexOf(startName, 0) !== 0)
-                break;
+		var m = line.match(re);
 
-            endRow = row;
-        }
+		if (!m) return;
 
-        if (endRow > startRow) {
-            var endColumn = session.getLine(endRow).length;
-            return new Range(startRow, startColumn, endRow, endColumn);
-        }
-    };
+		var startName = m[1] + ".";
+
+		var startColumn = line.length;
+		var maxRow = session.getLength();
+		var startRow = row;
+		var endRow = row;
+
+		while (++row < maxRow) {
+			line = session.getLine(row);
+			if (/^\s*$/.test(line))
+				continue;
+			m = line.match(re);
+			if (m && m[1].lastIndexOf(startName, 0) !== 0)
+				break;
+
+			endRow = row;
+		}
+
+		if (endRow > startRow) {
+			var endColumn = session.getLine(endRow).length;
+			return new Range(startRow, startColumn, endRow, endColumn);
+		}
+	};
 
 }).call(FoldMode.prototype);
 
