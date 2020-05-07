@@ -45,7 +45,7 @@
 [macro name=hu]
 	; この辺に顔アイコン変更とか追加したり
 	&fn = const.db[mp:text].fn	; 音声ファイル名取得
-	[break_macro cond=fn==null]	; 音声無しは無処理
+	[return cond=fn==null]	; 音声無しは無処理
 
 	&c = save:db_v_cnt[mp:text]	; 音声ファイル名の連番開始番号
 	&col = const.db[mp:text].col; 名前表示のcss色名前

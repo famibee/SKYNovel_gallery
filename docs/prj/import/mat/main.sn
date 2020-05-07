@@ -28,7 +28,7 @@
 で戻ります[s]
 
 
-*export		[export path="app-storage:/bookmark/*"][return]
+*export		[export][return]
 *import		[import][return]
 *imported	[call label=*setFrame][return]
 

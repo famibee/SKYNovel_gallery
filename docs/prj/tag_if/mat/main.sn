@@ -74,7 +74,7 @@ m
 
 
 [macro name=b]
-o[break_macro]x
+o[return]x
 [endmacro]
 	T[b][b].
 

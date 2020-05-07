@@ -40,7 +40,7 @@
 		[let_replace name=save:sn.fg2.lays text=&save:sn.fg2.lays@str val='' reg=&lay cast=str]
 ;[trace text="&'== del lays:'+ save:sn.fg2.lays@str +': lay:'+ lay"]
 		[fg layer=&lay *]
-		[break_macro]
+		[return]
 	[endif]
 
 	[let_replace name=h text=%fn val='' reg='_.+' cast=str]
@@ -50,7 +50,7 @@
 		[if exp='lay == null']
 		; エラーとすべきなのか迷う。黙って通常処理でもいいのかも
 			[trace text="&'swap属性に指定した人物キー【'+ lay +'】は存在しません。属性swap不要かも'"]
-			[break_macro]
+			[return]
 		[endif]
 
 		&old_h = save:sn.fg2.l2hu[lay]
@@ -66,7 +66,7 @@
 	[if exp='mylay != null && const.sn.lay[mylay].fore.visible && const.sn.lay[mylay].fore.width > 0']
 		[fg2_attention layer=&mylay]
 		[fg layer=&mylay pos='&save:sn.fg2.hu[mylay].pos' *]
-		[break_macro]
+		[return]
 	[endif]
 
 	[let name=alpha text=%alpha|1]
@@ -80,7 +80,7 @@
 ;[trace text="&'lays:'+ save:sn.fg2.lays@str +': use_lay:'+ use_lay +' add:'+ add"]
 	[if exp='use_lay == null']
 		[trace text="&'最大レイヤ数'+ save:sn.fg2.max_lay +'を越えました。これ以上同時に立ち絵を表示したい場合、レイヤを増やして下さい'"]
-		[break_macro]
+		[return]
 	[endif]
 
 	&&'save:sn.fg2.hu.'+ h = use_lay	; name→lay
@@ -98,7 +98,7 @@
 
 ;****************************
 [macro name="fg2_attention"]
-	[break_macro cond=!fg2_is_attention]
+	[return cond=!fg2_is_attention]
 	[let_length name=cnt text=&save:sn.fg2.lays@str]
 	[for_call name=l from=0 to=&cnt-1 label=*fg2_attention]
 [endmacro]
@@ -106,7 +106,7 @@
 
 ;****************************
 [macro name="clear_fg2_attention"]
-	[break_macro cond=!fg2_is_attention]
+	[return cond=!fg2_is_attention]
 	[let_length name=cnt text=&save:sn.fg2.lays@str]
 	[for_call name=l from=0 to=&cnt-1 label=*clear_fg2_attention]
 [endmacro]
