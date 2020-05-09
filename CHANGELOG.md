@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.7.14
+- add：ブレンドモードのサンプル追加
 ## v1.7.13
 - chg：[break_macro]廃止に対応
 - upd：ライブラリ更新
