@@ -58,8 +58,24 @@
 	[button text='(wav)' left=420 top=200 page=fore label=*wav再生 global=true style='fill: burlywood;' fill_hover=tomato]
 	[button text='(stopse)' left=620 top=200 page=fore label=*stopse global=true style='fill: burlywood;' fill_hover=tomato]
 
+	[button text='xchgbuf' left=20 top=260 page=fore label=*xchgbuf global=true style='fill: burlywood;' fill_hover=tomato]
+
 ***
 [s]
+
+
+*xchgbuf
+	[demo]
+	[playse fn=&m buf=SE loop=true]
+	[playse fn=jngl0005b_m4a buf=SE2 loop=true]
+	rain is buf=SE[r]
+	jngl is buf=SE2[r]
+
+	click 2 xchgbuf@[xchgbuf buf=SE buf2=SE2][r]
+	click 2 stopse buf=SE2、but stop rain@[stopse buf=SE2][r]
+	end.[p]
+
+	[jump label=**before]
 
 
 *m4a再生
