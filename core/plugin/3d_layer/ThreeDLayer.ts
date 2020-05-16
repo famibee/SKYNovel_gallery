@@ -5,11 +5,7 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-const Layer_1 = require('skynovel/core/lib/sn/Layer');
-const Layer = Layer_1.Layer;
-const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
-const CmnLib = CmnLib_1.CmnLib;
-
+const {Layer, CmnLib} = require('skynovel/web');
 import {HArg, IPluginInitArg} from 'skynovel';
 import {Scene, WebGLRenderer, Camera, Clock, GridHelper, PerspectiveCamera, DirectionalLight, Mesh, BoxGeometry, MeshNormalMaterial, SphereGeometry, TextureLoader, LinearFilter, MeshBasicMaterial, AnimationClip, LoopRepeat, LoopOnce, Material, Object3D, AnimationMixer } from 'three';
 

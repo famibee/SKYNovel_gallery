@@ -1,5 +1,8 @@
 # Change Log
 
+## v1.7.16
+- breaking change：SKYNovel v0.20.4（プラグイン用クラス定義追加と変更）対応
+- breaking change：SKYNovel v0.20.3（webpackでumdモジュールバンドル化）対応
 ## v1.7.15
 - add：効果音とBGMサンプルに[xchgbuf]（再生トラックの交換）サンプルを追加
 ## v1.7.14

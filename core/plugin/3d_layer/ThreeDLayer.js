@@ -1,9 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Layer_1 = require('skynovel/core/lib/sn/Layer');
-const Layer = Layer_1.Layer;
-const CmnLib_1 = require('skynovel/core/lib/sn/CmnLib');
-const CmnLib = CmnLib_1.CmnLib;
+const { Layer, CmnLib } = require('skynovel/web');
 const three_1 = require("three");
 const pixi_js_1 = require("pixi.js");
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
