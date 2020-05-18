@@ -1,5 +1,7 @@
 # Change Log
 
+## v1.7.17
+- add：効果音とBGMサンプルに属性start_ms、end_ms、ret_msテスト追加
 ## v1.7.16
 - breaking change：SKYNovel v0.20.4（プラグイン用クラス定義追加と変更）対応
 - breaking change：SKYNovel v0.20.3（webpackでumdモジュールバンドル化）対応

@@ -19,7 +19,6 @@
 [endmacro]
 
 
-;[trace text=&m]
 **
 [stop_allse]
 [er]
@@ -60,8 +59,96 @@
 
 	[button text='xchgbuf' left=20 top=260 page=fore label=*xchgbuf global=true style='fill: burlywood;' fill_hover=tomato]
 
+	[button text='(s2)' left=20 top=320 page=fore label=*s2 global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(s2L)' left=120 top=320 page=fore label=*s2L global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(e2)' left=220 top=320 page=fore label=*e2 global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(e2L)' left=320 top=320 page=fore label=*e2L global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(s1e3)' left=420 top=320 page=fore label=*s1e3 global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(s1e3L)' left=520 top=320 page=fore label=*s1e3L global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(s2e3L)' left=620 top=320 page=fore label=*s2e3L global=true style='fill: burlywood;' fill_hover=tomato]
+
+	[button text='(r2)' left=20 top=380 page=fore label=*r2 global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(r2L)' left=120 top=380 page=fore label=*r2L global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(s1e3r2L)' left=220 top=380 page=fore label=*s1e3r2L global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(s1e-1r2L)' left=320 top=380 page=fore label=*s1e-1r2L global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(r1e3L)' left=420 top=380 page=fore label=*r1e3L global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(r2e3L)' left=520 top=380 page=fore label=*r2e3L global=true style='fill: burlywood;' fill_hover=tomato]
+	[button text='(r2e-1L)' left=620 top=380 page=fore label=*r2e-1L global=true style='fill: burlywood;' fill_hover=tomato]
+
 ***
 [s]
+
+
+*r2	[playse fn=jngl0005_mp3 ret_ms=2000][jump label=***before]	; (無視)
+*r2L
+	[demo]
+	[playse fn=jngl0005_mp3 ret_ms=2000 loop=true]
+	jngl loop ret_ms=2000[r]
+	end.[p]
+[jump label=**before]
+
+*s1e3r2L
+	[demo]
+	[playse fn=jngl0005_mp3 start_ms=1000 end_ms=3000 ret_ms=2000 loop=true]
+	jngl loop start_ms=1000 end_ms=3000 ret_ms=2000[r]
+	end.[p]
+[jump label=**before]
+*s1e-1r2L
+	[demo]
+	[playse fn=jngl0005_mp3 start_ms=1000 end_ms=-1500 ret_ms=2000 loop=true]
+	jngl loop start_ms=1000 end_ms=-1500 ret_ms=2000[r]
+	end.[p]
+[jump label=**before]
+
+*r1e3L
+	[demo]
+	[playse fn=jngl0005_mp3 ret_ms=1000 end_ms=3000 loop=true]
+	jngl loop ret_ms=1000 end_ms=3000[r]
+	end.[p]
+[jump label=**before]
+*r2e3L
+	[demo]
+	[playse fn=jngl0005_mp3 ret_ms=2000 end_ms=3500 loop=true]
+	jngl loop ret_ms=2000 end_ms=3500[r]
+	end.[p]
+[jump label=**before]
+*r2e-1L
+	[demo]
+	[playse fn=jngl0005_mp3 ret_ms=2000 end_ms=-1500 loop=true]
+	jngl loop ret_ms=2000 end_ms=-1500[r]
+	end.[p]
+[jump label=**before]
+
+
+*s2	[playse fn=jngl0005_mp3 start_ms=2000][jump label=***before]
+*s2L
+	[demo]
+	[playse fn=jngl0005_mp3 start_ms=2000 loop=true]
+	jngl loop start_ms=2000[r]
+	end.[p]
+[jump label=**before]
+
+*e2	[playse fn=jngl0005_mp3 end_ms=1000][jump label=***before]
+*e2L
+	[demo]
+	[playse fn=jngl0005_mp3 end_ms=1000 loop=true]
+	jngl loop end_ms=2000[r]
+	end.[p]
+[jump label=**before]
+
+*s1e3	[playse fn=jngl0005_mp3 start_ms=1500 end_ms=3000][jump label=***before]
+*s1e3L
+	[demo]
+	[playse fn=jngl0005_mp3 start_ms=1500 end_ms=3000 loop=true]
+	jngl loop start_ms=1500ms end_ms=3000[r]
+	end.[p]
+[jump label=**before]
+*s2e3L
+	[demo]
+	[playse fn=jngl0005_mp3 start_ms=2000 end_ms=3500 loop=true]
+	jngl loop start_ms=2000ms end_ms=3500[r]
+	end.[p]
+[jump label=**before]
 
 
 *xchgbuf
@@ -74,22 +161,15 @@
 	click 2 xchgbuf@[xchgbuf buf=SE buf2=SE2][r]
 	click 2 stopse buf=SE2、but stop rain@[stopse buf=SE2][r]
 	end.[p]
+[jump label=**before]
 
-	[jump label=**before]
 
-
-*m4a再生
-	[playse fn=don15][jump label=***before]
-*ogg再生
-	[playse fn=ys001PopFunk][jump label=***before]
-*aac再生
-	[playse fn=45king_aac][jump label=***before]
-*flac再生
-	[playse fn=bgm_ringil_build_good][jump label=***before]
-*wav再生
-	[playse fn=pon][jump label=***before]
-*stopse
-	[jump label=**before]
+*m4a再生	[playse fn=don15][jump label=***before]
+*ogg再生	[playse fn=ys001PopFunk][jump label=***before]
+*aac再生	[playse fn=45king_aac][jump label=***before]
+*flac再生	[playse fn=bgm_ringil_build_good][jump label=***before]
+*wav再生	[playse fn=pon][jump label=***before]
+*stopse		[jump label=**before]
 
 
 ; col 1

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Cubism3Layer = void 0;
 const { Layer, CmnLib } = require('skynovel/web');
 const pixi_js_1 = require("pixi.js");
 class Cubism3Layer extends Layer {
