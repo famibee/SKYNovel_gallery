@@ -1,5 +1,9 @@
 # Change Log
 
+## v1.7.18
+- upd：コード表示で最初に開いたときに停止位置にスクロールするように
+- upd：コード表示のテーマを「Dracula」→「tomorrow_night_bright」に変更
+- upd：ライブラリ更新
 ## v1.7.17
 - add：効果音とBGMサンプルに属性start_ms、end_ms、ret_msテスト追加
 ## v1.7.16

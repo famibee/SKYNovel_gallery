@@ -2,9 +2,9 @@
 <head><meta charset="utf-8"/><title>SKYNovel</title>
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
 <meta name="description" content="SKYNovel Sample Gallery"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
 	<!-- https://cdnjs.com/libraries/font-awesome -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="canonical" href="https://famibee.github.io/SKYNovel_gallery/"/>
 <style type="text/css">
 	:-webkit-full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
@@ -14,10 +14,10 @@
 	.nav-pills a {color: black;};
 	.nav-pills a.active {color: white;};
 </style>
-<script defer src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<!-- https://code.jquery.com/ -->
-<script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<!-- https://www.bootstrapcdn.com/ 必ずjqueryの後 -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+	<!-- https://code.jquery.com/ deferも忘れず -->
+<script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<!-- https://www.bootstrapcdn.com/ 必ずjqueryの後。deferも忘れず -->
 <script defer>
 	const setBodyPT = ()=> {
 		const h = document.getElementsByClassName('navbar')[0].clientHeight;
@@ -37,6 +37,11 @@
 -->
 	<script defer src="plugin_lib/emotedriver.js"></script>
 	<script defer src="plugin_lib/emoteplayer.js"></script>
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/ace.min.js" integrity="sha256-qCCcAHv/Z0u7K344shsZKUF2NR+59ooA3XWRj0LPGIQ=" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.11/theme-tomorrow_night_bright.min.js" integrity="sha256-NV+9uOF/bocA5X7yhFrSWwPu0AXbsrc6+ULmkOcF1+8=" crossorigin="anonymous"></script>
+	<!-- https://cdnjs.com/libraries/ace/ deferも忘れず -->
+
 </head><body oncontextmenu="return false;">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top text-body">
@@ -513,32 +518,34 @@
 </div>
 
 	<style>#code {height: 20em;};</style>
-	<script defer src="js_ace/ace.js"></script>
 	<script defer type="text/javascript">
-		window.addEventListener('load', ()=> {
-			const code = ace.edit('code');	// ace.js 1.3.3
-			code.setTheme('ace/theme/dracula');
-			code.setShowInvisibles(true);
-			code.setReadOnly(true);
-			code.$blockScrolling = Infinity;
-			const ses = code.getSession();
-			ses.setMode("ace/mode/skynovel");
-			ses.setUseWrapMode(true);
-			// 以下も絶対必要
-			window.set_ed = (txt)=> code.setValue(txt, -1);
-			window.break_ed = (line, set)=> {
-				if (set) {code.gotoLine(line, 0, true); code.scrollToRow(line -5);}
-				ses.clearAnnotations();
-				ses.setAnnotations([{
-					row: line -1,
-					type: "info",
-					text: "script stop",
-				}]);
-			};
-			//code.resize();
-		});
+let ln = 0;
+window.addEventListener('load', ()=> {
+	const code = ace.edit('code');
+	code.setTheme('ace/theme/tomorrow_night_bright');
+	code.setShowInvisibles(true);
+	code.setReadOnly(true);
+	code.$blockScrolling = Infinity;
+	const ses = code.getSession();
+	ses.setMode('ace/mode/skynovel');
+	ses.setUseWrapMode(true);
+	// 以下も絶対必要
+	globalThis.set_ed = txt=> code.setValue(txt, -1);
+	globalThis.break_ed = (l, goto)=> {
+		ln = l;
+		if (goto) {code.gotoLine(l, 0, true); code.scrollToRow(l -5);}
+		ses.clearAnnotations();
+		ses.setAnnotations([{
+			row: l -1,
+			type: 'info',
+			text: 'script stop',
+		}]);
+	};
+	//code.resize();
+
+	$('#clpCode').on('shown.bs.collapse', ()=> code.scrollToRow(ln -5));
+});
 	</script>
-	<script defer src="js_ace/theme-dracula.js"></script>
 	<script defer src="js_ace/mode-skynovel.js"></script>
 
 </body></html>
