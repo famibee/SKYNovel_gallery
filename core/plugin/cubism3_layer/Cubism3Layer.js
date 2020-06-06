@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cubism3Layer = void 0;
-const { Layer, CmnLib } = require('skynovel/web');
+const { Layer, argChk_Num } = require('skynovel/web');
 const pixi_js_1 = require("pixi.js");
 class Cubism3Layer extends Layer {
     constructor() {
@@ -97,7 +97,7 @@ class Cubism3Layer extends Layer {
             }
         }
         if ('scale' in hArg) {
-            this.state.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
+            this.state.scale = argChk_Num(hArg, 'scale', 1);
             this.model.scale = new pixi_js_1.Point(this.state.scale, this.state.scale);
             this.model.x = this.model.width / 2;
             this.model.y = this.model.height / 2;

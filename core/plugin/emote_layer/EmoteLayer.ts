@@ -5,7 +5,7 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-const {Layer, CmnLib} = require('skynovel/web');
+const {Layer, CmnLib, argChk_Num} = require('skynovel/web');
 import {HArg, IPluginInitArg} from 'skynovel';
 declare const EmotePlayer: any;	// 【名前 '〜' が見つかりません。】対策
 
@@ -114,11 +114,11 @@ export class EmoteLayer extends Layer {
 
 			player.mainTimelineLabel = hArg.label;
 		}
-		if ('scale' in hArg) player.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
-		if ('grayscale' in hArg) player.grayscale = CmnLib.argChk_Num(hArg, 'grayscale', 1);
-		if ('windSpeed' in hArg) player.windSpeed = CmnLib.argChk_Num(hArg, 'windSpeed', 0);
-		if ('windPowerMin' in hArg) player.windPowerMin = CmnLib.argChk_Num(hArg, 'windPowerMin', 0);
-		if ('windPowerMax' in hArg) player.windPowerMax = CmnLib.argChk_Num(hArg, 'windPowerMax', 0);
+		if ('scale' in hArg) player.scale = argChk_Num(hArg, 'scale', 1);
+		if ('grayscale' in hArg) player.grayscale = argChk_Num(hArg, 'grayscale', 1);
+		if ('windSpeed' in hArg) player.windSpeed = argChk_Num(hArg, 'windSpeed', 0);
+		if ('windPowerMin' in hArg) player.windPowerMin = argChk_Num(hArg, 'windPowerMin', 0);
+		if ('windPowerMax' in hArg) player.windPowerMax = argChk_Num(hArg, 'windPowerMax', 0);
 
 		return false;
 	}

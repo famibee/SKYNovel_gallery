@@ -1,5 +1,8 @@
 # Change Log
 
+## v1.7.19
+- upd：argChk_Num, argChk_Boolean の import 修正
+- upd：ライブラリ更新
 ## v1.7.18
 - upd：コード表示で最初に開いたときに停止位置にスクロールするように
 - upd：コード表示のテーマを「Dracula」→「tomorrow_night_bright」に変更

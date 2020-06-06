@@ -5,9 +5,9 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-const {Layer, CmnLib} = require('skynovel/web');
+const {Layer, CmnLib, argChk_Num, argChk_Boolean} = require('skynovel/web');
 import {HArg, IPluginInitArg} from 'skynovel';
-import {Scene, WebGLRenderer, Camera, Clock, GridHelper, PerspectiveCamera, DirectionalLight, Mesh, BoxGeometry, MeshNormalMaterial, SphereGeometry, TextureLoader, LinearFilter, MeshBasicMaterial, AnimationClip, LoopRepeat, LoopOnce, Material, Object3D, AnimationMixer } from 'three';
+import {Scene, WebGLRenderer, Camera, Clock, GridHelper, PerspectiveCamera, DirectionalLight, Mesh, BoxGeometry, MeshNormalMaterial, SphereGeometry, TextureLoader, LinearFilter, MeshBasicMaterial, AnimationClip, LoopRepeat, LoopOnce, Material, Object3D, AnimationMixer} from 'three';
 
 import {Sprite, Texture} from 'pixi.js';
 
@@ -66,8 +66,8 @@ export class ThreeDLayer extends Layer {
 
 		if ('grid' in hArg) {	// 開発者用基準グリッド
 			const grid = new GridHelper(
-				CmnLib.argChk_Num(hArg, 'grid_size', 10),	// グリッド全体のサイズ
-				CmnLib.argChk_Num(hArg, 'grid_step', 5)		// 1分割のサイズ
+				argChk_Num(hArg, 'grid_size', 10),	// グリッド全体のサイズ
+				argChk_Num(hArg, 'grid_step', 5)		// 1分割のサイズ
 				// colorCenterLine：中央十字ラインの色
 				// colorGrid：中央十字ライン以外の色
 			);
@@ -78,17 +78,17 @@ export class ThreeDLayer extends Layer {
 		if ('camera' in hArg) {	// カメラ
 			if (! this.camera) {
 				this.camera = new PerspectiveCamera(
-					CmnLib.argChk_Num(hArg, 'camera_fov', 50),
+					argChk_Num(hArg, 'camera_fov', 50),
 					CmnLib.stageW / CmnLib.stageH,
-					CmnLib.argChk_Num(hArg, 'camera_near', 0.1),
-					CmnLib.argChk_Num(hArg, 'camera_far', 2000)
+					argChk_Num(hArg, 'camera_near', 0.1),
+					argChk_Num(hArg, 'camera_far', 2000)
 				);
 			}
 			this.csv2pos(hArg, 'camera', this.camera);
 		}
 		if ('directional_light' in hArg) {	// 平行光源
 			const light = new DirectionalLight(0xFFFFFF);
-			light.intensity = CmnLib.argChk_Num(hArg, 'intensity', 1); // 光の強さ
+			light.intensity = argChk_Num(hArg, 'intensity', 1); // 光の強さ
 			this.csv2pos(hArg, 'directional_light', light);
 			light.name = '_light';
 			this.scene_3D.add(light);
@@ -123,7 +123,7 @@ export class ThreeDLayer extends Layer {
 			if (! this.running) {this.running = true; this.tick();}
 
 			if (type == 'box') {	// 立方体サンプル
-				const size = CmnLib.argChk_Num(hArg, 'size', 100);
+				const size = argChk_Num(hArg, 'size', 100);
 				const geometry = new BoxGeometry(size, size, size);
 				// new BoxGeometry(幅, 高さ, 奥行き)
 				const material = new MeshNormalMaterial();
@@ -357,7 +357,7 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 				}
 
 				if (inf.mixer) {
-					const t = CmnLib.argChk_Num(hArg, 'time', 1000) /1000;
+					const t = argChk_Num(hArg, 'time', 1000) /1000;
 					const aa = inf.mixer.clipAction(ac);
 					aa.crossFadeFrom(inf.aa!, t, true);
 				//	aa.crossFadeFrom(inf.aa!, t, false);
@@ -377,7 +377,7 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 				inf.aa.enabled = true;
 				inf.aa.clampWhenFinished = true;
 					// ループしない際、終端フレームで停止しデフォルトポーズに戻さない
-				inf.aa.loop = CmnLib.argChk_Boolean(hArg, 'loop', true)
+				inf.aa.loop = argChk_Boolean(hArg, 'loop', true)
 					? LoopRepeat
 					: LoopOnce;
 				inf.aa.play();

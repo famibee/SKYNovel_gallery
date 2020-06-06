@@ -5,7 +5,7 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-const {Layer, CmnLib} = require('skynovel/web');
+const {Layer, argChk_Num} = require('skynovel/web');
 import {HArg, IPluginInitArg} from 'skynovel';
 declare const Live2DCubismCore: any;	// 【名前 '〜' が見つかりません。】対策
 declare const LIVE2DCUBISMPIXI: any;
@@ -120,7 +120,7 @@ export class Cubism3Layer extends Layer {
 		}
 
 		if ('scale' in hArg) {
-			this.state.scale = CmnLib.argChk_Num(hArg, 'scale', 1);
+			this.state.scale = argChk_Num(hArg, 'scale', 1);
 			this.model.scale = new Point(this.state.scale, this.state.scale);
 			this.model.x = this.model.width /2;	// scale変更で変化するので
 			this.model.y = this.model.height/2;
