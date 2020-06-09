@@ -1,5 +1,11 @@
 # Change Log
 
+## v2.0.0
+- upd：SKYNovel 1.0.0 対応・テンプレ変更
+	- npm un skynovel && npm i @famibee/skynovel
+	- core/web4webpack.js ... require('@famibee/skynovel/web');
+    ほか
+- upd：ライブラリ更新
 ## v1.7.19
 - upd：argChk_Num, argChk_Boolean の import 修正
 - upd：ライブラリ更新

@@ -5,8 +5,8 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-const {Layer, CmnLib, argChk_Num} = require('skynovel/web');
-import {HArg, IPluginInitArg} from 'skynovel';
+const {Layer, CmnLib, argChk_Num} = require('@famibee/skynovel/web');
+import {HArg, IPluginInitArg} from '@famibee/skynovel';
 declare const EmotePlayer: any;	// 【名前 '〜' が見つかりません。】対策
 
 import {RenderTexture, Sprite, Texture, BaseTexture} from 'pixi.js';

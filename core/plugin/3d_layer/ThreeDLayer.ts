@@ -5,8 +5,8 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-const {Layer, CmnLib, argChk_Num, argChk_Boolean} = require('skynovel/web');
-import {HArg, IPluginInitArg} from 'skynovel';
+const {Layer, CmnLib, argChk_Num, argChk_Boolean} = require('@famibee/skynovel/web');
+import {HArg, IPluginInitArg} from '@famibee/skynovel';
 import {Scene, WebGLRenderer, Camera, Clock, GridHelper, PerspectiveCamera, DirectionalLight, Mesh, BoxGeometry, MeshNormalMaterial, SphereGeometry, TextureLoader, LinearFilter, MeshBasicMaterial, AnimationClip, LoopRepeat, LoopOnce, Material, Object3D, AnimationMixer} from 'three';
 
 import {Sprite, Texture} from 'pixi.js';

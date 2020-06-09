@@ -5,7 +5,7 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import {IPluginInitArg} from 'skynovel';
+import {IPluginInitArg} from '@famibee/skynovel';
 import {EmoteLayer} from './EmoteLayer';
 
 exports.init = (plgArg: IPluginInitArg)=> {

@@ -2,5 +2,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 
-const {SysWeb} = require('skynovel/web');
+const {SysWeb} = require('@famibee/skynovel/web');
 new SysWeb({}, {cur: 'prj/'});

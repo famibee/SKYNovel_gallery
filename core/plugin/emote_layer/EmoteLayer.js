@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmoteLayer = void 0;
-const { Layer, CmnLib, argChk_Num } = require('skynovel/web');
+const { Layer, CmnLib, argChk_Num } = require('@famibee/skynovel/web');
 const pixi_js_1 = require("pixi.js");
 class EmoteLayer extends Layer {
     constructor() {

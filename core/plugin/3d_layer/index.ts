@@ -5,7 +5,7 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import {IPluginInitArg} from 'skynovel';
+import {IPluginInitArg} from '@famibee/skynovel';
 import {ThreeDLayer} from './ThreeDLayer';
 
 exports.init = (plgArg: IPluginInitArg)=> {

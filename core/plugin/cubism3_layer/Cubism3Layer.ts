@@ -5,8 +5,8 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-const {Layer, argChk_Num} = require('skynovel/web');
-import {HArg, IPluginInitArg} from 'skynovel';
+const {Layer, argChk_Num} = require('@famibee/skynovel/web');
+import {HArg, IPluginInitArg} from '@famibee/skynovel';
 declare const Live2DCubismCore: any;	// 【名前 '〜' が見つかりません。】対策
 declare const LIVE2DCUBISMPIXI: any;
 declare const LIVE2DCUBISMFRAMEWORK: any;
