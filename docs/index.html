@@ -2,7 +2,7 @@
 <head><meta charset="utf-8"/><title>SKYNovel</title>
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"/>
 <meta name="description" content="SKYNovel Sample Gallery"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous"/>
 	<!-- https://cdnjs.com/libraries/font-awesome -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <link rel="canonical" href="https://famibee.github.io/SKYNovel_gallery/"/>
@@ -11,8 +11,39 @@
 	:-moz-full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
 	:full-screen canvas {width: 100%; height: 100%; object-fit: contain;}
 	:-webkit-full-screen .navbar {display: none;}
-	.nav-pills a {color: black;};
-	.nav-pills a.active {color: white;};
+	.nav-pills a {color: black;}
+	.nav-pills a.active {color: white;}
+
+	#wrp {overflow-x: hidden;}
+	#sidebar-wrapper {
+		margin-left: -15rem;
+		transition: margin .25s ease-out;
+
+		overflow-x: hidden;
+		overflow-y: scroll;
+		height: calc(100vh - 57px);
+	}
+	#sidebar-wrapper .sidebar-heading {
+		padding: 0.875rem 1.25rem;
+		font-size: 1.2rem;
+	}
+	#sidebar-wrapper .list-group {width: 15rem;}
+	#page-content-wrapper {min-width: 100vw;}
+	#wrp.toggled #sidebar-wrapper {margin-left: 0;}
+
+	@media (min-width: 768px) {
+		#sidebar-wrapper {margin-left: 0;}
+		#page-content-wrapper {
+			min-width: 0;
+			width: 100%;
+		}
+		#wrp.toggled #sidebar-wrapper {margin-left: -15rem;}
+	}
+
+	.under_menu {
+		overflow-y: scroll;
+		height: calc(100vh - 57px - 500px);
+	}
 </style>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 	<!-- https://code.jquery.com/ deferも忘れず -->
@@ -25,6 +56,15 @@
 	};
 	window.addEventListener('load', setBodyPT, {once: true, passive: true});
 	window.addEventListener('resize', setBodyPT, {passive: true});
+
+	window.addEventListener('DOMContentLoaded', ()=> {
+		const wrp = document.getElementById('wrp');
+		document.getElementById('menu-toggle').onclick = ()=> {
+			wrp.classList.toggle('toggled');
+			return false;
+		};
+	}, {once: true, passive: true});
+
 </script>
 <script defer src="prj/web.js"></script>
 <script defer src="prj/web.vendor.js"></script>
@@ -45,6 +85,8 @@
 </head><body oncontextmenu="return false;">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top text-body">
+	<span id="menu-toggle" class="navbar-btn btn" aria-label="Snapshot" title="Snapshot"><i class="fas fa-bars"></i>　</span>
+
 	<a class="navbar-brand" href="#" onclick="return false;" aria-label="Title" title="Return to Top">SKYNovel</a>
 
 	<span class="navbar-text text-body" data-title>top page</span>
@@ -53,467 +95,509 @@
 	<span class="navbar-btn btn" aria-label="Look Code" title="Look Code" data-toggle="collapse" aria-expanded="false" data-target="#clpCode"><i class="fas fa-code"></i></span>
 	<span class="navbar-text text-body"><a href="prj/index_app.html">Mobile site</a>　</span>
 	<span class="navbar-text text-body"><a href="pwa_mono/index.html">Simple Ver</a></span>
-
-	<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-		aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav float-right ml-auto">
-			<li class="nav-item">
-				<a class="nav-link text-body" href="//famibee.github.io/SKYNovel/dev.htm" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> for developers</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-body" href="//famibee.blog38.fc2.com/" target="_blank" rel="noopener"><i class="fas fa-home"></i> home</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-body" href="//twitter.com/famibee" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> contact</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-body" href="mailto:famibee@gmail.com" target="_blank" rel="noopener"><i class="far fa-envelope"></i> to famibee</a>
-			</li>
-		</ul>
-	</div>
 </nav>
 
-<div class="container-fluid p-0">
-	<canvas id="skynovel" class="mw-100 mh-100 p-0"/>
-</div>
+<div id="wrp" class="d-flex">
+	<div class="bg-light border-right" id="sidebar-wrapper">
+		<div class="sidebar-heading"><i class="fas fa-play"></i> レイヤアニメ</div>
+		<div class="list-group list-group-flush">
+		<a class="list-group-item list-group-item-action bg-light" data-prj="ext_fg">クロスフェードや動き</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="tag_quake">画面を揺らす</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="tag_tsy">トゥイーンアニメを行なう</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="ext_fg2">立ち絵を簡単に扱う</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="glsl_slide">シェーダで画像切り替え</a>
+		</div>
 
-<div class="container-fluid p-0">
-	<div class="collapse" id="clpCode"><div id="code"/></div>
-</div>
+		<div class="sidebar-heading"><i class="far fa-images"></i> 画像・動画</div>
+		<div class="list-group list-group-flush">
+		<a class="list-group-item list-group-item-action bg-light" data-prj="tag_lay_face">画像も動画も重ねて表示</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="anime_png">アニメpng</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="tag_lay_mov">mp4, webp動画再生</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="blendmode">ブレンドモード</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="3d_base">３Ｄレイヤ（仕様策定中）</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="3d_gltf">glTF表示</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="emote_layer">えもふりレイヤ</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="3d_theta">天球表示</a>
+		</div>
 
-<div class="container-fluid">
-	<ul class="nav nav-pills">
-		<li class="nav-item">
-			<a class="nav-link" href="#tab_top" data-toggle="tab"><i class="fas fa-exclamation-circle"></i> 注目ポイント</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#tab_ani" data-toggle="tab"><i class="fas fa-play"></i> レイヤアニメ</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#tab_pic" data-toggle="tab"><i class="far fa-images"></i> 画像・動画</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#tab_ch" data-toggle="tab"><i class="fas fa-pencil-alt"></i> 文字表示</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#tab_scr" data-toggle="tab"><i class="far fa-file-alt"></i> スクリプト</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#tab_snd" data-toggle="tab"><i class="fas fa-music"></i> サウンド</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#tab_other" data-toggle="tab"><i class="fas fa-question-circle"></i> その他</a>
-		</li>
-	</ul>
-	<div class="tab-content">
-		<div id="tab_top" class="tab-pane fade"><div class="row p-3">
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> GPU描画でスマホでもサクサク</h5>
-					<img class="card-img p-0" src="grp/img_webgl.jpg"/>
-					<p class="card-text"><span class="text-light bg-info">WebGLによりGPUで描画</span>するため、大変高速です※</p>
-					<p class="card-text text-right"><small class="text-muted">※WebGL実行可能環境にて</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">マルチプラットフォーム</h5>
-					<img class="card-img p-0" src="grp/img_multiplat.jpg"/>
-					<p class="card-text">様々なデバイスで動作します。</p>
-					<p class="card-text">
-						<span class="text-light bg-info">desktop app</span> :
-						<i class="fab fa-windows"></i> Windows /
-						<i class="fab fa-apple"></i> macOS /
-						<i class="fab fa-linux"></i> Linux
-					</p>
-					<p class="card-text text-right"><small class="text-muted">※たぶん <i class="fab fa-steam"></i> Steam 配布できます。</small></p>
-					<p class="card-text">
-						<span class="text-light bg-info">phone app</span> :
-						<i class="fas fa-mobile-alt"></i> iOS /
-						<i class="fab fa-android"></i> Android
-					</p>
-					<p class="card-text">
-						<span class="text-light bg-info">browser</span> :
-						<i class="fab fa-chrome"></i> Google Chrome /
-						<i class="fab fa-safari"></i> Safari /
-						<i class="fab fa-edge"></i> Microsoft Edge /
-						(<i class="fab fa-firefox"></i> Firefox too...?)
-					</p>
-					<p class="card-text text-right"><small class="text-muted">※HTML5+JSが動作するなら大概いけます。</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> オープンソース</h5>
-					<img class="card-img p-0" src="grp/img_opsrc.jpg"/>
-					<p class="card-text"><span class="text-light bg-info">エンジン本体も、完成済みゲームサンプル</span>もオープンソース(MIT License)で。</p>
-					<p class="card-text text-right"><i class="fab fa-github"></i> <small class="text-muted"><a href="https://github.com/famibee/SKYNovel" target="_blank" rel="noopener">GitHubにて公開中！</a></small></p>
-				</div>
+		<div class="sidebar-heading"><i class="fas fa-pencil-alt"></i> 文字表示</div>
+		<div class="list-group list-group-flush">
+		<a class="list-group-item list-group-item-action bg-light" data-prj="ruby">直感的なルビ文法</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="ch_in_out">文字出現演出</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="font">フォント利用</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="txt_back">メッセージウインドウ</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="txt_back2">複数メッセージウインドウ</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="ch_button">文字ボタン・リンク</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="kidoku">既読スキップ</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="log_and_play">履歴と機能追加</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="line_breaking_rules">禁則処理と文字詰め</a>
+		</div>
+
+		<div class="sidebar-heading"><i class="fas fa-pencil-alt"></i> スクリプト</div>
+		<div class="list-group list-group-flush">
+		<a class="list-group-item list-group-item-action bg-light" data-prj="debug">デバッグ機能</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="tag_if">if文を使える</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="multiline">複数行タグやマクロ</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="ext_for_call">for文を使える</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="let_zenkaku">変数名に全角文字</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="anon_label">無名ラベル</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="escape">エスケープ文字</a>
+		</div>
+
+		<div class="sidebar-heading"><i class="fas fa-pencil-alt"></i> サウンド</div>
+		<div class="list-group list-group-flush">
+		<a class="list-group-item list-group-item-action bg-light" data-prj="sound">サウンド再生</a>
+
+		<div class="sidebar-heading"><i class="fas fa-pencil-alt"></i> その他</div>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="frame">HTMLフレーム</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="import">プレイデータ</a>
+		</div>
+		<div class="list-group list-group-flush">
+		<a class="list-group-item list-group-item-action bg-light" data-prj="77slide">SKYNovel発表スライド</a>
+		</div>
+	</div>
+
+	<div id="page-content-wrapper">
+		<div class="container-fluid">
+			<div class="container-fluid p-0">
+				<canvas id="skynovel" class="mw-100 mh-100 p-0"/>
 			</div>
 
-
-		</div></div>
-		<div id="tab_ani" class="tab-pane fade"><div class="row p-3">
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> フラグメントシェーダで[trans]</h5>
-					<img class="card-img p-0" src="grp/glsl_slide.jpg"/>
-					<p class="card-text">インラインでGLSL(OpenGL Shading Language)を記述し、[trans]にフラグメントシェーダを適用できます。</p>
-					<span class="btn btn-block btn-primary" data-prj="glsl_slide">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted">※例ではフラグメントシェーダでスクロールトランジションを実現しています。</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> レイヤのクロスフェードと画像変更と動きの拡張スクリプト</h5>
-					<img class="card-img p-0" src="grp/ext_fg.jpg"/>
-					<p class="card-text">クロスフェードしながらレイヤ画像を変更出来ます。しかもpng・動画アニメしてても構いません</p>
-					<span class="btn btn-block btn-primary" data-prj="ext_fg">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">画面を揺らす</h5>
-					<img class="card-img p-0" src="grp/tag_quake.jpg"/>
-					<p class="card-text">画面全体、全てのレイヤを揺らす</p>
-					<span class="btn btn-block btn-primary" data-prj="tag_quake">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">トゥイーンアニメを行なう</h5>
-					<img class="card-img p-0" src="grp/tag_tsy.jpg"/>
-					<p class="card-text">レイヤーにトゥイーンアニメ（変形・移動・回転アニメーション）を加える</p>
-					<span class="btn btn-block btn-primary" data-prj="tag_tsy">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">立ち絵を簡単に扱う拡張スクリプト</h5>
-					<img class="card-img p-0" src="grp/ext_fg2.jpg"/>
-					<p class="card-text">レイヤ管理と立ち絵管理を簡潔にします</p>
-					<span class="btn btn-block btn-primary" data-prj="ext_fg2">RUN sample</span>
-				</div>
+			<div class="container-fluid p-0 under_menu">
+				<div class="collapse" id="clpCode"><div id="code"/></div>
 			</div>
 
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					<a class="nav-link" href="#tab_top" data-toggle="tab"><i class="fas fa-exclamation-circle"></i> 注目ポイント</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#tab_ani" data-toggle="tab"><i class="fas fa-play"></i> レイヤアニメ</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#tab_pic" data-toggle="tab"><i class="far fa-images"></i> 画像・動画</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#tab_ch" data-toggle="tab"><i class="fas fa-pencil-alt"></i> 文字表示</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#tab_scr" data-toggle="tab"><i class="far fa-file-alt"></i> スクリプト</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#tab_snd" data-toggle="tab"><i class="fas fa-music"></i> サウンド</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#tab_other" data-toggle="tab"><i class="fas fa-question-circle"></i> その他</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div id="tab_top" class="tab-pane fade"><div class="row p-3">
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> GPU描画でスマホでもサクサク</h5>
+							<img class="card-img p-0" src="grp/img_webgl.jpg"/>
+							<p class="card-text"><span class="text-light bg-info">WebGLによりGPUで描画</span>するため、大変高速です※</p>
+							<p class="card-text text-right"><small class="text-muted">※WebGL実行可能環境にて</small></p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">マルチプラットフォーム</h5>
+							<img class="card-img p-0" src="grp/img_multiplat.jpg"/>
+							<p class="card-text">様々なデバイスで動作します。</p>
+							<p class="card-text">
+								<span class="text-light bg-info">desktop app</span> :
+								<i class="fab fa-windows"></i> Windows /
+								<i class="fab fa-apple"></i> macOS /
+								<i class="fab fa-linux"></i> Linux
+							</p>
+							<p class="card-text text-right"><small class="text-muted">※たぶん <i class="fab fa-steam"></i> Steam 配布できます。</small></p>
+							<p class="card-text">
+								<span class="text-light bg-info">phone app</span> :
+								<i class="fas fa-mobile-alt"></i> iOS /
+								<i class="fab fa-android"></i> Android
+							</p>
+							<p class="card-text">
+								<span class="text-light bg-info">browser</span> :
+								<i class="fab fa-chrome"></i> Google Chrome /
+								<i class="fab fa-safari"></i> Safari /
+								<i class="fab fa-edge"></i> Microsoft Edge /
+								(<i class="fab fa-firefox"></i> Firefox too...?)
+							</p>
+							<p class="card-text text-right"><small class="text-muted">※HTML5 + JS + WebGLが動作するなら大概いけます。</small></p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> オープンソース</h5>
+							<img class="card-img p-0" src="grp/img_opsrc.jpg"/>
+							<p class="card-text"><span class="text-light bg-info">エンジン本体も、完成済みゲームサンプル</span>もオープンソース(MIT License)で。</p>
+							<p class="card-text text-right"><i class="fab fa-github"></i> <small class="text-muted"><a href="https://github.com/famibee/SKYNovel" target="_blank" rel="noopener">GitHubにて公開中！</a></small></p>
+						</div>
+					</div>
+		
+		
+				</div></div>
+				<div id="tab_ani" class="tab-pane fade"><div class="row p-3">
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> レイヤのクロスフェードと画像変更と動きの拡張スクリプト</h5>
+							<img class="card-img p-0" src="grp/ext_fg.jpg"/>
+							<p class="card-text">クロスフェードしながらレイヤ画像を変更出来ます。しかもpng・動画アニメしてても構いません</p>
+							<span class="btn btn-block btn-primary" data-prj="ext_fg">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">画面を揺らす</h5>
+							<img class="card-img p-0" src="grp/tag_quake.jpg"/>
+							<p class="card-text">画面全体、全てのレイヤを揺らす</p>
+							<span class="btn btn-block btn-primary" data-prj="tag_quake">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">トゥイーンアニメを行なう</h5>
+							<img class="card-img p-0" src="grp/tag_tsy.jpg"/>
+							<p class="card-text">レイヤーにトゥイーンアニメ（変形・移動・回転アニメーション）を加える</p>
+							<span class="btn btn-block btn-primary" data-prj="tag_tsy">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">立ち絵を簡単に扱う拡張スクリプト</h5>
+							<img class="card-img p-0" src="grp/ext_fg2.jpg"/>
+							<p class="card-text">レイヤ管理と立ち絵管理を簡潔にします</p>
+							<span class="btn btn-block btn-primary" data-prj="ext_fg2">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> フラグメントシェーダで[trans]</h5>
+							<img class="card-img p-0" src="grp/glsl_slide.jpg"/>
+							<p class="card-text">インラインでGLSL(OpenGL Shading Language)を記述し、[trans]にフラグメントシェーダを適用できます。</p>
+							<span class="btn btn-block btn-primary" data-prj="glsl_slide">RUN sample</span>
+							<p class="card-text text-right"><small class="text-muted">※例ではフラグメントシェーダでスクロールトランジションを実現しています。</small></p>
+						</div>
+					</div>
+		
+		
+				</div></div>
+				<div id="tab_pic" class="tab-pane fade"><div class="row p-3">
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> 画像も動画も重ねて表示</h5>
+							<img class="card-img p-0" src="grp/tag_lay_face.jpg"/>
+							<p class="card-text">【内蔵のタグ】画像レイヤへ[lay][add_face]の操作で<span class="text-light bg-info">画像（png, jpeg）や動画（mp4, webp）を区別なく重ねて表示</span>できます。目パチも動画立ち絵も思いのまま。</p>
+							<span class="btn btn-block btn-primary" data-prj="tag_lay_face">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">アニメpng</h5>
+							<img class="card-img p-0" src="grp/anime_png.jpg"/>
+							<p class="card-text">アニメpng（<span class="text-success">スプライトシート形式</span>）をサポート。<span class="text-light bg-info">画像レイヤのfn,face属性に指定</span>できます。</p>
+							<p class="card-text text-right"><small class="text-muted"><a href="https://qiita.com/tadfmac/items/6065c40fdc7b12f5f701#%E3%82%B9%E3%83%97%E3%83%A9%E3%82%A4%E3%83%88%E3%82%B7%E3%83%BC%E3%83%88%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B" target="_blank" rel="noopener">スプライトシートとは?</a></small></p>
+							<span class="btn btn-block btn-primary" data-prj="anime_png">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">mp4, webp動画再生</h5>
+							<img class="card-img p-0" src="grp/tag_lay_mov.jpg"/>
+							<p class="card-text">動画ファイルをサポート。<span class="text-light bg-info">画像レイヤのfn,face属性に指定</span>できます。</p>
+							<p class="card-text text-right"><small class="text-muted">※よってAIRNovelでいうムービーレイヤはありません</small></p>
+							<span class="btn btn-block btn-primary" data-prj="tag_lay_mov">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">ブレンドモード</h5>
+							<img class="card-img p-0" src="grp/blendmode.jpg"/>
+							<p class="card-text">ブレンドモードをサポート。<span class="text-light bg-info">重なった画像の表現方法</span>を指定できます。</p>
+							<span class="btn btn-block btn-primary" data-prj="blendmode">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> ３Ｄレイヤ</h5>
+							<img class="card-img p-0" src="grp/3d_base.jpg"/>
+							<p class="card-text">画像・文字レイヤと同様に３Ｄレイヤが使えます（仕様策定中）</p>
+							<span class="btn btn-block btn-primary" data-prj="3d_base">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> ３Ｄレイヤ（glTF表示）</h5>
+							<picture>
+								<source type="image/webp" srcset="grp/3d_gltf.webp"/>
+								<img class="card-img p-0" src="grp/3d_gltf.jpg"/>
+							</picture>
+							<p class="card-text">３ＤレイヤでglTFモデルを表示できます（仕様策定中）</p>
+							<span class="btn btn-block btn-primary" data-prj="3d_gltf">RUN sample</span>
+							<p class="card-text text-right"><small class="text-muted"><a href="https://sketchfab.com/3d-models/hip-hop-dancing-4276f1cab77845e0be820af6679aaf4b" target="_blank" rel="noopener">"Hip Hop Dancing"</a> © yordanny.alzate (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Licensed under CC BY 4.0</a>)</small></p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> えもふりレイヤ</h5>
+							<img class="card-img p-0" src="grp/emote_layer.jpg"/>
+							<p class="card-text"><a href="https://emote.mtwo.co.jp/emofuri/" target="_blank" rel="noopener">えもふり</a>を表示するレイヤです。</p>
+							<p class="card-text"><small class="text-muted">本プラグインの使用者(開発者)は、簡易的な許諾書(<a href="core/plugin/emote_layer/最初にお読み下さい.txt" target="_blank" rel="noopener">最初にお読みください.txt</a>)を確認して下さい。</small></p>
+							<p class="card-text"><small class="text-muted">※実際の開発時は、えもふり制作元の有限会社エムツーさんへ<a href="https://emote.mtwo.co.jp/purchase-indies.php" target="_blank" rel="noopener">E-moteインディーズプランの申し込み</a>（または<a href="https://emote.mtwo.co.jp/purchase-commercial.php" target="_blank" rel="noopener">コマーシャルプラン</a>）をして下さい。</small></p>
+							<span class="btn btn-block btn-primary" data-prj="emote_layer">RUN sample</span>
+							<p class="card-text text-right"><small class="text-muted">E-mote Powered by M2 Co.,Ltd.</small></p>
+						</div>
+					</div>
+		<!--
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> Live2D Cubismレイヤ</h5>
+							<picture>
+								<source type="image/webp" srcset="grp/cubism3_layer.webp"/>
+								<img class="card-img p-0" src="grp/cubism3_layer.jpg"/>
+							</picture>
+							<p class="card-text"><a href="https://emote.mtwo.co.jp/emofuri/" target="_blank" rel="noopener">Live2D® Cubism</a>を表示するレイヤです。</p>
+							<p class="card-text text-right"><small class="text-muted">※暫定版です</small></p>
+							<p class="card-text"><small class="text-muted">※実際の使用時は、Live2D社の<a href="https://www.live2d.com/ja/products/releaselicense" target="_blank" rel="noopener">SDKリリース(出版許諾)ライセンス</a>を確認して下さい。</small></p>
+							<span class="btn btn-block btn-primary" data-prj="cubism3_layer">RUN sample</span>
+							<p class="card-text text-right"><small class="text-muted">Live2D Cubism Powered by Live2D Inc.</small></p>
+						</div>
+					</div>
+		-->
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> ３Ｄレイヤ・天球表示（実験機能）</h5>
+							<img class="card-img p-0" src="grp/3d_theta.jpg"/>
+							<p class="card-text">天球のように360°パノラマ画像を表示できます（仕様策定中）</p>
+							<span class="btn btn-block btn-primary" data-prj="3d_theta">RUN sample</span>
+						</div>
+					</div>
+		
+		
+				</div></div>
+				<div id="tab_ch" class="tab-pane fade"><div class="row p-3">
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">直感的なルビ文法</h5>
+							<img class="card-img p-0" src="grp/ruby.jpg"/>
+							<p class="card-text">青空文庫《あおぞらぶんこ》といった文法で記述できます。</p>
+							<span class="btn btn-block btn-primary" data-prj="ruby">RUN sample</span>
+							<p class="card-text text-right"><small class="text-muted">※<a href="//kumihan.aozora.gr.jp/etc.html#ruby">青空文庫</a>のテキスト版書式を参考に作りました</small></p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">文字出現演出</h5>
+							<img class="card-img p-0" src="grp/ch_in_out.jpg"/>
+							<p class="card-text">文字出現演出を指定できます</p>
+							<span class="btn btn-block btn-primary" data-prj="ch_in_out">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">フォント利用</h5>
+							<img class="card-img p-0" src="grp/font.jpg"/>
+							<p class="card-text">フォントファイル(※1)・Webフォント（※2）を利用できます</p>
+							<span class="btn btn-block btn-primary" data-prj="font">RUN sample</span>
+							<p class="card-text text-right"><small class="text-muted">
+								※1)拡張子woff2、otf、ttfのフォント<br/>
+								※2)WEB上のcssファイル
+							</small></p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">メッセージウインドウ</h5>
+							<img class="card-img p-0" src="grp/txt_back.jpg"/>
+							<p class="card-text">メッセージウインドウや名前表示・システムボタンなども可能</p>
+							<span class="btn btn-block btn-primary" data-prj="txt_back">RUN sample</span>
+							<p class="card-text text-right"><small class="text-muted">
+								素材　<a href="//www.vita-chi.net/message.htm" target="_blank" rel="noopener">びたちー素材館</a>さま
+							</small></p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">複数メッセージウインドウ</h5>
+							<img class="card-img p-0" src="grp/txt_back2.jpg"/>
+							<p class="card-text">複数のメッセージウインドウを扱うサンプル</p>
+							<span class="btn btn-block btn-primary" data-prj="txt_back2">RUN sample</span>
+							<p class="card-text text-right"><small class="text-muted">
+								素材　<a href="//www.vita-chi.net/message.htm" target="_blank" rel="noopener">びたちー素材館</a>さま
+							</small></p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">文字ボタン・リンク</h5>
+							<img class="card-img p-0" src="grp/ch_button.jpg"/>
+							<p class="card-text">文字リンクや各種ボタンでメニューや選択肢も作れる</p>
+							<span class="btn btn-block btn-primary" data-prj="ch_button">RUN sample</span>
+							<p class="card-text text-right"><small class="text-muted">
+								素材　<a href="//www.vita-chi.net/message.htm" target="_blank" rel="noopener">びたちー素材館</a>さま
+							</small></p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">既読スキップ</h5>
+							<img class="card-img p-0" src="grp/kidoku.jpg"/>
+							<p class="card-text">一度読んだ箇所は、高速読み飛ばしすることが出来ます。クリックか未読部分で止まります。</p>
+							<span class="btn btn-block btn-primary" data-prj="kidoku">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">履歴と機能追加</h5>
+							<img class="card-img p-0" src="grp/log_and_play.jpg"/>
+							<p class="card-text">テキストログ表示と、情報や機能を付加した表示ができます</p>
+							<span class="btn btn-block btn-primary" data-prj="log_and_play">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">禁則処理と文字詰め</h5>
+							<img class="card-img p-0" src="grp/line_breaking_rules.jpg"/>
+							<p class="card-text">読みやすさのため本格的な禁則処理を行います</p>
+							<span class="btn btn-block btn-primary" data-prj="line_breaking_rules">RUN sample</span>
+						</div>
+					</div>
+		
+		
+				</div></div>
+				<div id="tab_scr" class="tab-pane fade"><div class="row p-3">
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">スクリプト文法は KAG3 系</h5>
+							<img class="card-img p-0" src="grp/img_kag3.jpg"/>
+							<p class="card-text"><a href="//famibee.web.fc2.com/intro/home.htm" target="_blank" rel="noopener">AIRNovel</a>、吉里吉里などとほぼ同じです。</p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">NScripter的「一文字マクロ」</h5>
+							<img class="card-img p-0" src="grp/img_char2macro.jpg"/>
+							<p class="card-text">例えば「@」という一文字を引数無しマクロの別名にできます。</p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">デバッグ機能</h5>
+							<img class="card-img p-0" src="grp/debug.jpg"/>
+							<p class="card-text">レイヤ構造や変数などを確認できます。</p>
+							<span class="btn btn-block btn-primary" data-prj="debug">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">if文を使える</h5>
+							<img class="card-img p-0" src="grp/tag_if.jpg"/>
+							<p class="card-text">【内蔵のタグ】複雑な条件分岐を行える[if][elsif][else][endif]があります。</p>
+							<span class="btn btn-block btn-primary" data-prj="tag_if">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">複数行タグやマクロ</h5>
+							<img class="card-img p-0" src="grp/multiline.jpg"/>
+							<p class="card-text">タグやマクロは複数行に改行して書け、コメントも書けます。</p>
+							<small class="text-muted">※このページでソースを見ても分かりませんが、実際のmain.snではタグを複数行で記述してます</small>
+							<span class="btn btn-block btn-primary" data-prj="multiline">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">for文を使える</h5>
+							<img class="card-img p-0" src="grp/ext_for_call.jpg"/>
+							<p class="card-text">for文のように変数を変化させながら[call]を繰り返すマクロを提供</p>
+							<span class="btn btn-block btn-primary" data-prj="ext_for_call">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">変数名に全角文字</h5>
+							<img class="card-img p-0" src="grp/let_zenkaku.jpg"/>
+							<p class="card-text">変数名は半角英数字、全角文字が使えます。</p>
+							<span class="btn btn-block btn-primary" data-prj="let_zenkaku">RUN sample</span>
+							<p class="card-text text-right"><small class="text-muted">※文字コード：UTF-8、改行コード：LF</small></p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">無名ラベル</h5>
+							<img class="card-img p-0" src="grp/anon_label.jpg"/>
+							<p class="card-text">ラベル名を考えるのが面倒なとき、「無名ラベル」ともいうべき機能が使えます。</p>
+							<span class="btn btn-block btn-primary" data-prj="anon_label">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">エスケープ文字</h5>
+							<img class="card-img p-0" src="grp/escape.jpg"/>
+							<p class="card-text">特別な意味がある文字（&[;*｜《）や一文字マクロなどをそのまま表示できます。</p>
+							<span class="btn btn-block btn-primary" data-prj="escape">RUN sample</span>
+						</div>
+					</div>
+		
+		
+				</div></div>
+				<div id="tab_snd" class="tab-pane fade"><div class="row p-3">
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">サウンド再生</h5>
+							<img class="card-img p-0" src="grp/sound.jpg"/>
+							<p class="card-text">サウンド再生とフェードできます</p>
+							<span class="btn btn-block btn-primary" data-prj="sound">RUN sample</span>
+						</div>
+					</div>
+		
+		
+				</div></div>
+				<div id="tab_other" class="tab-pane fade"><div class="row p-3">
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">HTMLフレーム</h5>
+							<img class="card-img p-0" src="grp/frame.jpg"/>
+							<p class="card-text">HTMLファイルをベースとする「フレーム」表示・変数をやりとりできる</p>
+							<span class="btn btn-block btn-primary" data-prj="frame">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">プレイデータ</h5>
+							<img class="card-img p-0" src="grp/import.jpg"/>
+							<p class="card-text">プレイデータをエクスポート・インポートできる</p>
+							<span class="btn btn-block btn-primary" data-prj="import">RUN sample</span>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">自動アップデート機能</h5>
+							<img class="card-img p-0" src="grp/img_autoupd.jpg"/>
+							<p class="card-text">制作したゲームに自動アップデート機能をつけられます</p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">メールやツイッターとの連動</h5>
+							<img class="card-img p-0" src="grp/tag_navigate_to.jpg"/>
+							<p class="card-text">【内蔵のタグ】ＵＲＬを開く[navigate_to]があります</p>
+						</div>
+					</div>
+					<div class="col-sm-4 card p-0 border border-secondary">
+						<div class="card-body">
+							<h5 class="card-title text-center">SKYNovel発表スライド</h5>
+							<img class="card-img p-0" src="grp/77slide.jpg"/>
+							<p class="card-text">2018/7/7 SKYNovel発表時のスライドプロジェクトです（多少メンテナンスしてます）</p>
+							<span class="btn btn-block btn-primary" data-prj="77slide">RUN sample</span>
+						</div>
+					</div>
+		
+				</div></div>
+			</div>
 
-		</div></div>
-		<div id="tab_pic" class="tab-pane fade"><div class="row p-3">
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> 画像も動画も重ねて表示</h5>
-					<img class="card-img p-0" src="grp/tag_lay_face.jpg"/>
-					<p class="card-text">【内蔵のタグ】画像レイヤへ[lay][add_face]の操作で<span class="text-light bg-info">画像（png, jpeg）や動画（mp4, webp）を区別なく重ねて表示</span>できます。目パチも動画立ち絵も思いのまま。</p>
-					<span class="btn btn-block btn-primary" data-prj="tag_lay_face">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">アニメpng</h5>
-					<img class="card-img p-0" src="grp/anime_png.jpg"/>
-					<p class="card-text">アニメpng（<span class="text-success">スプライトシート形式</span>）をサポート。<span class="text-light bg-info">画像レイヤのfn,face属性に指定</span>できます。</p>
-					<p class="card-text text-right"><small class="text-muted"><a href="https://qiita.com/tadfmac/items/6065c40fdc7b12f5f701#%E3%82%B9%E3%83%97%E3%83%A9%E3%82%A4%E3%83%88%E3%82%B7%E3%83%BC%E3%83%88%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B" target="_blank" rel="noopener">スプライトシートとは?</a></small></p>
-					<span class="btn btn-block btn-primary" data-prj="anime_png">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">mp4, webp動画再生</h5>
-					<img class="card-img p-0" src="grp/tag_lay_mov.jpg"/>
-					<p class="card-text">動画ファイルをサポート。<span class="text-light bg-info">画像レイヤのfn,face属性に指定</span>できます。</p>
-					<p class="card-text text-right"><small class="text-muted">※よってAIRNovelでいうムービーレイヤはありません</small></p>
-					<span class="btn btn-block btn-primary" data-prj="tag_lay_mov">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">ブレンドモード</h5>
-					<img class="card-img p-0" src="grp/blendmode.jpg"/>
-					<p class="card-text">ブレンドモードをサポート。<span class="text-light bg-info">重なった画像の表現方法</span>を指定できます。</p>
-					<span class="btn btn-block btn-primary" data-prj="blendmode">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> ３Ｄレイヤ</h5>
-					<img class="card-img p-0" src="grp/3d_base.jpg"/>
-					<p class="card-text">画像・文字レイヤと同様に３Ｄレイヤが使えます（仕様策定中）</p>
-					<span class="btn btn-block btn-primary" data-prj="3d_base">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> ３Ｄレイヤ（glTF表示）</h5>
-					<picture>
-						<source type="image/webp" srcset="grp/3d_gltf.webp"/>
-						<img class="card-img p-0" src="grp/3d_gltf.jpg"/>
-					</picture>
-					<p class="card-text">３ＤレイヤでglTFモデルを表示できます（仕様策定中）</p>
-					<span class="btn btn-block btn-primary" data-prj="3d_gltf">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted"><a href="https://sketchfab.com/3d-models/hip-hop-dancing-4276f1cab77845e0be820af6679aaf4b" target="_blank" rel="noopener">"Hip Hop Dancing"</a> © yordanny.alzate (<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Licensed under CC BY 4.0</a>)</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> えもふりレイヤ</h5>
-					<img class="card-img p-0" src="grp/emote_layer.jpg"/>
-					<p class="card-text"><a href="https://emote.mtwo.co.jp/emofuri/" target="_blank" rel="noopener">えもふり</a>を表示するレイヤです。</p>
-					<p class="card-text"><small class="text-muted">本プラグインの使用者(開発者)は、簡易的な許諾書(<a href="core/plugin/emote_layer/最初にお読み下さい.txt" target="_blank" rel="noopener">最初にお読みください.txt</a>)を確認して下さい。</small></p>
-					<p class="card-text"><small class="text-muted">※実際の開発時は、えもふり制作元の有限会社エムツーさんへ<a href="https://emote.mtwo.co.jp/purchase-indies.php" target="_blank" rel="noopener">E-moteインディーズプランの申し込み</a>（または<a href="https://emote.mtwo.co.jp/purchase-commercial.php" target="_blank" rel="noopener">コマーシャルプラン</a>）をして下さい。</small></p>
-					<span class="btn btn-block btn-primary" data-prj="emote_layer">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted">E-mote Powered by M2 Co.,Ltd.</small></p>
-				</div>
-			</div>
-<!--
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> Live2D Cubismレイヤ</h5>
-					<picture>
-						<source type="image/webp" srcset="grp/cubism3_layer.webp"/>
-						<img class="card-img p-0" src="grp/cubism3_layer.jpg"/>
-					</picture>
-					<p class="card-text"><a href="https://emote.mtwo.co.jp/emofuri/" target="_blank" rel="noopener">Live2D® Cubism</a>を表示するレイヤです。</p>
-					<p class="card-text text-right"><small class="text-muted">※暫定版です</small></p>
-					<p class="card-text"><small class="text-muted">※実際の使用時は、Live2D社の<a href="https://www.live2d.com/ja/products/releaselicense" target="_blank" rel="noopener">SDKリリース(出版許諾)ライセンス</a>を確認して下さい。</small></p>
-					<span class="btn btn-block btn-primary" data-prj="cubism3_layer">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted">Live2D Cubism Powered by Live2D Inc.</small></p>
-				</div>
-			</div>
--->
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> ３Ｄレイヤ・天球表示（実験機能）</h5>
-					<img class="card-img p-0" src="grp/3d_theta.jpg"/>
-					<p class="card-text">天球のように360°パノラマ画像を表示できます（仕様策定中）</p>
-					<span class="btn btn-block btn-primary" data-prj="3d_theta">RUN sample</span>
-				</div>
-			</div>
-
-
-		</div></div>
-		<div id="tab_ch" class="tab-pane fade"><div class="row p-3">
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">直感的なルビ文法</h5>
-					<img class="card-img p-0" src="grp/ruby.jpg"/>
-					<p class="card-text">青空文庫《あおぞらぶんこ》といった文法で記述できます。</p>
-					<span class="btn btn-block btn-primary" data-prj="ruby">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted">※<a href="//kumihan.aozora.gr.jp/etc.html#ruby">青空文庫</a>のテキスト版書式を参考に作りました</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">文字出現演出</h5>
-					<img class="card-img p-0" src="grp/ch_in_out.jpg"/>
-					<p class="card-text">文字出現演出を指定できます</p>
-					<span class="btn btn-block btn-primary" data-prj="ch_in_out">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">フォント利用</h5>
-					<img class="card-img p-0" src="grp/font.jpg"/>
-					<p class="card-text">フォントファイル(※1)・Webフォント（※2）を利用できます</p>
-					<span class="btn btn-block btn-primary" data-prj="font">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted">
-						※1)拡張子woff2、otf、ttfのフォント<br/>
-						※2)WEB上のcssファイル
-					</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">メッセージウインドウ</h5>
-					<img class="card-img p-0" src="grp/txt_back.jpg"/>
-					<p class="card-text">メッセージウインドウや名前表示・システムボタンなども可能</p>
-					<span class="btn btn-block btn-primary" data-prj="txt_back">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted">
-						素材　<a href="//www.vita-chi.net/message.htm" target="_blank" rel="noopener">びたちー素材館</a>さま
-					</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">複数メッセージウインドウ</h5>
-					<img class="card-img p-0" src="grp/txt_back2.jpg"/>
-					<p class="card-text">複数のメッセージウインドウを扱うサンプル</p>
-					<span class="btn btn-block btn-primary" data-prj="txt_back2">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted">
-						素材　<a href="//www.vita-chi.net/message.htm" target="_blank" rel="noopener">びたちー素材館</a>さま
-					</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">文字ボタン・リンク</h5>
-					<img class="card-img p-0" src="grp/ch_button.jpg"/>
-					<p class="card-text">文字リンクや各種ボタンでメニューや選択肢も作れる</p>
-					<span class="btn btn-block btn-primary" data-prj="ch_button">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted">
-						素材　<a href="//www.vita-chi.net/message.htm" target="_blank" rel="noopener">びたちー素材館</a>さま
-					</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">既読スキップ</h5>
-					<img class="card-img p-0" src="grp/kidoku.jpg"/>
-					<p class="card-text">一度読んだ箇所は、高速読み飛ばしすることが出来ます。クリックか未読部分で止まります。</p>
-					<span class="btn btn-block btn-primary" data-prj="kidoku">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">履歴と機能追加</h5>
-					<img class="card-img p-0" src="grp/log_and_play.jpg"/>
-					<p class="card-text">テキストログ表示と、情報や機能を付加した表示ができます</p>
-					<span class="btn btn-block btn-primary" data-prj="log_and_play">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">禁則処理と文字詰め</h5>
-					<img class="card-img p-0" src="grp/line_breaking_rules.jpg"/>
-					<p class="card-text">読みやすさのため本格的な禁則処理を行います</p>
-					<span class="btn btn-block btn-primary" data-prj="line_breaking_rules">RUN sample</span>
-				</div>
-			</div>
-
-
-		</div></div>
-		<div id="tab_scr" class="tab-pane fade"><div class="row p-3">
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">スクリプト文法は KAG3 系</h5>
-					<img class="card-img p-0" src="grp/img_kag3.jpg"/>
-					<p class="card-text"><a href="//famibee.web.fc2.com/intro/home.htm" target="_blank" rel="noopener">AIRNovel</a>、吉里吉里などとほぼ同じです。</p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">NScripter的「一文字マクロ」</h5>
-					<img class="card-img p-0" src="grp/img_char2macro.jpg"/>
-					<p class="card-text">例えば「@」という一文字を引数無しマクロの別名にできます。</p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">デバッグ機能</h5>
-					<img class="card-img p-0" src="grp/debug.jpg"/>
-					<p class="card-text">レイヤ構造や変数などを確認できます。</p>
-					<span class="btn btn-block btn-primary" data-prj="debug">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">if文を使える</h5>
-					<img class="card-img p-0" src="grp/tag_if.jpg"/>
-					<p class="card-text">【内蔵のタグ】複雑な条件分岐を行える[if][elsif][else][endif]があります。</p>
-					<span class="btn btn-block btn-primary" data-prj="tag_if">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">複数行タグやマクロ</h5>
-					<img class="card-img p-0" src="grp/multiline.jpg"/>
-					<p class="card-text">タグやマクロは複数行に改行して書け、コメントも書けます。</p>
-					<small class="text-muted">※このページでソースを見ても分かりませんが、実際のmain.snではタグを複数行で記述してます</small>
-					<span class="btn btn-block btn-primary" data-prj="multiline">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">for文を使える</h5>
-					<img class="card-img p-0" src="grp/ext_for_call.jpg"/>
-					<p class="card-text">for文のように変数を変化させながら[call]を繰り返すマクロを提供</p>
-					<span class="btn btn-block btn-primary" data-prj="ext_for_call">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">変数名に全角文字</h5>
-					<img class="card-img p-0" src="grp/let_zenkaku.jpg"/>
-					<p class="card-text">変数名は半角英数字、全角文字が使えます。</p>
-					<span class="btn btn-block btn-primary" data-prj="let_zenkaku">RUN sample</span>
-					<p class="card-text text-right"><small class="text-muted">※文字コード：UTF-8、改行コード：LF</small></p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">無名ラベル</h5>
-					<img class="card-img p-0" src="grp/anon_label.jpg"/>
-					<p class="card-text">ラベル名を考えるのが面倒なとき、「無名ラベル」ともいうべき機能が使えます。</p>
-					<span class="btn btn-block btn-primary" data-prj="anon_label">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">エスケープ文字</h5>
-					<img class="card-img p-0" src="grp/escape.jpg"/>
-					<p class="card-text">特別な意味がある文字（&[;*｜《）や一文字マクロなどをそのまま表示できます。</p>
-					<span class="btn btn-block btn-primary" data-prj="escape">RUN sample</span>
-				</div>
-			</div>
-
-
-		</div></div>
-		<div id="tab_snd" class="tab-pane fade"><div class="row p-3">
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">サウンド再生</h5>
-					<img class="card-img p-0" src="grp/sound.jpg"/>
-					<p class="card-text">サウンド再生とフェードできます</p>
-					<span class="btn btn-block btn-primary" data-prj="sound">RUN sample</span>
-				</div>
-			</div>
-
-
-		</div></div>
-		<div id="tab_other" class="tab-pane fade"><div class="row p-3">
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">HTMLフレーム</h5>
-					<img class="card-img p-0" src="grp/frame.jpg"/>
-					<p class="card-text">HTMLファイルをベースとする「フレーム」表示・変数をやりとりできる</p>
-					<span class="btn btn-block btn-primary" data-prj="frame">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">プレイデータ</h5>
-					<img class="card-img p-0" src="grp/import.jpg"/>
-					<p class="card-text">プレイデータをエクスポート・インポートできる</p>
-					<span class="btn btn-block btn-primary" data-prj="import">RUN sample</span>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">自動アップデート機能</h5>
-					<img class="card-img p-0" src="grp/img_autoupd.jpg"/>
-					<p class="card-text">制作したゲームに自動アップデート機能をつけられます</p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">メールやツイッターとの連動</h5>
-					<img class="card-img p-0" src="grp/tag_navigate_to.jpg"/>
-					<p class="card-text">【内蔵のタグ】ＵＲＬを開く[navigate_to]があります</p>
-				</div>
-			</div>
-			<div class="col-sm-4 card p-0 border border-secondary">
-				<div class="card-body">
-					<h5 class="card-title text-center">SKYNovel発表スライド</h5>
-					<img class="card-img p-0" src="grp/77slide.jpg"/>
-					<p class="card-text">2018/7/7 SKYNovel発表時のスライドプロジェクトです（多少メンテナンスしてます）</p>
-					<span class="btn btn-block btn-primary" data-prj="77slide">RUN sample</span>
-				</div>
-			</div>
-
-
-		</div></div>
+		</div>
 	</div>
 </div>
 
