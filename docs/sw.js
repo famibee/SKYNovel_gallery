@@ -108,13 +108,13 @@ define("./sw.js",['./workbox-00ef8af7'], function (workbox) { 'use strict';
 
   workbox.precacheAndRoute([{
     "url": "prj/web.js",
-    "revision": "1fd2c8ff3c776bc99d4b381b4ad287a3"
+    "revision": "ca906ff03d5d14e3bfd18e65a0df444f"
   }, {
     "url": "prj/web.three.js",
     "revision": "36c16283e8c3a1c6ec0167c233ca1465"
   }, {
     "url": "prj/web.vendor.js",
-    "revision": "e3584d41050f9ac7df95fb0ac5f16c1b"
+    "revision": "ca6b486f74464917c2373bc8f2db3ed1"
   }], {
     "directoryIndex": "/"
   });

@@ -7,9 +7,10 @@
 
 const {Layer, CmnLib, argChk_Num, argChk_Boolean} = require('@famibee/skynovel/web');
 import {HArg, IPluginInitArg} from '@famibee/skynovel';
-import {Scene, WebGLRenderer, Camera, Clock, GridHelper, PerspectiveCamera, DirectionalLight, Mesh, BoxGeometry, MeshNormalMaterial, SphereGeometry, TextureLoader, LinearFilter, MeshBasicMaterial, AnimationClip, LoopRepeat, LoopOnce, Material, Object3D, AnimationMixer} from 'three';
+import {Scene, WebGLRenderer, Camera, Clock, GridHelper, PerspectiveCamera, DirectionalLight, Mesh, BoxGeometry, MeshNormalMaterial, SphereGeometry, TextureLoader, LinearFilter, MeshBasicMaterial, AnimationClip, LoopRepeat, LoopOnce, Material, Object3D, AnimationMixer, Vector3} from 'three';
 
 import {Sprite, Texture} from 'pixi.js';
+/// <reference path="./effekseer.d.ts" />
 
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 
@@ -30,14 +31,26 @@ export class ThreeDLayer extends Layer {
 		if (ThreeDLayer.uniq_num++ % 2 == 1) return;
 
 		this.scene_3D = new Scene();
-		const log = console.log;	// 「THREE.WebGLRenderer 100」を消したい
-		console.log = ()=> {};
-		this.canvas_3D	= new WebGLRenderer({antialias: true, alpha: true});
-		console.log = log;
+		this.canvas_3D = new WebGLRenderer({antialias: true, alpha: true});
 
 		// 3D Scene canvas
 		this.canvas_3D.setSize(CmnLib.stageW, CmnLib.stageH);
 		this.canvas_3D.setPixelRatio(window.devicePixelRatio);
+
+		if (ThreeDLayer.uniq_num === 1) {
+			effekseer.initRuntime('./effekseer.wasm', ()=> {
+				this.ctxEff = effekseer.createContext();
+				this.ctxEff.init(this.canvas_3D.getContext());
+
+				const clock = new Clock();
+				this.tickUpdEff = ()=> {
+					this.ctxEff.update(clock.getDelta() * 60.0);
+					this.ctxEff.setProjectionMatrix(this.camera.projectionMatrix.elements);
+					this.ctxEff.setCameraMatrix(this.camera.matrixWorldInverse.elements);
+					this.ctxEff.draw();
+				};
+			}, ()=> {});
+		}
 
 		// Map 3D canvas to 2D Canvas
 		const texture_3D = Texture.from(this.canvas_3D.domElement);
@@ -46,11 +59,17 @@ export class ThreeDLayer extends Layer {
 		this.sprite_3D.x = (CmnLib.stageW -this.sprite_3D.width) /2
 		this.sprite_3D.y = (CmnLib.stageH -this.sprite_3D.height) /2
 	}
+	private	ctxEff	: effekseer.EffekseerContext;
+	private hEff	: any = {};
+	private	tickUpdEff	= ()=> {};
+
+
 	private tick = ()=> {
 		if (! this.running) return;
 
 		this.canvas_3D.render(this.scene_3D, this.camera);
 		this.sprite_3D.texture.update();	//tell pixi that threejs changed
+		this.tickUpdEff();
 		this.fncCtrl();
 		this.fncMixerUpd();
 		requestAnimationFrame(this.tick);
@@ -85,6 +104,11 @@ export class ThreeDLayer extends Layer {
 				);
 			}
 			this.csv2pos(hArg, 'camera', this.camera);
+
+			if ('camera_target' in hArg) {
+				const [x, y, z] = String(hArg['camera_target']).split(',').map(v=> Number(v));
+				this.camera.lookAt(new Vector3(x, y, z));
+			}
 		}
 		if ('directional_light' in hArg) {	// 平行光源
 			const light = new DirectionalLight(0xFFFFFF);
@@ -114,7 +138,7 @@ export class ThreeDLayer extends Layer {
 		}
 
 		const type = hArg.type;
-		const name = hArg.name || '';
+		const name = hArg.name ?? '';
 		let mdl: Object3D = new Mesh();
 		if (type) {
 			if (name in this.hInf) throw `name（=${name}）が重複しています`;
@@ -130,198 +154,206 @@ export class ThreeDLayer extends Layer {
 				mdl = new Mesh(geometry, material);
 				mdl.rotation.z = -45;
 
-				this.fncCtrl = ()=> {
-					this.scene_3D.children.map(o=> {
-						const m = o as Mesh;
-						if (! m) return;
+				this.fncCtrl = ()=> this.scene_3D.children.forEach(o=> {
+					const m = o as Mesh;
+					if (! m) return;
 
-						m.rotation.x += 0.01;
-						m.rotation.y += 0.01;
-						m.rotation.z += 0.01;
-					});
-				};
+					m.rotation.x += 0.01;
+					m.rotation.y += 0.01;
+					m.rotation.z += 0.01;
+				});
 
 				this.hInf[name] = {type: type, fn: ''};
-				mdl.name = name;
-				this.scene_3D.add(mdl);
-				return false;
 			}
+			else {
+				const fn = hArg.fn;
+				if (! fn) throw 'fnは必須です';
+				switch (type) {
+					case 'eff':{
+						// https://github.com/effekseer/EffekseerForWebGL
+						this.hEff[fn] = this.ctxEff.loadEffect(
+							ThreeDLayer.plgArg.searchPath(fn, 'efk'),
+							argChk_Num(hArg, 'scale', 1),
+							()=> {
+								const [x, y, z] = String(hArg.pos ?? '0,0,0').split(',');
+								const h = this.ctxEff.play(this.hEff[fn], x, y, z);
+								this.hInf[name] = {type: type, fn: fn, effhdl: h};
+							},
+							(m: any, url: any)=> console.error(m +' url='+ url),
+						);
+					}
+						break;
 
-			const fn = hArg.fn;
-			if (! fn) throw 'fnは必須です';
-			switch (type) {
-				case 'celestial_sphere':	// 天球サンプル(theta画像)
-				{
-					const geometry = new SphereGeometry(5, 60,40);
-					geometry.scale(-1, 1, 1);
-					const ldr = new TextureLoader();
-					if (! fn) throw 'fnがありません';
-					const tx = ldr.load(ThreeDLayer.plgArg.searchPath(fn, EXT_STILL_IMG));
-					tx.minFilter = LinearFilter;
-					const material = new MeshBasicMaterial({map: tx});
-					mdl = new Mesh(geometry, material);
+					case 'celestial_sphere':{	// 天球サンプル(theta画像)
+						const geometry = new SphereGeometry(5, 60,40);
+						geometry.scale(-1, 1, 1);
+						const ldr = new TextureLoader();
+						if (! fn) throw 'fnがありません';
+						const tx = ldr.load(ThreeDLayer.plgArg.searchPath(fn, EXT_STILL_IMG));
+						tx.minFilter = LinearFilter;
+						const material = new MeshBasicMaterial({map: tx});
+						mdl = new Mesh(geometry, material);
 
-					this.camera.lookAt(mdl.position);	// カメラ視野の中心座標
-					this.fncCtrl = ()=> {mdl.rotation.y += 0.001};
-				}
-					break;
+						this.camera.lookAt(mdl.position);	// カメラ視野の中心座標
+						this.fncCtrl = ()=> {mdl.rotation.y += 0.001};
+					}
+						break;
 
-				case 'gltf':	// gltfモデル
-				{
-					if (! fn) throw 'fnがありません';
-					const onProgress = ('debug' in hArg)
-						? (xhr: {loaded: number; total: number;})=>
-							console.log(`${( xhr.loaded /xhr.total *100 )}% loaded`)
-						: ()=> {};
-					require('three/examples/js/loaders/GLTFLoader');
-					(new ThreeDLayer.THREE.GLTFLoader()).load(
-						ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'),
-						(gltf: any)=> {	// called when the resource is loaded
-							const mdl = gltf.scene;
-							mdl.name = name;
-							this.scene_3D.add(mdl);
-							this.hInf[name] = {type: type, fn: fn, gltf: gltf};
-							this.arg2mdl(hArg, mdl);
-						},
-						onProgress,
-						(err: any)=> console.error('An error happened', err),
-					);
-				}
-					return false;
-/*
-				case 'mmd':	// MMDモデル
-				{
-					if (! fn) throw 'fnがありません';
-					const onProgress = ()=> {};
-console.log(`fn:ThreeDLayer.ts line:249 `);
-					require('three/examples/js/libs/mmdparser.min');
-					require('three/examples/js/loaders/MMDLoader');
-// NOTE: ここで止まってる {E} (fn:main line:14) [undefined]タグ解析中例外 mes=THREE.MMDLoader: Import MMDParser
-//x	(window as any).MMDParser = ThreeDLayer.THREE.MMDParser;
-console.log(`fn:ThreeDLayer.ts line:250 par:${( typeof MMDParser === 'undefined' )}`);
-					const loader = new ThreeDLayer.THREE.MMDLoader();
-console.log(`fn:ThreeDLayer.ts line:256 `);
-					loader.load(
-						ThreeDLayer.plgArg.searchPath(fn, 'pmd'),
-						(mdl: any)=> {
-							mdl.name = name;
-							this.scene_3D.add(mdl);
-							this.hInf[name] = {type: type};
-							this.arg2mdl(hArg, mdl);
-						},
-						onProgress,
-						(err: any)=> console.error('An error happened', err),
-					);
-console.log(`fn:ThreeDLayer.ts line:268 `);
-				}
-					return false;
-*/
-
-/*
-		if ('mmd' in hArg) {
-			const mmd = searchPath(hArg['mmd'], 'pmd|pmx');
-			const vmd = searchPath(hArg['vmd'], 'vmd');
-
-
-	//const object = require('three/examples/js/loaders/MMDLoader').default;
-	//const object2 = require('three/examples/js/loaders/MMDLoader');
-	//const object2 = require('./mo');
-	//const object2 = require('./three/examples/js/loaders/MMDLoader');
-	console.log(`fn:ThreeDLayer.ts line:63 %o`, object2);
-	const instance = new object2();
-	console.log(`fn:ThreeDLayer.ts line:65 ${instance}`);
-	console.log(`fn:ThreeDLayer.ts line:67 ${instance.getName()}`);
-
-	console.log(`fn:ThreeDLayer.ts line:63 %o`, THREE);
-	console.log(`fn:ThreeDLayer.ts line:63 %o`, MMDAnimationHelper);
-
-
-		//	const loader = new ThreeDLayer.THREE.MMDLoader();
-			const loader = new MMDLoader();
-	//		const mesh = await loader.load(mmd, [vmd]);
-	//		const mesh = loader.load(mmd, [vmd]);
-
-			async function f1() {
-				const mesh = await loader.load(mmd, [vmd]);
-			}
-			f1();
-
-
-	//const helper = new ThreeDLayer.THREE.MMDHelper();
-	//const helper = new MMDAnimationHelper();
-
-			const helper = new MMDHelper();
-			new MMDLoader().loadWithAnimation(
-				mmd,
-				vmd,
-				mmd=> {
-					helper.add(mmd.mesh, {
-						animation	: mmd.animation,
-						physics		: true,
-					});
-					this.scene_3D.add( mmd.mesh );
-				}
-			);
-
-			const clock = new ThreeDLayer.THREE.Clock();
-			const anime = ()=> {
-				helper.update(clock.getDelta());
-				requestAnimationFrame(anime);
-			}
-			anime();
-*/
-				case 'fbx':	//
-				{
-	/*				const ldrFBX = new FBXLoader();
-					ldrFBX.load(searchPath(fbx, 'fbx'), obj=> {
-	console.log(`fn:ThreeDLayer.ts line:76 load:%o:`, obj);
-						this.scene_3D.add(obj);
-
-						this.camera.lookAt(obj.position);	// カメラ視野の中心座標
-						this.tick();
-					});
+					case 'gltf':{	// gltfモデル
+						const onProgress = ('debug' in hArg)
+							? (xhr: {loaded: number; total: number;})=>
+								console.log(`${( xhr.loaded /xhr.total *100 )}% loaded`)
+							: ()=> {};
+						require('three/examples/js/loaders/GLTFLoader');
+						(new ThreeDLayer.THREE.GLTFLoader()).load(
+							ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'),
+							(gltf: any)=> {	// called when the resource is loaded
+								const mdl = gltf.scene;
+								mdl.name = name;
+								this.scene_3D.add(mdl);
+								this.hInf[name] = {type: type, fn: fn, gltf: gltf};
+								this.arg2mdl(hArg, mdl);
+							},
+							onProgress,
+							(e: any)=> console.error('An error happened', e),
+						);
+					}
+						return false;	// load()で mdl セットするので
+	/*
+					case 'mmd':{	// MMDモデル
+						if (! fn) throw 'fnがありません';
+						const onProgress = ()=> {};
+	console.log(`fn:ThreeDLayer.ts line:249 `);
+						require('three/examples/js/libs/mmdparser.min');
+						require('three/examples/js/loaders/MMDLoader');
+	// NOTE: ここで止まってる {E} (fn:main line:14) [undefined]タグ解析中例外 mes=THREE.MMDLoader: Import MMDParser
+	//x	(window as any).MMDParser = ThreeDLayer.THREE.MMDParser;
+	console.log(`fn:ThreeDLayer.ts line:250 par:${( typeof MMDParser === 'undefined' )}`);
+						const loader = new ThreeDLayer.THREE.MMDLoader();
+	console.log(`fn:ThreeDLayer.ts line:256 `);
+						loader.load(
+							ThreeDLayer.plgArg.searchPath(fn, 'pmd'),
+							(mdl: any)=> {
+								mdl.name = name;
+								this.scene_3D.add(mdl);
+								this.hInf[name] = {type: type};
+								this.arg2mdl(hArg, mdl);
+							},
+							onProgress,
+							(err: any)=> console.error('An error happened', err),
+						);
+	console.log(`fn:ThreeDLayer.ts line:268 `);
+					}
+						return false;
 	*/
+
+	/*
+			if ('mmd' in hArg) {
+				const mmd = searchPath(hArg['mmd'], 'pmd|pmx');
+				const vmd = searchPath(hArg['vmd'], 'vmd');
+
+
+		//const object = require('three/examples/js/loaders/MMDLoader').default;
+		//const object2 = require('three/examples/js/loaders/MMDLoader');
+		//const object2 = require('./mo');
+		//const object2 = require('./three/examples/js/loaders/MMDLoader');
+		console.log(`fn:ThreeDLayer.ts line:63 %o`, object2);
+		const instance = new object2();
+		console.log(`fn:ThreeDLayer.ts line:65 ${instance}`);
+		console.log(`fn:ThreeDLayer.ts line:67 ${instance.getName()}`);
+
+		console.log(`fn:ThreeDLayer.ts line:63 %o`, THREE);
+		console.log(`fn:ThreeDLayer.ts line:63 %o`, MMDAnimationHelper);
+
+
+			//	const loader = new ThreeDLayer.THREE.MMDLoader();
+				const loader = new MMDLoader();
+		//		const mesh = await loader.load(mmd, [vmd]);
+		//		const mesh = loader.load(mmd, [vmd]);
+
+				async function f1() {
+					const mesh = await loader.load(mmd, [vmd]);
 				}
-					break;
+				f1();
 
-				case 'dae':	//
-				{
-		//			const dae = hArg['dae'];
-		/*
-					// 立方体
-					const geometry = new ThreeDLayer.THREE.BoxGeometry(500, 500, 500);
-					// new ThreeDLayer.THREE.BoxGeometry(幅, 高さ, 奥行き)
-					const material = new ThreeDLayer.THREE.MeshNormalMaterial();
-					obj = new ThreeDLayer.THREE.Mesh(geometry, material);
-					obj.position.z = -500;
-					obj.rotation.z = -45;
-					this.scene_3D.add(obj);
-		*/
-		/*
-					const colladaLoader = new ColladaLoader();
-					colladaLoader.load(searchPath(dae, 'dae'), mdl=> {
-						console.log(`fn:ThreeDLayer.ts line:147 ${mdl}`);
-						this.scene_3D.add(mdl);
 
-						this.camera.lookAt(obj.position);	// カメラ視野の中心座標
-						this.tick();
-					});
-		*/
+		//const helper = new ThreeDLayer.THREE.MMDHelper();
+		//const helper = new MMDAnimationHelper();
+
+				const helper = new MMDHelper();
+				new MMDLoader().loadWithAnimation(
+					mmd,
+					vmd,
+					mmd=> {
+						helper.add(mmd.mesh, {
+							animation	: mmd.animation,
+							physics		: true,
+						});
+						this.scene_3D.add( mmd.mesh );
+					}
+				);
+
+				const clock = new ThreeDLayer.THREE.Clock();
+				const anime = ()=> {
+					helper.update(clock.getDelta());
+					requestAnimationFrame(anime);
 				}
-					break;
+				anime();
+	*/
+					case 'fbx':	//
+					{
+		/*				const ldrFBX = new FBXLoader();
+						ldrFBX.load(searchPath(fbx, 'fbx'), obj=> {
+		console.log(`fn:ThreeDLayer.ts line:76 load:%o:`, obj);
+							this.scene_3D.add(obj);
 
-				default:
-					throw `サポートしない type=${type} です`;
+							this.camera.lookAt(obj.position);	// カメラ視野の中心座標
+							this.tick();
+						});
+		*/
+					}
+						break;
+
+					case 'dae':	//
+					{
+			//			const dae = hArg['dae'];
+			/*
+						// 立方体
+						const geometry = new ThreeDLayer.THREE.BoxGeometry(500, 500, 500);
+						// new ThreeDLayer.THREE.BoxGeometry(幅, 高さ, 奥行き)
+						const material = new ThreeDLayer.THREE.MeshNormalMaterial();
+						obj = new ThreeDLayer.THREE.Mesh(geometry, material);
+						obj.position.z = -500;
+						obj.rotation.z = -45;
+						this.scene_3D.add(obj);
+			*/
+			/*
+						const colladaLoader = new ColladaLoader();
+						colladaLoader.load(searchPath(dae, 'dae'), mdl=> {
+							console.log(`fn:ThreeDLayer.ts line:147 ${mdl}`);
+							this.scene_3D.add(mdl);
+
+							this.camera.lookAt(obj.position);	// カメラ視野の中心座標
+							this.tick();
+						});
+			*/
+					}
+						break;
+
+					default:
+						throw `サポートしない type=${type} です`;
+				}
+				this.hInf[name] = {type: type, fn: fn};
 			}
 
-			this.hInf[name] = {type: type, fn: fn};
 			mdl.name = name;
 			this.scene_3D.add(mdl);
 		}
 		else if ('del' in hArg) {
 			const del = hArg['del'];
 			const mdl2 = this.scene_3D.children.find(e=> e.name === del);
-			if (! mdl2) throw `３Ｄレイヤに存在しないモデル name=${del} です`;
+			if (! mdl2) return false;	// エラーにしない
+		//	if (! mdl2) throw `３Ｄレイヤに存在しないモデル name=${del} です`;
 			this.clearObject3D(mdl2);
 			delete this.hInf[del];
 			return false;
@@ -389,6 +421,7 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 		fn		: string,
 		label?	: string,
 		gltf?	: any,
+		effhdl?	: effekseer.EffekseerHandle,
 		mixer?	: AnimationMixer,
 //		aa?		: THREE.AnimationAction,
 		aa?		: any,	// NOTE: コンパイル通し
@@ -396,14 +429,14 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 	private csv2pos(hArg: any, name: string, o: Object3D) {
 		if (! (name in hArg)) return;
 
-		const p = String(hArg[name]).split(',').map(v => Number(v));
-		o.position.set(p[0], p[1], p[2]);
+		const [x, y, z] = String(hArg[name]).split(',').map(v=> Number(v));
+		o.position.set(x, y, z);
 	}
 	private csv2scale(hArg: any, name: string, o: Object3D) {
 		if (! (name in hArg)) return;
 
-		const p = String(hArg[name]).split(',').map(v => Number(v));
-		o.scale.set(p[0], p[1], p[2]);
+		const [x, y, z] = String(hArg[name]).split(',').map(v=> Number(v));
+		o.scale.set(x, y, z);
 	}
 	clearLay(hArg: HArg): void {
 		super.clearLay(hArg);
@@ -475,6 +508,6 @@ console.log(`fn:ThreeDLayer.ts line:268 `);
 			aChi.push(s +`}`);
 		});
 		return super.dump() +`, "mdl":{${aChi.join(',')}}`;
-	};
+	}
 
 }

@@ -5,7 +5,7 @@ exports.init = (plgArg) => {
     ThreeDLayer_1.ThreeDLayer.plgArg = plgArg;
     (async () => {
         ThreeDLayer_1.ThreeDLayer.THREE = await Promise.resolve().then(() => require('three'));
-        window.THREE = ThreeDLayer_1.ThreeDLayer.THREE;
+        globalThis.THREE = ThreeDLayer_1.ThreeDLayer.THREE;
         plgArg.addLayCls('3d', () => { const l = new ThreeDLayer_1.ThreeDLayer; return l; });
     })();
 };

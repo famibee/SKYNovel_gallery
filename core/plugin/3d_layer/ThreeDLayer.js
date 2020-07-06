@@ -8,11 +8,14 @@ const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 class ThreeDLayer extends Layer {
     constructor() {
         super();
+        this.hEff = {};
+        this.tickUpdEff = () => { };
         this.tick = () => {
             if (!this.running)
                 return;
             this.canvas_3D.render(this.scene_3D, this.camera);
             this.sprite_3D.texture.update();
+            this.tickUpdEff();
             this.fncCtrl();
             this.fncMixerUpd();
             requestAnimationFrame(this.tick);
@@ -28,12 +31,22 @@ class ThreeDLayer extends Layer {
         if (ThreeDLayer.uniq_num++ % 2 == 1)
             return;
         this.scene_3D = new three_1.Scene();
-        const log = console.log;
-        console.log = () => { };
         this.canvas_3D = new three_1.WebGLRenderer({ antialias: true, alpha: true });
-        console.log = log;
         this.canvas_3D.setSize(CmnLib.stageW, CmnLib.stageH);
         this.canvas_3D.setPixelRatio(window.devicePixelRatio);
+        if (ThreeDLayer.uniq_num === 1) {
+            effekseer.initRuntime('./effekseer.wasm', () => {
+                this.ctxEff = effekseer.createContext();
+                this.ctxEff.init(this.canvas_3D.getContext());
+                const clock = new three_1.Clock();
+                this.tickUpdEff = () => {
+                    this.ctxEff.update(clock.getDelta() * 60.0);
+                    this.ctxEff.setProjectionMatrix(this.camera.projectionMatrix.elements);
+                    this.ctxEff.setCameraMatrix(this.camera.matrixWorldInverse.elements);
+                    this.ctxEff.draw();
+                };
+            }, () => { });
+        }
         const texture_3D = pixi_js_1.Texture.from(this.canvas_3D.domElement);
         this.sprite_3D = new pixi_js_1.Sprite(texture_3D);
         this.cnt.addChild(this.sprite_3D);
@@ -41,6 +54,7 @@ class ThreeDLayer extends Layer {
         this.sprite_3D.y = (CmnLib.stageH - this.sprite_3D.height) / 2;
     }
     lay(hArg) {
+        var _a;
         if (!this.scene_3D)
             return false;
         if ('grid' in hArg) {
@@ -54,6 +68,10 @@ class ThreeDLayer extends Layer {
                 this.camera = new three_1.PerspectiveCamera(argChk_Num(hArg, 'camera_fov', 50), CmnLib.stageW / CmnLib.stageH, argChk_Num(hArg, 'camera_near', 0.1), argChk_Num(hArg, 'camera_far', 2000));
             }
             this.csv2pos(hArg, 'camera', this.camera);
+            if ('camera_target' in hArg) {
+                const [x, y, z] = String(hArg['camera_target']).split(',').map(v => Number(v));
+                this.camera.lookAt(new three_1.Vector3(x, y, z));
+            }
         }
         if ('directional_light' in hArg) {
             const light = new three_1.DirectionalLight(0xFFFFFF);
@@ -74,7 +92,7 @@ class ThreeDLayer extends Layer {
             this.fncCtrl = () => controls.update();
         }
         const type = hArg.type;
-        const name = hArg.name || '';
+        const name = (_a = hArg.name) !== null && _a !== void 0 ? _a : '';
         let mdl = new three_1.Mesh();
         if (type) {
             if (name in this.hInf)
@@ -89,69 +107,74 @@ class ThreeDLayer extends Layer {
                 const material = new three_1.MeshNormalMaterial();
                 mdl = new three_1.Mesh(geometry, material);
                 mdl.rotation.z = -45;
-                this.fncCtrl = () => {
-                    this.scene_3D.children.map(o => {
-                        const m = o;
-                        if (!m)
-                            return;
-                        m.rotation.x += 0.01;
-                        m.rotation.y += 0.01;
-                        m.rotation.z += 0.01;
-                    });
-                };
+                this.fncCtrl = () => this.scene_3D.children.forEach(o => {
+                    const m = o;
+                    if (!m)
+                        return;
+                    m.rotation.x += 0.01;
+                    m.rotation.y += 0.01;
+                    m.rotation.z += 0.01;
+                });
                 this.hInf[name] = { type: type, fn: '' };
-                mdl.name = name;
-                this.scene_3D.add(mdl);
-                return false;
             }
-            const fn = hArg.fn;
-            if (!fn)
-                throw 'fnは必須です';
-            switch (type) {
-                case 'celestial_sphere':
-                    {
-                        const geometry = new three_1.SphereGeometry(5, 60, 40);
-                        geometry.scale(-1, 1, 1);
-                        const ldr = new three_1.TextureLoader();
-                        if (!fn)
-                            throw 'fnがありません';
-                        const tx = ldr.load(ThreeDLayer.plgArg.searchPath(fn, EXT_STILL_IMG));
-                        tx.minFilter = three_1.LinearFilter;
-                        const material = new three_1.MeshBasicMaterial({ map: tx });
-                        mdl = new three_1.Mesh(geometry, material);
-                        this.camera.lookAt(mdl.position);
-                        this.fncCtrl = () => { mdl.rotation.y += 0.001; };
-                    }
-                    break;
-                case 'gltf':
-                    {
-                        if (!fn)
-                            throw 'fnがありません';
-                        const onProgress = ('debug' in hArg)
-                            ? (xhr) => console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`)
-                            : () => { };
-                        require('three/examples/js/loaders/GLTFLoader');
-                        (new ThreeDLayer.THREE.GLTFLoader()).load(ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'), (gltf) => {
-                            const mdl = gltf.scene;
-                            mdl.name = name;
-                            this.scene_3D.add(mdl);
-                            this.hInf[name] = { type: type, fn: fn, gltf: gltf };
-                            this.arg2mdl(hArg, mdl);
-                        }, onProgress, (err) => console.error('An error happened', err));
-                    }
-                    return false;
-                case 'fbx':
-                    {
-                    }
-                    break;
-                case 'dae':
-                    {
-                    }
-                    break;
-                default:
-                    throw `サポートしない type=${type} です`;
+            else {
+                const fn = hArg.fn;
+                if (!fn)
+                    throw 'fnは必須です';
+                switch (type) {
+                    case 'eff':
+                        {
+                            this.hEff[fn] = this.ctxEff.loadEffect(ThreeDLayer.plgArg.searchPath(fn, 'efk'), argChk_Num(hArg, 'scale', 1), () => {
+                                var _a;
+                                const [x, y, z] = String((_a = hArg.pos) !== null && _a !== void 0 ? _a : '0,0,0').split(',');
+                                const h = this.ctxEff.play(this.hEff[fn], x, y, z);
+                                this.hInf[name] = { type: type, fn: fn, effhdl: h };
+                            }, (m, url) => console.error(m + ' url=' + url));
+                        }
+                        break;
+                    case 'celestial_sphere':
+                        {
+                            const geometry = new three_1.SphereGeometry(5, 60, 40);
+                            geometry.scale(-1, 1, 1);
+                            const ldr = new three_1.TextureLoader();
+                            if (!fn)
+                                throw 'fnがありません';
+                            const tx = ldr.load(ThreeDLayer.plgArg.searchPath(fn, EXT_STILL_IMG));
+                            tx.minFilter = three_1.LinearFilter;
+                            const material = new three_1.MeshBasicMaterial({ map: tx });
+                            mdl = new three_1.Mesh(geometry, material);
+                            this.camera.lookAt(mdl.position);
+                            this.fncCtrl = () => { mdl.rotation.y += 0.001; };
+                        }
+                        break;
+                    case 'gltf':
+                        {
+                            const onProgress = ('debug' in hArg)
+                                ? (xhr) => console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`)
+                                : () => { };
+                            require('three/examples/js/loaders/GLTFLoader');
+                            (new ThreeDLayer.THREE.GLTFLoader()).load(ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'), (gltf) => {
+                                const mdl = gltf.scene;
+                                mdl.name = name;
+                                this.scene_3D.add(mdl);
+                                this.hInf[name] = { type: type, fn: fn, gltf: gltf };
+                                this.arg2mdl(hArg, mdl);
+                            }, onProgress, (e) => console.error('An error happened', e));
+                        }
+                        return false;
+                    case 'fbx':
+                        {
+                        }
+                        break;
+                    case 'dae':
+                        {
+                        }
+                        break;
+                    default:
+                        throw `サポートしない type=${type} です`;
+                }
+                this.hInf[name] = { type: type, fn: fn };
             }
-            this.hInf[name] = { type: type, fn: fn };
             mdl.name = name;
             this.scene_3D.add(mdl);
         }
@@ -159,7 +182,7 @@ class ThreeDLayer extends Layer {
             const del = hArg['del'];
             const mdl2 = this.scene_3D.children.find(e => e.name === del);
             if (!mdl2)
-                throw `３Ｄレイヤに存在しないモデル name=${del} です`;
+                return false;
             this.clearObject3D(mdl2);
             delete this.hInf[del];
             return false;
@@ -221,14 +244,14 @@ class ThreeDLayer extends Layer {
     csv2pos(hArg, name, o) {
         if (!(name in hArg))
             return;
-        const p = String(hArg[name]).split(',').map(v => Number(v));
-        o.position.set(p[0], p[1], p[2]);
+        const [x, y, z] = String(hArg[name]).split(',').map(v => Number(v));
+        o.position.set(x, y, z);
     }
     csv2scale(hArg, name, o) {
         if (!(name in hArg))
             return;
-        const p = String(hArg[name]).split(',').map(v => Number(v));
-        o.scale.set(p[0], p[1], p[2]);
+        const [x, y, z] = String(hArg[name]).split(',').map(v => Number(v));
+        o.scale.set(x, y, z);
     }
     clearLay(hArg) {
         super.clearLay(hArg);
@@ -292,7 +315,6 @@ class ThreeDLayer extends Layer {
         });
         return super.dump() + `, "mdl":{${aChi.join(',')}}`;
     }
-    ;
 }
 exports.ThreeDLayer = ThreeDLayer;
 ThreeDLayer.uniq_num = 0;
