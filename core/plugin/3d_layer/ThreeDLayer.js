@@ -3,13 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThreeDLayer = void 0;
 const { Layer, CmnLib, argChk_Num, argChk_Boolean } = require('@famibee/skynovel/web');
 const three_1 = require("three");
+const OrbitControls_1 = require("three/examples/jsm/controls/OrbitControls");
+const GLTFLoader_1 = require("three/examples/jsm/loaders/GLTFLoader");
 const pixi_js_1 = require("pixi.js");
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 class ThreeDLayer extends Layer {
     constructor() {
         super();
-        this.hEff = {};
-        this.tickUpdEff = () => { };
         this.tick = () => {
             if (!this.running)
                 return;
@@ -24,6 +24,8 @@ class ThreeDLayer extends Layer {
         this.fncCtrl = () => { };
         this.fncMixerUpd = () => { };
         this.clock = new three_1.Clock();
+        this.hEff = {};
+        this.tickUpdEff = () => { };
         this.hInf = {};
         this.record = () => Object.assign(super.record(), {
             type: this.type,
@@ -34,19 +36,6 @@ class ThreeDLayer extends Layer {
         this.canvas_3D = new three_1.WebGLRenderer({ antialias: true, alpha: true });
         this.canvas_3D.setSize(CmnLib.stageW, CmnLib.stageH);
         this.canvas_3D.setPixelRatio(window.devicePixelRatio);
-        if (ThreeDLayer.uniq_num === 1) {
-            effekseer.initRuntime('./effekseer.wasm', () => {
-                this.ctxEff = effekseer.createContext();
-                this.ctxEff.init(this.canvas_3D.getContext());
-                const clock = new three_1.Clock();
-                this.tickUpdEff = () => {
-                    this.ctxEff.update(clock.getDelta() * 60.0);
-                    this.ctxEff.setProjectionMatrix(this.camera.projectionMatrix.elements);
-                    this.ctxEff.setCameraMatrix(this.camera.matrixWorldInverse.elements);
-                    this.ctxEff.draw();
-                };
-            }, () => { });
-        }
         const texture_3D = pixi_js_1.Texture.from(this.canvas_3D.domElement);
         this.sprite_3D = new pixi_js_1.Sprite(texture_3D);
         this.cnt.addChild(this.sprite_3D);
@@ -82,8 +71,9 @@ class ThreeDLayer extends Layer {
         }
         if ('controls' in hArg) {
             const elm = document.getElementById('skynovel');
-            require('three/examples/js/controls/OrbitControls');
-            const controls = new ThreeDLayer.THREE.OrbitControls(this.camera, elm);
+            if (!elm)
+                return false;
+            const controls = new OrbitControls_1.OrbitControls(this.camera, elm);
             controls.target.set(this.camera.position.x + 0.15, this.camera.position.y, this.camera.position.z);
             controls.enableDamping = true;
             controls.dampingFactor = 0.2;
@@ -124,12 +114,29 @@ class ThreeDLayer extends Layer {
                 switch (type) {
                     case 'eff':
                         {
-                            this.hEff[fn] = this.ctxEff.loadEffect(ThreeDLayer.plgArg.searchPath(fn, 'efk'), argChk_Num(hArg, 'scale', 1), () => {
-                                var _a;
-                                const [x, y, z] = String((_a = hArg.pos) !== null && _a !== void 0 ? _a : '0,0,0').split(',');
-                                const h = this.ctxEff.play(this.hEff[fn], x, y, z);
-                                this.hInf[name] = { type: type, fn: fn, effhdl: h };
-                            }, (m, url) => console.error(m + ' url=' + url));
+                            const fncEff = () => {
+                                this.hEff[fn] = this.ctxEff.loadEffect(ThreeDLayer.plgArg.searchPath(fn, 'efk'), argChk_Num(hArg, 'scale', 1), () => {
+                                    var _a;
+                                    const [x, y, z] = String((_a = hArg.pos) !== null && _a !== void 0 ? _a : '0,0,0').split(',');
+                                    const h = this.ctxEff.play(this.hEff[fn], x, y, z);
+                                    this.hInf[name] = { type: type, fn: fn, effhdl: h };
+                                }, (m, url) => console.error(m + ' url=' + url));
+                            };
+                            if (this.ctxEff) {
+                                fncEff();
+                                break;
+                            }
+                            effekseer.initRuntime('./effekseer.wasm', () => {
+                                this.ctxEff = effekseer.createContext();
+                                this.ctxEff.init(this.canvas_3D.getContext());
+                                const clock = new three_1.Clock();
+                                this.tickUpdEff = () => {
+                                    this.ctxEff.update(clock.getDelta() * 60.0);
+                                    this.ctxEff.setProjectionMatrix(this.camera.projectionMatrix.elements);
+                                    this.ctxEff.setCameraMatrix(this.camera.matrixWorldInverse.elements);
+                                    this.ctxEff.draw();
+                                };
+                            }, () => { });
                         }
                         break;
                     case 'celestial_sphere':
@@ -152,8 +159,7 @@ class ThreeDLayer extends Layer {
                             const onProgress = ('debug' in hArg)
                                 ? (xhr) => console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`)
                                 : () => { };
-                            require('three/examples/js/loaders/GLTFLoader');
-                            (new ThreeDLayer.THREE.GLTFLoader()).load(ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'), (gltf) => {
+                            (new GLTFLoader_1.GLTFLoader()).load(ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'), (gltf) => {
                                 const mdl = gltf.scene;
                                 mdl.name = name;
                                 this.scene_3D.add(mdl);
@@ -162,14 +168,6 @@ class ThreeDLayer extends Layer {
                             }, onProgress, (e) => console.error('An error happened', e));
                         }
                         return false;
-                    case 'fbx':
-                        {
-                        }
-                        break;
-                    case 'dae':
-                        {
-                        }
-                        break;
                     default:
                         throw `サポートしない type=${type} です`;
                 }

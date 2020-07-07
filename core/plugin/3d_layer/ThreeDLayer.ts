@@ -8,6 +8,8 @@
 const {Layer, CmnLib, argChk_Num, argChk_Boolean} = require('@famibee/skynovel/web');
 import {HArg, IPluginInitArg} from '@famibee/skynovel';
 import {Scene, WebGLRenderer, Camera, Clock, GridHelper, PerspectiveCamera, DirectionalLight, Mesh, BoxGeometry, MeshNormalMaterial, SphereGeometry, TextureLoader, LinearFilter, MeshBasicMaterial, AnimationClip, LoopRepeat, LoopOnce, Material, Object3D, AnimationMixer, Vector3} from 'three';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 
 import {Sprite, Texture} from 'pixi.js';
 /// <reference path="./effekseer.d.ts" />
@@ -37,21 +39,6 @@ export class ThreeDLayer extends Layer {
 		this.canvas_3D.setSize(CmnLib.stageW, CmnLib.stageH);
 		this.canvas_3D.setPixelRatio(window.devicePixelRatio);
 
-		if (ThreeDLayer.uniq_num === 1) {
-			effekseer.initRuntime('./effekseer.wasm', ()=> {
-				this.ctxEff = effekseer.createContext();
-				this.ctxEff.init(this.canvas_3D.getContext());
-
-				const clock = new Clock();
-				this.tickUpdEff = ()=> {
-					this.ctxEff.update(clock.getDelta() * 60.0);
-					this.ctxEff.setProjectionMatrix(this.camera.projectionMatrix.elements);
-					this.ctxEff.setCameraMatrix(this.camera.matrixWorldInverse.elements);
-					this.ctxEff.draw();
-				};
-			}, ()=> {});
-		}
-
 		// Map 3D canvas to 2D Canvas
 		const texture_3D = Texture.from(this.canvas_3D.domElement);
 		this.sprite_3D = new Sprite(texture_3D);
@@ -59,9 +46,6 @@ export class ThreeDLayer extends Layer {
 		this.sprite_3D.x = (CmnLib.stageW -this.sprite_3D.width) /2
 		this.sprite_3D.y = (CmnLib.stageH -this.sprite_3D.height) /2
 	}
-	private	ctxEff	: effekseer.EffekseerContext;
-	private hEff	: any = {};
-	private	tickUpdEff	= ()=> {};
 
 
 	private tick = ()=> {
@@ -80,6 +64,9 @@ export class ThreeDLayer extends Layer {
 	private fncMixerUpd	= ()=> {};
 	private	readonly clock		= new Clock();
 
+	private	ctxEff	: effekseer.EffekseerContext;
+	private hEff	: any = {};
+	private	tickUpdEff	= ()=> {};
 	lay(hArg: HArg): boolean {
 		if (! this.scene_3D) return false;
 
@@ -119,8 +106,8 @@ export class ThreeDLayer extends Layer {
 		}
 		if ('controls' in hArg) {	// マウスドラッグで操作
 			const elm = document.getElementById('skynovel');
-			require('three/examples/js/controls/OrbitControls');
-			const controls = new ThreeDLayer.THREE.OrbitControls(this.camera, elm);
+			if (! elm) return false;
+			const controls = new OrbitControls(this.camera, elm);
 			controls.target.set(
 				this.camera.position.x + 0.15,
 				this.camera.position.y,
@@ -171,16 +158,32 @@ export class ThreeDLayer extends Layer {
 				switch (type) {
 					case 'eff':{
 						// https://github.com/effekseer/EffekseerForWebGL
-						this.hEff[fn] = this.ctxEff.loadEffect(
-							ThreeDLayer.plgArg.searchPath(fn, 'efk'),
-							argChk_Num(hArg, 'scale', 1),
-							()=> {
-								const [x, y, z] = String(hArg.pos ?? '0,0,0').split(',');
-								const h = this.ctxEff.play(this.hEff[fn], x, y, z);
-								this.hInf[name] = {type: type, fn: fn, effhdl: h};
-							},
-							(m: any, url: any)=> console.error(m +' url='+ url),
-						);
+						const fncEff = ()=> {
+							this.hEff[fn] = this.ctxEff.loadEffect(
+								ThreeDLayer.plgArg.searchPath(fn, 'efk'),
+								argChk_Num(hArg, 'scale', 1),
+								()=> {
+									const [x, y, z] = String(hArg.pos ?? '0,0,0').split(',');
+									const h = this.ctxEff.play(this.hEff[fn], x, y, z);
+									this.hInf[name] = {type: type, fn: fn, effhdl: h};
+								},
+								(m: any, url: any)=> console.error(m +' url='+ url),
+							);
+						};
+						if (this.ctxEff) {fncEff(); break;}
+
+						effekseer.initRuntime('./effekseer.wasm', ()=> {
+							this.ctxEff = effekseer.createContext();
+							this.ctxEff.init(this.canvas_3D.getContext());
+							
+							const clock = new Clock();
+							this.tickUpdEff = ()=> {
+								this.ctxEff.update(clock.getDelta() * 60.0);
+								this.ctxEff.setProjectionMatrix(this.camera.projectionMatrix.elements);
+								this.ctxEff.setCameraMatrix(this.camera.matrixWorldInverse.elements);
+								this.ctxEff.draw();
+							};
+						}, ()=> {});
 					}
 						break;
 
@@ -204,11 +207,17 @@ export class ThreeDLayer extends Layer {
 							? (xhr: {loaded: number; total: number;})=>
 								console.log(`${( xhr.loaded /xhr.total *100 )}% loaded`)
 							: ()=> {};
-						require('three/examples/js/loaders/GLTFLoader');
-						(new ThreeDLayer.THREE.GLTFLoader()).load(
+						(new GLTFLoader()).load(
 							ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'),
 							(gltf: any)=> {	// called when the resource is loaded
 								const mdl = gltf.scene;
+/*
+		gltf.animations; // Array<THREE.AnimationClip>
+		gltf.scene; // THREE.Group
+		gltf.scenes; // Array<THREE.Group>
+		gltf.cameras; // Array<THREE.Camera>
+		gltf.asset; // Object
+*/
 								mdl.name = name;
 								this.scene_3D.add(mdl);
 								this.hInf[name] = {type: type, fn: fn, gltf: gltf};
@@ -219,126 +228,6 @@ export class ThreeDLayer extends Layer {
 						);
 					}
 						return false;	// load()で mdl セットするので
-	/*
-					case 'mmd':{	// MMDモデル
-						if (! fn) throw 'fnがありません';
-						const onProgress = ()=> {};
-	console.log(`fn:ThreeDLayer.ts line:249 `);
-						require('three/examples/js/libs/mmdparser.min');
-						require('three/examples/js/loaders/MMDLoader');
-	// NOTE: ここで止まってる {E} (fn:main line:14) [undefined]タグ解析中例外 mes=THREE.MMDLoader: Import MMDParser
-	//x	(window as any).MMDParser = ThreeDLayer.THREE.MMDParser;
-	console.log(`fn:ThreeDLayer.ts line:250 par:${( typeof MMDParser === 'undefined' )}`);
-						const loader = new ThreeDLayer.THREE.MMDLoader();
-	console.log(`fn:ThreeDLayer.ts line:256 `);
-						loader.load(
-							ThreeDLayer.plgArg.searchPath(fn, 'pmd'),
-							(mdl: any)=> {
-								mdl.name = name;
-								this.scene_3D.add(mdl);
-								this.hInf[name] = {type: type};
-								this.arg2mdl(hArg, mdl);
-							},
-							onProgress,
-							(err: any)=> console.error('An error happened', err),
-						);
-	console.log(`fn:ThreeDLayer.ts line:268 `);
-					}
-						return false;
-	*/
-
-	/*
-			if ('mmd' in hArg) {
-				const mmd = searchPath(hArg['mmd'], 'pmd|pmx');
-				const vmd = searchPath(hArg['vmd'], 'vmd');
-
-
-		//const object = require('three/examples/js/loaders/MMDLoader').default;
-		//const object2 = require('three/examples/js/loaders/MMDLoader');
-		//const object2 = require('./mo');
-		//const object2 = require('./three/examples/js/loaders/MMDLoader');
-		console.log(`fn:ThreeDLayer.ts line:63 %o`, object2);
-		const instance = new object2();
-		console.log(`fn:ThreeDLayer.ts line:65 ${instance}`);
-		console.log(`fn:ThreeDLayer.ts line:67 ${instance.getName()}`);
-
-		console.log(`fn:ThreeDLayer.ts line:63 %o`, THREE);
-		console.log(`fn:ThreeDLayer.ts line:63 %o`, MMDAnimationHelper);
-
-
-			//	const loader = new ThreeDLayer.THREE.MMDLoader();
-				const loader = new MMDLoader();
-		//		const mesh = await loader.load(mmd, [vmd]);
-		//		const mesh = loader.load(mmd, [vmd]);
-
-				async function f1() {
-					const mesh = await loader.load(mmd, [vmd]);
-				}
-				f1();
-
-
-		//const helper = new ThreeDLayer.THREE.MMDHelper();
-		//const helper = new MMDAnimationHelper();
-
-				const helper = new MMDHelper();
-				new MMDLoader().loadWithAnimation(
-					mmd,
-					vmd,
-					mmd=> {
-						helper.add(mmd.mesh, {
-							animation	: mmd.animation,
-							physics		: true,
-						});
-						this.scene_3D.add( mmd.mesh );
-					}
-				);
-
-				const clock = new ThreeDLayer.THREE.Clock();
-				const anime = ()=> {
-					helper.update(clock.getDelta());
-					requestAnimationFrame(anime);
-				}
-				anime();
-	*/
-					case 'fbx':	//
-					{
-		/*				const ldrFBX = new FBXLoader();
-						ldrFBX.load(searchPath(fbx, 'fbx'), obj=> {
-		console.log(`fn:ThreeDLayer.ts line:76 load:%o:`, obj);
-							this.scene_3D.add(obj);
-
-							this.camera.lookAt(obj.position);	// カメラ視野の中心座標
-							this.tick();
-						});
-		*/
-					}
-						break;
-
-					case 'dae':	//
-					{
-			//			const dae = hArg['dae'];
-			/*
-						// 立方体
-						const geometry = new ThreeDLayer.THREE.BoxGeometry(500, 500, 500);
-						// new ThreeDLayer.THREE.BoxGeometry(幅, 高さ, 奥行き)
-						const material = new ThreeDLayer.THREE.MeshNormalMaterial();
-						obj = new ThreeDLayer.THREE.Mesh(geometry, material);
-						obj.position.z = -500;
-						obj.rotation.z = -45;
-						this.scene_3D.add(obj);
-			*/
-			/*
-						const colladaLoader = new ColladaLoader();
-						colladaLoader.load(searchPath(dae, 'dae'), mdl=> {
-							console.log(`fn:ThreeDLayer.ts line:147 ${mdl}`);
-							this.scene_3D.add(mdl);
-
-							this.camera.lookAt(obj.position);	// カメラ視野の中心座標
-							this.tick();
-						});
-			*/
-					}
-						break;
 
 					default:
 						throw `サポートしない type=${type} です`;

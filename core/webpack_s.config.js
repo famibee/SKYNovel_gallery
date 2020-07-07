@@ -27,6 +27,7 @@ module.exports = [
 				test: /\.(jpe?g|png|gif|svg)$/i,
 				pngquant: {quality: '95-100',},
 			}),
+/*
 			new GenerateSW({
 				cacheId: cacheId,
 				swDest:  'sw_s.js',
@@ -36,6 +37,7 @@ module.exports = [
 				offlineGoogleAnalytics: false,
 				directoryIndex: '/',
 			}),
+*/
 		],
 		performance: {
 			maxEntrypointSize: 2000 *1000,

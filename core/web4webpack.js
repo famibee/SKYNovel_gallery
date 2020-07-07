@@ -14,5 +14,5 @@ if (location.pathname.slice(-15) == '/index_app.html') {
 }
 const {SysWeb} = require('@famibee/skynovel/web');
 const sys = new SysWeb(hPlg, {cur: pcur +'top/', dip: JSON.stringify(dip)});
-globalThis.runSN = (cur = pcur +'top')=> sys.run(cur);
+globalThis.runSN = (cur = pcur +'top')=> sys.runSN(cur);
 globalThis.stopSN = ()=> sys.stop();

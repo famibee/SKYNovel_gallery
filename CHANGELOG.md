@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.0.5
+- fix: 簡易版ギャラリー向け修正
+- upd：GLTFLoaderなどをES6版を使用するように
+- upd：ライブラリ更新
 ## v2.0.4
 - add：Effekseerエフェクト（仕様策定中）のサンプル追加
 - upd：ライブラリ更新

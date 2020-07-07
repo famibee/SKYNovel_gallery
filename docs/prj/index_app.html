@@ -119,6 +119,8 @@ window.addEventListener('load', ()=> {
 -->
 	<script defer src="../plugin_lib/emotedriver.js"></script>
 	<script defer src="../plugin_lib/emoteplayer.js"></script>
+
+	<script defer src="../plugin_lib/effekseer_asmjs.min.js"></script>
 </head><body>
 
 	<div id="modal1" class="modal cnt">
@@ -142,9 +144,9 @@ window.addEventListener('load', ()=> {
 		<li><a href="#" aria-label="Snapshot" id="snapshot" title="Snapshot"><i class="fa fa-camera"></i></a></li>
 		<li><a href="#" aria-label="Look Code" title="Look Code" data-toggle="collapse" aria-expanded="false" data-target="#clpCode"><i class="fa fa-code"></i></a></li>
 
-		<li><a href="//famibee.github.io/SKYNovel/dev.htm" target="_blank" rel="noopener"><i class="fa fa-file-text"></i> for developers</a></li>
-		<li><a href="//famibee.blog38.fc2.com/" target="_blank" rel="noopener"><i class="fa fa-home"></i> home</a>
-		</li><li><a href="//twitter.com/famibee" target="_blank" rel="noopener"><i class="fa fa-twitter"></i> contact</a></li>
+		<li><a href="//famibee.github.io/SKYNovel/dev.htm" target="_blank" rel="noopener"><i class="far fa-file-alt"></i> developers</a></li>
+		<li><a href="//famibee.blog38.fc2.com/" target="_blank" rel="noopener"><i class="fa fa-home"></i> home</a></li>
+		<li><a href="//twitter.com/famibee" target="_blank" rel="noopener"><i class="fab fa-twitter"></i> contact</a></li>
 		<li><a href="mailto:famibee@gmail.com" target="_blank" rel="noopener"><i class="fa fa-envelope"></i> to famibee</a></li>
 		</ul>
 	</div>
@@ -241,17 +243,6 @@ window.addEventListener('load', ()=> {
 	<div id="tab_ani" class="col s12 grey row">
 		<div class="col s6 m6"><div class="card hoverable">
 			<div class="card-image">
-				<img src="../grp/glsl_slide.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="glsl_slide"><i class="fa fa-play"></i></a>
-			</div>
-			<div class="card-content"><p>
-				<span class="card-title"><span class="new badge red"></span> フラグメントシェーダで[trans]</span>
-				インラインでGLSL(OpenGL Shading Language)を記述し、[trans]にフラグメントシェーダを適用できます。
-				<p class="right-align"><small class="text-muted">※例ではフラグメントシェーダでスクロールトランジションを実現しています。</small></p>
-			</p></div>
-		</div></div>
-		<div class="col s6 m6"><div class="card hoverable">
-			<div class="card-image">
 				<img src="../grp/ext_fg.jpg"/>
 				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="ext_fg"><i class="fa fa-play"></i></a>
 			</div>
@@ -290,9 +281,82 @@ window.addEventListener('load', ()=> {
 				レイヤ管理と立ち絵管理を簡潔にします
 			</p></div>
 		</div></div>
+		<div class="col s6 m6"><div class="card hoverable">
+			<div class="card-image">
+				<img src="../grp/glsl_slide.jpg"/>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="glsl_slide"><i class="fa fa-play"></i></a>
+			</div>
+			<div class="card-content"><p>
+				<span class="card-title"><span class="new badge red"></span> フラグメントシェーダで[trans]</span>
+				インラインでGLSL(OpenGL Shading Language)を記述し、[trans]にフラグメントシェーダを適用できます。
+				<p class="right-align"><small class="text-muted">※例ではフラグメントシェーダでスクロールトランジションを実現しています。</small></p>
+			</p></div>
+		</div></div>
 
 	</div>
 	<div id="tab_pic" class="col s12 grey row">
+		<div class="col s6 m6"><div class="card hoverable">
+			<div class="card-image">
+				<img src="../grp/tag_lay_face.jpg"/>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="tag_lay_face"><i class="fa fa-play"></i></a>
+			</div>
+			<div class="card-content"><p>
+				<span class="card-title"><span class="new badge red"></span> 画像も動画も重ねて表示</span>
+				画像レイヤへ[lay][add_face]の操作で<span class="teal lighten-2 white-text">画像（png, jpeg）や動画（mp4, webp）を区別なく重ねて表示</span>できます。目パチも動画立ち絵も思いのまま。
+			</p></div>
+		</div></div>
+		<div class="col s6 m6"><div class="card hoverable">
+			<div class="card-image">
+				<img src="../grp/anime_png.jpg"/>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="anime_png"><i class="fa fa-play"></i></a>
+			</div>
+			<div class="card-content"><p>
+				<span class="card-title"><span class="new badge red"></span> アニメpng</span>
+				アニメpng（<span class="text-success">スプライトシート形式</span>）をサポート。<span class="teal lighten-2 white-text">画像レイヤのfn,face属性に指定</span>できます。
+				<p class="right-align"><small class="text-muted"><a href="https://qiita.com/tadfmac/items/6065c40fdc7b12f5f701#%E3%82%B9%E3%83%97%E3%83%A9%E3%82%A4%E3%83%88%E3%82%B7%E3%83%BC%E3%83%88%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B" target="_blank" rel="noopener">スプライトシートとは?</a></small></p>
+			</p></div>
+		</div></div>
+		<div class="col s6 m6"><div class="card hoverable">
+			<div class="card-image">
+				<img src="../grp/tag_lay_mov.jpg"/>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="tag_lay_mov"><i class="fa fa-play"></i></a>
+			</div>
+			<div class="card-content"><p>
+				<span class="card-title">mp4, webp動画再生</span>
+				動画ファイルをサポート。<span class="teal lighten-2 white-text">画像レイヤのfn,face属性に指定</span>できます。
+				<p class="right-align"><small class="text-muted">※よってAIRNovelでいうムービーレイヤはありません</small></p>
+			</p></div>
+		</div></div>
+		<div class="col s6 m6"><div class="card hoverable">
+			<div class="card-image">
+				<img src="../grp/blendmode.jpg"/>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="blendmode"><i class="fa fa-play"></i></a>
+			</div>
+			<div class="card-content"><p>
+				<span class="card-title"><span class="new badge red"></span> ブレンドモード</span>
+				ブレンドモードをサポート。<span class="text-light bg-info">重なった画像の表現方法</span>を指定できます。
+			</p></div>
+		</div></div>
+		<div class="col s6 m6"><div class="card hoverable">
+			<div class="card-image">
+				<img src="../grp/3d_efk.jpg"/>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="3d_efk"><i class="fa fa-play"></i></a>
+			</div>
+			<div class="card-content"><p>
+				<span class="card-title"><span class="new badge red"></span> Effekseerエフェクト</span>
+				Effekseerエフェクトが使えます（仕様策定中）
+			</p></div>
+		</div></div>
+		<div class="col s6 m6"><div class="card hoverable">
+			<div class="card-image">
+				<img src="../grp/3d_base.jpg"/>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="3d_base"><i class="fa fa-play"></i></a>
+			</div>
+			<div class="card-content"><p>
+				<span class="card-title"><span class="new badge red"></span> ３Ｄレイヤ</span>
+				画像・文字レイヤと同様に３Ｄレイヤが使えます（仕様策定中）
+			</p></div>
+		</div></div>
 		<div class="col s6 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="../grp/3d_gltf.jpg"/>
@@ -338,48 +402,6 @@ window.addEventListener('load', ()=> {
 			<div class="card-content"><p>
 				<span class="card-title"><span class="new badge red"></span> ３Ｄレイヤ・天球表示（実験機能）</span>
 				天球のように360°パノラマ画像を表示できます（仕様策定中）
-			</p></div>
-		</div></div>
-		<div class="col s6 m6"><div class="card hoverable">
-			<div class="card-image">
-				<img src="../grp/3d_base.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="3d_base"><i class="fa fa-play"></i></a>
-			</div>
-			<div class="card-content"><p>
-				<span class="card-title"><span class="new badge red"></span> ３Ｄレイヤ</span>
-				画像・文字レイヤと同様に３Ｄレイヤが使えます（仕様策定中）
-			</p></div>
-		</div></div>
-		<div class="col s6 m6"><div class="card hoverable">
-			<div class="card-image">
-				<img src="../grp/tag_lay_face.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="tag_lay_face"><i class="fa fa-play"></i></a>
-			</div>
-			<div class="card-content"><p>
-				<span class="card-title"><span class="new badge red"></span> 画像も動画も重ねて表示</span>
-				画像レイヤへ[lay][add_face]の操作で<span class="teal lighten-2 white-text">画像（png, jpeg）や動画（mp4, webp）を区別なく重ねて表示</span>できます。目パチも動画立ち絵も思いのまま。
-			</p></div>
-		</div></div>
-		<div class="col s6 m6"><div class="card hoverable">
-			<div class="card-image">
-				<img src="../grp/anime_png.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="anime_png"><i class="fa fa-play"></i></a>
-			</div>
-			<div class="card-content"><p>
-				<span class="card-title"><span class="new badge red"></span> アニメpng</span>
-				アニメpng（<span class="text-success">スプライトシート形式</span>）をサポート。<span class="teal lighten-2 white-text">画像レイヤのfn,face属性に指定</span>できます。
-				<p class="right-align"><small class="text-muted"><a href="https://qiita.com/tadfmac/items/6065c40fdc7b12f5f701#%E3%82%B9%E3%83%97%E3%83%A9%E3%82%A4%E3%83%88%E3%82%B7%E3%83%BC%E3%83%88%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B" target="_blank" rel="noopener">スプライトシートとは?</a></small></p>
-			</p></div>
-		</div></div>
-		<div class="col s6 m6"><div class="card hoverable">
-			<div class="card-image">
-				<img src="../grp/tag_lay_mov.jpg"/>
-				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="tag_lay_mov"><i class="fa fa-play"></i></a>
-			</div>
-			<div class="card-content"><p>
-				<span class="card-title">mp4, webp動画再生</span>
-				動画ファイルをサポート。<span class="teal lighten-2 white-text">画像レイヤのfn,face属性に指定</span>できます。
-				<p class="right-align"><small class="text-muted">※よってAIRNovelでいうムービーレイヤはありません</small></p>
 			</p></div>
 		</div></div>
 
@@ -459,7 +481,6 @@ window.addEventListener('load', ()=> {
 				</small></p>
 			</p></div>
 		</div></div>
-
 		<div class="col s6 m6"><div class="card hoverable">
 			<div class="card-image">
 				<img src="../grp/kidoku.jpg"/>
@@ -607,6 +628,16 @@ window.addEventListener('load', ()=> {
 			<div class="card-content"><p>
 				<span class="card-title">HTMLフレーム</span>
 				HTMLファイルをベースとする「フレーム」表示・変数をやりとりできる
+			</p></div>
+		</div></div>
+		<div class="col s6 m6"><div class="card hoverable">
+			<div class="card-image">
+				<img src="../grp/import.jpg"/>
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light red modal-trigger" href="#modal1" data-prjnm="import"><i class="fa fa-play"></i></a>
+			</div>
+			<div class="card-content"><p>
+				<span class="card-title">プレイデータ</span>
+				プレイデータをエクスポート・インポートできる
 			</p></div>
 		</div></div>
 		<div class="col s6 m6"><div class="card hoverable">
