@@ -86,17 +86,36 @@
 
 </head><body oncontextmenu="return false;">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-info fixed-top text-body">
-	<span id="menu-toggle" class="navbar-btn btn" aria-label="Snapshot" title="Snapshot"><i class="fas fa-bars"></i>　</span>
+<nav class="navbar navbar-expand-md navbar-light bg-info fixed-top text-body">
+	<span id="menu-toggle" class="navbar-btn btn" aria-label="SideMenu" title="SideMenu"><i class="fas fa-bars"></i></span>
 
-	<a class="navbar-brand" href="#" onclick="return false;" aria-label="Title" title="Return to Top">SKYNovel</a>
+	<div class="container">
+		<a class="navbar-brand" href="#" onclick="return false;" aria-label="Title" title="Return to Top">SKYNovel</a>
 
-	<span class="navbar-text text-body" data-title>top page</span>
-	<span class="navbar-btn btn" aria-label="Reload" data-reload title="Reload"><i class="fas fa-redo-alt"></i></span>
-	<span class="navbar-btn btn" aria-label="Snapshot" id="snapshot" title="Snapshot"><i class="fas fa-camera"></i></span>
-	<span class="navbar-btn btn" aria-label="Look Code" title="Look Code" data-toggle="collapse" aria-expanded="false" data-target="#clpCode"><i class="fas fa-code"></i></span>
-	<span class="navbar-text text-body"><a href="prj/index_app.html">Mobile site</a>　</span>
-	<span class="navbar-text text-body"><a href="pwa_mono/index.html">Simple Ver</a></span>
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item text-body">
+				<span class="navbar-text" data-title>top page</span>
+			</li>
+			<li class="nav-item">
+				<span class="navbar-btn btn" aria-label="Reload" data-reload title="Reload"><i class="fas fa-redo-alt"></i></span>
+			</li>
+			<li class="nav-item">
+				<span class="navbar-btn btn" aria-label="Snapshot" id="snapshot" title="Snapshot"><i class="fas fa-camera"></i></span>
+			</li>
+			<li class="nav-item">
+				<span class="navbar-btn btn" aria-label="Look Code" title="Look Code" data-toggle="collapse" aria-expanded="false" data-target="#clpCode"><i class="fas fa-code"></i></span>
+			</li>
+		</ul>
+	
+		<ul class="navbar-nav">
+			<li class="nav-item text-body">
+				<span class="navbar-text"><a href="prj/index_app.html">Mobile site</a>　</span>
+			</li>
+			<li class="nav-item text-body">
+				<span class="navbar-text"><a href="pwa_mono/index.html">Simple Ver</a></span>
+			</li>
+		</ul>
+	</div>
 </nav>
 
 <div id="wrp" class="d-flex">
@@ -225,7 +244,7 @@
 								<i class="fab fa-chrome"></i> Google Chrome /
 								<i class="fab fa-safari"></i> Safari /
 								<i class="fab fa-edge"></i> Microsoft Edge /
-								(<i class="fab fa-firefox"></i> Firefox too...?)
+								<i class="fab fa-firefox"></i> Firefox
 							</p>
 							<p class="card-text text-right"><small class="text-muted">※HTML5 + JS + WebGLが動作するなら大概いけます。</small></p>
 						</div>
