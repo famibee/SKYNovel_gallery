@@ -6,7 +6,7 @@
 [add_lay layer=mes class=txt]
 
 *loop
-	動画再生…
+	クリックで動画再生…[l]
 	[lay layer=mov fn=nc10889 visible=true left=750 top=0]
 		[tsy layer=mov time=1000 x=100 ease=Bounce.Out]
 		[wait_tsy layer=mov]
