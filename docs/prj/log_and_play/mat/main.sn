@@ -69,6 +69,9 @@
 ; 履歴画面
 [add_frame id=log src="log" b_color=lightgray height=&const.sn.config.window.height*2/3 visible=false]
 	[button text=履歴表示 left=530 top=10 page=fore label=*show_log global=true call=true style='fill: deepskyblue;']
+	[event global=true call=true key=r label=*show_log]
+	[event global=true call=true key=arrowup label=*show_log]
+
 	[event key='dom=log:#close' label=*hide_log global=true call=true]
 
 *main
@@ -96,15 +99,21 @@
 [jump label=*main]
 
 
-*show_log
+*show_log	; 履歴表示状態
 	[set_frame id=log var_name=val_dic text=&const.sn.log.json]
 	[let_frame id=log var_name=val2ctrl function=true]
 		[event key='dom=log:[data-vfn]' label=*log_btn_voice global=true call=true need_err=false]
 	[enable_event enabled=false]	; 文字レイヤをクリックできないように
-	[frame id=log visible=true][return]
+	[event key=rightclick label=*hide_log]
+	[event key=r label=*hide_log]
+	[event key=enter label=*hide_log]	; 文字レイヤがないので本文が読み進まないように
+	[frame id=log visible=true]
+[s]
+
 *hide_log
 	[enable_event enabled=true]
-	[frame id=log visible=false][return]
+	[frame id=log visible=false]
+[return]
 
 *log_btn_voice
 	[voice fn=&sn.event.domdata.vfn]
