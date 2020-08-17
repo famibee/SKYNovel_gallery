@@ -34,6 +34,7 @@
 [button text=やや左へ left=350 top=460 page=fore label=*ch_out arg=やや左へ global=true style='fill: tomato;']
 [button text=上奥へ left=460 top=460 page=fore label=*ch_out arg=上奥へ global=true style='fill: tomato;']
 
+[button text=既読情報クリア left=640 top=370 page=fore label=*go_skip_clear global=true call=true style='fill: bisque;']
 [button text=既読スキップ left=640 top=400 page=fore label=*go_skip global=true call=true style='fill: bisque;']
 
 &wm = '横'
@@ -82,6 +83,10 @@
 
 ***
 [clear_text][jump label=**before]
+
+*go_skip_clear
+	[clearsysvar]
+[return]
 
 *go_skip
 	&sn.skip.enabled = true

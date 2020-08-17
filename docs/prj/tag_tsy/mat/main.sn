@@ -16,23 +16,23 @@
 *loop
 	[tsy layer=絵 time=2000
 		x=56 y=56 ease=Bounce.Out]
-	[wait_tsy layer=絵]
-	[wait_tsy layer=絵]	; 停止済みなら処理なし
+	[wait_tsy layer=絵 canskip=false global=true]
+	[wait_tsy layer=絵 canskip=false global=true]	; 停止済みなら処理なし
 
 	[tsy layer=絵 time=2000
 		x=&const.sn.config.window.width-112+56
 		ease=Bounce.In]
-	[wait_tsy layer=絵 arrive=true]
+	[wait_tsy layer=絵 canskip=false global=true arrive=true]
 
 	[tsy layer=絵 time=2000
 		y=&const.sn.config.window.height-112+56
 		rotation='&"="+ -540 *(const.sn.Math.PI / 180)']
 		; -180度をラジアン変換で指定しつつ、相対変化（冒頭「=」）指定
-	[wait_tsy layer=絵]
+	[wait_tsy layer=絵 canskip=false global=true]
 
 	[tsy layer=絵 time=2000
 		x='156,256' ease=Bounce.InOut]
-	[wait_tsy layer=絵 arrive=true]
+	[wait_tsy layer=絵 canskip=false global=true arrive=true]
 
 [jump label=*loop]
 
