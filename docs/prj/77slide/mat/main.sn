@@ -21,11 +21,11 @@
 	;[trace text=&sn.eventArg]
 	;[trace text=&pg]
 	&sn.eventArg=''
-	[button text="&'page:'+ pg +' '" left=300 top=450 page=fore enabled=false style='fill: gray; dropShadowColor: black;']
+	[button text="&'page:'+ pg +' '" left=300 top=450 page=fore enabled=false style='{"fill": "gray", "dropShadowColor": "black"}']
 
 	;const.sn.me_call_scriptFn
-	[button text='go back' left=100 top=450 page=fore label='&"*pg"+ (pg-1)' style='fill: burlywood;' fill_hover=tomato arg=&pg-1 cond=pg>1]
-	[button text=forward left=510 top=450 page=fore label='&"*pg"+ (pg+1)' style='fill: burlywood;' fill_hover=tomato arg=&pg+1]
+	[button text='go back' left=100 top=450 page=fore label='&"*pg"+ (pg-1)' style='{"fill": "burlywood"}' fill_hover=tomato arg=&pg-1 cond=pg>1]
+	[button text=forward left=510 top=450 page=fore label='&"*pg"+ (pg+1)' style='{"fill": "burlywood"}' fill_hover=tomato arg=&pg+1]
 [endmacro]
 
 

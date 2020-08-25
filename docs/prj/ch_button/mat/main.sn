@@ -1,7 +1,6 @@
 [title text='文字ボタン・リンク'][call label=*init]
 
 [add_lay layer=mes class=txt]
-[button text=既読スキップ left=640 top=400 page=fore label=*go_skip global=true call=true style='fill: bisque;']
 
 [macro name=rs][r][s][endmacro]
 [char2macro char=/ name=rs]
@@ -12,9 +11,20 @@
 *main
 　Ｑ１．【戎橋】の読み方を選択して下さい。
 
-[button text=かいばし left=120 top=230 page=fore rotation=45 label=**after arg=かいばし style='fill: deepskyblue;' b_pic=ele_mini1]
-[button text=えびすばし left=260 top=260 page=fore rotation=-20 label=***after arg=えびすばし style='fill: mediumslateblue;' b_pic=ele_mini1]
-[button text=いかいのばし left=460 top=210 page=fore rotation=25 label=**after arg=いかいのばし style='fill: tomato;' b_pic=ele_mini1]
+[button text=かいばし left=120 top=230 page=fore rotation=50 label=**after arg=かいばし style='{"fill": "deepskyblue"}' b_pic=ele_mini1 hint='選択肢']
+[button text=えびすばし left=260 top=260 page=fore rotation=-70 label=***after arg=えびすばし style='{"fill": "mediumslateblue"}' b_pic=ele_mini1 hint='選択肢']
+;	[button text=えびすばし left=260 top=260 page=fore rotation=-70 label=***after arg=えびすばし style='{"fill": "mediumslateblue"}' b_pic=ele_mini1 hint='選択肢' hint_tate=false]
+[button text=いかいのばし left=460 top=210 page=fore rotation=-25 label=**after arg=いかいのばし style='{"fill": "tomato"}' b_pic=ele_mini2 hint='選択肢']
+
+[button text=既読スキップ left=550 top=300 page=fore label=*go_skip call=true style='{"fill": "bisque"}' hint='背景なし文字ボタン']
+
+[button pic=MnuUp_btnPage2 left=560 top=350 page=fore rotation=25 label=****after hint='これだけ画像ボタン']
+;	[button pic=MnuUp_btnPage2 left=340 top=250 page=fore rotation=25 label=****after hint='これだけ画像ボタン' scale_x=0.7 scale_y=5]
+;	[button pic=MnuUp_btnPage2 left=380 top=350 page=fore rotation=25 label=****after hint='これだけ画像ボタン' width=150]
+;	[button pic=MnuUp_btnPage2 left=560 top=350 page=fore rotation=25 label=****after hint='これだけ画像ボタン' height=135]
+
+[button text=横書き left=20 top=430 page=fore label=*yoko style='{"fill": "bisque"}' hint='行方向の変更']
+[button text=縦書き left=20 top=460 page=fore label=*tate style='{"fill": "bisque"}' hint='行方向の変更']
 [s]
 **
 [er][r]
@@ -23,12 +33,16 @@
 
 ***
 [er][r]
-[button text=えびすばし left=260 top=260 page=fore rotation=-20 label=***after arg=えびすばし style='fill: mediumslateblue;' b_pic=ele_mini1 enabled=false]
+[button text=えびすばし left=260 top=260 page=fore rotation=-70 label=***after arg=えびすばし style='{"fill": "mediumslateblue"}' b_pic=ele_mini1 enabled=false]
 　正解！¥
 
+****
+;[er]
 　Ｑ２．【日本橋】の読み方は？[r]
 　　[link label=**after wait=1000]にほんばし[endlink][r]
 　　[link label=***after style='background-color: rgba(200,255,200,0.5);']にっぽんばし[endlink]
+;　　[link label=**after wait=1000 hint_tate=false hint='背景なし文字ボタン']にほんばし[endlink][r]
+;　　[link label=***after style='background-color: rgba(200,255,200,0.5);' hint='背景なし文字ボタン']にっぽんばし[endlink]
 [s]
 **
 [er][r]
@@ -48,6 +62,13 @@
 	&sn.auto.enabled = false	; 自動読みすすみモードかどうか
 [jump label=*main]
 
+
+*yoko
+	[lay layer=mes style='writing-mode: horizontal-tb;']
+	[clear_text][jump label=*main]
+*tate
+	[lay layer=mes style='writing-mode: vertical-rl;']
+	[clear_text][jump label=*main]
 
 *go_skip
 	&sn.skip.enabled = true

@@ -6,17 +6,17 @@
 [add_lay layer=mes class=txt]
 	[lay layer=mes style='padding-bottom: 64px;' ffs=&ffs noffs='・']
 
-[button text=デフォルト left=20 top=460 page=fore label=*ffs arg='' global=true style='fill: plum;']
-[button text=palt left=130 top=460 page=fore label=*ffs arg='"palt"' global=true style='fill: plum;']
-[button text=pwid left=240 top=460 page=fore label=*ffs arg='"pwid"' global=true style='fill: plum;']
+[button text=デフォルト left=20 top=460 page=fore label=*ffs arg='' global=true style='{"fill": "plum"}']
+[button text=palt left=130 top=460 page=fore label=*ffs arg='"palt"' global=true style='{"fill": "plum"}']
+[button text=pwid left=240 top=460 page=fore label=*ffs arg='"pwid"' global=true style='{"fill": "plum"}']
 
 &marker = true
-[button text=要点文字着色 left=530 top=430 page=fore label=*marker arg=true global=true call=false style='fill: limegreen;']
-[button text=無着色 left=530 top=460 page=fore label=*marker arg=false global=true call=false style='fill: limegreen;']
+[button text=要点文字着色 left=530 top=430 page=fore label=*marker arg=true global=true call=false style='{"fill": "limegreen"}']
+[button text=無着色 left=530 top=460 page=fore label=*marker arg=false global=true call=false style='{"fill": "limegreen"}']
 
 &wm = '横'
-[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='fill: bisque;']
-[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='fill: bisque;']
+[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='{"fill": "bisque"}']
+[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='{"fill": "bisque"}']
 
 **
 [title text="&'禁則処理と文字詰め（文字詰め=#{ffs}・#{wm}書き）'"]

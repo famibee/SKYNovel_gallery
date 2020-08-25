@@ -3,15 +3,15 @@
 [add_lay layer=mes class=txt]
 
 &r_align = ''
-[button text=デフォルト left=20 top=460 page=fore label=*r_align arg='' global=true style='fill: plum;']
-[button text=center left=130 top=460 page=fore label=*r_align arg=center global=true style='fill: plum;']
-[button text=justify left=240 top=460 page=fore label=*r_align arg=justify global=true style='fill: plum;']
-[button text=121 left=350 top=460 page=fore label=*r_align arg=121 global=true style='fill: plum;']
-[button text=1ruby left=460 top=460 page=fore label=*r_align arg=1ruby global=true style='fill: plum;']
+[button text=デフォルト left=20 top=460 page=fore label=*r_align arg='' global=true style='{"fill": "plum"}']
+[button text=center left=130 top=460 page=fore label=*r_align arg=center global=true style='{"fill": "plum"}']
+[button text=justify left=240 top=460 page=fore label=*r_align arg=justify global=true style='{"fill": "plum"}']
+[button text=121 left=350 top=460 page=fore label=*r_align arg=121 global=true style='{"fill": "plum"}']
+[button text=1ruby left=460 top=460 page=fore label=*r_align arg=1ruby global=true style='{"fill": "plum"}']
 
 &wm = '横'
-[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='fill: bisque;']
-[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='fill: bisque;']
+[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='{"fill": "bisque"}']
+[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='{"fill": "bisque"}']
 
 **
 [title text="&'直感的なルビ文法（r_align=#{r_align}・#{wm}書き）'"]

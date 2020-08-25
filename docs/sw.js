@@ -114,7 +114,7 @@ define("./sw.js",['./workbox-00ef8af7'], function (workbox) { 'use strict';
     "revision": "8bbe4223f48c03dd574d9a20ea054d18"
   }, {
     "url": "prj/web.vendor.js",
-    "revision": "b6b59c424cfb51a460aab6f3db8c6937"
+    "revision": "5ce19a7c56dcf5282fcb8c8a40ddccd2"
   }], {
     "directoryIndex": "/"
   });

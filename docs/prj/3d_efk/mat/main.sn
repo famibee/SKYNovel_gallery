@@ -10,16 +10,16 @@
 	[lay layer=3d name=てすと type=box size=1]
 	「３Ｄレイヤ」にEffekseerエフェクトを表示できます。[r]
 
-[button text=block left=20 top=420 page=fore label=*eff_set arg=block global=true style='fill: black;']
-[button text=音Laser01 left=130 top=420 page=fore label=*eff_set arg=Laser01 global=true style='fill: black;']
-[button text=Laser02 left=240 top=420 page=fore label=*eff_set arg=Laser02 global=true style='fill: black;']
+[button text=block left=20 top=420 page=fore label=*eff_set arg=block global=true style='{"fill": "black"}']
+[button text=音Laser01 left=130 top=420 page=fore label=*eff_set arg=Laser01 global=true style='{"fill": "black"}']
+[button text=Laser02 left=240 top=420 page=fore label=*eff_set arg=Laser02 global=true style='{"fill": "black"}']
 
-[button text=Ribbon_Parent left=20 top=460 page=fore label=*eff_set arg=Simple_Ribbon_Parent global=true style='fill: black;']
-[button text=Ribbon_Sword left=130 top=460 page=fore label=*eff_set arg=Simple_Ribbon_Sword global=true style='fill: black;']
-[button text=Ring_Shape1 left=240 top=460 page=fore label=*eff_set arg=Simple_Ring_Shape1 global=true style='fill: black;']
-[button text=Ring_Shape2 left=350 top=460 page=fore label=*eff_set arg=Simple_Ring_Shape2 global=true style='fill: black;']
-[button text=Sprite_FixedYAxis left=460 top=460 page=fore label=*eff_set arg=Simple_Sprite_FixedYAxis global=true style='fill: black;']
-[button text=Track1 left=570 top=460 page=fore label=*eff_set arg=Simple_Track1 global=true style='fill: black;']
+[button text=Ribbon_Parent left=20 top=460 page=fore label=*eff_set arg=Simple_Ribbon_Parent global=true style='{"fill": "black"}']
+[button text=Ribbon_Sword left=130 top=460 page=fore label=*eff_set arg=Simple_Ribbon_Sword global=true style='{"fill": "black"}']
+[button text=Ring_Shape1 left=240 top=460 page=fore label=*eff_set arg=Simple_Ring_Shape1 global=true style='{"fill": "black"}']
+[button text=Ring_Shape2 left=350 top=460 page=fore label=*eff_set arg=Simple_Ring_Shape2 global=true style='{"fill": "black"}']
+[button text=Sprite_FixedYAxis left=460 top=460 page=fore label=*eff_set arg=Simple_Sprite_FixedYAxis global=true style='{"fill": "black"}']
+[button text=Track1 left=570 top=460 page=fore label=*eff_set arg=Simple_Track1 global=true style='{"fill": "black"}']
 
 
 **

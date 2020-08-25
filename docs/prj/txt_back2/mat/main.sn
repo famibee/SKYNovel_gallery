@@ -3,12 +3,12 @@
 [add_lay layer=mes class=txt]
 	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
 		; ele1 = 750x230
-[button text=既読スキップ left=520 top=10 page=fore label=*go_skip global=true call=true style='fill: bisque;']
-[button text=TestB left=640 top=10 page=fore label=*test arg=B global=true call=true style='fill: bisque;']
+[button text=既読スキップ left=520 top=10 page=fore label=*go_skip global=true call=true style='{"fill": "bisque"}']
+[button text=TestB left=640 top=10 page=fore label=*test arg=B global=true call=true style='{"fill": "bisque"}']
 
 [add_lay layer=mes_aite class=txt]	; 文字レイヤ複数のサンプルも
 	[lay layer=mes_aite left=0 top=0 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
-[button layer=mes_aite text=TestA left=640 top=10 page=fore label=*test arg=A global=true call=true style='fill: bisque;']
+[button layer=mes_aite text=TestA left=640 top=10 page=fore label=*test arg=A global=true call=true style='{"fill": "bisque"}']
 
 ; 一文字マクロで省略記法
 [macro name=lr][l][r][endmacro]

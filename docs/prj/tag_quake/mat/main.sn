@@ -5,8 +5,8 @@
 [add_lay layer=mes class=txt b_color=0xFFFFFF b_alpha=0.5 left=16 top=250 style="width: 718px; height: 234px; padding-top: 24x; padding-left: 8px; padding-right: 8px; color: black;"]
 
 *loop
-	[button text=既読情報クリア left=600 top=20 page=fore label=*go_skip_clear global=true call=true style='fill: tomato;']
-	[button text=既読スキップ left=600 top=60 page=fore label=*go_skip arg='go skip' global=true call=true style='fill: tomato;']
+	[button text=既読情報クリア left=600 top=20 page=fore label=*go_skip_clear global=true call=true style='{"fill": "tomato"}']
+	[button text=既読スキップ left=600 top=60 page=fore label=*go_skip arg='go skip' global=true call=true style='{"fill": "tomato"}']
 
 	停止（クリックで開始）
 		[waitclick][r]

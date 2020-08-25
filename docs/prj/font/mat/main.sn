@@ -14,8 +14,8 @@
 [add_lay layer=mes class=txt]
 
 &wm = '横'
-[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='fill: bisque;']
-[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='fill: bisque;']
+[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='{"fill": "bisque"}']
+[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='{"fill": "bisque"}']
 
 **
 [title text="&'フォント利用（#{wm}書き）'"]

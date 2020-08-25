@@ -2,8 +2,8 @@
 
 [add_lay layer=mes class=txt]
 
-[button text=既読情報クリア left=340 top=80 page=fore label=*go_skip_clear global=true call=true style='fill: bisque;']
-[button text=既読スキップ left=340 top=120 page=fore label=*go_skip arg='go skip' global=true call=true style='fill: bisque;']
+[button text=既読情報クリア left=340 top=80 page=fore label=*go_skip_clear global=true call=true style='{"fill": "bisque"}']
+[button text=既読スキップ left=340 top=120 page=fore label=*go_skip arg='go skip' global=true call=true style='{"fill": "bisque"}']
 
 　一[graph pic=breakpage]ページ目[l][r]
 　　２行目[l][r]
