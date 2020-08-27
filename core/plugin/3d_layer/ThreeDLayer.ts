@@ -339,7 +339,7 @@ export class ThreeDLayer extends Layer {
 		this.clearScene(this.scene_3D);
 		this.canvas_3D.clear();
 		this.sprite_3D.texture.update();	//tell pixi that threejs changed
-		delete this.camera;
+		//delete this.camera;
 	}
 	private clearScene(sc: Scene) {
 		sc.children.slice().map(o=> this.clearObject3D(o));
@@ -360,7 +360,7 @@ export class ThreeDLayer extends Layer {
 		m.geometry.dispose();
 		if (m.material instanceof Material)	{
 			m.material.dispose();
-			if (m.material as MeshBasicMaterial) delete m.material;
+			if (m.material as MeshBasicMaterial) m.material = [];
 		}
 		else {
 			m.material.map(v=> v.dispose());

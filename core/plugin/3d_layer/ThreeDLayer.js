@@ -264,7 +264,6 @@ class ThreeDLayer extends Layer {
         this.clearScene(this.scene_3D);
         this.canvas_3D.clear();
         this.sprite_3D.texture.update();
-        delete this.camera;
     }
     clearScene(sc) {
         sc.children.slice().map(o => this.clearObject3D(o));
@@ -286,7 +285,7 @@ class ThreeDLayer extends Layer {
         if (m.material instanceof three_1.Material) {
             m.material.dispose();
             if (m.material)
-                delete m.material;
+                m.material = [];
         }
         else {
             m.material.map(v => v.dispose());

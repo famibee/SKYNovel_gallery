@@ -49,8 +49,12 @@
 
 「母様《おっかさん》、愉快《おも｜しろ》[tcy t="451" r=縦横][span style='color: skyblue;']Style[span][ch text="&'&'"]'`"<>
 
-	[link label=***after global=true call=true hint='文字リンクにも説明' style='font-size: 50px; background-color: rgba(200,0,200,0.5);']リ[endlink]
-	[link label=***after global=true call=true hint='文字リンクにも説明' style='font-size: 40px; background-color: rgba(200,0,200,0.5);']ンク[endlink]
+	[link label=***after global=true call=true hint='文字リンクにも説明'
+	style='font-size: 50px; background-color: rgba(200,0,200,0.5);'
+	style_hover='font-size: 50px; background-color: rgba(200,0,200,0.9);']リ[endlink]
+	[link label=***after global=true call=true hint='文字リンクにも説明'
+	style='font-size: 40px; background-color: rgba(200,0,200,0.5);'
+	style_hover='font-size: 40px; background-color: rgba(200,0,200,0.9);']ンク[endlink]
 
 [link label=***after global=true call=true hint='文字リンクにも説明']リンク[graph pic=breakpage style='background-color: rgba(200,0,200,0.5);'][tcy t=縦横][tcy t="451" r=縦中横]👺《てんぐ》[endlink][span style='font-size: 64px;']🌈[span][l][r]
 
