@@ -101,7 +101,6 @@ window.addEventListener('load', ()=> {
 	});
 
 }, {once: true});
-/*
 	// NOTE: これを寝かすとキャッシュしない（ServerWorkerも止めるとGood）
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('../sw.js')
@@ -109,7 +108,6 @@ window.addEventListener('load', ()=> {
 		.catch(e=> console.error(`Service worker is not registered.`, e));
 	}
 	else console.error(`Not Found serviceWorker`);
-*/
 </script>
 <script defer src="web.js"></script>
 <script defer src="web.vendor.js"></script>

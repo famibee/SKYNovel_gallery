@@ -27,6 +27,12 @@ input[type="range"] {
 	box-shadow: -100vw 0 0 100vw dodgerblue;
 	border: 2px solid #999; /* 1 */
 }
+
+.test:hover, .test:focus {
+	border: solid 004AA1;
+	background: #ccffcc;
+}
+
 </style>
 <script>
 	document.addEventListener('DOMContentLoaded', ()=> {
@@ -84,27 +90,27 @@ input[type="range"] {
 </head>
 <body oncontextmenu="return false;">
 
-<button id="close" type="button">フレームを閉じます</button>
+<button id="close" type="button" class="test">フレームを閉じます</button>
 
 <br/>
-<p>
+<p><label for="chk0" class="test">
 	<input type="checkbox" id="chkTst" name="chk0" class="sn_dsp"/>
-	<label for="chk0">チェックボックス</label>
-</p>
+	チェックボックス
+</label></p>
 
-<label>レンジ：<input type="range" id="rngTst" value="20" max="100" min="0" class="sn_dsp"/></label>
+<label class="test">レンジ：<input type="range" id="rngTst" value="20" max="100" min="0" class="sn_dsp"/></label>
 
-<p id="radTst">
+<p id="radTst" class="test">
 	<label><input type="radio" name="radTst" value="a" checked>Ａ</label>
 	<label><input type="radio" name="radTst" value="b">Ｂ</label>
 	<label><input type="radio" name="radTst" value="c">Ｃ</label>
 </p>
 
-<input type="text" id="txtTst" value="" autocomplete="off" class="sn_dsp"/>
+<input type="text" id="txtTst" value="" autocomplete="off" class="sn_dsp test"/>
 
 <p>
 	<label for="area0">テキストエリア：</label><br>
-	<textarea id="txtArea" name="area0" cols="40" rows="4" maxlength="20" placeholder="エリアの説明" class="sn_dsp"></textarea>
+	<textarea id="txtArea" name="area0" cols="40" rows="4" maxlength="20" placeholder="エリアの説明" class="sn_dsp test"></textarea>
 </p>
 
 </body></html>

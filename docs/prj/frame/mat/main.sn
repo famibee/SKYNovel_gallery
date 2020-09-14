@@ -1,9 +1,9 @@
 [call label=*init]
 
 [add_lay layer=mes class=txt]
-	[button text=フレーム表示 left=640 top=460 page=fore label=*show global=true call=true style='{"fill": "deepskyblue"}']
+	[button text=フレーム表示 left=640 top=460 page=fore label=*show global=true call=true style='{"fill": "deepskyblue"}' hint='HTMLフレームを開く']
 
-[add_frame id=tst src="frame" visible=false b_color=lightgray height=&const.sn.config.window.height*2/3]
+[add_frame id=tst src='frame' visible=false b_color=lightgray height=&const.sn.config.window.height*2/3]
 	; フレームのJavaScript変数を変更
 	[set_frame id=tst var_name=val_chkTst text=true]
 	[set_frame id=tst var_name=val_rngTst text=70]
@@ -24,7 +24,7 @@
 	[call label=*title_disp]
 
 **
-　フレーム利用サンプルです。[p][clear_text]
+　フレーム利用サンプルです。（GamePad対応）[p][clear_text]
 
 [jump label=**before]
 
@@ -55,7 +55,12 @@
 	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
 	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
 	[toggle_full_screen key=w]	; for browser
+
+	[event global=true call=true key=ArrowLeft label=*set_focus arg=prev]
+	[event global=true call=true key=ArrowRight label=*set_focus arg=next]
 [return]
 
-*snapshot
-[snapshot fn=pic][return]
+*set_focus
+	[set_focus to=&sn.eventArg][return]
+;*set_focus	[set_focus to=&sn.eventArg][return]
+*snapshot	[snapshot fn=pic][return]
