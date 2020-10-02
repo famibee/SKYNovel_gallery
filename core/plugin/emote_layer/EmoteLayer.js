@@ -18,9 +18,9 @@ class EmoteLayer extends Layer {
                 windPowerMax: this.inf.player.windPowerMax,
             }
             : { fn: '' });
-        if (EmoteLayer.uniq_num++ % 2 == 1)
+        if (EmoteLayer.uniq_num++ % 2 === 1)
             return;
-        if (EmoteLayer.uniq_num == 1) {
+        if (EmoteLayer.uniq_num === 1) {
             switch (String(EmoteLayer.plgArg.getVal('const.sn.platform.os.family'))) {
                 case 'Android':
                 case 'iOS':
@@ -46,7 +46,7 @@ class EmoteLayer extends Layer {
             return false;
         const layer = hArg.layer;
         if (!layer) {
-            if (hArg['タグ名'] == 'add_lay')
+            if (hArg.タグ名 === 'add_lay')
                 return false;
             throw `layerは必須です`;
         }
@@ -60,7 +60,7 @@ class EmoteLayer extends Layer {
             };
             const a = Object.assign({}, hArg);
             delete a.fn;
-            a['タグ名'] = 'lay';
+            a.タグ名 = 'lay';
             player.onUpdate = () => {
                 if (!player)
                     return;
@@ -75,17 +75,17 @@ class EmoteLayer extends Layer {
             });
             return true;
         }
-        else if (hArg['タグ名'] == 'add_lay')
+        else if (hArg.タグ名 === 'add_lay')
             return false;
         if (!this.inf)
             return false;
         Layer.setXY(this.sp, hArg, this.cnt, true);
         const player = this.inf.player;
         if (hArg.label) {
-            const a = player.mainTimelineLabels;
+            const a = [...player.mainTimelineLabels, ...player.diffTimelineLabels];
             if (!a.includes(hArg.label)) {
-                console.info(`エラーが発生しました。参考までに ${this.inf.fn}.emtbytes 内に存在するアニメ名を列挙します`);
-                a.map(v => console.info(`  label=${v}`));
+                console.error(`エラーが発生しました。参考までに ${this.inf.fn}.emtbytes 内に存在するアニメ名を列挙します`);
+                a.forEach(v => console.info(`  label=${v}`));
                 throw `${this.inf.fn}.emtbytes 内に存在しないアニメ（label=${hArg.label}）です`;
             }
             player.mainTimelineLabel = hArg.label;
@@ -135,7 +135,7 @@ class EmoteLayer extends Layer {
             return;
         this.clearLay({});
         this.cvs.parentElement.removeChild(this.cvs);
-        this.cnt.removeChildren().map((v) => v.destroy());
+        this.cnt.removeChildren().forEach((v) => v.destroy());
     }
 }
 exports.EmoteLayer = EmoteLayer;

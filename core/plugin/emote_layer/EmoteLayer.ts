@@ -28,8 +28,8 @@ export class EmoteLayer extends Layer {
 	constructor() {
 		super();
 
-		if (EmoteLayer.uniq_num++ % 2 == 1) return;
-		if (EmoteLayer.uniq_num == 1) {
+		if (EmoteLayer.uniq_num++ % 2 === 1) return;
+		if (EmoteLayer.uniq_num === 1) {
 			switch (String(EmoteLayer.plgArg.getVal('const.sn.platform.os.family'))) {
 				case 'Android':
 				case 'iOS':
@@ -61,7 +61,7 @@ export class EmoteLayer extends Layer {
 
 		const layer = hArg.layer;
 		if (! layer) {
-			if (hArg['タグ名'] == 'add_lay') return false;
+			if (hArg.タグ名 === 'add_lay') return false;
 			throw `layerは必須です`;	// あり得ないが警告が出るので
 		}
 
@@ -77,7 +77,7 @@ export class EmoteLayer extends Layer {
 
 			const a = {...hArg};
 			delete a.fn;
-			a['タグ名'] = 'lay';
+			a.タグ名 = 'lay';
 
 			player.onUpdate = ()=> {
 				if (! player) return;
@@ -96,7 +96,7 @@ export class EmoteLayer extends Layer {
 
 			return true;
 		}
-		else if (hArg['タグ名'] == 'add_lay') return false;
+		else if (hArg.タグ名 === 'add_lay') return false;
 
 		// 以後の操作
 		if (! this.inf) return false;
@@ -105,10 +105,10 @@ export class EmoteLayer extends Layer {
 
 		const player = this.inf.player;
 		if (hArg.label) {
-			const a: Array<string> = player.mainTimelineLabels;
+			const a: Array<string> = [...player.mainTimelineLabels, ...player.diffTimelineLabels];
 			if (! a.includes(hArg.label)) {
-				console.info(`エラーが発生しました。参考までに ${this.inf.fn}.emtbytes 内に存在するアニメ名を列挙します`);
-				a.map(v=> console.info(`  label=${v}`));
+				console.error(`エラーが発生しました。参考までに ${this.inf.fn}.emtbytes 内に存在するアニメ名を列挙します`);
+				a.forEach(v=> console.info(`  label=${v}`));
 				throw `${this.inf.fn}.emtbytes 内に存在しないアニメ（label=${hArg.label}）です`;
 			}
 
@@ -172,7 +172,7 @@ export class EmoteLayer extends Layer {
 
 		this.clearLay({});
 		this.cvs!.parentElement!.removeChild(this.cvs);
-		this.cnt.removeChildren().map((v: Sprite)=> v.destroy());
+		this.cnt.removeChildren().forEach((v: Sprite)=> v.destroy());
 	}
 
 }

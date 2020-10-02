@@ -178,6 +178,8 @@ class ThreeDLayer extends Layer {
         }
         else if ('del' in hArg) {
             const del = hArg['del'];
+            if (!del)
+                return false;
             const mdl2 = this.scene_3D.children.find(e => e.name === del);
             if (!mdl2)
                 return false;
