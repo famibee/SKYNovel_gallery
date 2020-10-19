@@ -22,7 +22,7 @@ module.exports = [{
 	plugins: [
 		new GenerateSW({
 			cacheId: cacheId,
-			swDest:  'sw.js',
+			swDest: 'sw.js',
 			maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,	// MB
 			clientsClaim: true,
 			skipWaiting: true,

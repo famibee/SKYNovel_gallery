@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.0.22
+- upd：ライブラリ更新
 ## v2.0.21
 - upd：EmoteLayer、player.mainTimelineLabels だけでなく player.diffTimelineLabels も参照して存在チェックするように
 - upd：ライブラリ・フォント更新
