@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.0.23
+- upd：tsconfig.json の target を es2019 に更新
+- upd：ライブラリ更新
 ## v2.0.22
 - upd：ライブラリ更新
 ## v2.0.21

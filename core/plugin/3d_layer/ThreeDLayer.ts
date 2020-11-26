@@ -125,7 +125,9 @@ export class ThreeDLayer extends Layer {
 		}
 
 		const type = hArg.type;
-		const name = hArg.name ?? '';
+		const name = hArg.name || '';
+//		const name = (! hArg.name) ?'' :hArg.name;
+	//	const name = hArg.name ?? '';	// 2020/10/20 エラーになるので
 		let mdl: Object3D = new Mesh();
 		if (type) {
 			if (name in this.hInf) throw `name（=${name}）が重複しています`;
@@ -162,11 +164,13 @@ export class ThreeDLayer extends Layer {
 							this.hEff[fn] = this.ctxEff.loadEffect(
 								ThreeDLayer.plgArg.searchPath(fn, 'efk'),
 								argChk_Num(hArg, 'scale', 1),
-								()=> {
-									const [x, y, z] = String(hArg.pos ?? '0,0,0').split(',');
-									const h = this.ctxEff.play(this.hEff[fn], x, y, z);
-									this.hInf[name] = {type: type, fn: fn, effhdl: h};
-								},
+	()=> {
+		const [x, y, z] = String(hArg.pos || '0,0,0').split(',');
+	//	const [x, y, z] = String(hArg.pos ?? '0,0,0').split(',');
+			// 2020/10/20 エラーになるので
+		const h = this.ctxEff.play(this.hEff[fn], x, y, z);
+		this.hInf[name] = {type: type, fn: fn, effhdl: h};
+	},
 								(m: any, url: any)=> console.error(m +' url='+ url),
 							);
 						};
@@ -270,7 +274,8 @@ export class ThreeDLayer extends Layer {
 		if ('label' in hArg) {
 			inf.label = hArg['label'];
 			if (inf.gltf) {
-				const ac: AnimationClip = AnimationClip.findByName(inf.gltf.animations, inf.label ?? '');
+				const ac: AnimationClip = AnimationClip.findByName(inf.gltf.animations, inf.label || '');
+			//	const ac: AnimationClip = AnimationClip.findByName(inf.gltf.animations, inf.label ?? '');	// 2020/10/20 エラーになるので
 				if (! ac) {
 					console.info(`エラーが発生しました。参考までに ${inf.fn}(glTF)内に存在するアニメ名を列挙します`);
 					const a = inf.gltf.animations as AnimationClip[];

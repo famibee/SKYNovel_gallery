@@ -20,8 +20,7 @@ module.exports = [{
 		minimize: true,
 	},
 	plugins: [
-/*
-		new GenerateSW({
+/*		new GenerateSW({
 			cacheId: cacheId,
 			swDest:  'sw_s.js',
 			maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,	// MB
@@ -29,11 +28,12 @@ module.exports = [{
 			skipWaiting: true,
 			offlineGoogleAnalytics: false,
 			directoryIndex: '/',
-		}),
-*/
+		}),	*/
 	],
 	performance: {
 		maxEntrypointSize: 2000 *1000,
 		maxAssetSize: 1000 *1000
 	},
+	resolve: {extensions: ['.ts', '.js'],},
+	module: {rules: [{test: /\.ts$/, loader: 'ts-loader'},],},
 }];
