@@ -81,7 +81,7 @@ if (!self.define) {
     });
   };
 }
-define("./sw.js",['./workbox-0098836a'], function (workbox) { 'use strict';
+define("./sw.js",['./workbox-05d9393f'], function (workbox) { 'use strict';
 
   /**
   * Welcome to your Workbox-powered service worker!
@@ -98,7 +98,7 @@ define("./sw.js",['./workbox-0098836a'], function (workbox) { 'use strict';
   workbox.setCacheNameDetails({
     prefix: "SKYNovel Gallery"
   });
-  workbox.skipWaiting();
+  self.skipWaiting();
   workbox.clientsClaim();
   /**
    * The precacheAndRoute() method efficiently caches and responds to
@@ -111,7 +111,7 @@ define("./sw.js",['./workbox-0098836a'], function (workbox) { 'use strict';
     "revision": "a19c20acd042abf3ec76bbf2f0da07d2"
   }, {
     "url": "prj/web.three.js",
-    "revision": "0805ce19020bc6a4bfbff7c39883e90a"
+    "revision": "741e972973944373b53a36f4fa95b45b"
   }, {
     "url": "prj/web.vendor.js",
     "revision": "3daae9b7fc8ae86cefbf8ab6e78e476c"
