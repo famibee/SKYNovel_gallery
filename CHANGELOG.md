@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.0.28
+- upd：ライブラリ更新
 ## v2.0.27
 - fix: Licenseブロック年表記更新
 - upd：ライブラリ更新
