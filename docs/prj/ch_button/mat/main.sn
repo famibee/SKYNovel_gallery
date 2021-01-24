@@ -21,10 +21,10 @@
 
 [button text=既読スキップ left=550 top=300 page=fore label=*go_skip call=true style='{"fill": "aqua"}' style_hover='{"fill": "#4444ff"}' hint='背景なし文字ボタン']
 
-[button pic=MnuUp_btnPage2 left=560 top=350 page=fore rotation=25 label=****after hint='これだけ画像ボタン']
-;	[button pic=MnuUp_btnPage2 left=340 top=250 page=fore rotation=25 label=****after hint='これだけ画像ボタン' scale_x=0.7 scale_y=5]
-;	[button pic=MnuUp_btnPage2 left=380 top=350 page=fore rotation=25 label=****after hint='これだけ画像ボタン' width=150]
-;	[button pic=MnuUp_btnPage2 left=560 top=350 page=fore rotation=25 label=****after hint='これだけ画像ボタン' height=135]
+[button pic=MnuUp_btnPage2 left=560 top=350 page=fore rotation=25 label=****after hint='画像ボタン']
+	[button pic=MnuUp_btnPage2 left=340 top=250 page=fore rotation=25 label=****after hint='画像ボタン' scale_x=0.7 scale_y=5]
+;	[button pic=MnuUp_btnPage2 left=380 top=350 page=fore rotation=25 label=****after hint='画像ボタン' width=150]
+;	[button pic=MnuUp_btnPage2 left=560 top=350 page=fore rotation=25 label=****after hint='画像ボタン' height=135]
 
 [button text=横書き left=20 top=430 page=fore label=*yoko style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}' hint='行方向の変更']
 [button text=縦書き left=20 top=460 page=fore label=*tate style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}' hint='行方向の変更']
