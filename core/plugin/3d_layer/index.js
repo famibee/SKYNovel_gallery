@@ -6,7 +6,7 @@ exports.init = (plgArg) => {
     (async () => {
         ThreeDLayer_1.ThreeDLayer.THREE = await Promise.resolve().then(() => require('three'));
         globalThis.THREE = ThreeDLayer_1.ThreeDLayer.THREE;
-        plgArg.addLayCls('3d', () => { const l = new ThreeDLayer_1.ThreeDLayer; return l; });
+        plgArg.addLayCls('3d', () => new ThreeDLayer_1.ThreeDLayer);
     })();
 };
 //# sourceMappingURL=index.js.map

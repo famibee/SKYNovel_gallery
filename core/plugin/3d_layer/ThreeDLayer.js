@@ -28,7 +28,7 @@ class ThreeDLayer extends Layer {
         this.tickUpdEff = () => { };
         this.hInf = {};
         this.record = () => Object.assign(super.record(), {
-            type: this.type,
+            hInf: this.hInf,
         });
         if (ThreeDLayer.uniq_num++ % 2 == 1)
             return;
@@ -38,12 +38,11 @@ class ThreeDLayer extends Layer {
         this.canvas_3D.setPixelRatio(window.devicePixelRatio);
         const texture_3D = pixi_js_1.Texture.from(this.canvas_3D.domElement);
         this.sprite_3D = new pixi_js_1.Sprite(texture_3D);
-        this.cnt.addChild(this.sprite_3D);
+        this.spLay.addChild(this.sprite_3D);
         this.sprite_3D.x = (CmnLib.stageW - this.sprite_3D.width) / 2;
         this.sprite_3D.y = (CmnLib.stageH - this.sprite_3D.height) / 2;
     }
     lay(hArg) {
-        var _a;
         if (!this.scene_3D)
             return false;
         if ('grid' in hArg) {
@@ -82,7 +81,7 @@ class ThreeDLayer extends Layer {
             this.fncCtrl = () => controls.update();
         }
         const type = hArg.type;
-        const name = (_a = hArg.name) !== null && _a !== void 0 ? _a : '';
+        const name = hArg.name || '';
         let mdl = new three_1.Mesh();
         if (type) {
             if (name in this.hInf)
@@ -116,8 +115,7 @@ class ThreeDLayer extends Layer {
                         {
                             const fncEff = () => {
                                 this.hEff[fn] = this.ctxEff.loadEffect(ThreeDLayer.plgArg.searchPath(fn, 'efk'), argChk_Num(hArg, 'scale', 1), () => {
-                                    var _a;
-                                    const [x, y, z] = String((_a = hArg.pos) !== null && _a !== void 0 ? _a : '0,0,0').split(',');
+                                    const [x, y, z] = String(hArg.pos || '0,0,0').split(',');
                                     const h = this.ctxEff.play(this.hEff[fn], x, y, z);
                                     this.hInf[name] = { type: type, fn: fn, effhdl: h };
                                 }, (m, url) => console.error(m + ' url=' + url));
@@ -199,7 +197,6 @@ class ThreeDLayer extends Layer {
         return false;
     }
     arg2mdl(hArg, o) {
-        var _a;
         this.csv2pos(hArg, 'pos', o);
         this.csv2scale(hArg, 'scale', o);
         const inf = this.hInf[o.name];
@@ -208,7 +205,7 @@ class ThreeDLayer extends Layer {
         if ('label' in hArg) {
             inf.label = hArg['label'];
             if (inf.gltf) {
-                const ac = three_1.AnimationClip.findByName(inf.gltf.animations, (_a = inf.label) !== null && _a !== void 0 ? _a : '');
+                const ac = three_1.AnimationClip.findByName(inf.gltf.animations, inf.label || '');
                 if (!ac) {
                     console.info(`エラーが発生しました。参考までに ${inf.fn}(glTF)内に存在するアニメ名を列挙します`);
                     const a = inf.gltf.animations;
@@ -293,13 +290,11 @@ class ThreeDLayer extends Layer {
             m.material.map(v => v.dispose());
         }
     }
-    playback(hLay, fncComp = undefined) {
-        super.playback(hLay);
-        if (fncComp != undefined)
-            fncComp();
+    playback(hLay, aPrm) {
+        super.playback(hLay, aPrm);
+        this.hInf = hLay.hInf;
         if (!this.scene_3D)
-            return false;
-        return false;
+            return;
     }
     dump() {
         if (!this.scene_3D)

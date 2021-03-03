@@ -30,7 +30,7 @@ class EmoteLayer extends Layer {
             EmotePlayer.createRenderCanvas(CmnLib.stageW, CmnLib.stageH);
         }
         this.rt = pixi_js_1.RenderTexture.create({ width: CmnLib.stageW, height: CmnLib.stageH });
-        this.cnt.addChild(new pixi_js_1.Sprite(this.rt));
+        this.spLay.addChild(new pixi_js_1.Sprite(this.rt));
         this.cvs = document.createElement('canvas');
         this.cvs.id = `emote:${EmoteLayer.uniq_num}`;
         this.cvs.width = CmnLib.stageW;
@@ -58,7 +58,7 @@ class EmoteLayer extends Layer {
                 fn: fn,
                 player: player,
             };
-            const a = Object.assign({}, hArg);
+            const a = { ...hArg };
             delete a.fn;
             a.タグ名 = 'lay';
             player.onUpdate = () => {
@@ -79,7 +79,7 @@ class EmoteLayer extends Layer {
             return false;
         if (!this.inf)
             return false;
-        Layer.setXY(this.sp, hArg, this.cnt, true);
+        Layer.setXY(this.sp, hArg, this.spLay, true);
         const player = this.inf.player;
         if (hArg.label) {
             const a = [...player.mainTimelineLabels, ...player.diffTimelineLabels];
@@ -135,7 +135,7 @@ class EmoteLayer extends Layer {
             return;
         this.clearLay({});
         this.cvs.parentElement.removeChild(this.cvs);
-        this.cnt.removeChildren().forEach((v) => v.destroy());
+        this.spLay.removeChildren().forEach((v) => v.destroy());
     }
 }
 exports.EmoteLayer = EmoteLayer;

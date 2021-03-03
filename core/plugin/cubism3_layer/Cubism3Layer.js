@@ -53,7 +53,7 @@ class Cubism3Layer extends Layer {
                     .addTexture(0, (res['l2d:' + fn + '_tex'] || pixi_js_1.utils.TextureCache['l2d:' + fn + '_tex']).texture)
                     .addAnimatorLayer(id, LIVE2DCUBISMFRAMEWORK.BuiltinAnimationBlenders.OVERRIDE, 1)
                     .build();
-                this.cnt.addChild(this.model);
+                this.spLay.addChild(this.model);
                 const ani = LIVE2DCUBISMFRAMEWORK.Animation.fromMotion3Json(res['l2d:' + fn + '_mot'].data);
                 this.model.animator
                     .getLayer(id)
@@ -64,7 +64,7 @@ class Cubism3Layer extends Layer {
                         this.model.update(1);
                 };
                 this.hdl_tick = requestAnimationFrame(tick);
-                const a = Object.assign({}, hArg);
+                const a = { ...hArg };
                 delete a.fn;
                 delete a.label;
                 this.state.fn = fn;
@@ -102,14 +102,14 @@ class Cubism3Layer extends Layer {
             this.model.x = this.model.width / 2;
             this.model.y = this.model.height / 2;
         }
-        Layer.setXY(this.model, hArg, this.cnt, true);
+        Layer.setXY(this.model, hArg, this.spLay, true);
         return false;
     }
     clearLay(hArg) {
         super.clearLay(hArg);
         if (this.model) {
             cancelAnimationFrame(this.hdl_tick);
-            this.cnt.removeChild(this.model);
+            this.spLay.removeChild(this.model);
             this.model = null;
         }
         this.state = {

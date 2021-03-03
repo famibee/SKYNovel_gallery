@@ -14,8 +14,6 @@ exports.init = (plgArg: IPluginInitArg)=> {
 		ThreeDLayer.THREE = await import('three');
 		globalThis.THREE = ThreeDLayer.THREE;	// requireで必須なので
 
-		//plgArg.addLayCls('3d', ()=> new ThreeDLayer);
-		// 「type is missing the following properties ...」になるので any 逃げ
-		plgArg.addLayCls('3d', ()=> {const l: any = new ThreeDLayer; return l});
+		plgArg.addLayCls('3d', ()=> <any>new ThreeDLayer);	// any 逃げ
 	})();
 };

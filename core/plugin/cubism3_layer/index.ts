@@ -11,8 +11,6 @@ import {Cubism3Layer} from './Cubism3Layer';
 exports.init = (plgArg: IPluginInitArg)=> {
 	Cubism3Layer.plgArg = plgArg;
 	(async ()=> {
-		//plgArg.addLayCls('emote', ()=> new Cubism3Layer);
-		// 「type is missing the following properties ...」になるので any 逃げ
-		plgArg.addLayCls('cubism3', ()=> {const l: any = new Cubism3Layer; return l});
+		plgArg.addLayCls('cubism3', ()=> <any>new Cubism3Layer);	// any 逃げ
 	})();
 };

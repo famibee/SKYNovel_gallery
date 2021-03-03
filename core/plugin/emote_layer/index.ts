@@ -11,8 +11,6 @@ import {EmoteLayer} from './EmoteLayer';
 exports.init = (plgArg: IPluginInitArg)=> {
 	EmoteLayer.plgArg = plgArg;
 	(async ()=> {
-		//plgArg.addLayCls('emote', ()=> new EmoteLayer);
-		// 「type is missing the following properties ...」になるので any 逃げ
-		plgArg.addLayCls('emote', ()=> {const l: any = new EmoteLayer; return l});
+		plgArg.addLayCls('emote', ()=> <any>new EmoteLayer);	// any 逃げ
 	})();
 };

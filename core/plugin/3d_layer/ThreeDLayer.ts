@@ -42,7 +42,7 @@ export class ThreeDLayer extends Layer {
 		// Map 3D canvas to 2D Canvas
 		const texture_3D = Texture.from(this.canvas_3D.domElement);
 		this.sprite_3D = new Sprite(texture_3D);
-		this.cnt.addChild(this.sprite_3D);
+		this.spLay.addChild(this.sprite_3D);
 		this.sprite_3D.x = (CmnLib.stageW -this.sprite_3D.width) /2
 		this.sprite_3D.y = (CmnLib.stageH -this.sprite_3D.height) /2
 	}
@@ -374,22 +374,20 @@ export class ThreeDLayer extends Layer {
 	}
 
 	record = ()=> Object.assign(super.record(), {
-		type	: this.type,
+		hInf	: this.hInf,
 	});
-	playback(hLay: any, fncComp: undefined | {(): void} = undefined): boolean {
-		super.playback(hLay);
-		if (fncComp != undefined) fncComp();
-		if (! this.scene_3D) return false;
+	playback(hLay: any, aPrm: Promise<void>[]): void {
+		super.playback(hLay, aPrm);
+		this.hInf	= hLay.hInf;
+		if (! this.scene_3D) return;
 
-		/*switch (this.type) {	// TODO: record()とセットで作成
+		/*switch (this.hInf.type) {	// TODO: record()とセットで作成
 			case '':
 				break;
 
 			default:
 				break;
 		}*/
-
-		return false;
 	}
 
 	dump(): string {

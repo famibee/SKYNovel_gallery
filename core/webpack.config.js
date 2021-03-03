@@ -5,6 +5,7 @@ const cacheId = 'SKYNovel Gallery';
 module.exports = [{
 	entry: `./core/web4webpack.js`,
 	target: 'web',
+	mode: 'development',
 	output: {
 		path: process.cwd() +'/docs',
 		filename: 'prj/web.js',
@@ -17,7 +18,6 @@ module.exports = [{
 				vendor: {test: /node_modules\/([^t]+|t[^h]+|thr[^e]+)/, name: 'vendor', chunks: 'initial'},
 			},
 		},
-		minimize: true,
 	},
 	plugins: [
 		new GenerateSW({

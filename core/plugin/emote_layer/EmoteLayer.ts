@@ -41,7 +41,7 @@ export class EmoteLayer extends Layer {
 		}
 
 		this.rt = RenderTexture.create({width: CmnLib.stageW, height: CmnLib.stageH});
-		this.cnt.addChild(new Sprite(this.rt));
+		this.spLay.addChild(new Sprite(this.rt));
 
 		this.cvs = document.createElement('canvas');
 		this.cvs.id = `emote:${EmoteLayer.uniq_num}`;
@@ -101,11 +101,11 @@ export class EmoteLayer extends Layer {
 		// 以後の操作
 		if (! this.inf) return false;
 
-		Layer.setXY(this.sp, hArg, this.cnt, true);
+		Layer.setXY(this.sp, hArg, this.spLay, true);
 
 		const player = this.inf.player;
 		if (hArg.label) {
-			const a: Array<string> = [...player.mainTimelineLabels, ...player.diffTimelineLabels];
+			const a = [...player.mainTimelineLabels, ...player.diffTimelineLabels];
 			if (! a.includes(hArg.label)) {
 				console.error(`エラーが発生しました。参考までに ${this.inf.fn}.emtbytes 内に存在するアニメ名を列挙します`);
 				a.forEach(v=> console.info(`  label=${v}`));
@@ -172,7 +172,7 @@ export class EmoteLayer extends Layer {
 
 		this.clearLay({});
 		this.cvs!.parentElement!.removeChild(this.cvs);
-		this.cnt.removeChildren().forEach((v: Sprite)=> v.destroy());
+		this.spLay.removeChildren().forEach((v: Sprite)=> v.destroy());
 	}
 
 }

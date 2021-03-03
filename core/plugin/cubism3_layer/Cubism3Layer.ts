@@ -71,7 +71,7 @@ export class Cubism3Layer extends Layer {
 					.addTexture(0, (res['l2d:'+ fn +'_tex'] || utils.TextureCache['l2d:'+ fn +'_tex']).texture)
 					.addAnimatorLayer(id, LIVE2DCUBISMFRAMEWORK.BuiltinAnimationBlenders.OVERRIDE, 1)
 					.build();
-				this.cnt.addChild(this.model);
+				this.spLay.addChild(this.model);
 				const ani = LIVE2DCUBISMFRAMEWORK.Animation.fromMotion3Json(res['l2d:'+ fn +'_mot'].data);
 
 				this.model.animator
@@ -126,7 +126,7 @@ export class Cubism3Layer extends Layer {
 			this.model.y = this.model.height/2;
 		}
 
-		Layer.setXY(this.model, hArg, this.cnt, true);
+		Layer.setXY(this.model, hArg, this.spLay, true);
 
 		return false;
 	}
@@ -137,7 +137,7 @@ export class Cubism3Layer extends Layer {
 
 		if (this.model) {
 			cancelAnimationFrame(this.hdl_tick);
-			this.cnt.removeChild(this.model);
+			this.spLay.removeChild(this.model);
 		//	this.model.destroy();	// Cannot read property 'texture' of undefined
 			this.model = null;
 		}
