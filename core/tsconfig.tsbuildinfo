@@ -207,13 +207,13 @@
         "affectsGlobalScope": true
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/cmnlib.d.ts": {
-        "version": "6272d2ea8e771221c74a1d4b1d3b90f80cbbb715a5e95f6f3142cde655f24698",
-        "signature": "6272d2ea8e771221c74a1d4b1d3b90f80cbbb715a5e95f6f3142cde655f24698",
+        "version": "afcd11fc3ac04e3e364a230383e60e767a0dbb7a7854c477f39f2c8553450e45",
+        "signature": "afcd11fc3ac04e3e364a230383e60e767a0dbb7a7854c477f39f2c8553450e45",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/globals.d.ts": {
-        "version": "e9a43c3ee6fb8376bb9a4d318a660412c6abcfe5161c106e801e5431b41b7476",
-        "signature": "e9a43c3ee6fb8376bb9a4d318a660412c6abcfe5161c106e801e5431b41b7476",
+        "version": "25b4a0c4fab47c373ee49df4c239826ee3430019fc0c1b5e59edc3e398b7468d",
+        "signature": "25b4a0c4fab47c373ee49df4c239826ee3430019fc0c1b5e59edc3e398b7468d",
         "affectsGlobalScope": true
       },
       "../node_modules/@types/node/async_hooks.d.ts": {
@@ -227,8 +227,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/child_process.d.ts": {
-        "version": "89a3409a743c2a408d02bd68255a61d8416225b76c2c66d8e2e74dad3e00bc5d",
-        "signature": "89a3409a743c2a408d02bd68255a61d8416225b76c2c66d8e2e74dad3e00bc5d",
+        "version": "674bedbfd2004e233e2a266a3d2286e524f0d58787a98522d834d6ccda1d215a",
+        "signature": "674bedbfd2004e233e2a266a3d2286e524f0d58787a98522d834d6ccda1d215a",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/cluster.d.ts": {
@@ -411,11 +411,6 @@
         "signature": "515ef1d99036ff0dafa5bf738e02222edea94e0d97a0aa0ff277ac5e96b57977",
         "affectsGlobalScope": false
       },
-      "../node_modules/@types/node/ts3.4/base.d.ts": {
-        "version": "d44028ae0127eb3e9fcfa5f55a8b81d64775ce15aca1020fe25c511bbb055834",
-        "signature": "d44028ae0127eb3e9fcfa5f55a8b81d64775ce15aca1020fe25c511bbb055834",
-        "affectsGlobalScope": false
-      },
       "../node_modules/@types/node/globals.global.d.ts": {
         "version": "2708349d5a11a5c2e5f3a0765259ebe7ee00cdcc8161cb9990cb4910328442a1",
         "signature": "2708349d5a11a5c2e5f3a0765259ebe7ee00cdcc8161cb9990cb4910328442a1",
@@ -427,8 +422,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/ts3.6/base.d.ts": {
-        "version": "ad1ae5ae98eceb9af99061e83e867b9897d267aebc8f3b938c9424deabadf4bb",
-        "signature": "ad1ae5ae98eceb9af99061e83e867b9897d267aebc8f3b938c9424deabadf4bb",
+        "version": "ae68a04912ee5a0f589276f9ec60b095f8c40d48128a4575b3fdd7d93806931c",
+        "signature": "ae68a04912ee5a0f589276f9ec60b095f8c40d48128a4575b3fdd7d93806931c",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/node/assert.d.ts": {
@@ -447,8 +442,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/sysbase.d.ts": {
-        "version": "09e5606c4e4562a96c262a6b78e95b3eb71b6db02361c5db8d66b998c3f5edfb",
-        "signature": "09e5606c4e4562a96c262a6b78e95b3eb71b6db02361c5db8d66b998c3f5edfb",
+        "version": "2b423c1f1507beeb5767c01a52df61a6c99c6ea4b28c727db0069cd2cd0b0ffa",
+        "signature": "2b423c1f1507beeb5767c01a52df61a6c99c6ea4b28c727db0069cd2cd0b0ffa",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/pages.d.ts": {
@@ -462,13 +457,13 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/txtstage.d.ts": {
-        "version": "294325bc8604810da02302f372c52a65d25540dddcd49fe3be46fb8d49e15df4",
-        "signature": "294325bc8604810da02302f372c52a65d25540dddcd49fe3be46fb8d49e15df4",
+        "version": "b681ef4c076a5127e1435698f7bd5b834dcd18b748aba5ef6ee306ae0af09bc7",
+        "signature": "b681ef4c076a5127e1435698f7bd5b834dcd18b748aba5ef6ee306ae0af09bc7",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/txtlayer.d.ts": {
-        "version": "5bee2035c21d333c934ba011bf99a0c761f1039a38c5216c97b973c68c95000a",
-        "signature": "5bee2035c21d333c934ba011bf99a0c761f1039a38c5216c97b973c68c95000a",
+        "version": "a53cf3aa63d83cf2a308354df3f237a6355024e588b36fefe00b7cb6d6a1fd04",
+        "signature": "a53cf3aa63d83cf2a308354df3f237a6355024e588b36fefe00b7cb6d6a1fd04",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/callstack.d.ts": {
@@ -492,13 +487,13 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/button.d.ts": {
-        "version": "a29a05f8eddcf91dfa7b459b102e0861ec0c130a260d79ce050e1c5fc1e2c6fb",
-        "signature": "a29a05f8eddcf91dfa7b459b102e0861ec0c130a260d79ce050e1c5fc1e2c6fb",
+        "version": "f5c3ed021b129c462329f70bf0d792c1031c854099740e577eb5585a6dfdea0c",
+        "signature": "f5c3ed021b129c462329f70bf0d792c1031c854099740e577eb5585a6dfdea0c",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/grplayer.d.ts": {
-        "version": "39c92087146f0c79ac2866ccac5ebbbb6a2c4dfd2ab42413de358a14a98f9cf5",
-        "signature": "39c92087146f0c79ac2866ccac5ebbbb6a2c4dfd2ab42413de358a14a98f9cf5",
+        "version": "14b1ec7be75df47d04b47a87a6a820bf6948a5cc7e443ac3abdbf91895267e26",
+        "signature": "14b1ec7be75df47d04b47a87a6a820bf6948a5cc7e443ac3abdbf91895267e26",
         "affectsGlobalScope": false
       },
       "../node_modules/@daybrush/utils/declaration/types.d.ts": {
@@ -637,23 +632,23 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/designcast.d.ts": {
-        "version": "f495625771e2fa9ae46dac24452a16369cfaff67af0c71e236c0d5e7925acdd7",
-        "signature": "f495625771e2fa9ae46dac24452a16369cfaff67af0c71e236c0d5e7925acdd7",
+        "version": "47d979deec6423dc5a2a101e593d78d9c6454ead6bbd4623e0efbdfd882a9421",
+        "signature": "47d979deec6423dc5a2a101e593d78d9c6454ead6bbd4623e0efbdfd882a9421",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/layermng.d.ts": {
-        "version": "235f6b97517b99e13f041cebec57a80848f5cad97a430926f66518e1dbdc69c9",
-        "signature": "235f6b97517b99e13f041cebec57a80848f5cad97a430926f66518e1dbdc69c9",
+        "version": "db4e581efa5169ff42de538eb34ba536b6f2df829d46fd8afdd586b6ec4ce07c",
+        "signature": "db4e581efa5169ff42de538eb34ba536b6f2df829d46fd8afdd586b6ec4ce07c",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/layer.d.ts": {
-        "version": "75b6250bb9929ffd275456071817a34a4427533cf9ca333feb35b9c47ccb8a5c",
-        "signature": "75b6250bb9929ffd275456071817a34a4427533cf9ca333feb35b9c47ccb8a5c",
+        "version": "4a5986d7a82dbaaacdf3e2fbae15b679ffb5dc44e88712c7c55d05aca2d9582d",
+        "signature": "4a5986d7a82dbaaacdf3e2fbae15b679ffb5dc44e88712c7c55d05aca2d9582d",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/cmninterface.d.ts": {
-        "version": "0f3ccf247059da2b211cda13dcb561c0682342349046d07da29e3ca58228cbc2",
-        "signature": "0f3ccf247059da2b211cda13dcb561c0682342349046d07da29e3ca58228cbc2",
+        "version": "3d391bf9648e6f10be541b3e46246b620c0db3cfe5bda463a965f441119e95ef",
+        "signature": "3d391bf9648e6f10be541b3e46246b620c0db3cfe5bda463a965f441119e95ef",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/areas.d.ts": {
@@ -687,8 +682,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/grammar.d.ts": {
-        "version": "9c18704b6e8e9b08fd911dfe8958867b587b58e56c46e914059d27cce44c536d",
-        "signature": "9c18704b6e8e9b08fd911dfe8958867b587b58e56c46e914059d27cce44c536d",
+        "version": "c71dc3924f11671c020c54f0e15ebb4f16b9d09d4877fcd891ecc3b389acc916",
+        "signature": "c71dc3924f11671c020c54f0e15ebb4f16b9d09d4877fcd891ecc3b389acc916",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/main.d.ts": {
@@ -707,13 +702,13 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/sysnode.d.ts": {
-        "version": "7e3af71f4ecf8b956d277c391fad08d92fa0a333456ef1bc993219f265f0d7a1",
-        "signature": "7e3af71f4ecf8b956d277c391fad08d92fa0a333456ef1bc993219f265f0d7a1",
+        "version": "f56c9ead88baf5d56a59ab544dacadd5d661fc3076aabe0c727622fae6e970da",
+        "signature": "f56c9ead88baf5d56a59ab544dacadd5d661fc3076aabe0c727622fae6e970da",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/sn/sysapp.d.ts": {
-        "version": "d94264de6399a47a42f9e3dda841399c9642d759c2e7e9476e75096043aa4039",
-        "signature": "d94264de6399a47a42f9e3dda841399c9642d759c2e7e9476e75096043aa4039",
+        "version": "a36f3f02e1021b934e670983bb87421f3fad082cef18278708de6197d48f1397",
+        "signature": "a36f3f02e1021b934e670983bb87421f3fad082cef18278708de6197d48f1397",
         "affectsGlobalScope": false
       },
       "../node_modules/devtools-detect/index.d.ts": {
@@ -752,19 +747,14 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/preload.d.ts": {
-        "version": "6349aa3a8cea68e203c358ec11dbc6b99c109ae0fe0b35f007d43f799999dd7a",
-        "signature": "6349aa3a8cea68e203c358ec11dbc6b99c109ae0fe0b35f007d43f799999dd7a",
+        "version": "ff4802abde235177840f7d897d0590af0ef748d9496ebb7c1660985e08b68bd8",
+        "signature": "ff4802abde235177840f7d897d0590af0ef748d9496ebb7c1660985e08b68bd8",
         "affectsGlobalScope": false
       },
       "../node_modules/@famibee/skynovel/core/lib/index.d.ts": {
         "version": "07ed43c2160c47fc581520bc34b7a4ec236e2a63022e1d692b49f1210098df91",
         "signature": "07ed43c2160c47fc581520bc34b7a4ec236e2a63022e1d692b49f1210098df91",
         "affectsGlobalScope": true
-      },
-      "../node_modules/@types/three/src/polyfills.d.ts": {
-        "version": "a6800d165a55e0e6525b02e5ce34df4dcd0973c6f72ce29da04c0bc7913b29cd",
-        "signature": "a6800d165a55e0e6525b02e5ce34df4dcd0973c6f72ce29da04c0bc7913b29cd",
-        "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/constants.d.ts": {
         "version": "2eaf1bc69aa0154453a8ab69f00c0be5bd1be81ecf390b6db529ddaa6b00f276",
@@ -917,8 +907,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/renderers/shaders/uniformslib.d.ts": {
-        "version": "c7894fdefd72659b4b1c8a939d988b705099f84fcaa56a3c7e6d91bdb70c4f56",
-        "signature": "c7894fdefd72659b4b1c8a939d988b705099f84fcaa56a3c7e6d91bdb70c4f56",
+        "version": "8868268b7cb5bfb508e3844fc129cbdde23e24fae35024fca6798653a3eed289",
+        "signature": "8868268b7cb5bfb508e3844fc129cbdde23e24fae35024fca6798653a3eed289",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/renderers/shaders/shaderlib.d.ts": {
@@ -927,8 +917,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/material.d.ts": {
-        "version": "9eccc1446c649242ad5243407f06ecdd41318e330aa731bfdca01d31384ca223",
-        "signature": "9eccc1446c649242ad5243407f06ecdd41318e330aa731bfdca01d31384ca223",
+        "version": "68adc344cad433489316d887082fb31aad3727f573436282f643072999e47b7a",
+        "signature": "68adc344cad433489316d887082fb31aad3727f573436282f643072999e47b7a",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/textures/texture.d.ts": {
@@ -947,8 +937,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/renderers/webglrendertarget.d.ts": {
-        "version": "2b1faea684befbd986872045f91a34b54f817002584015ca3dfef3e9fafc5cf5",
-        "signature": "2b1faea684befbd986872045f91a34b54f817002584015ca3dfef3e9fafc5cf5",
+        "version": "74b762fd4dea4bcbb20871265c2bb33700336fbed0ad499335beb222b87ffa52",
+        "signature": "74b762fd4dea4bcbb20871265c2bb33700336fbed0ad499335beb222b87ffa52",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/textures/cubetexture.d.ts": {
@@ -1071,9 +1061,19 @@
         "signature": "9c69db2c8116f5d70f763166d553e24530ffff7c79ef190ef4186d60cb2a2428",
         "affectsGlobalScope": false
       },
+      "../node_modules/@types/three/src/textures/datatexture3d.d.ts": {
+        "version": "432fe3b8769c1e1090be43baff32bccfb436c1fce8d470a45fef5a8016dbaab1",
+        "signature": "432fe3b8769c1e1090be43baff32bccfb436c1fce8d470a45fef5a8016dbaab1",
+        "affectsGlobalScope": false
+      },
+      "../node_modules/@types/three/src/textures/datatexture2darray.d.ts": {
+        "version": "ed0e3159c03180a7ae7fe891f12b386eb311a9440a3a97e546c4d57039e43162",
+        "signature": "ed0e3159c03180a7ae7fe891f12b386eb311a9440a3a97e546c4d57039e43162",
+        "affectsGlobalScope": false
+      },
       "../node_modules/@types/three/src/renderers/webglrenderer.d.ts": {
-        "version": "bbbc5724e34937bd586c28bbcc05940ec5d386bdedd0a4b4fd4d1ccd58796d7a",
-        "signature": "bbbc5724e34937bd586c28bbcc05940ec5d386bdedd0a4b4fd4d1ccd58796d7a",
+        "version": "52bb710e4227d90329c3a3e4304a880805db1599f2c1967cfd18e38a7890d5f8",
+        "signature": "52bb710e4227d90329c3a3e4304a880805db1599f2c1967cfd18e38a7890d5f8",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/math/ray.d.ts": {
@@ -1087,8 +1087,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/core/object3d.d.ts": {
-        "version": "e840e7ec2a5c96f6570f7b9adb2701b01dffa8e60fefa07625aecac85183739d",
-        "signature": "e840e7ec2a5c96f6570f7b9adb2701b01dffa8e60fefa07625aecac85183739d",
+        "version": "8730619633dffe07eef990f00e1e327e59d574354540a3b63611f4af20d85567",
+        "signature": "8730619633dffe07eef990f00e1e327e59d574354540a3b63611f4af20d85567",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/cameras/camera.d.ts": {
@@ -1547,8 +1547,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/helpers/arrowhelper.d.ts": {
-        "version": "bb122b2426bd8b67621bdd31811ba4d77b8906cb24918dfacee6b82ad526f7be",
-        "signature": "bb122b2426bd8b67621bdd31811ba4d77b8906cb24918dfacee6b82ad526f7be",
+        "version": "b65159863b0acf230edf86fdd997cedcfd9c970d346a71c894257e9fdf5aff93",
+        "signature": "b65159863b0acf230edf86fdd997cedcfd9c970d346a71c894257e9fdf5aff93",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/helpers/axeshelper.d.ts": {
@@ -1622,13 +1622,13 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/textures/datatexture.d.ts": {
-        "version": "41d1726739abb4f7f8eaad33f4e590d9d32fcd3c4c2df4e8bf05f4847dc442ea",
-        "signature": "41d1726739abb4f7f8eaad33f4e590d9d32fcd3c4c2df4e8bf05f4847dc442ea",
+        "version": "5a4b056c4c7b1af3d3310ef90287b814f28062f2eb1b7ba1fbba74024ff751d5",
+        "signature": "5a4b056c4c7b1af3d3310ef90287b814f28062f2eb1b7ba1fbba74024ff751d5",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/loaders/datatextureloader.d.ts": {
-        "version": "2bf191ee9262f84002ef89b22daff0a962215b8eac260e1a5e5f07777a6ec965",
-        "signature": "2bf191ee9262f84002ef89b22daff0a962215b8eac260e1a5e5f07777a6ec965",
+        "version": "dcd45c5c4af3d96e8d09ff3bfc1ef9e8bb06182807e5cf46e4bf427857e401b8",
+        "signature": "dcd45c5c4af3d96e8d09ff3bfc1ef9e8bb06182807e5cf46e4bf427857e401b8",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/loaders/cubetextureloader.d.ts": {
@@ -1677,8 +1677,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/loaders/loaderutils.d.ts": {
-        "version": "9a28dfb486ffd5fa404b753cbb96ceba87d730fce31785ba753a935dc5cb6e05",
-        "signature": "9a28dfb486ffd5fa404b753cbb96ceba87d730fce31785ba753a935dc5cb6e05",
+        "version": "7c9de3d7e945f169a38c135a9f3799746d5774958edc38e7cb800451ce551c6b",
+        "signature": "7c9de3d7e945f169a38c135a9f3799746d5774958edc38e7cb800451ce551c6b",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/loaders/cache.d.ts": {
@@ -1702,8 +1702,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/shadermaterial.d.ts": {
-        "version": "82e901e1ba8dd1581b819fdabb1bb23efbbd3766f4275cae686e239e2ea4e7e0",
-        "signature": "82e901e1ba8dd1581b819fdabb1bb23efbbd3766f4275cae686e239e2ea4e7e0",
+        "version": "8e6855b08084b2eda1ff8c38bbd309594442b191420c7a05221324bd3b3027c1",
+        "signature": "8e6855b08084b2eda1ff8c38bbd309594442b191420c7a05221324bd3b3027c1",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/rawshadermaterial.d.ts": {
@@ -1717,8 +1717,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/meshstandardmaterial.d.ts": {
-        "version": "323232e777beec844c5e49f270e292aee4bdec86350e8ffcf34182105e19ad95",
-        "signature": "323232e777beec844c5e49f270e292aee4bdec86350e8ffcf34182105e19ad95",
+        "version": "20cb99fc5b4d15cd9b966d49a36b6a6a2acd99db413fd359d712fe81d4e8c666",
+        "signature": "20cb99fc5b4d15cd9b966d49a36b6a6a2acd99db413fd359d712fe81d4e8c666",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/meshphysicalmaterial.d.ts": {
@@ -1727,8 +1727,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/meshphongmaterial.d.ts": {
-        "version": "7321face3513cae83d2c63ad0953156c36f700756c80ca5847ebfcb5b77c9d4e",
-        "signature": "7321face3513cae83d2c63ad0953156c36f700756c80ca5847ebfcb5b77c9d4e",
+        "version": "f895190bfdfff38996cede1fdc0a6e91141f5c5e0ceb70bf6acd9e901bbd38d8",
+        "signature": "f895190bfdfff38996cede1fdc0a6e91141f5c5e0ceb70bf6acd9e901bbd38d8",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/meshtoonmaterial.d.ts": {
@@ -1737,8 +1737,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/meshnormalmaterial.d.ts": {
-        "version": "92c750f06f263cabc7b3e7511f2a46e3028c30f36ef7eaba59712868a3967e8c",
-        "signature": "92c750f06f263cabc7b3e7511f2a46e3028c30f36ef7eaba59712868a3967e8c",
+        "version": "49fc3b4a60cbf88b5b6c0feb1d3c432da102756adbdaa81ee54330b98545232f",
+        "signature": "49fc3b4a60cbf88b5b6c0feb1d3c432da102756adbdaa81ee54330b98545232f",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/meshlambertmaterial.d.ts": {
@@ -1757,8 +1757,8 @@
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/meshmatcapmaterial.d.ts": {
-        "version": "70e64f50744b592b5da3bbf7dd7891be0b414426f270bdddf99e4a46ef92b76f",
-        "signature": "70e64f50744b592b5da3bbf7dd7891be0b414426f270bdddf99e4a46ef92b76f",
+        "version": "2984fa039a55c3a4db211960a500037635372274ef07d4dba186b1058f2c4c96",
+        "signature": "2984fa039a55c3a4db211960a500037635372274ef07d4dba186b1058f2c4c96",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/materials/linebasicmaterial.d.ts": {
@@ -1911,29 +1911,19 @@
         "signature": "cf11f4e19b500ba6f488bdb61a1810c23e15d7bdb994e821d405470158ada1cf",
         "affectsGlobalScope": false
       },
-      "../node_modules/@types/three/src/textures/datatexture2darray.d.ts": {
-        "version": "6e2c1d7de07c4fa63fa9943218357627e9f75f830e2b702b482774842433a89c",
-        "signature": "6e2c1d7de07c4fa63fa9943218357627e9f75f830e2b702b482774842433a89c",
-        "affectsGlobalScope": false
-      },
-      "../node_modules/@types/three/src/textures/datatexture3d.d.ts": {
-        "version": "9b668071ba74d6997e8c8829cb1f5ad255d5a1ba2642e9e624778ddfa9262a58",
-        "signature": "9b668071ba74d6997e8c8829cb1f5ad255d5a1ba2642e9e624778ddfa9262a58",
-        "affectsGlobalScope": false
-      },
       "../node_modules/@types/three/src/textures/canvastexture.d.ts": {
         "version": "9736f4d069b690ae03aab866b7d899230edb963c3291db0290373bf6891ed2f8",
         "signature": "9736f4d069b690ae03aab866b7d899230edb963c3291db0290373bf6891ed2f8",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/src/three.d.ts": {
-        "version": "2244541ec9b47bf0c6da7a01db0d9e948d067c0aa14d6a45500d5a09344a9e88",
-        "signature": "2244541ec9b47bf0c6da7a01db0d9e948d067c0aa14d6a45500d5a09344a9e88",
+        "version": "f9c0e30c8092b79f6d65b8e746757e546b85d35361808d6a5a5a25bf61dd40dc",
+        "signature": "f9c0e30c8092b79f6d65b8e746757e546b85d35361808d6a5a5a25bf61dd40dc",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/index.d.ts": {
-        "version": "b3fd5d2fd0a0a61cb83c6ab61aa6af05d1975a55fb1e219054c22f64b629dd50",
-        "signature": "b3fd5d2fd0a0a61cb83c6ab61aa6af05d1975a55fb1e219054c22f64b629dd50",
+        "version": "b054ff8a6b935a750fc9d31f00ad986822b2545b33bd716a91336dbdc66d1ba4",
+        "signature": "b054ff8a6b935a750fc9d31f00ad986822b2545b33bd716a91336dbdc66d1ba4",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/examples/jsm/controls/orbitcontrols.d.ts": {
@@ -1946,19 +1936,14 @@
         "signature": "b4a4b2e87686501d36ffcfa76c5e09f2e021a1c94e6f0cbe33ba83bf24983d05",
         "affectsGlobalScope": false
       },
-      "../node_modules/@types/three/examples/jsm/loaders/ddsloader.d.ts": {
-        "version": "2be8eaf8785aa1474e6eb045dc3d724160d4c5f7f5ee9263c682d4c1152a35c0",
-        "signature": "2be8eaf8785aa1474e6eb045dc3d724160d4c5f7f5ee9263c682d4c1152a35c0",
-        "affectsGlobalScope": false
-      },
       "../node_modules/@types/three/examples/jsm/loaders/ktx2loader.d.ts": {
         "version": "532e8cc605501c772ab97a88240d874977c9d375770f0fbf310b31cdb1c57b15",
         "signature": "532e8cc605501c772ab97a88240d874977c9d375770f0fbf310b31cdb1c57b15",
         "affectsGlobalScope": false
       },
       "../node_modules/@types/three/examples/jsm/loaders/gltfloader.d.ts": {
-        "version": "5b44e2ca040ba3bb8358d1947085a2c1c13b063b8ae6ed8adb1b4ad96af898bf",
-        "signature": "5b44e2ca040ba3bb8358d1947085a2c1c13b063b8ae6ed8adb1b4ad96af898bf",
+        "version": "93fcb4b09400364428f40d2cb99154ab06de436d2598fc26764a075b446f50e5",
+        "signature": "93fcb4b09400364428f40d2cb99154ab06de436d2598fc26764a075b446f50e5",
         "affectsGlobalScope": false
       },
       "./plugin/3d_layer/threedlayer.ts": {
@@ -2524,7 +2509,7 @@
       "../node_modules/@types/node/trace_events.d.ts": [
         "../node_modules/@types/node/trace_events.d.ts"
       ],
-      "../node_modules/@types/node/ts3.4/base.d.ts": [
+      "../node_modules/@types/node/ts3.6/base.d.ts": [
         "../node_modules/@types/node/async_hooks.d.ts",
         "../node_modules/@types/node/buffer.d.ts",
         "../node_modules/@types/node/child_process.d.ts",
@@ -2539,6 +2524,7 @@
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/fs/promises.d.ts",
         "../node_modules/@types/node/globals.d.ts",
+        "../node_modules/@types/node/globals.global.d.ts",
         "../node_modules/@types/node/http.d.ts",
         "../node_modules/@types/node/http2.d.ts",
         "../node_modules/@types/node/https.d.ts",
@@ -2563,13 +2549,9 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/v8.d.ts",
         "../node_modules/@types/node/vm.d.ts",
+        "../node_modules/@types/node/wasi.d.ts",
         "../node_modules/@types/node/worker_threads.d.ts",
         "../node_modules/@types/node/zlib.d.ts"
-      ],
-      "../node_modules/@types/node/ts3.6/base.d.ts": [
-        "../node_modules/@types/node/globals.global.d.ts",
-        "../node_modules/@types/node/ts3.4/base.d.ts",
-        "../node_modules/@types/node/wasi.d.ts"
       ],
       "../node_modules/@types/node/tty.d.ts": [
         "../node_modules/@types/node/net.d.ts",
@@ -2614,14 +2596,10 @@
       "../node_modules/@types/three/examples/jsm/controls/orbitcontrols.d.ts": [
         "../node_modules/@types/three/src/three.d.ts"
       ],
-      "../node_modules/@types/three/examples/jsm/loaders/ddsloader.d.ts": [
-        "../node_modules/@types/three/src/three.d.ts"
-      ],
       "../node_modules/@types/three/examples/jsm/loaders/dracoloader.d.ts": [
         "../node_modules/@types/three/src/three.d.ts"
       ],
       "../node_modules/@types/three/examples/jsm/loaders/gltfloader.d.ts": [
-        "../node_modules/@types/three/examples/jsm/loaders/ddsloader.d.ts",
         "../node_modules/@types/three/examples/jsm/loaders/dracoloader.d.ts",
         "../node_modules/@types/three/examples/jsm/loaders/ktx2loader.d.ts",
         "../node_modules/@types/three/src/three.d.ts"
@@ -3161,9 +3139,6 @@
       "../node_modules/@types/three/src/loaders/loader.d.ts": [
         "../node_modules/@types/three/src/loaders/loadingmanager.d.ts"
       ],
-      "../node_modules/@types/three/src/loaders/loaderutils.d.ts": [
-        "../node_modules/@types/three/src/polyfills.d.ts"
-      ],
       "../node_modules/@types/three/src/loaders/loadingmanager.d.ts": [
         "../node_modules/@types/three/src/loaders/loader.d.ts"
       ],
@@ -3610,8 +3585,10 @@
         "../node_modules/@types/three/src/core/buffergeometry.d.ts",
         "../node_modules/@types/three/src/core/object3d.d.ts",
         "../node_modules/@types/three/src/materials/material.d.ts",
+        "../node_modules/@types/three/src/math/box3.d.ts",
         "../node_modules/@types/three/src/math/color.d.ts",
         "../node_modules/@types/three/src/math/vector2.d.ts",
+        "../node_modules/@types/three/src/math/vector3.d.ts",
         "../node_modules/@types/three/src/math/vector4.d.ts",
         "../node_modules/@types/three/src/renderers/webgl/webglcapabilities.d.ts",
         "../node_modules/@types/three/src/renderers/webgl/webglextensions.d.ts",
@@ -3625,6 +3602,8 @@
         "../node_modules/@types/three/src/renderers/webxr/webxr.d.ts",
         "../node_modules/@types/three/src/renderers/webxr/webxrmanager.d.ts",
         "../node_modules/@types/three/src/scenes/scene.d.ts",
+        "../node_modules/@types/three/src/textures/datatexture2darray.d.ts",
+        "../node_modules/@types/three/src/textures/datatexture3d.d.ts",
         "../node_modules/@types/three/src/textures/texture.d.ts"
       ],
       "../node_modules/@types/three/src/renderers/webglrendertarget.d.ts": [
@@ -3676,17 +3655,14 @@
       ],
       "../node_modules/@types/three/src/textures/datatexture.d.ts": [
         "../node_modules/@types/three/src/constants.d.ts",
-        "../node_modules/@types/three/src/polyfills.d.ts",
         "../node_modules/@types/three/src/textures/texture.d.ts"
       ],
       "../node_modules/@types/three/src/textures/datatexture2darray.d.ts": [
         "../node_modules/@types/three/src/constants.d.ts",
-        "../node_modules/@types/three/src/polyfills.d.ts",
         "../node_modules/@types/three/src/textures/texture.d.ts"
       ],
       "../node_modules/@types/three/src/textures/datatexture3d.d.ts": [
         "../node_modules/@types/three/src/constants.d.ts",
-        "../node_modules/@types/three/src/polyfills.d.ts",
         "../node_modules/@types/three/src/textures/texture.d.ts"
       ],
       "../node_modules/@types/three/src/textures/depthtexture.d.ts": [
@@ -3839,7 +3815,6 @@
         "../node_modules/@types/three/src/objects/skeleton.d.ts",
         "../node_modules/@types/three/src/objects/skinnedmesh.d.ts",
         "../node_modules/@types/three/src/objects/sprite.d.ts",
-        "../node_modules/@types/three/src/polyfills.d.ts",
         "../node_modules/@types/three/src/renderers/shaders/shaderchunk.d.ts",
         "../node_modules/@types/three/src/renderers/shaders/shaderlib.d.ts",
         "../node_modules/@types/three/src/renderers/shaders/uniformslib.d.ts",
@@ -3960,13 +3935,13 @@
     },
     "exportedModulesMap": {
       "./plugin/3d_layer/threedlayer.ts": [
-        "../../npm_core/core/lib/index.d.ts"
+        "../node_modules/@famibee/skynovel/core/lib/index.d.ts"
       ],
       "./plugin/cubism3_layer/cubism3layer.ts": [
-        "../../npm_core/core/lib/index.d.ts"
+        "../node_modules/@famibee/skynovel/core/lib/index.d.ts"
       ],
       "./plugin/emote_layer/emotelayer.ts": [
-        "../../npm_core/core/lib/index.d.ts"
+        "../node_modules/@famibee/skynovel/core/lib/index.d.ts"
       ],
       "../node_modules/@daybrush/utils/declaration/consts.d.ts": [
         "../node_modules/@daybrush/utils/declaration/types.d.ts"
@@ -4374,7 +4349,7 @@
       "../node_modules/@types/node/trace_events.d.ts": [
         "../node_modules/@types/node/trace_events.d.ts"
       ],
-      "../node_modules/@types/node/ts3.4/base.d.ts": [
+      "../node_modules/@types/node/ts3.6/base.d.ts": [
         "../node_modules/@types/node/async_hooks.d.ts",
         "../node_modules/@types/node/buffer.d.ts",
         "../node_modules/@types/node/child_process.d.ts",
@@ -4389,6 +4364,7 @@
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/fs/promises.d.ts",
         "../node_modules/@types/node/globals.d.ts",
+        "../node_modules/@types/node/globals.global.d.ts",
         "../node_modules/@types/node/http.d.ts",
         "../node_modules/@types/node/http2.d.ts",
         "../node_modules/@types/node/https.d.ts",
@@ -4413,13 +4389,9 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/v8.d.ts",
         "../node_modules/@types/node/vm.d.ts",
+        "../node_modules/@types/node/wasi.d.ts",
         "../node_modules/@types/node/worker_threads.d.ts",
         "../node_modules/@types/node/zlib.d.ts"
-      ],
-      "../node_modules/@types/node/ts3.6/base.d.ts": [
-        "../node_modules/@types/node/globals.global.d.ts",
-        "../node_modules/@types/node/ts3.4/base.d.ts",
-        "../node_modules/@types/node/wasi.d.ts"
       ],
       "../node_modules/@types/node/tty.d.ts": [
         "../node_modules/@types/node/net.d.ts",
@@ -4464,14 +4436,10 @@
       "../node_modules/@types/three/examples/jsm/controls/orbitcontrols.d.ts": [
         "../node_modules/@types/three/src/three.d.ts"
       ],
-      "../node_modules/@types/three/examples/jsm/loaders/ddsloader.d.ts": [
-        "../node_modules/@types/three/src/three.d.ts"
-      ],
       "../node_modules/@types/three/examples/jsm/loaders/dracoloader.d.ts": [
         "../node_modules/@types/three/src/three.d.ts"
       ],
       "../node_modules/@types/three/examples/jsm/loaders/gltfloader.d.ts": [
-        "../node_modules/@types/three/examples/jsm/loaders/ddsloader.d.ts",
         "../node_modules/@types/three/examples/jsm/loaders/dracoloader.d.ts",
         "../node_modules/@types/three/examples/jsm/loaders/ktx2loader.d.ts",
         "../node_modules/@types/three/src/three.d.ts"
@@ -5011,9 +4979,6 @@
       "../node_modules/@types/three/src/loaders/loader.d.ts": [
         "../node_modules/@types/three/src/loaders/loadingmanager.d.ts"
       ],
-      "../node_modules/@types/three/src/loaders/loaderutils.d.ts": [
-        "../node_modules/@types/three/src/polyfills.d.ts"
-      ],
       "../node_modules/@types/three/src/loaders/loadingmanager.d.ts": [
         "../node_modules/@types/three/src/loaders/loader.d.ts"
       ],
@@ -5460,8 +5425,10 @@
         "../node_modules/@types/three/src/core/buffergeometry.d.ts",
         "../node_modules/@types/three/src/core/object3d.d.ts",
         "../node_modules/@types/three/src/materials/material.d.ts",
+        "../node_modules/@types/three/src/math/box3.d.ts",
         "../node_modules/@types/three/src/math/color.d.ts",
         "../node_modules/@types/three/src/math/vector2.d.ts",
+        "../node_modules/@types/three/src/math/vector3.d.ts",
         "../node_modules/@types/three/src/math/vector4.d.ts",
         "../node_modules/@types/three/src/renderers/webgl/webglcapabilities.d.ts",
         "../node_modules/@types/three/src/renderers/webgl/webglextensions.d.ts",
@@ -5475,6 +5442,8 @@
         "../node_modules/@types/three/src/renderers/webxr/webxr.d.ts",
         "../node_modules/@types/three/src/renderers/webxr/webxrmanager.d.ts",
         "../node_modules/@types/three/src/scenes/scene.d.ts",
+        "../node_modules/@types/three/src/textures/datatexture2darray.d.ts",
+        "../node_modules/@types/three/src/textures/datatexture3d.d.ts",
         "../node_modules/@types/three/src/textures/texture.d.ts"
       ],
       "../node_modules/@types/three/src/renderers/webglrendertarget.d.ts": [
@@ -5526,17 +5495,14 @@
       ],
       "../node_modules/@types/three/src/textures/datatexture.d.ts": [
         "../node_modules/@types/three/src/constants.d.ts",
-        "../node_modules/@types/three/src/polyfills.d.ts",
         "../node_modules/@types/three/src/textures/texture.d.ts"
       ],
       "../node_modules/@types/three/src/textures/datatexture2darray.d.ts": [
         "../node_modules/@types/three/src/constants.d.ts",
-        "../node_modules/@types/three/src/polyfills.d.ts",
         "../node_modules/@types/three/src/textures/texture.d.ts"
       ],
       "../node_modules/@types/three/src/textures/datatexture3d.d.ts": [
         "../node_modules/@types/three/src/constants.d.ts",
-        "../node_modules/@types/three/src/polyfills.d.ts",
         "../node_modules/@types/three/src/textures/texture.d.ts"
       ],
       "../node_modules/@types/three/src/textures/depthtexture.d.ts": [
@@ -5689,7 +5655,6 @@
         "../node_modules/@types/three/src/objects/skeleton.d.ts",
         "../node_modules/@types/three/src/objects/skinnedmesh.d.ts",
         "../node_modules/@types/three/src/objects/sprite.d.ts",
-        "../node_modules/@types/three/src/polyfills.d.ts",
         "../node_modules/@types/three/src/renderers/shaders/shaderchunk.d.ts",
         "../node_modules/@types/three/src/renderers/shaders/shaderlib.d.ts",
         "../node_modules/@types/three/src/renderers/shaders/uniformslib.d.ts",
@@ -6905,7 +6870,6 @@
       "../node_modules/@types/node/timers.d.ts",
       "../node_modules/@types/node/tls.d.ts",
       "../node_modules/@types/node/trace_events.d.ts",
-      "../node_modules/@types/node/ts3.4/base.d.ts",
       "../node_modules/@types/node/ts3.6/base.d.ts",
       "../node_modules/@types/node/tty.d.ts",
       "../node_modules/@types/node/url.d.ts",
@@ -6918,7 +6882,6 @@
       "../node_modules/@types/plist/index.d.ts",
       "../node_modules/@types/resolve/index.d.ts",
       "../node_modules/@types/three/examples/jsm/controls/orbitcontrols.d.ts",
-      "../node_modules/@types/three/examples/jsm/loaders/ddsloader.d.ts",
       "../node_modules/@types/three/examples/jsm/loaders/dracoloader.d.ts",
       "../node_modules/@types/three/examples/jsm/loaders/gltfloader.d.ts",
       "../node_modules/@types/three/examples/jsm/loaders/ktx2loader.d.ts",
@@ -7108,7 +7071,6 @@
       "../node_modules/@types/three/src/objects/skeleton.d.ts",
       "../node_modules/@types/three/src/objects/skinnedmesh.d.ts",
       "../node_modules/@types/three/src/objects/sprite.d.ts",
-      "../node_modules/@types/three/src/polyfills.d.ts",
       "../node_modules/@types/three/src/renderers/shaders/shaderchunk.d.ts",
       "../node_modules/@types/three/src/renderers/shaders/shaderlib.d.ts",
       "../node_modules/@types/three/src/renderers/shaders/uniformslib.d.ts",
@@ -7222,5 +7184,5 @@
       "../node_modules/xmlbuilder/typings/index.d.ts"
     ]
   },
-  "version": "4.2.2"
+  "version": "4.2.3"
 }
