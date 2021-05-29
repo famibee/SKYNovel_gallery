@@ -23,6 +23,18 @@ declare namespace effekseer {
     export function releaseContext(context: EffekseerContext);
 
     /**
+     * Set the flag whether Effekseer show logs
+     * @param {boolean} flag
+     */
+    export function setSetLogEnabled(flag);
+
+    /**
+    * Set the string of cross origin for images
+    * @param {boolean} crossOrigin
+    */
+    export function setImageCrossOrigin(crossOrigin);
+
+    /**
          * Initialize graphics system.
          * @param {WebGLRenderingContext} webglContext WebGL Context
          * @param {object} settings Some settings with Effekseer initialization
@@ -272,16 +284,43 @@ declare namespace effekseer {
          * Gets the number of remaining allocated instances.
          */
         getRestInstancesCount(): Number;
+
+        /**
+         * Gets a time when updating
+         */
+        getUpdateTime(): Number;
+
+        /**
+         * Gets a time when drawing
+         */
+        getDrawTime(): Number;
+
+        /**
+         * Set the flag whether the library restores OpenGL states 
+         * if specified true, it makes slow.
+         * if specified false, You need to restore OpenGL states by yourself
+         * it must be called after init
+         * @param {boolean} flag
+         */
+        setRestorationOfStatesFlag(flag);
+
+        /**
+         * Capture current frame buffer and set the image as a background
+         * @param {number} x captured image's x offset
+         * @param {number} y captured image's y offset
+         * @param {number} width captured image's width
+         * @param {number} height captured image's height
+         */
+        captureBackground(x, y, width, height);
+
+        /**
+         * Reset background
+         */
+        resetBackground();
     }
 
     export class EffekseerEffect {
         constructor();
-
-        /**
-         * get paths to color images
-         * @returns {Array<string>} paths to color images
-         */
-        getColorImagePaths(): Array<string>;
     }
 
     export class EffekseerHandle {
@@ -344,7 +383,7 @@ declare namespace effekseer {
          * @param {number} index slot index
          * @returns {number} value
          */
-        getDynamicInput(index) : number;
+        getDynamicInput(index): number;
 
         /**
          * specfiy a dynamic parameter, which changes effect parameters dynamically while playing

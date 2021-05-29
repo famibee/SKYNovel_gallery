@@ -11,7 +11,7 @@ declare const Live2DCubismCore: any;	// 【名前 '〜' が見つかりません
 declare const LIVE2DCUBISMPIXI: any;
 declare const LIVE2DCUBISMFRAMEWORK: any;
 
-import {Loader, utils, Point} from 'pixi.js';
+import {Loader, utils, Point, LoaderResource} from 'pixi.js';
 
 export class Cubism3Layer extends Layer {
 	static	plgArg	: IPluginInitArg;
@@ -48,17 +48,26 @@ export class Cubism3Layer extends Layer {
 				if (this.ldr.loading) this.ldr = new Loader();
 				switch (i) {
 					case 0:
-						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'), { xhrType: 'arraybuffer' });
-							// loaders.Resource.XHR_RESPONSE_TYPE.BUFFER
+						this.ldr.add({
+							name	: rn,
+							url		: Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'),
+							xhrType	: LoaderResource.XHR_RESPONSE_TYPE.BUFFER,
+						});
 						break;
 
 					case 1:
-						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'png_|png|jpg_|jpg|jpeg_|jpeg'));
+						this.ldr.add({
+							name	: rn,
+							url		: Cubism3Layer.plgArg.searchPath(fn, 'png_|png|jpg_|jpg|jpeg_|jpeg'),
+						});
 						break;
 
 					case 2:
-						this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn +'_'+ label, 'json_|json'), { xhrType: 'json' });
-							// loaders.Resource.XHR_RESPONSE_TYPE.JSON
+						this.ldr.add({
+							name	: rn,
+							url		: Cubism3Layer.plgArg.searchPath(fn +'_'+ label, 'json_|json'),
+							xhrType	: LoaderResource.XHR_RESPONSE_TYPE.JSON,
+						});
 						break;
 				}
 			});

@@ -8,8 +8,8 @@ module.exports = [{
 	mode: 'development',
 	output: {
 		path: process.cwd() +'/docs',
-		filename: 'prj/web.js',
-		chunkFilename: 'prj/web.[name].js'
+		filename: 'prj/web.[name].js',
+		chunkFilename: 'prj/web.[id].js'
 	},
 	optimization: {
 		splitChunks: {

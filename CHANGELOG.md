@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.0.36
+- upd：pixi.js 6、webpack 5 に更新
+- upd：ライブラリ更新
 ## v2.0.35
 - upd：ライブラリ更新
 ## v2.0.34

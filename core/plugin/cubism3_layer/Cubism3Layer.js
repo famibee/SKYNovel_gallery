@@ -35,13 +35,24 @@ class Cubism3Layer extends Layer {
                     this.ldr = new pixi_js_1.Loader();
                 switch (i) {
                     case 0:
-                        this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'), { xhrType: 'arraybuffer' });
+                        this.ldr.add({
+                            name: rn,
+                            url: Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'),
+                            xhrType: pixi_js_1.LoaderResource.XHR_RESPONSE_TYPE.BUFFER,
+                        });
                         break;
                     case 1:
-                        this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn, 'png_|png|jpg_|jpg|jpeg_|jpeg'));
+                        this.ldr.add({
+                            name: rn,
+                            url: Cubism3Layer.plgArg.searchPath(fn, 'png_|png|jpg_|jpg|jpeg_|jpeg'),
+                        });
                         break;
                     case 2:
-                        this.ldr.add(rn, Cubism3Layer.plgArg.searchPath(fn + '_' + label, 'json_|json'), { xhrType: 'json' });
+                        this.ldr.add({
+                            name: rn,
+                            url: Cubism3Layer.plgArg.searchPath(fn + '_' + label, 'json_|json'),
+                            xhrType: pixi_js_1.LoaderResource.XHR_RESPONSE_TYPE.JSON,
+                        });
                         break;
                 }
             });
