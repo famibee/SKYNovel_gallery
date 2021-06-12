@@ -116,7 +116,7 @@ class ThreeDLayer extends Layer {
                             const fncEff = () => {
                                 this.hEff[fn] = this.ctxEff.loadEffect(ThreeDLayer.plgArg.searchPath(fn, 'efk'), argChk_Num(hArg, 'scale', 1), () => {
                                     const [x, y, z] = String(hArg.pos || '0,0,0').split(',');
-                                    const h = this.ctxEff.play(this.hEff[fn], x, y, z);
+                                    const h = this.ctxEff.play(this.hEff[fn], parseInt(x), parseInt(y), parseInt(z));
                                     this.hInf[name] = { type: type, fn: fn, effhdl: h };
                                 }, (m, url) => console.error(m + ' url=' + url));
                             };
@@ -130,8 +130,8 @@ class ThreeDLayer extends Layer {
                                 const clock = new three_1.Clock();
                                 this.tickUpdEff = () => {
                                     this.ctxEff.update(clock.getDelta() * 60.0);
-                                    this.ctxEff.setProjectionMatrix(this.camera.projectionMatrix.elements);
-                                    this.ctxEff.setCameraMatrix(this.camera.matrixWorldInverse.elements);
+                                    this.ctxEff.setProjectionMatrix(Float32Array.from(this.camera.projectionMatrix.elements));
+                                    this.ctxEff.setCameraMatrix(Float32Array.from(this.camera.matrixWorldInverse.elements));
                                     this.ctxEff.draw();
                                 };
                             }, () => { });

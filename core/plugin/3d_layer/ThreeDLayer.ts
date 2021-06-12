@@ -168,7 +168,7 @@ export class ThreeDLayer extends Layer {
 		const [x, y, z] = String(hArg.pos || '0,0,0').split(',');
 	//	const [x, y, z] = String(hArg.pos ?? '0,0,0').split(',');
 			// 2020/10/20 エラーになるので
-		const h = this.ctxEff.play(this.hEff[fn], x, y, z);
+		const h = this.ctxEff.play(this.hEff[fn], parseInt(x), parseInt(y), parseInt(z));
 		this.hInf[name] = {type: type, fn: fn, effhdl: h};
 	},
 								(m: any, url: any)=> console.error(m +' url='+ url),
@@ -183,8 +183,8 @@ export class ThreeDLayer extends Layer {
 							const clock = new Clock();
 							this.tickUpdEff = ()=> {
 								this.ctxEff.update(clock.getDelta() * 60.0);
-								this.ctxEff.setProjectionMatrix(this.camera.projectionMatrix.elements);
-								this.ctxEff.setCameraMatrix(this.camera.matrixWorldInverse.elements);
+								this.ctxEff.setProjectionMatrix(Float32Array.from(this.camera.projectionMatrix.elements));
+								this.ctxEff.setCameraMatrix(Float32Array.from(this.camera.matrixWorldInverse.elements));
 								this.ctxEff.draw();
 							};
 						}, ()=> {});

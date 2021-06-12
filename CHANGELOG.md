@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.0.37
+- upd：Effekseer型指定更新対応
+	- https://github.com/effekseer/EffekseerForWebGL/issues/47
+- upd：ライブラリ更新
 ## v2.0.36
 - upd：pixi.js 6、webpack 5 に更新
 - upd：ライブラリ更新
