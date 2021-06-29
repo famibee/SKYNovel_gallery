@@ -3,7 +3,7 @@ const cacheId = 'SKYNovel Gallery';
 
 // 変更後は「npm run webpack:dev」
 module.exports = [{
-	entry: `./core/web4webpack.js`,
+	entry: `./core/web4webpack`,
 	target: 'web',
 	mode: 'development',
 	output: {

@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.0.38
+- upd：ライブラリ更新
 ## v2.0.37
 - upd：Effekseer型指定更新対応
 	- https://github.com/effekseer/EffekseerForWebGL/issues/47
