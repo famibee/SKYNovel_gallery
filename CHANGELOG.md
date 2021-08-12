@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.0.42
+- upd：ライブラリ更新
 ## v2.0.41
 - upd：ライブラリ更新
 - fix: tsconfig.json 更新　es2019 →【"target": "es2021",】

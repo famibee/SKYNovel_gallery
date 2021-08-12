@@ -98,7 +98,7 @@ class Cubism3Layer extends Layer {
                 const fn = this.state.fn;
                 const fn_mot = Cubism3Layer.plgArg.searchPath(fn + '_' + label, 'json_|json');
                 new pixi_js_1.Loader()
-                    .add('l2d:' + fn + '_mot', fn_mot, { xhrType: 1 })
+                    .add({ name: 'l2d:' + fn + '_mot', url: fn_mot, xhrType: pixi_js_1.LoaderResource.XHR_RESPONSE_TYPE.JSON })
                     .load((_loader, res) => {
                     const ani = LIVE2DCUBISMFRAMEWORK.Animation.fromMotion3Json(res['l2d:' + fn + '_mot'].data);
                     this.model.animator
