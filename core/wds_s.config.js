@@ -8,10 +8,8 @@ module.exports = {
 	},
 
 	devServer: {
-		contentBase: './docs',
+		static: {directory: './docs'},
+		open: 'pwa_mono/index.html',
 		port: 8083,
-		openPage: 'pwa_mono/index.html',
-		watchContentBase: true,
-		open: true,
 	},
 };

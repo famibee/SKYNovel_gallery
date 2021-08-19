@@ -8,11 +8,9 @@ module.exports = {
 	},
 
 	devServer: {
-		contentBase: './docs',
+		static: {directory: './docs'},
+		open: 'index.html',			// PCリッチ版（Githubにはこちらで更新）
+//		open: 'prj/index_app.html',	// PWA
 		port: 8082,
-		openPage: 'index.html',			// PCリッチ版（Githubにはこちらで更新）
-	//	openPage: 'prj/index_app.html',	// PWA
-		watchContentBase: true,
-		open: true,
 	},
 };
