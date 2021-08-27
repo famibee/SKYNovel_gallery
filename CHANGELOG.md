@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.0.45
+- upd：ライブラリ更新
 ## v2.0.44
 - fix: ライブラリ更新（webpack-dev-server 4.0.0 対応）
 ## v2.0.43
