@@ -8,12 +8,10 @@
 import {IPluginInitArg} from '@famibee/skynovel';
 import {ThreeDLayer} from './ThreeDLayer';
 
-exports.init = (plgArg: IPluginInitArg)=> {
-	ThreeDLayer.plgArg = plgArg;
-	(async ()=> {
-		ThreeDLayer.THREE = await import('three');
-		globalThis.THREE = ThreeDLayer.THREE;	// requireで必須なので
+export async function init(hIA: IPluginInitArg): Promise<void> {
+	ThreeDLayer.plgArg = hIA;
+	ThreeDLayer.THREE = await import('three');
+	globalThis.THREE = ThreeDLayer.THREE;	// requireで必須なので
 
-		plgArg.addLayCls('3d', ()=> <any>new ThreeDLayer);	// any 逃げ
-	})();
+	hIA.addLayCls('3d', ()=> <any>new ThreeDLayer);	// any 逃げ
 };

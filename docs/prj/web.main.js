@@ -27,7 +27,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst ThreeDLayer_1 = __webpack_require__(/*! ./ThreeDLayer */ \"./core/plugin/3d_layer/ThreeDLayer.ts\");\nexports.init = (plgArg) => {\n    ThreeDLayer_1.ThreeDLayer.plgArg = plgArg;\n    (async () => {\n        ThreeDLayer_1.ThreeDLayer.THREE = await Promise.resolve().then(() => __webpack_require__(/*! three */ \"./node_modules/three/build/three.module.js\"));\n        globalThis.THREE = ThreeDLayer_1.ThreeDLayer.THREE;\n        plgArg.addLayCls('3d', () => new ThreeDLayer_1.ThreeDLayer);\n    })();\n};\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/3d_layer/index.js?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = void 0;\nconst ThreeDLayer_1 = __webpack_require__(/*! ./ThreeDLayer */ \"./core/plugin/3d_layer/ThreeDLayer.ts\");\nasync function init(hIA) {\n    ThreeDLayer_1.ThreeDLayer.plgArg = hIA;\n    ThreeDLayer_1.ThreeDLayer.THREE = await Promise.resolve().then(() => __webpack_require__(/*! three */ \"./node_modules/three/build/three.module.js\"));\n    globalThis.THREE = ThreeDLayer_1.ThreeDLayer.THREE;\n    hIA.addLayCls('3d', () => new ThreeDLayer_1.ThreeDLayer);\n}\nexports.init = init;\n;\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/3d_layer/index.js?");
 
 /***/ }),
 
@@ -38,7 +38,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\ncons
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst Cubism3Layer_1 = __webpack_require__(/*! ./Cubism3Layer */ \"./core/plugin/cubism3_layer/Cubism3Layer.ts\");\nexports.init = (plgArg) => {\n    Cubism3Layer_1.Cubism3Layer.plgArg = plgArg;\n    (async () => {\n        plgArg.addLayCls('cubism3', () => new Cubism3Layer_1.Cubism3Layer);\n    })();\n};\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/cubism3_layer/index.js?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = void 0;\nconst Cubism3Layer_1 = __webpack_require__(/*! ./Cubism3Layer */ \"./core/plugin/cubism3_layer/Cubism3Layer.ts\");\nasync function init(hIA) {\n    Cubism3Layer_1.Cubism3Layer.plgArg = hIA;\n    hIA.addLayCls('cubism3', () => new Cubism3Layer_1.Cubism3Layer);\n}\nexports.init = init;\n;\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/cubism3_layer/index.js?");
 
 /***/ }),
 
@@ -49,7 +49,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\ncons
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst EmoteLayer_1 = __webpack_require__(/*! ./EmoteLayer */ \"./core/plugin/emote_layer/EmoteLayer.ts\");\nexports.init = (plgArg) => {\n    EmoteLayer_1.EmoteLayer.plgArg = plgArg;\n    (async () => {\n        plgArg.addLayCls('emote', () => new EmoteLayer_1.EmoteLayer);\n    })();\n};\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/emote_layer/index.js?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = void 0;\nconst EmoteLayer_1 = __webpack_require__(/*! ./EmoteLayer */ \"./core/plugin/emote_layer/EmoteLayer.ts\");\nasync function init(hIA) {\n    EmoteLayer_1.EmoteLayer.plgArg = hIA;\n    hIA.addLayCls('emote', () => new EmoteLayer_1.EmoteLayer);\n}\nexports.init = init;\n;\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/emote_layer/index.js?");
 
 /***/ }),
 
@@ -70,7 +70,7 @@ eval("var map = {\n\t\"./3d_layer/index.js\": \"./core/plugin/3d_layer/index.js\
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("//@ts-check\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n\nconst hPlg = {};\nconst h = __webpack_require__(/*! ./plugin.js */ \"./core/plugin.js\").default;\nfor (const nm in h) hPlg[nm] = __webpack_require__(\"./core/plugin sync recursive ^\\\\.\\\\/.*\\\\/index\\\\.js$\")(`./${nm}/index.js`);\n\nconst dip = {'expanding': false};\nlet pcur = 'prj/';\nif (location.pathname.slice(-15) == '/index_app.html') {\n\tpcur = '';\n\tdip['oninit_run'] = false;\n}\nconst {SysWeb} = __webpack_require__(/*! @famibee/skynovel/web */ \"./node_modules/@famibee/skynovel/web.js\");\nconst sys = new SysWeb(hPlg, {cur: pcur +'top/', dip: JSON.stringify(dip)});\nglobalThis.runSN = (cur = pcur +'top')=> sys.runSN(cur);\nglobalThis.stopSN = ()=> sys.stop();\n\n\n//# sourceURL=webpack://gallery/./core/web4webpack.js?");
+eval("//@ts-check\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n\nconst hPlg = {};\nconst h = __webpack_require__(/*! ./plugin.js */ \"./core/plugin.js\")[\"default\"];\nfor (const nm in h) hPlg[nm] = __webpack_require__(\"./core/plugin sync recursive ^\\\\.\\\\/.*\\\\/index\\\\.js$\")(`./${nm}/index.js`);\n\nconst dip = {'expanding': false};\nlet pcur = 'prj/';\nif (location.pathname.slice(-15) == '/index_app.html') {\n\tpcur = '';\n\tdip['oninit_run'] = false;\n}\nconst {SysWeb} = __webpack_require__(/*! @famibee/skynovel/web */ \"./node_modules/@famibee/skynovel/web.js\");\nconst sys = new SysWeb(hPlg, {cur: pcur +'top/', dip: JSON.stringify(dip)});\nglobalThis.runSN = (cur = pcur +'top')=> sys.runSN(cur);\nglobalThis.stopSN = ()=> sys.stop();\n\n\n//# sourceURL=webpack://gallery/./core/web4webpack.js?");
 
 /***/ }),
 

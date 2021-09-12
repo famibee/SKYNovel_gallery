@@ -8,9 +8,7 @@
 import {IPluginInitArg} from '@famibee/skynovel';
 import {Cubism3Layer} from './Cubism3Layer';
 
-exports.init = (plgArg: IPluginInitArg)=> {
-	Cubism3Layer.plgArg = plgArg;
-	(async ()=> {
-		plgArg.addLayCls('cubism3', ()=> <any>new Cubism3Layer);	// any 逃げ
-	})();
+export async function init(hIA: IPluginInitArg): Promise<void> {
+	Cubism3Layer.plgArg = hIA;
+	hIA.addLayCls('cubism3', ()=> <any>new Cubism3Layer);	// any 逃げ
 };

@@ -1,10 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.init = void 0;
 const Cubism3Layer_1 = require("./Cubism3Layer");
-exports.init = (plgArg) => {
-    Cubism3Layer_1.Cubism3Layer.plgArg = plgArg;
-    (async () => {
-        plgArg.addLayCls('cubism3', () => new Cubism3Layer_1.Cubism3Layer);
-    })();
-};
+async function init(hIA) {
+    Cubism3Layer_1.Cubism3Layer.plgArg = hIA;
+    hIA.addLayCls('cubism3', () => new Cubism3Layer_1.Cubism3Layer);
+}
+exports.init = init;
+;
 //# sourceMappingURL=index.js.map
