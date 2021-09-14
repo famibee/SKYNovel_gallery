@@ -1,9 +1,9 @@
-//@ts-check
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+// 変更後は「npm run webpack:dev」
 
 const hPlg = {};
-const h = require('./plugin.js').default;
+import h from './plugin.js';
 for (const nm in h) hPlg[nm] = require(`./plugin/${nm}/index.js`);
 
 const dip = {'expanding': false};
@@ -12,7 +12,7 @@ if (location.pathname.slice(-15) == '/index_app.html') {
 	pcur = '';
 	dip['oninit_run'] = false;
 }
-const {SysWeb} = require('@famibee/skynovel/web');
+import {SysWeb} from '@famibee/skynovel/web';
 const sys = new SysWeb(hPlg, {cur: pcur +'top/', dip: JSON.stringify(dip)});
 globalThis.runSN = (cur = pcur +'top')=> sys.runSN(cur);
 globalThis.stopSN = ()=> sys.stop();

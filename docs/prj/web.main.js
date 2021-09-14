@@ -67,10 +67,10 @@ eval("var map = {\n\t\"./3d_layer/index.js\": \"./core/plugin/3d_layer/index.js\
 /*!*****************************!*\
   !*** ./core/web4webpack.js ***!
   \*****************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("//@ts-check\n\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\n\nconst hPlg = {};\nconst h = __webpack_require__(/*! ./plugin.js */ \"./core/plugin.js\")[\"default\"];\nfor (const nm in h) hPlg[nm] = __webpack_require__(\"./core/plugin sync recursive ^\\\\.\\\\/.*\\\\/index\\\\.js$\")(`./${nm}/index.js`);\n\nconst dip = {'expanding': false};\nlet pcur = 'prj/';\nif (location.pathname.slice(-15) == '/index_app.html') {\n\tpcur = '';\n\tdip['oninit_run'] = false;\n}\nconst {SysWeb} = __webpack_require__(/*! @famibee/skynovel/web */ \"./node_modules/@famibee/skynovel/web.js\");\nconst sys = new SysWeb(hPlg, {cur: pcur +'top/', dip: JSON.stringify(dip)});\nglobalThis.runSN = (cur = pcur +'top')=> sys.runSN(cur);\nglobalThis.stopSN = ()=> sys.stop();\n\n\n//# sourceURL=webpack://gallery/./core/web4webpack.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _plugin_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./plugin.js */ \"./core/plugin.js\");\n/* harmony import */ var _famibee_skynovel_web__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @famibee/skynovel/web */ \"./node_modules/@famibee/skynovel/web.js\");\n/* harmony import */ var _famibee_skynovel_web__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_famibee_skynovel_web__WEBPACK_IMPORTED_MODULE_1__);\n\nObject.defineProperty(__webpack_exports__, \"__esModule\", ({ value: true }));\n// 変更後は「npm run webpack:dev」\n\nconst hPlg = {};\n\nfor (const nm in _plugin_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]) hPlg[nm] = __webpack_require__(\"./core/plugin sync recursive ^\\\\.\\\\/.*\\\\/index\\\\.js$\")(`./${nm}/index.js`);\n\nconst dip = {'expanding': false};\nlet pcur = 'prj/';\nif (location.pathname.slice(-15) == '/index_app.html') {\n\tpcur = '';\n\tdip['oninit_run'] = false;\n}\n\nconst sys = new _famibee_skynovel_web__WEBPACK_IMPORTED_MODULE_1__.SysWeb(hPlg, {cur: pcur +'top/', dip: JSON.stringify(dip)});\nglobalThis.runSN = (cur = pcur +'top')=> sys.runSN(cur);\nglobalThis.stopSN = ()=> sys.stop();\n\n\n//# sourceURL=webpack://gallery/./core/web4webpack.js?");
 
 /***/ }),
 

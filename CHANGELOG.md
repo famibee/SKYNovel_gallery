@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.0.47
+- fix: tsconfig.json 更新　target, lib を es2021 に
+- upd：ライブラリ更新
 ## v2.0.46
 - upd：ライブラリ更新（SKYNovel v1.18.0 対応）
 ## v2.0.45

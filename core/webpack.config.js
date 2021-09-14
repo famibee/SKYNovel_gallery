@@ -9,7 +9,7 @@ module.exports = [{
 	output: {
 		path: process.cwd() +'/docs',
 		filename: 'prj/web.[name].js',
-		chunkFilename: 'prj/web.[id].js'
+		chunkFilename: 'prj/web.[id].js',
 	},
 	optimization: {
 		splitChunks: {
@@ -32,7 +32,7 @@ module.exports = [{
 	],
 	performance: {
 		maxEntrypointSize: 2000 *1000,
-		maxAssetSize: 1000 *1000
+		maxAssetSize: 1000 *1000,
 	},
 	resolve: {extensions: ['.ts', '.js'],},
 	module: {rules: [{test: /\.ts$/, loader: 'ts-loader'},],},
