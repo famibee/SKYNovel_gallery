@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.0.48
+- upd：ライブラリ更新（Electron 14 に更新）
 ## v2.0.47
 - fix: tsconfig.json 更新　target, lib を es2021 に
 - upd：ライブラリ更新

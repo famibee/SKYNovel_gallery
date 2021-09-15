@@ -8,7 +8,7 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.18.1",
+		"@famibee/skynovel": "^1.18.2",
 		"pixi.js": "^6.1.3",
 		"three": "^0.132.2"
 	},
@@ -16,11 +16,12 @@
 		"@types/fs-extra": "^9.0.12",
 		"@types/node": "^16.9.1",
 		"@types/tar-fs": "^2.0.1",
-		"@types/three": "^0.131.0",
+		"@types/three": "^0.131.1",
 		"@types/tween.js": "^18.6.1",
 		"css-loader": "^6.2.0",
 		"electron": "^14.0.1",
 		"electron-builder": "^22.14.2",
+		"rimraf": "^3.0.2",
 		"style-loader": "^3.2.1",
 		"ts-loader": "^9.2.5",
 		"typescript": "^4.4.3",
@@ -40,7 +41,7 @@
 		"dev_simple": "npm run webpack:dev:w_s & npm run watch:wds_s",
 		"npm_check_updates": "ncu -u --target minor && npm update && npm run build",
 		"build": "webpack --mode production --config ./core/webpack.config.js",
-		"rebuild": "rm -rf node_modules && rm package-lock.json && npm cache clear --force && npm i && npm run webpack:dev"
+		"rebuild": "rimraf package-lock.json && rimraf node_modules && npm cache clear --force && npm i && npm run webpack:dev"
 	},
 	"build": {
 		"appId": "com.fc2.blog.famibee.gallery",
