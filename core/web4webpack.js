@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 const hPlg = {};
 import h from './plugin.js';
-for (const nm in h) hPlg[nm] = require(`./plugin/${nm}/index.js`);
+for (const nm in h) hPlg[nm] = require(`./plugin/${nm}`);
 
 const dip = {'expanding': false};
 let pcur = 'prj/';

@@ -6,6 +6,13 @@ module.exports = {
 		path: process.cwd() +'/docs',
 		filename: 'prj/web.js',
 	},
+	resolve: {extensions: ['.ts', '.js'],},
+	module: {
+		rules: [
+			{test: /\.d\.ts|\.(map|txt)$/, loader: 'ignore-loader',},
+			{test: /\.ts$/, loader: 'ts-loader',},
+		],
+	},
 
 	devServer: {
 		static: {directory: './docs'},

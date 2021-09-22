@@ -1,4 +1,23 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ThreeDLayer = void 0;
 const { Layer, CmnLib, argChk_Num, argChk_Boolean } = require('@famibee/skynovel/web');
@@ -8,8 +27,9 @@ const GLTFLoader_1 = require("three/examples/jsm/loaders/GLTFLoader");
 const pixi_js_1 = require("pixi.js");
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 class ThreeDLayer extends Layer {
-    constructor() {
+    constructor(pia) {
         super();
+        this.pia = pia;
         this.tick = () => {
             if (!this.running)
                 return;
@@ -42,6 +62,7 @@ class ThreeDLayer extends Layer {
         this.sprite_3D.x = (CmnLib.stageW - this.sprite_3D.width) / 2;
         this.sprite_3D.y = (CmnLib.stageH - this.sprite_3D.height) / 2;
     }
+    static async init() { globalThis.THREE ??= await Promise.resolve().then(() => __importStar(require('three'))); }
     lay(hArg) {
         if (!this.scene_3D)
             return false;
@@ -114,7 +135,7 @@ class ThreeDLayer extends Layer {
                     case 'eff':
                         {
                             const fncEff = () => {
-                                this.hEff[fn] = this.ctxEff.loadEffect(ThreeDLayer.plgArg.searchPath(fn, 'efk'), argChk_Num(hArg, 'scale', 1), () => {
+                                this.hEff[fn] = this.ctxEff.loadEffect(this.pia.searchPath(fn, 'efk'), argChk_Num(hArg, 'scale', 1), () => {
                                     const [x, y, z] = String(hArg.pos || '0,0,0').split(',');
                                     const h = this.ctxEff.play(this.hEff[fn], parseInt(x), parseInt(y), parseInt(z));
                                     this.hInf[name] = { type: type, fn: fn, effhdl: h };
@@ -144,7 +165,7 @@ class ThreeDLayer extends Layer {
                             const ldr = new three_1.TextureLoader();
                             if (!fn)
                                 throw 'fnがありません';
-                            const tx = ldr.load(ThreeDLayer.plgArg.searchPath(fn, EXT_STILL_IMG));
+                            const tx = ldr.load(this.pia.searchPath(fn, EXT_STILL_IMG));
                             tx.minFilter = three_1.LinearFilter;
                             const material = new three_1.MeshBasicMaterial({ map: tx });
                             mdl = new three_1.Mesh(geometry, material);
@@ -157,7 +178,7 @@ class ThreeDLayer extends Layer {
                             const onProgress = ('debug' in hArg)
                                 ? (xhr) => console.log(`${(xhr.loaded / xhr.total * 100)}% loaded`)
                                 : () => { };
-                            (new GLTFLoader_1.GLTFLoader()).load(ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'), (gltf) => {
+                            (new GLTFLoader_1.GLTFLoader()).load(this.pia.searchPath(fn, 'gltf|glb'), (gltf) => {
                                 const mdl = gltf.scene;
                                 mdl.name = name;
                                 this.scene_3D.add(mdl);

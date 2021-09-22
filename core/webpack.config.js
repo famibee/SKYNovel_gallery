@@ -1,11 +1,10 @@
+// 変更後は「npm run webpack:dev」
 const {GenerateSW} = require('workbox-webpack-plugin');
 const cacheId = 'SKYNovel Gallery';
 
-// 変更後は「npm run webpack:dev」
 module.exports = [{
 	entry: `./core/web4webpack`,
 	target: 'web',
-	mode: 'development',
 	output: {
 		path: process.cwd() +'/docs/prj',
 		filename: 'web.[name].js',
@@ -15,6 +14,7 @@ module.exports = [{
 		splitChunks: {
 			cacheGroups: {
 				three: {test: /node_modules\/three/, name: 'three', chunks: 'initial'},
+				skynovel: {test: /node_modules\/@famibee\/skynovel/, name: 'skynovel', chunks: 'initial'},
 				vendor: {test: /node_modules\/([^t]+|t[^h]+|thr[^e]+)/, name: 'vendor', chunks: 'initial'},
 			},
 		},
@@ -35,5 +35,10 @@ module.exports = [{
 		maxAssetSize: 1000 *1000,
 	},
 	resolve: {extensions: ['.ts', '.js'],},
-	module: {rules: [{test: /\.ts$/, loader: 'ts-loader'},],},
+	module: {
+		rules: [
+			{test: /\.d\.ts|\.(map|txt)$/, loader: 'ignore-loader',},
+			{test: /\.ts$/, loader: 'ts-loader',},
+		],
+	},
 }];

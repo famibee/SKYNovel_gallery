@@ -17,7 +17,6 @@ export interface IInf {
 }
 
 export class EmoteLayer extends Layer {
-	static	plgArg	: IPluginInitArg;
 	private	static	uniq_num = 0;
 
 	private rt		: RenderTexture;
@@ -25,12 +24,12 @@ export class EmoteLayer extends Layer {
 	private readonly sp		= new Sprite;
 	private inf		: IInf | null;
 
-	constructor() {
+	constructor(private pia: IPluginInitArg) {
 		super();
 
 		if (EmoteLayer.uniq_num++ % 2 === 1) return;
 		if (EmoteLayer.uniq_num === 1) {
-			switch (String(EmoteLayer.plgArg.getVal('const.sn.platform.os.family'))) {
+			switch (String(this.pia.getVal('const.sn.platform.os.family'))) {
 				case 'Android':
 				case 'iOS':
 					EmotePlayer.maskMode = EmotePlayer.MaskMode.STENCIL; break;
@@ -86,12 +85,12 @@ export class EmoteLayer extends Layer {
 
 				this.sp.texture.destroy();
 				this.sp.texture = new Texture(new BaseTexture(this.cvs));
-				EmoteLayer.plgArg.render(this.sp, this.rt, true);
+				this.pia.render(this.sp, this.rt, true);
 			}
-			player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(fn, 'emtbytes_|emtbytes'))
+			player.promiseLoadDataFromURL(this.pia.searchPath(fn, 'emtbytes_|emtbytes'))
 			.then(()=> {
 				this.lay(a, fncComp);
-				EmoteLayer.plgArg.resume(fncComp);
+				this.pia.resume(fncComp);
 			});
 
 			return true;
@@ -134,7 +133,7 @@ export class EmoteLayer extends Layer {
 		this.inf = null;
 
 		this.sp.visible = false;
-		EmoteLayer.plgArg.render(this.sp, this.rt, true);
+		this.pia.render(this.sp, this.rt, true);
 		this.sp.visible = true;
 	}
 	record = ()=> Object.assign(super.record(), (this.inf)

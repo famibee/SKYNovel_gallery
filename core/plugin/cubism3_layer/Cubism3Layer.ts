@@ -6,7 +6,7 @@
 ** ***** END LICENSE BLOCK ***** */
 
 const {Layer, argChk_Num} = require('@famibee/skynovel/web');
-import {HArg, IPluginInitArg} from '@famibee/skynovel';
+import {HArg} from '@famibee/skynovel';
 declare const Live2DCubismCore: any;	// 【名前 '〜' が見つかりません。】対策
 declare const LIVE2DCUBISMPIXI: any;
 declare const LIVE2DCUBISMFRAMEWORK: any;
@@ -14,8 +14,6 @@ declare const LIVE2DCUBISMFRAMEWORK: any;
 import {Loader, utils, Point, LoaderResource} from 'pixi.js';
 
 export class Cubism3Layer extends Layer {
-	static	plgArg	: IPluginInitArg;
-
 	private	model	: any;	// Container？;
 
 	private ldr		= new Loader
@@ -50,7 +48,7 @@ export class Cubism3Layer extends Layer {
 					case 0:
 						this.ldr.add({
 							name	: rn,
-							url		: Cubism3Layer.plgArg.searchPath(fn, 'moc3_|moc3'),
+							url		: Cubism3Layer.pia.searchPath(fn, 'moc3_|moc3'),
 							xhrType	: LoaderResource.XHR_RESPONSE_TYPE.BUFFER,
 						});
 						break;
@@ -58,14 +56,14 @@ export class Cubism3Layer extends Layer {
 					case 1:
 						this.ldr.add({
 							name	: rn,
-							url		: Cubism3Layer.plgArg.searchPath(fn, 'png_|png|jpg_|jpg|jpeg_|jpeg'),
+							url		: Cubism3Layer.pia.searchPath(fn, 'png_|png|jpg_|jpg|jpeg_|jpeg'),
 						});
 						break;
 
 					case 2:
 						this.ldr.add({
 							name	: rn,
-							url		: Cubism3Layer.plgArg.searchPath(fn +'_'+ label, 'json_|json'),
+							url		: Cubism3Layer.pia.searchPath(fn +'_'+ label, 'json_|json'),
 							xhrType	: LoaderResource.XHR_RESPONSE_TYPE.JSON,
 						});
 						break;
@@ -98,7 +96,7 @@ export class Cubism3Layer extends Layer {
 				this.state.fn = fn;
 				this.state.label = label;
 				this.lay(a, fncComp);
-				Cubism3Layer.plgArg.resume(fncComp);
+				Cubism3Layer.pia.resume(fncComp);
 			};
 			if (needLoad) this.ldr.load((_loader: any, res: any)=> fncLoaded(res));
 			else fncLoaded(this.ldr.resources);
@@ -113,7 +111,7 @@ export class Cubism3Layer extends Layer {
 			if (this.state.label != label) {
 				this.state.label = label;
 				const fn = this.state.fn;
-				const fn_mot = Cubism3Layer.plgArg.searchPath(fn +'_'+ label, 'json_|json');
+				const fn_mot = Cubism3Layer.pia.searchPath(fn +'_'+ label, 'json_|json');
 
 				new Loader()
 				.add({name: 'l2d:'+ fn +'_mot', url: fn_mot, xhrType: LoaderResource.XHR_RESPONSE_TYPE.JSON})

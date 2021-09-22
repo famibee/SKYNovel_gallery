@@ -1,4 +1,4 @@
-define("./workbox-ec6ba2dd.js",['exports'], function (exports) { 'use strict';
+define("./workbox-ec6ba2dd.js",['exports'], (function (exports) { 'use strict';
 
     try {
       self['workbox:core:6.2.4'] && _();
@@ -3611,4 +3611,4 @@ define("./workbox-ec6ba2dd.js",['exports'], function (exports) { 'use strict';
     exports.precacheAndRoute = precacheAndRoute;
     exports.setCacheNameDetails = setCacheNameDetails;
 
-});
+}));

@@ -8,7 +8,6 @@
 import {IPluginInitArg} from '@famibee/skynovel';
 import {EmoteLayer} from './EmoteLayer';
 
-export async function init(hIA: IPluginInitArg): Promise<void> {
-	EmoteLayer.plgArg = hIA;
-	hIA.addLayCls('emote', ()=> <any>new EmoteLayer);	// any 逃げ
+export async function init(pia: IPluginInitArg) {
+	pia.addLayCls('emote', ()=> <any>new EmoteLayer(pia));	// any 逃げ
 };

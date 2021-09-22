@@ -4,8 +4,9 @@ exports.EmoteLayer = void 0;
 const { Layer, CmnLib, argChk_Num } = require('@famibee/skynovel/web');
 const pixi_js_1 = require("pixi.js");
 class EmoteLayer extends Layer {
-    constructor() {
+    constructor(pia) {
         super();
+        this.pia = pia;
         this.sp = new pixi_js_1.Sprite;
         this.record = () => Object.assign(super.record(), (this.inf)
             ? {
@@ -21,7 +22,7 @@ class EmoteLayer extends Layer {
         if (EmoteLayer.uniq_num++ % 2 === 1)
             return;
         if (EmoteLayer.uniq_num === 1) {
-            switch (String(EmoteLayer.plgArg.getVal('const.sn.platform.os.family'))) {
+            switch (String(this.pia.getVal('const.sn.platform.os.family'))) {
                 case 'Android':
                 case 'iOS':
                     EmotePlayer.maskMode = EmotePlayer.MaskMode.STENCIL;
@@ -66,12 +67,12 @@ class EmoteLayer extends Layer {
                     return;
                 this.sp.texture.destroy();
                 this.sp.texture = new pixi_js_1.Texture(new pixi_js_1.BaseTexture(this.cvs));
-                EmoteLayer.plgArg.render(this.sp, this.rt, true);
+                this.pia.render(this.sp, this.rt, true);
             };
-            player.promiseLoadDataFromURL(EmoteLayer.plgArg.searchPath(fn, 'emtbytes_|emtbytes'))
+            player.promiseLoadDataFromURL(this.pia.searchPath(fn, 'emtbytes_|emtbytes'))
                 .then(() => {
                 this.lay(a, fncComp);
-                EmoteLayer.plgArg.resume(fncComp);
+                this.pia.resume(fncComp);
             });
             return true;
         }
@@ -112,7 +113,7 @@ class EmoteLayer extends Layer {
         this.inf.player.unloadData();
         this.inf = null;
         this.sp.visible = false;
-        EmoteLayer.plgArg.render(this.sp, this.rt, true);
+        this.pia.render(this.sp, this.rt, true);
         this.sp.visible = true;
     }
     playback(hLay, fncComp = undefined) {

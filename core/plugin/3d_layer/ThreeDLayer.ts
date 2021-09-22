@@ -17,7 +17,6 @@ import {Sprite, Texture} from 'pixi.js';
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 
 export class ThreeDLayer extends Layer {
-	static	plgArg	: IPluginInitArg;
 	private	static	uniq_num = 0;
 
 	static	THREE		: any;
@@ -27,7 +26,9 @@ export class ThreeDLayer extends Layer {
 
 	private camera		: Camera;
 
-	constructor() {
+	static	async init() {globalThis.THREE ??= await import('three');}
+
+	constructor(private pia: IPluginInitArg) {
 		super();
 
 		if (ThreeDLayer.uniq_num++ % 2 == 1) return;
@@ -162,7 +163,7 @@ export class ThreeDLayer extends Layer {
 						// https://github.com/effekseer/EffekseerForWebGL
 						const fncEff = ()=> {
 							this.hEff[fn] = this.ctxEff.loadEffect(
-								ThreeDLayer.plgArg.searchPath(fn, 'efk'),
+								this.pia.searchPath(fn, 'efk'),
 								argChk_Num(hArg, 'scale', 1),
 	()=> {
 		const [x, y, z] = String(hArg.pos || '0,0,0').split(',');
@@ -196,7 +197,7 @@ export class ThreeDLayer extends Layer {
 						geometry.scale(-1, 1, 1);
 						const ldr = new TextureLoader();
 						if (! fn) throw 'fnがありません';
-						const tx = ldr.load(ThreeDLayer.plgArg.searchPath(fn, EXT_STILL_IMG));
+						const tx = ldr.load(this.pia.searchPath(fn, EXT_STILL_IMG));
 						tx.minFilter = LinearFilter;
 						const material = new MeshBasicMaterial({map: tx});
 						mdl = new Mesh(geometry, material);
@@ -212,7 +213,7 @@ export class ThreeDLayer extends Layer {
 								console.log(`${( xhr.loaded /xhr.total *100 )}% loaded`)
 							: ()=> {};
 						(new GLTFLoader()).load(
-							ThreeDLayer.plgArg.searchPath(fn, 'gltf|glb'),
+							this.pia.searchPath(fn, 'gltf|glb'),
 							(gltf: any)=> {	// called when the resource is loaded
 								const mdl = gltf.scene;
 /*
