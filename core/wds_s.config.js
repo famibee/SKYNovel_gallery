@@ -6,7 +6,6 @@ module.exports = {
 		path: process.cwd() +'/docs',
 		filename: 'pwa_mono/web.js',
 	},
-	resolve: {extensions: ['.ts', '.js'],},
 	module: {
 		rules: [
 			{test: /\.d\.ts|\.(map|txt)$/, loader: 'ignore-loader',},

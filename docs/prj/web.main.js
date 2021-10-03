@@ -92,7 +92,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexpo
   \************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("var map = {\n\t\"./3d_layer\": \"./core/plugin/3d_layer/index.ts\",\n\t\"./3d_layer/\": \"./core/plugin/3d_layer/index.ts\",\n\t\"./3d_layer/ThreeDLayer\": \"./core/plugin/3d_layer/ThreeDLayer.ts\",\n\t\"./3d_layer/ThreeDLayer.js\": \"./core/plugin/3d_layer/ThreeDLayer.js\",\n\t\"./3d_layer/ThreeDLayer.js.map\": \"./core/plugin/3d_layer/ThreeDLayer.js.map\",\n\t\"./3d_layer/ThreeDLayer.ts\": \"./core/plugin/3d_layer/ThreeDLayer.ts\",\n\t\"./3d_layer/effekseer.d\": \"./core/plugin/3d_layer/effekseer.d.ts\",\n\t\"./3d_layer/effekseer.d.ts\": \"./core/plugin/3d_layer/effekseer.d.ts\",\n\t\"./3d_layer/index\": \"./core/plugin/3d_layer/index.ts\",\n\t\"./3d_layer/index.js\": \"./core/plugin/3d_layer/index.js\",\n\t\"./3d_layer/index.js.map\": \"./core/plugin/3d_layer/index.js.map\",\n\t\"./3d_layer/index.ts\": \"./core/plugin/3d_layer/index.ts\",\n\t\"./cubism3_layer\": \"./core/plugin/cubism3_layer/index.ts\",\n\t\"./cubism3_layer/\": \"./core/plugin/cubism3_layer/index.ts\",\n\t\"./cubism3_layer/Cubism3Layer\": \"./core/plugin/cubism3_layer/Cubism3Layer.ts\",\n\t\"./cubism3_layer/Cubism3Layer.js\": \"./core/plugin/cubism3_layer/Cubism3Layer.js\",\n\t\"./cubism3_layer/Cubism3Layer.js.map\": \"./core/plugin/cubism3_layer/Cubism3Layer.js.map\",\n\t\"./cubism3_layer/Cubism3Layer.ts\": \"./core/plugin/cubism3_layer/Cubism3Layer.ts\",\n\t\"./cubism3_layer/index\": \"./core/plugin/cubism3_layer/index.ts\",\n\t\"./cubism3_layer/index.js\": \"./core/plugin/cubism3_layer/index.js\",\n\t\"./cubism3_layer/index.js.map\": \"./core/plugin/cubism3_layer/index.js.map\",\n\t\"./cubism3_layer/index.ts\": \"./core/plugin/cubism3_layer/index.ts\",\n\t\"./emote_layer\": \"./core/plugin/emote_layer/index.ts\",\n\t\"./emote_layer/\": \"./core/plugin/emote_layer/index.ts\",\n\t\"./emote_layer/EmoteLayer\": \"./core/plugin/emote_layer/EmoteLayer.ts\",\n\t\"./emote_layer/EmoteLayer.js\": \"./core/plugin/emote_layer/EmoteLayer.js\",\n\t\"./emote_layer/EmoteLayer.js.map\": \"./core/plugin/emote_layer/EmoteLayer.js.map\",\n\t\"./emote_layer/EmoteLayer.ts\": \"./core/plugin/emote_layer/EmoteLayer.ts\",\n\t\"./emote_layer/index\": \"./core/plugin/emote_layer/index.ts\",\n\t\"./emote_layer/index.js\": \"./core/plugin/emote_layer/index.js\",\n\t\"./emote_layer/index.js.map\": \"./core/plugin/emote_layer/index.js.map\",\n\t\"./emote_layer/index.ts\": \"./core/plugin/emote_layer/index.ts\",\n\t\"./emote_layer/最初にお読み下さい.txt\": \"./core/plugin/emote_layer/最初にお読み下さい.txt\",\n\t\"./pass.json\": \"./core/plugin/pass.json\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./core/plugin sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack://gallery/./core/plugin/_sync_^\\.\\/.*$?");
+eval("var map = {\n\t\"./3d_layer\": \"./core/plugin/3d_layer/index.ts\",\n\t\"./3d_layer/\": \"./core/plugin/3d_layer/index.ts\",\n\t\"./3d_layer/ThreeDLayer\": \"./core/plugin/3d_layer/ThreeDLayer.ts\",\n\t\"./3d_layer/ThreeDLayer.js\": \"./core/plugin/3d_layer/ThreeDLayer.js\",\n\t\"./3d_layer/ThreeDLayer.js.map\": \"./core/plugin/3d_layer/ThreeDLayer.js.map\",\n\t\"./3d_layer/ThreeDLayer.ts\": \"./core/plugin/3d_layer/ThreeDLayer.ts\",\n\t\"./3d_layer/effekseer.d\": \"./core/plugin/3d_layer/effekseer.d.ts\",\n\t\"./3d_layer/effekseer.d.ts\": \"./core/plugin/3d_layer/effekseer.d.ts\",\n\t\"./3d_layer/index\": \"./core/plugin/3d_layer/index.ts\",\n\t\"./3d_layer/index.d\": \"./core/plugin/3d_layer/index.d.ts\",\n\t\"./3d_layer/index.d.ts\": \"./core/plugin/3d_layer/index.d.ts\",\n\t\"./3d_layer/index.d.ts.map\": \"./core/plugin/3d_layer/index.d.ts.map\",\n\t\"./3d_layer/index.js\": \"./core/plugin/3d_layer/index.js\",\n\t\"./3d_layer/index.js.map\": \"./core/plugin/3d_layer/index.js.map\",\n\t\"./3d_layer/index.ts\": \"./core/plugin/3d_layer/index.ts\",\n\t\"./cubism3_layer\": \"./core/plugin/cubism3_layer/index.ts\",\n\t\"./cubism3_layer/\": \"./core/plugin/cubism3_layer/index.ts\",\n\t\"./cubism3_layer/Cubism3Layer\": \"./core/plugin/cubism3_layer/Cubism3Layer.ts\",\n\t\"./cubism3_layer/Cubism3Layer.js\": \"./core/plugin/cubism3_layer/Cubism3Layer.js\",\n\t\"./cubism3_layer/Cubism3Layer.js.map\": \"./core/plugin/cubism3_layer/Cubism3Layer.js.map\",\n\t\"./cubism3_layer/Cubism3Layer.ts\": \"./core/plugin/cubism3_layer/Cubism3Layer.ts\",\n\t\"./cubism3_layer/index\": \"./core/plugin/cubism3_layer/index.ts\",\n\t\"./cubism3_layer/index.d\": \"./core/plugin/cubism3_layer/index.d.ts\",\n\t\"./cubism3_layer/index.d.ts\": \"./core/plugin/cubism3_layer/index.d.ts\",\n\t\"./cubism3_layer/index.d.ts.map\": \"./core/plugin/cubism3_layer/index.d.ts.map\",\n\t\"./cubism3_layer/index.js\": \"./core/plugin/cubism3_layer/index.js\",\n\t\"./cubism3_layer/index.js.map\": \"./core/plugin/cubism3_layer/index.js.map\",\n\t\"./cubism3_layer/index.ts\": \"./core/plugin/cubism3_layer/index.ts\",\n\t\"./emote_layer\": \"./core/plugin/emote_layer/index.ts\",\n\t\"./emote_layer/\": \"./core/plugin/emote_layer/index.ts\",\n\t\"./emote_layer/EmoteLayer\": \"./core/plugin/emote_layer/EmoteLayer.ts\",\n\t\"./emote_layer/EmoteLayer.js\": \"./core/plugin/emote_layer/EmoteLayer.js\",\n\t\"./emote_layer/EmoteLayer.js.map\": \"./core/plugin/emote_layer/EmoteLayer.js.map\",\n\t\"./emote_layer/EmoteLayer.ts\": \"./core/plugin/emote_layer/EmoteLayer.ts\",\n\t\"./emote_layer/index\": \"./core/plugin/emote_layer/index.ts\",\n\t\"./emote_layer/index.d\": \"./core/plugin/emote_layer/index.d.ts\",\n\t\"./emote_layer/index.d.ts\": \"./core/plugin/emote_layer/index.d.ts\",\n\t\"./emote_layer/index.d.ts.map\": \"./core/plugin/emote_layer/index.d.ts.map\",\n\t\"./emote_layer/index.js\": \"./core/plugin/emote_layer/index.js\",\n\t\"./emote_layer/index.js.map\": \"./core/plugin/emote_layer/index.js.map\",\n\t\"./emote_layer/index.ts\": \"./core/plugin/emote_layer/index.ts\",\n\t\"./emote_layer/最初にお読み下さい.txt\": \"./core/plugin/emote_layer/最初にお読み下さい.txt\",\n\t\"./pass.json\": \"./core/plugin/pass.json\"\n};\n\n\nfunction webpackContext(req) {\n\tvar id = webpackContextResolve(req);\n\treturn __webpack_require__(id);\n}\nfunction webpackContextResolve(req) {\n\tif(!__webpack_require__.o(map, req)) {\n\t\tvar e = new Error(\"Cannot find module '\" + req + \"'\");\n\t\te.code = 'MODULE_NOT_FOUND';\n\t\tthrow e;\n\t}\n\treturn map[req];\n}\nwebpackContext.keys = function webpackContextKeys() {\n\treturn Object.keys(map);\n};\nwebpackContext.resolve = webpackContextResolve;\nmodule.exports = webpackContext;\nwebpackContext.id = \"./core/plugin sync recursive ^\\\\.\\\\/.*$\";\n\n//# sourceURL=webpack://gallery/./core/plugin/_sync_^\\.\\/.*$?");
 
 /***/ }),
 
@@ -117,6 +117,16 @@ eval("\n\n//# sourceURL=webpack://gallery/./core/plugin/3d_layer/ThreeDLayer.js.
 
 /***/ }),
 
+/***/ "./core/plugin/3d_layer/index.d.ts.map":
+/*!*********************************************!*\
+  !*** ./core/plugin/3d_layer/index.d.ts.map ***!
+  \*********************************************/
+/***/ (() => {
+
+eval("\n\n//# sourceURL=webpack://gallery/./core/plugin/3d_layer/index.d.ts.map?");
+
+/***/ }),
+
 /***/ "./core/plugin/3d_layer/index.js.map":
 /*!*******************************************!*\
   !*** ./core/plugin/3d_layer/index.js.map ***!
@@ -137,6 +147,16 @@ eval("\n\n//# sourceURL=webpack://gallery/./core/plugin/cubism3_layer/Cubism3Lay
 
 /***/ }),
 
+/***/ "./core/plugin/cubism3_layer/index.d.ts.map":
+/*!**************************************************!*\
+  !*** ./core/plugin/cubism3_layer/index.d.ts.map ***!
+  \**************************************************/
+/***/ (() => {
+
+eval("\n\n//# sourceURL=webpack://gallery/./core/plugin/cubism3_layer/index.d.ts.map?");
+
+/***/ }),
+
 /***/ "./core/plugin/cubism3_layer/index.js.map":
 /*!************************************************!*\
   !*** ./core/plugin/cubism3_layer/index.js.map ***!
@@ -154,6 +174,16 @@ eval("\n\n//# sourceURL=webpack://gallery/./core/plugin/cubism3_layer/index.js.m
 /***/ (() => {
 
 eval("\n\n//# sourceURL=webpack://gallery/./core/plugin/emote_layer/EmoteLayer.js.map?");
+
+/***/ }),
+
+/***/ "./core/plugin/emote_layer/index.d.ts.map":
+/*!************************************************!*\
+  !*** ./core/plugin/emote_layer/index.d.ts.map ***!
+  \************************************************/
+/***/ (() => {
+
+eval("\n\n//# sourceURL=webpack://gallery/./core/plugin/emote_layer/index.d.ts.map?");
 
 /***/ }),
 
@@ -184,6 +214,36 @@ eval("\n\n//# sourceURL=webpack://gallery/./core/plugin/emote_layer/%E6%9C%80%E5
 /***/ (() => {
 
 eval("throw new Error(\"Module build failed (from ./node_modules/ts-loader/index.js):\\nError: TypeScript emitted no output for /Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/core/plugin/3d_layer/effekseer.d.ts.\\n    at makeSourceMapAndFinish (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:52:18)\\n    at successLoader (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:39:5)\\n    at Object.loader (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:22:5)\");\n\n//# sourceURL=webpack://gallery/./core/plugin/3d_layer/effekseer.d.ts?");
+
+/***/ }),
+
+/***/ "./core/plugin/3d_layer/index.d.ts":
+/*!*****************************************!*\
+  !*** ./core/plugin/3d_layer/index.d.ts ***!
+  \*****************************************/
+/***/ (() => {
+
+eval("throw new Error(\"Module build failed (from ./node_modules/ts-loader/index.js):\\nError: TypeScript emitted no output for /Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/core/plugin/3d_layer/index.d.ts.\\n    at makeSourceMapAndFinish (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:52:18)\\n    at successLoader (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:39:5)\\n    at Object.loader (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:22:5)\");\n\n//# sourceURL=webpack://gallery/./core/plugin/3d_layer/index.d.ts?");
+
+/***/ }),
+
+/***/ "./core/plugin/cubism3_layer/index.d.ts":
+/*!**********************************************!*\
+  !*** ./core/plugin/cubism3_layer/index.d.ts ***!
+  \**********************************************/
+/***/ (() => {
+
+eval("throw new Error(\"Module build failed (from ./node_modules/ts-loader/index.js):\\nError: TypeScript emitted no output for /Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/core/plugin/cubism3_layer/index.d.ts.\\n    at makeSourceMapAndFinish (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:52:18)\\n    at successLoader (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:39:5)\\n    at Object.loader (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:22:5)\");\n\n//# sourceURL=webpack://gallery/./core/plugin/cubism3_layer/index.d.ts?");
+
+/***/ }),
+
+/***/ "./core/plugin/emote_layer/index.d.ts":
+/*!********************************************!*\
+  !*** ./core/plugin/emote_layer/index.d.ts ***!
+  \********************************************/
+/***/ (() => {
+
+eval("throw new Error(\"Module build failed (from ./node_modules/ts-loader/index.js):\\nError: TypeScript emitted no output for /Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/core/plugin/emote_layer/index.d.ts.\\n    at makeSourceMapAndFinish (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:52:18)\\n    at successLoader (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:39:5)\\n    at Object.loader (/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/sn_gallery/node_modules/ts-loader/dist/index.js:22:5)\");\n\n//# sourceURL=webpack://gallery/./core/plugin/emote_layer/index.d.ts?");
 
 /***/ }),
 
