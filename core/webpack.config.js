@@ -35,10 +35,8 @@ module.exports = [{
 		maxAssetSize: 1000 *1000,
 	},
 	resolve: {extensions: ['.ts', '.js'],},
-	module: {
-		rules: [
-			{test: /\.d\.ts|\.(map|txt)$/, loader: 'ignore-loader',},
-			{test: /\.ts$/, loader: 'ts-loader',},
-		],
-	},
+	module: {rules: [
+		{test: /\.d\.ts|\.(map|txt)$/, loader: 'ignore-loader',},
+		{test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules|\.d\.ts$/,},
+	],},
 }];

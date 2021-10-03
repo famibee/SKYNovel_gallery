@@ -14,6 +14,7 @@ module.exports = [{
 		splitChunks: {
 			cacheGroups: {
 				three: {test: /node_modules\/three/, name: 'three', chunks: 'initial'},
+				skynovel: {test: /node_modules\/@famibee\/skynovel/, name: 'skynovel', chunks: 'initial'},
 				vendor: {test: /node_modules\/([^t]+|t[^h]+|thr[^e]+)/, name: 'vendor', chunks: 'initial'},
 			},
 		},
@@ -35,5 +36,7 @@ module.exports = [{
 		maxAssetSize: 1000 *1000
 	},
 	resolve: {extensions: ['.ts', '.js'],},
-	module: {rules: [{test: /\.ts$/, loader: 'ts-loader'},],},
+	module: {rules: [
+		{test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules|\.d\.ts$/,},
+	],},
 }];

@@ -108,7 +108,7 @@ define("./sw.js",['./workbox-ec6ba2dd'], (function (workbox) { 'use strict';
 
   workbox.precacheAndRoute([{
     "url": "web.main.js",
-    "revision": "a97fedc6984944146519f0f58b40db4b"
+    "revision": "3dfc25a12d2affcce082be2b30153472"
   }, {
     "url": "web.skynovel.js",
     "revision": "dfd7791d649803cabe480f90701ce1df"

@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.0.54
+- fix：【Error: TypeScript emitted no output for ...】エラーを解消
 ## v2.0.53
 - upd：ライブラリ更新
 ## v2.0.52
