@@ -5,22 +5,30 @@
 class=txt
 ]
 
-[trace text=@@]
-	... 左上に【〜 line:8】ならOK[r]
+[trace text=@【〜line:8】ならOK@]	... 左上に【〜 line:8】[r]
+[if
+exp=true]
+	[trace text=@【〜line:11】ならOK@]	... 左上に【〜 line:11】[r]
+[endif]
+[if
+exp=false][else
+]
+	[trace text=@【〜line:16】ならOK@]	... 左上に【〜 line:16】ならOK[r]
+[endif]
 
 [r]
 		multi
 	line tag[r]
 
-[r]
 	[span
-		layout
+		style
 	=
-		'color="0xaaaaaa"'
+		'color: #ffaaff;'
 	]
 	タグやマクロは複数行に改行して書ける[r]
-	[span]
 
+[r]
+	[span]
 	... 次２行が同じならOK[r]
 	AbCd111c="0xa"Efbc="0xb"Gh/undefined[r]
 
@@ -55,6 +63,8 @@ textc=h|'&0xd';=====
 a='/';=====
 b='#{fcol}'|true;=====
 ]
+
+	[trace text=@【〜line:67】ならOK@]
 
 [s]
 
