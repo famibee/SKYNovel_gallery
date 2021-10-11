@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.1.1
+- upd: ライブラリ更新
 ## v2.1.0
 - add: 【ページ移動】サンプル追加。本やWeb漫画のように手軽に前にも戻れる機能
 	- http://localhost:8082/index.html?cur=tag_page
