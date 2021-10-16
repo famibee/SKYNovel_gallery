@@ -111,7 +111,7 @@ define("./sw.js",['./workbox-ec6ba2dd'], (function (workbox) { 'use strict';
     "revision": "3dfc25a12d2affcce082be2b30153472"
   }, {
     "url": "web.skynovel.js",
-    "revision": "e7cf794ea9b6f96c8178ad01684caa1a"
+    "revision": "3343b0c1b8b77b678c68c46e83dae42c"
   }, {
     "url": "web.three.js",
     "revision": "c7ee3789b48a494bf33eb3e321f6b2a2"
