@@ -1,5 +1,6 @@
 [title text='文字ボタン・リンク'][call label=*init]
 
+;[add_lay layer=mes class=txt left=53 top=107]
 [add_lay layer=mes class=txt]
 
 [macro name=rs][r][s][endmacro]
@@ -10,16 +11,16 @@
 
 *main
 　Ｑ１．【戎橋】の読み方を選択して下さい。[r]
-[r]
-　[link label=*yoko style='background-color: rgba(0,180,180,0.5);' style_hover='background-color: rgba(200,200,200,0.9);' hint='行方向の変更']横書き[endlink]
-　[link label=*tate style='background-color: rgba(180,180,0,0.5);' style_hover='background-color: rgba(200,200,200,0.9);' hint='行方向の変更']縦書き[endlink]
 
-[button text=かいばし left=120 top=230 page=fore rotation=50 label=**after arg=かいばし style='{"fill": "deepskyblue"}' b_pic=ele_mini1 hint='選択肢']
-[button text=えびすばし left=260 top=260 page=fore rotation=-70 label=***after arg=えびすばし style='{"fill": "mediumslateblue"}' b_pic=ele_mini1 hint='選択肢']
-;	[button text=えびすばし left=260 top=260 page=fore rotation=-70 label=***after arg=えびすばし style='{"fill": "mediumslateblue"}' b_pic=ele_mini1 hint='選択肢' hint_tate=false]
+　[link label=*yoko style='background-color: rgba(0,180,180,0.5);' style_hover='background-color: rgba(200,200,200,0.9);' hint='行方向の変更']横書き[endlink]
+　[link label=*tate style='background-color: rgba(180,180,0,0.5);' style_hover='background-color: rgba(200,200,200,0.9);' hint='行方向の変更' hint_width=180]縦書き[endlink]
+　[link label=*tate style='font-size: 64px;' hint='行方向の変更' hint_width=180]🌈[endlink]
+
+[button text=かいばし left=120 top=230 page=fore rotation=50 label=**after arg=かいばし style='{"fill": "deepskyblue"}' b_pic=ele_mini1 hint='選択肢' hint_color='tomato']
+[button text=えびすばし left=260 top=260 page=fore rotation=-70 label=***after arg=えびすばし style='{"fill": "mediumslateblue"}' b_pic=ele_mini1 hint='選択肢' hint_width=160 hint_color='#4444ff']
 [button text=いかいのばし left=460 top=210 page=fore rotation=-25 label=**after arg=いかいのばし style='{"fill": "tomato"}' b_pic=ele_mini2 hint='選択肢']
 
-[button text=既読スキップ left=550 top=300 page=fore label=*go_skip call=true style='{"fill": "aqua"}' style_hover='{"fill": "#4444ff"}' hint='背景なし文字ボタン']
+[button text=既読スキップ left=550 top=300 page=fore label=*go_skip call=true style='{"fill": "aqua"}' style_hover='{"fill": "#4444ff"}' hint='背景なし文字ボタン' hint_width=120]
 
 [button pic=MnuUp_btnPage2 left=560 top=350 page=fore rotation=25 label=****after hint='画像ボタン']
 	[button pic=MnuUp_btnPage2 left=340 top=250 page=fore rotation=25 label=****after hint='画像ボタン' scale_x=0.7 scale_y=5]
@@ -85,7 +86,15 @@
 
 	[event global=true call=true key=ArrowLeft label=*set_focus arg=prev]
 	[event global=true call=true key=ArrowRight label=*set_focus arg=next]
+
+	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
 [return]
 
 *set_focus	[set_focus to=&sn.eventArg][return]
 *snapshot	[snapshot fn=pic][return]
+
+*dump
+	[dump_lay]
+;	[dump_val]
+;	[dump_stack]
+[return]

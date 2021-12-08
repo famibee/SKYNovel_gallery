@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.1.5
+- 【文字ボタン・リンク】サンプルに hint系テスト追加 http://localhost:8082/index.html?cur=ch_button
+- fix: ライブラリ更新
 ## v2.1.4
 - fix: ライブラリ更新
 ## v2.1.3

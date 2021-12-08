@@ -13,75 +13,61 @@
 
 // If the loader is already loaded, just stop.
 if (!self.define) {
-  const singleRequire = name => {
-    if (name !== 'require') {
-      name = name + '.js';
-    }
-    let promise = Promise.resolve();
-    if (!registry[name]) {
+  let registry = {};
+
+  // Used for `eval` and `importScripts` where we can't get script URL by other means.
+  // In both cases, it's safe to use a global var because those functions are synchronous.
+  let nextDefineUri;
+
+  const singleRequire = (uri, parentUri) => {
+    uri = new URL(uri + ".js", parentUri).href;
+    return registry[uri] || (
       
-        promise = new Promise(async resolve => {
+        new Promise(resolve => {
           if ("document" in self) {
             const script = document.createElement("script");
-            script.src = name;
-            document.head.appendChild(script);
+            script.src = uri;
             script.onload = resolve;
+            document.head.appendChild(script);
           } else {
-            importScripts(name);
+            nextDefineUri = uri;
+            importScripts(uri);
             resolve();
           }
-        });
+        })
       
-    }
-    return promise.then(() => {
-      if (!registry[name]) {
-        throw new Error(`Module ${name} didn’t register its module`);
-      }
-      return registry[name];
-    });
+      .then(() => {
+        let promise = registry[uri];
+        if (!promise) {
+          throw new Error(`Module ${uri} didn’t register its module`);
+        }
+        return promise;
+      })
+    );
   };
 
-  const require = (names, resolve) => {
-    Promise.all(names.map(singleRequire))
-      .then(modules => resolve(modules.length === 1 ? modules[0] : modules));
-  };
-  
-  const registry = {
-    require: Promise.resolve(require)
-  };
-
-  self.define = (moduleName, depsNames, factory) => {
-    if (registry[moduleName]) {
+  self.define = (depsNames, factory) => {
+    const uri = nextDefineUri || ("document" in self ? document.currentScript.src : "") || location.href;
+    if (registry[uri]) {
       // Module is already loading or loaded.
       return;
     }
-    registry[moduleName] = Promise.resolve().then(() => {
-      let exports = {};
-      const module = {
-        uri: location.origin + moduleName.slice(1)
-      };
-      return Promise.all(
-        depsNames.map(depName => {
-          switch(depName) {
-            case "exports":
-              return exports;
-            case "module":
-              return module;
-            default:
-              return singleRequire(depName);
-          }
-        })
-      ).then(deps => {
-        const facValue = factory(...deps);
-        if(!exports.default) {
-          exports.default = facValue;
-        }
-        return exports;
-      });
+    let exports = {};
+    const require = depUri => singleRequire(depUri, uri);
+    const specialDeps = {
+      module: { uri },
+      exports,
+      require
+    };
+    registry[uri] = Promise.all(depsNames.map(
+      depName => specialDeps[depName] || require(depName)
+    )).then(deps => {
+      factory(...deps);
+      return exports;
     });
   };
 }
-define("./sw.js",['./workbox-ec6ba2dd'], (function (workbox) { 'use strict';
+define(['./workbox-a3d575b9'], (function (workbox) { 'use strict';
 
   /**
   * Welcome to your Workbox-powered service worker!
@@ -111,13 +97,13 @@ define("./sw.js",['./workbox-ec6ba2dd'], (function (workbox) { 'use strict';
     "revision": "3dfc25a12d2affcce082be2b30153472"
   }, {
     "url": "web.skynovel.js",
-    "revision": "1c41df4e4f0a35067febaea0bb3ac687"
+    "revision": "e68ee699e35a01fa4bc2dff7389869a2"
   }, {
     "url": "web.three.js",
-    "revision": "dbc2795fbb1e2cec0fbe12efb26b40d3"
+    "revision": "f16ab11b047c4344385fd5cd18930fbb"
   }, {
     "url": "web.vendor.js",
-    "revision": "f6224b527a2c41e2663d314592b231e5"
+    "revision": "84a1a1de2c29d6b5e0ff540eb4c03e86"
   }], {
     "directoryIndex": "/"
   });

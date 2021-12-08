@@ -4,6 +4,9 @@
 		"width": 750,
 		"height": 500
 	},
+	"init"	: {
+		"bg_color"		: 4231232
+	},
 	"debug"	: {
 		"devtool"		: true,
 		"token"			: false,

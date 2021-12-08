@@ -8,30 +8,30 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.19.6",
-		"pixi.js": "^6.1.3",
-		"three": "^0.134.0"
+		"@famibee/skynovel": "^1.22.0",
+		"pixi.js": "^6.2.0",
+		"three": "^0.135.0"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^9.0.13",
-		"@types/node": "^16.11.6",
+		"@types/node": "^16.11.12",
 		"@types/offscreencanvas": "^2019.6.4",
 		"@types/tar-fs": "^2.0.1",
-		"@types/three": "^0.133.1",
+		"@types/three": "^0.135.0",
 		"@types/tween.js": "^18.6.1",
-		"css-loader": "^6.5.0",
-		"electron": "^15.3.0",
-		"electron-builder": "^22.14.5",
+		"css-loader": "^6.5.1",
+		"electron": "^16.0.4",
+		"electron-builder": "^22.14.10",
 		"ignore-loader": "^0.1.2",
 		"rimraf": "^3.0.2",
 		"style-loader": "^3.3.1",
 		"ts-loader": "^9.2.6",
-		"typescript": "^4.4.4",
-		"webpack": "^5.60.0",
+		"typescript": "^4.5.2",
+		"webpack": "^5.65.0",
 		"webpack-cli": "^4.9.1",
-		"webpack-dev-server": "^4.4.0",
-		"workbox-sw": "^6.3.0",
-		"workbox-webpack-plugin": "^6.3.0"
+		"webpack-dev-server": "^4.6.0",
+		"workbox-sw": "^6.4.2",
+		"workbox-webpack-plugin": "^6.4.2"
 	},
 	"scripts": {
 		"start": "npm run webpack:dev:w & tsc -p core/ -w & npm run watch:wds",

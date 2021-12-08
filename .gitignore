@@ -1,8 +1,10 @@
 # Visual Studio Code cache/options directory
-.vscode/
+/.vscode/
 
 # Node.js Tools
-node_modules/
+/node_modules/
+
+*.LICENSE.txt
 
 # SKYNovel Dev famibee's Work Folder
-Work/
+/Work/
