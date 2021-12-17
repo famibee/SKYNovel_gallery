@@ -1,15 +1,30 @@
 ;*********************************************************
-;@EXT_DESC	for文を使える
+;@EXT_DESC	for文を使える（SKYNovel v1.24.0以上必須）
+;@VER		2021.12.17.001	mp:to に isNaN() チェック追加
+;							デバッグ用ループリミッター追加
 ;@VER		2018.6.22.000
 ;*********************************************************
 
+;	&リミッター = 10
 ;*********************************************************
 ; マクロ ループコール
-[macro name="for_call"]
+[macro name=for_call]
+	[if exp='isNaN(mp:from)']
+		[trace text='[for_call] from 属性が NaN です']
+		[return]
+	[endif]
+	[if exp='isNaN(mp:to)']
+		[trace text='[for_call] to 属性が NaN です']
+		[return]
+	[endif]
+
 	[let name="&'for_call_idx.'+ mp:name" text=%from]
 	&for_call_break = false
 
 *for_call_continue
+;	[return cond=リミッター==0]
+;	&リミッター = リミッター -1
+
 	[jump label=*for_call_break cond="for_call_idx[mp:name] > mp:to"]
 		[call fn=%fn|&mp:const.sn.me_call_scriptFn label=%label|null]
 	[jump label=*for_call_break cond=for_call_break]
@@ -24,7 +39,7 @@
 
 ;*********************************************************
 ; マクロ ループコール脱出
-[macro name="for_call_break"]
+[macro name=for_call_break]
 	&for_call_break = true
 [endmacro]
 

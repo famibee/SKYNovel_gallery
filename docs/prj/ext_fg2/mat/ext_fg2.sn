@@ -1,16 +1,27 @@
 ;********************************************************
 ;@EXT_DESC	概要：立ち絵の扱いが簡単な[fg]
+;@VER		2021.12.17.001	nowarn_unused=true 追加
+;							save:sn.fg2.max_lay はクリアされるので sys:に
 ;@VER		2019.7.22.000
 ;********************************************************
 
 ;********************************************************
 ;	定数
 ; 立ち絵表示範囲の右端と左端
-&save:sn.fg2.xb = 0
-&save:sn.fg2.xe = const.sn.config.window.width-1
-&save:sn.fg2.max_lay = 3	; 最大レイヤ数（以下で自動調査）
+[macro name=fg2_ini_save_const]
+	[return cond=save:sn.fg2.max_lay]
 
-[let name=fg2_is_attention text=true cond='fg2_is_attention == null']
+	&save:sn.fg2.xb = 0
+	&save:sn.fg2.xe = const.sn.config.window.width-1
+	&save:sn.fg2.max_lay = 3	; 最大レイヤ数（以下で自動調査）
+	&save:sn.fg2.lays = ''
+[endmacro]
+
+
+;********************************************************
+; 以降はノータッチで
+	[fg2_ini_save_const]
+
 	[add_lay layer=0 class=grp cond=!const.sn.lay.0]
 	[add_lay layer=1 class=grp cond=!const.sn.lay.1]
 	[add_lay layer=2 class=grp cond=!const.sn.lay.2]
@@ -20,13 +31,13 @@
 	[jump label=*max_lay_lp]
 [endif]
 
-
-;********************************************************
-; 以降はノータッチで
 [for_call name=l from=0 to=&save:sn.fg2.max_lay-1 label=*fg2_init]
 
-&save:sn.fg2.lays = ''
-[macro name="fg2"]
+;********************************************************
+; 立ち絵の扱いが簡単な[fg]
+[macro name=fg2 nowarn_unused=true]
+	[fg2_ini_save_const]
+
 	; ここまでで[clear_lay]などされてるレイヤ情報を削除
 ;[trace text="&'max_lay='+ save:sn.fg2.max_lay +' lays:'+ save:sn.fg2.lays@str +':'"]
 	[for_call name=l from=0 to=&save:sn.fg2.max_lay-1 label=*fg2_gc]
@@ -97,23 +108,23 @@
 [endmacro]
 
 ;****************************
-[macro name="fg2_attention"]
-	[return cond=!fg2_is_attention]
+[macro name=fg2_attention nowarn_unused=true]
 	[let_length name=cnt text=&save:sn.fg2.lays@str]
 	[for_call name=l from=0 to=&cnt-1 label=*fg2_attention]
 [endmacro]
 	&f_matrix_4_fg2_attention = '0.5,0,0,0,0,0,0.5,0,0,0,0,0,0.5,0,0,0,0,0,1,0'
 
 ;****************************
-[macro name="clear_fg2_attention"]
-	[return cond=!fg2_is_attention]
+[macro name=clear_fg2_attention nowarn_unused=true]
 	[let_length name=cnt text=&save:sn.fg2.lays@str]
 	[for_call name=l from=0 to=&cnt-1 label=*clear_fg2_attention]
 [endmacro]
 
 ;********************************************************
 ; 立ち絵を屈伸させる
-[macro name="fg2_squat"]
+[macro name=fg2_squat nowarn_unused=true]
+	[fg2_ini_save_const]
+
 	[let_replace name=h text=%name val='' reg='_.+' cast=str]
 	&lay=save:sn.fg2.hu[h]
 	[fg_squat * layer=&lay cond='lay != null']
@@ -121,7 +132,9 @@
 
 ;********************************************************
 ; 立ち絵を震わせる
-[macro name="fg2_shake"]
+[macro name=fg2_shake nowarn_unused=true]
+	[fg2_ini_save_const]
+
 	[let_replace name=h text=%name val='' reg='_.+' cast=str]
 	&lay=save:sn.fg2.hu[h]
 	[fg_shake * layer=&lay cond='lay != null']
@@ -129,7 +142,9 @@
 
 ;********************************************************
 ; 立ち絵を反復横跳びさせる（楽しそう）
-[macro name="fg2_sidestep"]
+[macro name=fg2_sidestep nowarn_unused=true]
+	[fg2_ini_save_const]
+
 	[let_replace name=h text=%name val='' reg='_.+' cast=str]
 	&lay=save:sn.fg2.hu[h]
 	[fg_sidestep * layer=&lay cond='lay != null']
