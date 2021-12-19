@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.1.7
+- fix: ライブラリ更新
 ## v2.1.6
 - fix: ext_fg2.sn、ext_for_call.sn 更新
 	- http://localhost:8082/index.html?cur=ext_fg2
