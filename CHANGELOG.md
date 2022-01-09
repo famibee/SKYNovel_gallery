@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.1.8
+- fix: 【動画再生】サンプル冒頭、動画再生と同時に行う処理を[trans]か[tsy]か選べるように
+	- http://localhost:8082/index.html?cur=tag_lay_mov
+- fix: ライブラリ更新
 ## v2.1.7
 - fix: ライブラリ更新
 ## v2.1.6

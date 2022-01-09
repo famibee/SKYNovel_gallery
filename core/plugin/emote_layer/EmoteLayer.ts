@@ -1,5 +1,5 @@
 /* ***** BEGIN LICENSE BLOCK *****
-	Copyright (c) 2020-2021 Famibee (famibee.blog38.fc2.com)
+	Copyright (c) 2020-2022 Famibee (famibee.blog38.fc2.com)
 
 	This software is released under the MIT License.
 	http://opensource.org/licenses/mit-license.php
@@ -60,7 +60,7 @@ export class EmoteLayer extends Layer {
 
 		const layer = hArg.layer;
 		if (! layer) {
-			if (hArg.タグ名 === 'add_lay') return false;
+			if (hArg[':タグ名'] === 'add_lay') return false;
 			throw `layerは必須です`;	// あり得ないが警告が出るので
 		}
 
@@ -76,7 +76,7 @@ export class EmoteLayer extends Layer {
 
 			const a = {...hArg};
 			delete a.fn;
-			a.タグ名 = 'lay';
+			a[':タグ名'] = 'lay';
 
 			player.onUpdate = ()=> {
 				if (! player) return;
@@ -95,7 +95,7 @@ export class EmoteLayer extends Layer {
 
 			return true;
 		}
-		else if (hArg.タグ名 === 'add_lay') return false;
+		else if (hArg[':タグ名'] === 'add_lay') return false;
 
 		// 以後の操作
 		if (! this.inf) return false;

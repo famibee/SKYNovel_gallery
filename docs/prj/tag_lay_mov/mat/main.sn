@@ -6,20 +6,43 @@
 [add_lay layer=mes class=txt]
 
 *loop
-	クリックで動画再生…[l]
+	クリックで動画再生…と
+　[link label=*trans style='background-color: rgba(0,180,180,0.5);' style_hover='background-color: rgba(200,200,200,0.9);']ＴＲＡＮＳ[endlink]
+	、または
+　[link label=*tsy style='background-color: rgba(180,180,0,0.5);' style_hover='background-color: rgba(200,200,200,0.9);']ＴＳＹ[endlink]
+を行う[r][s]
+
+*trans
+	ＴＲＡＮＳ……
+	[lay layer=mov page=back fn=nc10889 visible=true]
+		[trans layer=mov time=2000]
+		[wt]
+	[wv fn=nc10889]
+	終了[r]
+
+	クリックで再生と退場……[l]
+	[lay layer=mov page=back visible=false]
+	[lay layer=mov fn=nc10889]
+		[trans layer=mov time=2000]
+		[wt]
+	[wv fn=nc10889]
+	終了、クリックで冒頭に戻る[l][er]
+[jump label=*loop]
+
+*tsy
+	ＴＳＹ……
 	[lay layer=mov fn=nc10889 visible=true left=750 top=0]
 		[tsy layer=mov time=1000 x=100 ease=Bounce.Out]
 		[wait_tsy layer=mov]
 	[wv fn=nc10889]
 	終了[r]
 
-	クリックで再生と退場[l][r]
+	クリックで再生と退場……[l]
 	[lay layer=mov fn=nc10889 visible=true]
-	[wv fn=nc10889]
 		[tsy layer=mov time=3000 y=500]
 		[wait_tsy layer=mov]
-
-	クリックで再度表示[l][er]
+	[wv fn=nc10889]
+	終了、クリックで冒頭に戻る[l][er]
 [jump label=*loop]
 
 

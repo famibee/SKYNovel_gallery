@@ -94,16 +94,16 @@ define(['./workbox-a3d575b9'], (function (workbox) { 'use strict';
 
   workbox.precacheAndRoute([{
     "url": "web.main.js",
-    "revision": "3dfc25a12d2affcce082be2b30153472"
+    "revision": "3fcfe06c2f3c8720e69f4bfdce14cd75"
   }, {
     "url": "web.skynovel.js",
-    "revision": "11b8f81b9ce5b3571e3cf999c826e9cd"
+    "revision": "2ce1fb8e7b8132246e627b6df88802ad"
   }, {
     "url": "web.three.js",
-    "revision": "f16ab11b047c4344385fd5cd18930fbb"
+    "revision": "b5229c154f9918959eeaefd619333010"
   }, {
     "url": "web.vendor.js",
-    "revision": "84a1a1de2c29d6b5e0ff540eb4c03e86"
+    "revision": "45325d39d3fd85314019d6ecdf0c5870"
   }], {
     "directoryIndex": "/"
   });

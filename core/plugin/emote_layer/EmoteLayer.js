@@ -47,7 +47,7 @@ class EmoteLayer extends Layer {
             return false;
         const layer = hArg.layer;
         if (!layer) {
-            if (hArg.タグ名 === 'add_lay')
+            if (hArg[':タグ名'] === 'add_lay')
                 return false;
             throw `layerは必須です`;
         }
@@ -61,7 +61,7 @@ class EmoteLayer extends Layer {
             };
             const a = { ...hArg };
             delete a.fn;
-            a.タグ名 = 'lay';
+            a[':タグ名'] = 'lay';
             player.onUpdate = () => {
                 if (!player)
                     return;
@@ -76,7 +76,7 @@ class EmoteLayer extends Layer {
             });
             return true;
         }
-        else if (hArg.タグ名 === 'add_lay')
+        else if (hArg[':タグ名'] === 'add_lay')
             return false;
         if (!this.inf)
             return false;
