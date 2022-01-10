@@ -1,5 +1,6 @@
 ;********************************************************
 ;@EXT_DESC	概要：立ち絵の扱いが簡単な[fg]
+;@VER		2022.01.10.002	出現時[tsy]にrender=true 追加
 ;@VER		2021.12.17.001	nowarn_unused=true 追加
 ;							save:sn.fg2.max_lay はクリアされるので sys:に
 ;@VER		2019.7.22.000
@@ -234,7 +235,7 @@
 ;[trace text="&'== v:f lay:'+ lay +' fg:'"]
 		[lay layer=&lay pos=&x fn=&mp:lay_fn face=&mp:lay_face alpha=0 visible=true]
 			; マクロ直下ではないので、%や*や|が使えない
-		[tsy layer=&lay time=&time alpha=&alpha]
+		[tsy layer=&lay time=&time alpha=&alpha render=true]
 	[endif]
 [return]
 ;********************************************************
