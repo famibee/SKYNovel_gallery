@@ -17,6 +17,8 @@
 [button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='{"fill": "bisque"}']
 [button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='{"fill": "bisque"}']
 
+[jump label=*tate]	; 縦書きスタートにする
+
 **
 [title text="&'フォント利用（#{wm}書き）'"]
 ; Webフォントの利用
