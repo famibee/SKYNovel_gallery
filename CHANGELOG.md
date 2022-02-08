@@ -1,5 +1,14 @@
 # Change Log
 
+## v2.1.11
+- fix: ライブラリ更新
+- 既知の問題
+	- SafariやFirefoxで【えもふりレイヤ】でボタンサイズが極端に大きく表示される。
+		- 以下のエラーなどが大量に。
+			- Unhandled Promise Rejection: NotFoundError: The object can not be found here.
+			- cvsResize — web.js:74547
+			WebGL: INVALID_OPERATION: uniformMatrix3fv: location not for current program
+		- 【効果音とBGM】では正常。
 ## v2.1.10
 - fix: ライブラリ更新
 ## v2.1.9
