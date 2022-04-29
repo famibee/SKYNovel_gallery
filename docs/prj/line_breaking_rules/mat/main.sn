@@ -18,8 +18,10 @@
 [button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='{"fill": "bisque"}']
 [button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='{"fill": "bisque"}']
 
+	[call label=*tate]	; これを寝かせば横書きスタート
+
 **
-[title text="&'禁則処理と文字詰め（文字詰め=#{ffs}・#{wm}書き）'"]
+[title text="&'禁則処理と文字詰め：#{ffs}・#{wm}書'"]
 
 	　禁則処理《きん そく しょ り》とは、特に日本語の文書作
 		[if exp="wm == '横'"]

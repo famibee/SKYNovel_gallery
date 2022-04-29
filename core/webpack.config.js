@@ -34,7 +34,7 @@ module.exports = [{
 		maxEntrypointSize: 2000 *1000,
 		maxAssetSize: 1000 *1000,
 	},
-	resolve: {extensions: ['.ts', '.js'],},
+	resolve: {extensions: ['.ts', '...'],},
 	module: {rules: [
 		{test: /\.d\.ts|\.(map|txt)$/, loader: 'ignore-loader',},
 		{test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules|\.d\.ts$/,},
