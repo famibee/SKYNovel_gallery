@@ -13,7 +13,7 @@
 　Ｑ１．【戎橋】の読み方を選択して下さい。[r]
 
 　[link label=*yoko style='background-color: rgba(0,180,180,0.5);' style_hover='background-color: rgba(200,200,200,0.9);' hint='行方向の変更']横書き[endlink]
-　[link label=*tate style='background-color: rgba(180,180,0,0.5);' style_hover='background-color: rgba(200,200,200,0.9);' hint='行方向の変更' hint_width=180]縦書き[endlink]
+　[link label=*tate style='background-color: rgba(180,180,0,0.5);' style_hover='background-color: rgba(200,200,200,0.9);' hint='行方向の変更' hint_width=180]縦《たて》書き[endlink]
 　[link label=*tate style='font-size: 64px;' hint='行方向の変更' hint_width=180]🌈[endlink]
 
 [button text=かいばし left=120 top=230 page=fore rotation=50 label=**after arg=かいばし style='{"fill": "deepskyblue"}' b_pic=ele_mini1 hint='選択肢' hint_color='tomato']
