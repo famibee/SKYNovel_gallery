@@ -1,7 +1,7 @@
 [title text='メッセージウインドウ'][call label=*init]
 
 [add_lay layer=mes class=txt]
-	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 0px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
+	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 14px; padding-bottom: 0px; padding-left: 40px; padding-right: 40px;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
 		; ele1 = 750x230
 [button text=既読スキップ left=640 top=10 page=fore label=*go_skip global=true call=true style='{"fill": "bisque"}']
 

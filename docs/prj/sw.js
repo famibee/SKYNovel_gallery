@@ -97,7 +97,7 @@ define(['./workbox-e8f33a81'], (function (workbox) { 'use strict';
     "revision": "848cfdea07fd2c96b81f1b93bfc446b4"
   }, {
     "url": "web.skynovel.js",
-    "revision": "41e412cf89d07345af41c136b8047434"
+    "revision": "1a48fc67c3ea27936d2a30905ea91fd1"
   }, {
     "url": "web.three.js",
     "revision": "7801b58352867424acdab9b03de38517"
