@@ -2,8 +2,16 @@
 **
 	[fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_egao,face_hiiragi_me_matataki_tsujyo,face_hiiragi_mayu_tsujyo,face_hiiragi_maegami time=0]
 
-　革新的ノベルゲームエンジン登場──。[r]
-WebGLによる高速描画。[r]
+　革新的ノベルゲームエンジン登場──。[span style='color: limegreen;'][r]
+
+;	[tcy t="551" r=蓬莱][graph pic=sankaku][tcy t=39]	; [span]内テスト
+
+We[span][ch text='b' style='color: limegreen;']
+
+;	111111111111111[link label=*目を輝かせる global=true call=true]文字[tcy t=縦横][tcy t=451 r=華氏]＠《tcy｜451｜かし》[graph pic=sankaku]リンク[endlink]	; [span]内テスト
+;	[ch text='b0000000000000000000000000[r]22222222222222222222222222222222222222' style='color: blue;']
+
+[span style='color: limegreen;']GL[span]による高速描画。[r]
 　𩸽《ほっけ》なルビや[tcy t=縦横][tcy t="451" r=縦中横]、👺《てんぐ》など絵文字も。[r]
 　文字修飾は[span style='color: tomato;']CSS Style[span]で指定。[span style='font-size: 40px;']🌈[span][r]
 　[span style='font-family: my_himajihoso; color: skyblue;']フォント[span]も自由に変更。[r]

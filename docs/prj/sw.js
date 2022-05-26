@@ -97,10 +97,10 @@ define(['./workbox-e8f33a81'], (function (workbox) { 'use strict';
     "revision": "848cfdea07fd2c96b81f1b93bfc446b4"
   }, {
     "url": "web.skynovel.js",
-    "revision": "1a48fc67c3ea27936d2a30905ea91fd1"
+    "revision": "c73876f25c0dae4e9b66bf7b1f11da42"
   }, {
     "url": "web.three.js",
-    "revision": "7801b58352867424acdab9b03de38517"
+    "revision": "d4a7f40dbb5c6bbb03951b0b88f0573f"
   }, {
     "url": "web.vendor.js",
     "revision": "70cb1c36ff15578dfac507faa2d682b8"
