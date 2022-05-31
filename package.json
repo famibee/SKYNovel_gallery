@@ -8,20 +8,20 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.30.2",
+		"@famibee/skynovel": "^1.30.3",
 		"pixi.js": "^6.3.2",
 		"three": "^0.141.0"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^9.0.13",
-		"@types/node": "^17.0.35",
+		"@types/node": "^17.0.36",
 		"@types/offscreencanvas": "^2019.7.0",
 		"@types/tar-fs": "^2.0.1",
 		"@types/three": "^0.140.0",
 		"@types/tween.js": "^18.6.1",
 		"css-loader": "^6.7.1",
 		"electron": "^19.0.1",
-		"electron-builder": "^23.0.9",
+		"electron-builder": "^23.1.0",
 		"ignore-loader": "^0.1.2",
 		"rimraf": "^3.0.2",
 		"ts-loader": "^9.3.0",
