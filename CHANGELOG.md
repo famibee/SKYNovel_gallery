@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.1.18
+- fix: トップページ：[link][span][ch]の表示確認記述変更(for SKYNovel 1.30.4)
 ## v2.1.17
 - fix: トップページ：[link][span][ch]の表示確認記述追加(for SKYNovel 1.30.3)
 - fix: トップページ：[link]ツールチップの確認部追加

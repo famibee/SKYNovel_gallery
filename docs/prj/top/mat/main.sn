@@ -4,11 +4,11 @@
 
 　革新的ノベルゲームエンジン登場──。[span style='color: limegreen;'][r]
 
-;;	[tcy t="551" r=蓬莱][graph pic=sankaku][tcy t=39]	; [span]内テスト
+;	[tcy t="551" r=蓬莱][graph pic=sankaku][tcy t=39]	; [span]内テスト
 
 W[span][ch text='eb' style='color: limegreen;']
 
-;;	111111111111111[link label=*目を輝かせる global=true call=true style='background: linear-gradient(45deg, green, rgba(104,255,204,.6), red); color: sandybrown; border-radius: 8px;' style_hover='outline: thick dashed red;' hint='つーるちっぷ' hint_opt='{"placement": "left"}' wait=0]文字リ[ch text='ンー[r]〜' style='color: darkviolet;']ク[graph pic=sankaku][tcy t=縦横][tcy t=451 r=華氏]＠《tcy｜451｜かし》[endlink]b[ch text='0000000000000000000000000[r]22222222222222222222222222222222' style='color: blue;']	; [span]内テスト
+;	111111111111111[link label=*目を輝かせる global=true call=true style='background: linear-gradient(45deg, green, rgba(104,255,204,.6), red); color: sandybrown; border-radius: 8px;' style_hover='outline: thick dashed red;' hint='つーるちっぷ' hint_opt='{"placement": "left"}']文字リ[ch text='ンー[r]〜' style='color: darkviolet;']ク[graph pic=sankaku][tcy t=縦横][tcy t=451 r=華氏][endlink]b[ch text='0000000000000000000000000[r]22222222222222222222222222222222' style='color: blue;']	; [span]内テスト
 
 [span style='color: limegreen;']GL[span]による高速描画。[r]
 　𩸽《ほっけ》なルビや[tcy t=縦横][tcy t="451" r=縦中横]、👺《てんぐ》など絵文字も。[r]
