@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.1.19
+- fix: ライブラリ更新(SKYNovel v1.30.6)
 ## v2.1.18
 - fix: トップページ：[link][span][ch]の表示確認記述変更(for SKYNovel 1.30.4)
 ## v2.1.17
