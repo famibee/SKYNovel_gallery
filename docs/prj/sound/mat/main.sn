@@ -58,6 +58,7 @@
 	[button text='(stopse)' left=620 top=200 page=fore label=*stopse global=true style='{"fill": "burlywood"}' fill_hover=tomato]
 
 	[button text='xchgbuf' left=20 top=260 page=fore label=*xchgbuf global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='pan' left=120 top=260 page=fore label=*pan global=true style='{"fill": "burlywood"}' fill_hover=tomato]
 
 	[button text='(s2)' left=20 top=320 page=fore label=*s2 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
 	[button text='(s2L)' left=120 top=320 page=fore label=*s2L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
@@ -161,6 +162,22 @@
 	click 2 xchgbuf@[xchgbuf buf=SE buf2=SE2][r]
 	click 2 stopse buf=SE2、but stop rain@[stopse buf=SE2][r]
 	end.[p]
+[jump label=**before]
+
+
+*pan
+	[demo]
+	[playse fn=&m buf=SE loop=true pan=-1]
+		pan=-1 (left)[p][r]
+	[playse fn=&m buf=SE loop=true pan=-0.5]
+		pan=-0.5[p][r]
+	[playse fn=&m buf=SE loop=true pan=0]
+		pan= 0 (center)[p][r]
+	[playse fn=&m buf=SE loop=true pan=0.5]
+		pan= 0.5[p][r]
+	[playse fn=&m buf=SE loop=true pan=1]
+		pan= 1 (right)[r]
+		end.[p]
 [jump label=**before]
 
 
