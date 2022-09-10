@@ -97,13 +97,13 @@ define(['./workbox-5244300e'], (function (workbox) { 'use strict';
     "revision": "f6d2b219875a5ee442fc364189d38667"
   }, {
     "url": "web.skynovel.js",
-    "revision": "68a5bc8aa7afe5760660b6694eb4d6f9"
+    "revision": "f2db7819ea0ad71c8c7ec737f39d1365"
   }, {
     "url": "web.three.js",
     "revision": "c0608dada0332069b9031c9065c16d10"
   }, {
     "url": "web.vendor.js",
-    "revision": "4deb06482ff7249779797949f0043a53"
+    "revision": "945ea7fa96c18c327c37701cc5709152"
   }], {
     "directoryIndex": "/"
   });
