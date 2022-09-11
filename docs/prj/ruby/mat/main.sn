@@ -14,15 +14,24 @@
 [button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='{"fill": "bisque"}']
 
 **
-[title text="&'直感的なルビ文法（r_align=#{r_align}・#{wm}書き）'"]
+[title text="&'ルビ記法（r_align=#{r_align}・#{wm}書き）'"]
 
 [span style='font-size: 30px; color: plum;']｜奇妙奇天烈摩訶不思議《るびもじ》・蜊《あさり》[span style='color: plum;']無指定[span]
 	　[span style='font-size: 30px; color: plum;']
 	[tcy t=628 r=炎][tcy t=451 r=華氏][span]
 [r]
-[span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《left｜るびもじ》・蜊《left｜あさり》[span]left[r]
-[span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《center｜るびもじ》・蜊《center｜あさり》[span]center[r]
-[span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《right｜るびもじ》・蜊《right｜あさり》[span]right[r]
+[span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《left｜るびもじ》・蜊《left｜あさり》[span]left
+	　　[span style='font-size: 30px; color: plum;']
+	｜1984《*》｜1984《*♥》[span]
+[r]
+[span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《center｜るびもじ》・蜊《center｜あさり》[span]center
+	 [span style='font-size: 30px; color: plum;']
+	％《%25》縦棒《%ef%bd%9c》二重山括弧《%e3%80%8axxx%e3%80%8b》[span]
+[r]
+[span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《right｜るびもじ》・蜊《right｜あさり》[span]right
+	　[span style='font-size: 30px; color: plum;']
+	｜考えるな《center｜Don't%20think,》、｜感じよ《Feel.》[span]
+[r]
 [span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《justify｜るびもじ》・蜊《justify｜あさり》[span]justify[r]
 [span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《121｜るびもじ》・蜊《121｜あさり》[span]121[r]
 [span style='font-size: 30px; color: greenyellow;']｜奇妙奇天烈摩訶不思議《even｜るびもじ》・蜊《even｜あさり》[span]even[r]
