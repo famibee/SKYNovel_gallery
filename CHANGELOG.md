@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.2.1
+- fix: ライブラリ更新(SKYNovel v1.34.1)
 ## v2.2.0
 - feat: 【ルビ記法】サンプル更新、@famibee/skynovel 1.33.0 対応
 ## v2.1.22
