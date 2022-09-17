@@ -1,13 +1,29 @@
 # Change Log
 
+## v2.3.0
+- feat: 【ルビ記法】サンプル更新、@famibee/skynovel 1.35.1 対応
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=ruby
+	- 文字とルビに、ルビ記法の特殊文字「｜《》」を含めたもの
+	- 文字のみstyle(背景色)変更
+	- ルビのみstyle(背景色)変更
+	- 半角文字やSKYNovel特殊文字（半角空白、％、[、&、]）を含めたもの
+	- ダミー属性に特殊文字「｜《》」を含めたもの
+	- 傍点記法
+	- 傍点記法（傍点を任意文字に変更）
+	- [graph][tcy]の背景色、ルビ
+	- [ch]でのみ、背景styleなどを一塊とする例
+		- 以上を[span]区間に含めたもの
+			- 以上を[link]区間に含めたもの
 ## v2.2.1
 - fix: ライブラリ更新(SKYNovel v1.34.1)
 ## v2.2.0
 - feat: 【ルビ記法】サンプル更新、@famibee/skynovel 1.33.0 対応
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=ruby
 ## v2.1.22
 - fix: ライブラリ更新(SKYNovel v1.32.2)
 ## v2.1.21
 - fix: 【効果音とBGM】サンプル更新、@famibee/skynovel 1.32.0 対応
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=sound
 ## v2.1.20
 - fix: ライブラリ更新(SKYNovel v1.30.8)ほか
 ## v2.1.19
@@ -24,14 +40,18 @@
 - fix: ライブラリ更新
 ## v2.1.15
 - fix: 【文字ボタン・リンク】サンプル、@famibee/skynovel 1.30.1 対応
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=ch_button
 ## v2.1.14
 - fix: 【文字ボタン・リンク】サンプル、リンクの一つにルビを追加（挙動チェック用）
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=ch_button
 - fix: ライブラリ更新
 ## v2.1.13
 - fix: 【禁則処理】サンプル、縦書き横書き変更しやすく
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=line_breaking_rules
 - fix: ライブラリ更新
 ## v2.1.12
 - fix: 【フォント利用】サンプルのローカルフォントファイルが適用されていなかったのを修正
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=font
 ## v2.1.11
 - fix: ライブラリ更新
 - 既知の問題
@@ -45,20 +65,20 @@
 - fix: ライブラリ更新
 ## v2.1.9
 - fix: ext_fg2.sn 更新
-	- http://localhost:8082/index.html?cur=ext_fg2
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=ext_fg2
 ## v2.1.8
 - fix: 【動画再生】サンプル冒頭、動画再生と同時に行う処理を[trans]か[tsy]か選べるように
-	- http://localhost:8082/index.html?cur=tag_lay_mov
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=tag_lay_mov
 - fix: ライブラリ更新
 ## v2.1.7
 - fix: ライブラリ更新
 ## v2.1.6
 - fix: ext_fg2.sn、ext_for_call.sn 更新
-	- http://localhost:8082/index.html?cur=ext_fg2
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=ext_fg2
 - fix: ライブラリ更新
 ## v2.1.5
 - 【文字ボタン・リンク】サンプルに hint系テスト追加
-	- http://localhost:8082/index.html?cur=ch_button
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=ch_button
 - fix: ライブラリ更新
 ## v2.1.4
 - fix: ライブラリ更新
@@ -70,9 +90,9 @@
 - upd: ライブラリ更新
 ## v2.1.0
 - add: 【ページ移動】サンプル追加。本やWeb漫画のように手軽に前にも戻れる機能
-	- http://localhost:8082/index.html?cur=tag_page
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=tag_page
 - upd: 【複数行タグやマクロ】に行番号テストコード追加
-	- http://localhost:8082/index.html?cur=multiline
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=multiline
 ## v2.0.54
 - fix: 【Error: TypeScript emitted no output for ...】エラーを解消
 ## v2.0.53

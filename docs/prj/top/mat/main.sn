@@ -12,7 +12,7 @@ W[span][ch text='eb' style='color: limegreen;']
 
 [span style='color: limegreen;']GL[span]による高速描画。[r]
 　𩸽《ほっけ》なルビや[tcy t=縦横][tcy t="451" r=縦中横]、👺《てんぐ》など絵文字も。[r]
-　文字修飾は[span style='color: darkslateblue; background-color: tomato; background-image: linear-gradient(70deg, tomato 0%, white 100%); border-radius: 8px;']CSS[span] [ch text='Style' style='color: darkslategray; background-color: tomato; background-image: linear-gradient(70deg, white 0%, indianred 100%); border-radius: 8px;']で指定。[span style='font-size: 40px;']🌈[span][r]
+　文字修飾は[span style='color: darkslateblue; background-image: linear-gradient(70deg, tomato 0%, white 100%); border-radius: 8px;']CSS[span] [ch text='Style' style='color: darkslategray; background-image: linear-gradient(70deg, white 0%, indianred 100%); border-radius: 8px;']で指定。[span style='font-size: 40px;']🌈[span][r]
 　[span style='font-family: my_himajihoso; color: skyblue;']フォント[span]も自由に変更。[r]
 
 	[r][r][r][r][r][r][r]
