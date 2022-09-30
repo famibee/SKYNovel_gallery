@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.3.1
+- fix: ライブラリ更新(SKYNovel v1.35.4)
 ## v2.3.0
 - feat: 【ルビ記法】サンプル更新、@famibee/skynovel 1.35.1 対応
 	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=ruby
