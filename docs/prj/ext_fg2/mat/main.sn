@@ -10,7 +10,6 @@
 
 	[char2macro char=@ name=l]
 
-&fg2_is_attention = false
 
 0	[fg2 fn=鑑定官_通常]@
 ;	aa	[fg2 swap=鑑定官 fn=女子中_惚れる]@

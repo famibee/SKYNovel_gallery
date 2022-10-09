@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.3.2
+- feat: マクロ説明を追加・手直し
+- fix: ライブラリ更新(SKYNovel v1.36.1)
 ## v2.3.1
 - fix: ライブラリ更新(SKYNovel v1.35.4)
 ## v2.3.0
