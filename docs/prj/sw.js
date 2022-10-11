@@ -67,43 +67,28 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-5244300e'], (function (workbox) { 'use strict';
-
-  /**
-  * Welcome to your Workbox-powered service worker!
-  *
-  * You'll need to register this file in your web app.
-  * See https://goo.gl/nhQhGp
-  *
-  * The rest of the code is auto-generated. Please don't update this file
-  * directly; instead, make changes to your Workbox build configuration
-  * and re-run your build process.
-  * See https://goo.gl/2aRDsh
-  */
+define(['./workbox-1f3b987f'], (function (workbox) { 'use strict';
 
   workbox.setCacheNameDetails({
     prefix: "SKYNovel Gallery"
   });
   self.skipWaiting();
   workbox.clientsClaim();
+
   /**
    * The precacheAndRoute() method efficiently caches and responds to
    * requests for URLs in the manifest.
    * See https://goo.gl/S9QRab
    */
-
   workbox.precacheAndRoute([{
     "url": "web.main.js",
-    "revision": "f6d2b219875a5ee442fc364189d38667"
-  }, {
-    "url": "web.skynovel.js",
-    "revision": "cd621ea416ae59d751368a2dac540ccf"
+    "revision": "dcbe33b3fb6af201a0c8fafb8308d22b"
   }, {
     "url": "web.three.js",
     "revision": "250518a4fdec687125d56a74bb1d4015"
   }, {
     "url": "web.vendor.js",
-    "revision": "29a3b146254eaefa6a77e45bd24fd8d1"
+    "revision": "387ab2286daa003ef952f8b33a1bc728"
   }], {
     "directoryIndex": "/"
   });

@@ -8,13 +8,13 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.36.1",
+		"@famibee/skynovel": "^1.38.0",
 		"pixi.js": "^6.5.5",
 		"three": "^0.145.0"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^9.0.13",
-		"@types/node": "^18.8.3",
+		"@types/node": "^18.8.4",
 		"@types/offscreencanvas": "^2019.7.0",
 		"@types/tar-fs": "^2.0.1",
 		"@types/three": "^0.144.0",

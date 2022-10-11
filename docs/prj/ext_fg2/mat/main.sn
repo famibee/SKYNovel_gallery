@@ -20,6 +20,12 @@
 震	[fg2_shake name=女子中]@
 ;横跳	[fg2_sidestep name=女子中]@
 横跳	[fg2_sidestep name=女子中 no_wait=true]@
+
+;	[zoom_tsy layer=0 fn=女子中_勝ち誇り time=2000 visible=true ease=Back.Out]
+;	ズームイン登場、[l]
+;	[zoom_tsy layer=0 fn=女子中_勝ち誇り time=2000 visible=false ease=Back.In]
+;	ズームアウト退場[l]
+
 ;	[clear_lay layer=0]	; [fg2]があずかり知らぬところで
 ;	[clear_lay layer=1]	; [fg2]があずかり知らぬところで
 3	[fg2 fn=医師_会話 add=l]@

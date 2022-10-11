@@ -1,7 +1,10 @@
 # Change Log
 
+## v2.3.3
+- fix: マクロ更新を反映（ext_fg.sn）
+- fix: ライブラリ更新(SKYNovel v1.38.0)
 ## v2.3.2
-- feat: マクロ説明を追加・手直し
+- docs: マクロ説明を追加・手直し（ext_fg.sn、ext_fg2.sn、ext_for_call.sn）
 - fix: ライブラリ更新(SKYNovel v1.36.1)
 ## v2.3.1
 - fix: ライブラリ更新(SKYNovel v1.35.4)
