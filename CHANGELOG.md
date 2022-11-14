@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.3.5
+- fix: ライブラリ更新(SKYNovel v1.39.2)
 ## v2.3.4
 - fix: ライブラリ更新(SKYNovel v1.39.1)
 ## v2.3.3
