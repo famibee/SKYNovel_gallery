@@ -82,10 +82,10 @@ define(['./workbox-1f3b987f'], (function (workbox) { 'use strict';
    */
   workbox.precacheAndRoute([{
     "url": "web.main.js",
-    "revision": "f6d2b219875a5ee442fc364189d38667"
+    "revision": "ba258880802e65e455486b3780c45d45"
   }, {
     "url": "web.skynovel.js",
-    "revision": "fca2f9150fe0162b585afbe2d656efd5"
+    "revision": "7f71cd972eb95b547ad2b0d06d92a917"
   }, {
     "url": "web.three.js",
     "revision": "1c91143ddd4feee3219f08242ddb6e63"

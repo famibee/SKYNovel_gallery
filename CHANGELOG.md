@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.3.6
+- fix: ライブラリ更新(SKYNovel v1.39.8)
+- fix: webpack-dev-server のログ出力を 'info'→'warn' に
 ## v2.3.5
 - fix: ライブラリ更新(SKYNovel v1.39.2)
 ## v2.3.4

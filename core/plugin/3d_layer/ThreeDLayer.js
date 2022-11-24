@@ -31,6 +31,7 @@ const GLTFLoader_1 = require("three/examples/jsm/loaders/GLTFLoader");
 const pixi_js_1 = require("pixi.js");
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 class ThreeDLayer extends Layer {
+    static async init() { globalThis.THREE ??= await Promise.resolve().then(() => __importStar(require('three'))); }
     constructor(pia) {
         super();
         this.pia = pia;
@@ -66,7 +67,6 @@ class ThreeDLayer extends Layer {
         this.sprite_3D.x = (CmnLib.stageW - this.sprite_3D.width) / 2;
         this.sprite_3D.y = (CmnLib.stageH - this.sprite_3D.height) / 2;
     }
-    static async init() { globalThis.THREE ??= await Promise.resolve().then(() => __importStar(require('three'))); }
     lay(hArg) {
         if (!this.scene_3D)
             return false;
