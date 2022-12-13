@@ -18,82 +18,61 @@
 [button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='{"fill": "bisque"}']
 [button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='{"fill": "bisque"}']
 
+;;
 	[call label=*tate]	; これを寝かせば横書きスタート
 
 **
 [title text="&'禁則処理と文字詰め：#{ffs}・#{wm}書'"]
 
 	　禁則処理《きん そく しょ り》とは、特に日本語の文書作
-		[if exp="wm == '横'"]
-			[if exp=#ffs == '"palt"'#]・・[endif]
-			成・組版において、「約物
-			[if exp="ffs != ''"]な[endif]
-		[endif]
+		[if exp="wm == '横'"]成・組版において・・・・[endif]
 	[span style='background-color: skyblue;' cond=marker]ゞ[span]
 		→(行頭禁則文字)[r]
 
-	て約物などが行頭・行末などにあってはならない」等とされる
+	て約物などが行頭・行末などに
 		[if exp="wm == '横'"]
-			[if exp=#ffs == '"palt"'#]禁禁禁[endif]
-			[if exp=#ffs == '"pwid"'#]禁禁[endif]
+			あってはならない」等とされる
 		[else]
-			[if exp=#ffs == '"pwid"'#]禁[endif]
-			禁禁禁禁禁
+			禁禁
 		[endif]
 	[span style='background-color: limegreen;' cond=marker]『[span]
 		→(行末禁則文字)[r]
 
-	止事項、または、それらを回避するために、字詰めや文の
-		[if exp="ffs != ''"]長さ[endif]
+	止事項、または、それらを回避するために、字詰めや文の長さ
 		[if exp="wm == '横'"]
 			[if exp=#ffs == '"palt"'#]・・・[endif]
 		[else]
-			[if exp=#ffs == '"pwid"'#]り[endif]
-			[if exp="ffs == ''"]りり[endif]
-			りりり
+			[if exp=#ffs == '"pwid"'#]り[else]りりり[endif]
+			りり
 		[endif]
-	[span style='background-color: limegreen;' cond=marker]【[span]
-	[span style='background-color: limegreen;' cond=marker]【[span]
-	[span style='background-color: skyblue;' cond=marker]】[span]
-	[span style='background-color: skyblue;' cond=marker]】[span]
-		→(行頭禁則x2＋行末禁則x2)[r]
+	[span style='background-color: limegreen;' cond=marker]【【[span]
+	[span style='background-color: skyblue;' cond=marker]】】[span]
+		→(行末禁則x2＋行頭禁則x2)[r]
 
 	を調整したりすること。それらを回避するために、字詰めや
-		[if exp="ffs != ''"]文の[endif]
 		[if exp="wm == '横'"]
-			[if exp=#ffs == '"palt"'#]・・[endif]
 		[else]
-			[if exp=#ffs == '"pwid"'#]の[endif]
-			[if exp="ffs == ''"]のの[endif]
-			ののの
+			文のののの
 		[endif]
-	[span style='background-color: limegreen;' cond=marker]【[span]
-	[span style='background-color: limegreen;' cond=marker]【[span]
-	[span style='background-color: skyblue;' cond=marker]】[span]
-		→(行頭禁則＋行末禁則x2)[r]
+	[span style='background-color: limegreen;' cond=marker]〈〈[span]
+	[span style='background-color: skyblue;' cond=marker]〉[span]
+		→(行末禁則x2＋行頭禁則)[r]
 
 	　禁則処理《きん そく しょ り》とは、特に日本語の文
 		[if exp="wm == '横'"]
-			[if exp=#ffs == '"palt"'#]・・・[endif]
-			[if exp=#ffs == '"pwid"'#]・[endif]
 			書作成・組版において、約
 		[else]
 		[endif]
-	[span style='background-color: limegreen;' cond=marker]【[span]
-	[span style='background-color: limegreen;' cond=marker]【[span]
+	[span style='background-color: limegreen;' cond=marker]〔〔[span]
 		→(行末禁則x2)
 
-	　　　　　　　　
-		[if exp="ffs != ''"]　[endif]
+	ハイフンなどは　　　　　　　
 		[if exp="wm == '横'"]
-			[if exp=#ffs == '"palt"'#]　[endif]
 		[else]
-			[if exp="ffs == ''"]　[endif]
-			　　　　
+			　　　　　
 		[endif]
-	ハイフンなどは分割禁止
-	[span style='background-color: orangered;' cond=marker]─[span]
-	[span style='background-color: orangered;' cond=marker]─[span]
+	分割禁止
+	[span style='background-color: orangered;' cond=marker]──[span]
 	最終行
 
 ;	　禁則処理《きん そく しょ り》とは、特に日本語の文書作成・組版において、「約物などが行頭・行末などにあってはならない」等とされる・禁止事項、または、それらを回避するために、字詰めや文の長さを調整したりすること。

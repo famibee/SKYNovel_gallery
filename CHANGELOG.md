@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.3.7
+- fix: core/webpack.config.js に永続的ビルドキャッシュ記述追加
+- fix: 【禁則処理】サンプル更新、開発者環境で調整
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=line_breaking_rules
 ## v2.3.6
 - fix: ライブラリ更新(SKYNovel v1.39.8)
 - fix: webpack-dev-server のログ出力を 'info'→'warn' に

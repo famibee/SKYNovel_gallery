@@ -21,7 +21,7 @@ module.exports = [{
 	},
 	plugins: [
 		new GenerateSW({
-			cacheId: cacheId,
+			cacheId,
 			swDest: 'sw.js',
 			maximumFileSizeToCacheInBytes: 20 * 1024 * 1024,	// MB
 			clientsClaim: true,
@@ -39,4 +39,8 @@ module.exports = [{
 		{test: /\.d\.ts|\.(map|txt)$/, loader: 'ignore-loader',},
 		{test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules|\.d\.ts$/,},
 	],},
+	cache: {
+		type: 'filesystem',
+		buildDependencies: { config: [__filename], },
+	},
 }];
