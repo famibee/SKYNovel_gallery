@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.3.8
+- docs: コードブロックライセンス年更新
+- fix: ライブラリ更新(SKYNovel v1.40.3)
 ## v2.3.7
 - fix: core/webpack.config.js に永続的ビルドキャッシュ記述追加
 - fix: 【禁則処理】サンプル更新、開発者環境で調整
