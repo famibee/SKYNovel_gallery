@@ -139,6 +139,6 @@ class EmoteLayer extends Layer {
         this.spLay.removeChildren().forEach((v) => v.destroy());
     }
 }
-exports.EmoteLayer = EmoteLayer;
 EmoteLayer.uniq_num = 0;
+exports.EmoteLayer = EmoteLayer;
 //# sourceMappingURL=EmoteLayer.js.map

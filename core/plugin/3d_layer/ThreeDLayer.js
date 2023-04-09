@@ -335,6 +335,6 @@ class ThreeDLayer extends Layer {
         return super.dump() + `, "mdl":{${aChi.join(',')}}`;
     }
 }
-exports.ThreeDLayer = ThreeDLayer;
 ThreeDLayer.uniq_num = 0;
+exports.ThreeDLayer = ThreeDLayer;
 //# sourceMappingURL=ThreeDLayer.js.map
