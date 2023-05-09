@@ -24,10 +24,7 @@
 		ease=Bounce.In]
 	[wait_tsy layer=絵 canskip=false global=true arrive=true]
 
-	[tsy layer=絵 time=2000
-		y=&const.sn.config.window.height-112+56
-		rotation='&"="+ -540 *(const.sn.Math.PI / 180)']
-		; -180度をラジアン変換で指定しつつ、相対変化（冒頭「=」）指定
+	[tsy layer=絵 time=2000 y=&const.sn.config.window.height-112+56 rotation='=-540']	; 相対変化（冒頭「=」）指定
 	[wait_tsy layer=絵 canskip=false global=true]
 
 	[tsy layer=絵 time=2000

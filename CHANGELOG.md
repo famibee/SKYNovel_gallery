@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.3.10
+- fix: ext_fg.sn などをテンプレ最新と合わせる
+- fix: tag_tsy/mat/main.sn 修正
 ## v2.3.9
 - fix: ライブラリ更新(SKYNovel v1.43.0)など
 ## v2.3.8
