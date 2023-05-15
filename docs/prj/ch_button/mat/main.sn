@@ -27,6 +27,9 @@
 ;	[button pic=MnuUp_btnPage2 left=380 top=350 page=fore rotation=25 label=****after hint='画像ボタン' width=150]
 ;	[button pic=MnuUp_btnPage2 left=560 top=350 page=fore rotation=25 label=****after hint='画像ボタン' height=135]
 
+; 非ボタン、画像表示するだけの使い方
+[button pic=ele_mini2 enabled=false left=640 top=10 page=fore rotation=60]
+
 [button text=横書き left=20 top=430 page=fore label=*yoko style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}' hint='行方向の変更']
 [button text=縦書き left=20 top=460 page=fore label=*tate style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}' hint='行方向の変更']
 [s]

@@ -1,16 +1,20 @@
 ;********************************************************
 ;@EXT_DESC	レイヤのクロスフェードと画像変更と動きの拡張機能
-;@VER		2022.10.11.001	SKYNovel 1.38.0 以降の[tsy path]を積極使用
+;@VER		2023.05.15.005	一部残っていた AIRNovel の scaleX,Y 属性名を修正
+;@VER		2022.11.02.004	[fg]に snippet_ext 追加
+;@VER		2022.10.18.003	[fg][img]@face説明追加
 ;@VER		2018.6.22.000
 ;********************************************************
 
 ;********************************************************
 [macro name=fg nowarn_unused=true design_unit=true
 	sum='レイヤ画像を変更\nクロスフェードしながらレイヤ画像を変更する'
+	snippet_ext=SP_GSM
 
 	%layer='レイヤ名||処理対象のレイヤ'
-	%page='fore、back|fore|ページの裏表'
+	%page?='fore、back|fore|ページの裏表'
 	%fn?='画像ファイル名|レイヤをクリア|基本画像ファイルを指定する'
+	%face?='差分名称|何もしない|差分名称（または画像ファイル名）を指定する（カンマ区切りで複数可）。[fg fn="a" face="b,c,d"]なら「基本a」の上に「差分b」を重ね、「差分c」を重ね、「差分d」を重ねる'
 	%alpha?='0.0〜1.0（実数）|1.0|レイヤの透過度。0（完全透明）〜0.5（半透明）〜1（不透明）\n引数は[lay]（画像レイヤ）、[trans]（ページ裏表を交換）の物を指定。主にlayer、fn、pos属性'
 	%time?='ミリ秒数|500|変化にかける時間'
 	%（その他）?='…|…|引数は[lay]（画像レイヤ）、[trans]（ページ裏表を交換）の物を指定。\n立ち絵なら主にlayer、fn、pos、rule、time属性を使用すれば表現できる'
@@ -27,8 +31,9 @@
 	sum='画像レイヤ設定サブ\n背景レイヤに画像を設定する'
 
 	%layer='レイヤ名||処理対象のレイヤ'
-	%page='fore、back|back|ページの裏表'
+	%page?='fore、back|back|ページの裏表'
 	%fn?='画像ファイル名|レイヤをクリア|基本画像ファイルを指定する'
+	%face?='差分名称|何もしない|差分名称（または画像ファイル名）を指定する（カンマ区切りで複数可）。[fg fn="a" face="b,c,d"]なら「基本a」の上に「差分b」を重ね、「差分c」を重ね、「差分d」を重ねる'
 	%alpha?='0.0〜1.0（実数）|1.0|レイヤの透過度。0（完全透明）〜0.5（半透明）〜1（不透明）'
 	%（その他）?='…|…|引数は[lay]（画像レイヤ）、[trans]（ページ裏表を交換）の物を指定。主にlayer、fn、pos属性'
 ]
@@ -60,9 +65,9 @@
 ]
 	[stop_tsy layer=%layer|0]
 	[lay * visible=true alpha=%alpha|0]
-		; left,topなど[lay]属性は主に初期位置。
-	[tsy * layer=%layer|0 time=%time|500 alpha=%to_alpha|1 scaleX=%to_scale_x|1 scaleY=%to_scale_y|1]
-		; x,yなどは移動先指定。つまり終端。
+		; left,topなど[lay]属性は主に初期位置
+	[tsy * layer=%layer|0 time=%time|500 alpha=%to_alpha|1 left=%to_left|0 top=%to_top|0 scale_x=%to_scale_x|1 scale_y=%to_scale_y|1]
+		; x,yなどは移動先指定。つまり終端
 		; x,yは x='=-50'だと相対、x='-50'だと絶対位置移動
 	[wait_tsy layer=%layer|0 cond='! mp:no_wait']
 [endmacro]
