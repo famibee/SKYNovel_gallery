@@ -14,8 +14,8 @@
 	[event global=true call=true key=pagedown label=*page arg=next]
 
 	[add_lay layer=btn class=txt]
-	[button layer=btn text=pageup left=20 top=430 page=fore label=*page arg=prev style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
-	[button layer=btn text=pagedown left=20 top=460 page=fore label=*page arg=next style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=pageup left=20 top=430 page=fore global=true call=true label=*page arg=prev style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=pagedown left=20 top=460 page=fore global=true call=true label=*page arg=next style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
 
 	&save:sn.doRecLog = true	; 必須
 	[record_place]		; 必須・冒頭の save:sn.doRecLog = true を保存

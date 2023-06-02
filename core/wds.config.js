@@ -24,6 +24,6 @@ module.exports = {
 		open: 'index.html',			// PCリッチ版（Githubにはこちらで更新）
 //		open: 'prj/index_app.html',	// PWA
 		port: 8082,
-		watchFiles: ['docs/prj/**/*'],
+		watchFiles: ['prj/**/*','prj/web.skynovel.js'],
 	},
 };

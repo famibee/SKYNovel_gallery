@@ -1,1 +1,99 @@
-if(!self.define){let e,r={};const i=(i,d)=>(i=new URL(i+".js",d).href,r[i]||new Promise((r=>{if("document"in self){const e=document.createElement("script");e.src=i,e.onload=r,document.head.appendChild(e)}else e=i,importScripts(i),r()})).then((()=>{let e=r[i];if(!e)throw new Error(`Module ${i} didn’t register its module`);return e})));self.define=(d,t)=>{const o=e||("document"in self?document.currentScript.src:"")||location.href;if(r[o])return;let n={};const s=e=>i(e,o),c={module:{uri:o},exports:n,require:s};r[o]=Promise.all(d.map((e=>c[e]||s(e)))).then((e=>(t(...e),n)))}}define(["./workbox-a1f32f28"],(function(e){"use strict";e.setCacheNameDetails({prefix:"SKYNovel Gallery"}),self.skipWaiting(),e.clientsClaim(),e.precacheAndRoute([{url:"web.main.js",revision:"a7b6585ef63ad785342ccfd62bdb592d"},{url:"web.main.js.LICENSE.txt",revision:"e8a7956fcdbcc39dd9afa7ed3b0ff3ee"},{url:"web.three.js",revision:"34011ad7fef7ecec1780e72bad8411b5"},{url:"web.three.js.LICENSE.txt",revision:"8dd1e098dc1750198e6d6c21cc8ebd48"},{url:"web.vendor.js",revision:"c7c28579160afd08f69a08d5240e73da"},{url:"web.vendor.js.LICENSE.txt",revision:"068a47a7038d4d0cf03b059af7268963"}],{directoryIndex:"/"})}));
+/**
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// If the loader is already loaded, just stop.
+if (!self.define) {
+  let registry = {};
+
+  // Used for `eval` and `importScripts` where we can't get script URL by other means.
+  // In both cases, it's safe to use a global var because those functions are synchronous.
+  let nextDefineUri;
+
+  const singleRequire = (uri, parentUri) => {
+    uri = new URL(uri + ".js", parentUri).href;
+    return registry[uri] || (
+      
+        new Promise(resolve => {
+          if ("document" in self) {
+            const script = document.createElement("script");
+            script.src = uri;
+            script.onload = resolve;
+            document.head.appendChild(script);
+          } else {
+            nextDefineUri = uri;
+            importScripts(uri);
+            resolve();
+          }
+        })
+      
+      .then(() => {
+        let promise = registry[uri];
+        if (!promise) {
+          throw new Error(`Module ${uri} didn’t register its module`);
+        }
+        return promise;
+      })
+    );
+  };
+
+  self.define = (depsNames, factory) => {
+    const uri = nextDefineUri || ("document" in self ? document.currentScript.src : "") || location.href;
+    if (registry[uri]) {
+      // Module is already loading or loaded.
+      return;
+    }
+    let exports = {};
+    const require = depUri => singleRequire(depUri, uri);
+    const specialDeps = {
+      module: { uri },
+      exports,
+      require
+    };
+    registry[uri] = Promise.all(depsNames.map(
+      depName => specialDeps[depName] || require(depName)
+    )).then(deps => {
+      factory(...deps);
+      return exports;
+    });
+  };
+}
+define(['./workbox-dc3b8696'], (function (workbox) { 'use strict';
+
+  workbox.setCacheNameDetails({
+    prefix: "SKYNovel Gallery"
+  });
+  self.skipWaiting();
+  workbox.clientsClaim();
+
+  /**
+   * The precacheAndRoute() method efficiently caches and responds to
+   * requests for URLs in the manifest.
+   * See https://goo.gl/S9QRab
+   */
+  workbox.precacheAndRoute([{
+    "url": "web.main.js",
+    "revision": "ba258880802e65e455486b3780c45d45"
+  }, {
+    "url": "web.skynovel.js",
+    "revision": "79b229c4fc8e0375b0428dbdf2efdbe6"
+  }, {
+    "url": "web.three.js",
+    "revision": "e60cace11d7afd02620e8e68e648b620"
+  }, {
+    "url": "web.vendor.js",
+    "revision": "f0fb590b6b5508d117851c486b27af25"
+  }], {
+    "directoryIndex": "/"
+  });
+
+}));
