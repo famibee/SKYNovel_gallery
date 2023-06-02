@@ -5,7 +5,7 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-const {Layer, CmnLib, argChk_Num} = require('@famibee/skynovel/web');
+const {Layer, argChk_Num} = require('@famibee/skynovel/web');
 import {HArg, IPluginInitArg} from '@famibee/skynovel';
 declare const EmotePlayer: any;	// 【名前 '〜' が見つかりません。】対策
 
@@ -17,18 +17,24 @@ export interface IInf {
 }
 
 export class EmoteLayer extends Layer {
-	private	static	uniq_num = 0;
+	static	#uniq_num	= 0;
+	static	#stageW		= 0;
+	static	#stageH		= 0;
 
-	private rt		: RenderTexture;
-	private cvs		: HTMLCanvasElement;
-	private readonly sp		= new Sprite;
-	private inf		: IInf | null;
+				#rt		: RenderTexture;
+				#cvs	: HTMLCanvasElement;
+	readonly	#sp		= new Sprite;
+				#inf	: IInf | null;
 
 	constructor(private pia: IPluginInitArg) {
 		super();
 
-		if (EmoteLayer.uniq_num++ % 2 === 1) return;
-		if (EmoteLayer.uniq_num === 1) {
+		if (EmoteLayer.#uniq_num++ % 2 === 1) return;
+		if (EmoteLayer.#uniq_num === 1) {
+			const {window: {width, height}} = pia.getInfo();
+			EmoteLayer.#stageW = width;
+			EmoteLayer.#stageH = height;
+
 			switch (String(this.pia.getVal('const.sn.platform.os.family'))) {
 				case 'Android':
 				case 'iOS':
@@ -36,27 +42,27 @@ export class EmoteLayer extends Layer {
 			//	default:
 			//		EmotePlayer.maskMode = EmotePlayer.MaskMode.ALPHA;
 			}
-			EmotePlayer.createRenderCanvas(CmnLib.stageW, CmnLib.stageH);
+			EmotePlayer.createRenderCanvas(EmoteLayer.#stageW, EmoteLayer.#stageH);
 		}
 
-		this.rt = RenderTexture.create({width: CmnLib.stageW, height: CmnLib.stageH});
-		this.spLay.addChild(new Sprite(this.rt));
+		this.#rt = RenderTexture.create({width: EmoteLayer.#stageW, height: EmoteLayer.#stageH});
+		this.spLay.addChild(new Sprite(this.#rt));
 
-		this.cvs = document.createElement('canvas');
-		this.cvs.id = `emote:${EmoteLayer.uniq_num}`;
-		this.cvs.width = CmnLib.stageW;
-		this.cvs.height = CmnLib.stageH;
-		this.cvs.hidden = true;
+		this.#cvs = document.createElement('canvas');
+		this.#cvs.id = `emote:${EmoteLayer.#uniq_num}`;
+		this.#cvs.width = EmoteLayer.#stageW;
+		this.#cvs.height = EmoteLayer.#stageH;
+		this.#cvs.hidden = true;
 		const cvsSN = document.getElementById('skynovel') as HTMLCanvasElement;
-		cvsSN.parentElement!.appendChild(this.cvs);
+		cvsSN.parentElement!.appendChild(this.#cvs);
 
-		this.sp.width = CmnLib.stageW;
-		this.sp.height = CmnLib.stageH;
+		this.#sp.width = EmoteLayer.#stageW;
+		this.#sp.height = EmoteLayer.#stageH;
 		// TODO: width, height 指定で程良い大きさにトリム・処理軽量化したい
 	}
 
 	lay(hArg: HArg, fncComp?: ()=> void): boolean {
-		if (! this.rt) return false;
+		if (! this.#rt) return false;
 
 		const layer = hArg.layer;
 		if (! layer) {
@@ -68,8 +74,8 @@ export class EmoteLayer extends Layer {
 
 		if (hArg.fn) {	// 最初のロード
 			const fn = hArg.fn;
-			const player = new EmotePlayer(this.cvs);
-			this.inf = {
+			const player = new EmotePlayer(this.#cvs);
+			this.#inf = {
 				fn		: fn,
 				player	: player,
 			};
@@ -83,9 +89,9 @@ export class EmoteLayer extends Layer {
 			//	if (! player.canvas) return;
 			//	if (this.state.light && player.animating) return;
 
-				this.sp.texture.destroy();
-				this.sp.texture = new Texture(new BaseTexture(this.cvs));
-				this.pia.render(this.sp, this.rt, true);
+				this.#sp.texture.destroy();
+				this.#sp.texture = new Texture(new BaseTexture(this.#cvs));
+				this.pia.render(this.#sp, this.#rt, true);
 			}
 			player.promiseLoadDataFromURL(this.pia.searchPath(fn, 'emtbytes_|emtbytes'))
 			.then(()=> {
@@ -98,17 +104,17 @@ export class EmoteLayer extends Layer {
 		else if (hArg[':タグ名'] === 'add_lay') return false;
 
 		// 以後の操作
-		if (! this.inf) return false;
+		if (! this.#inf) return false;
 
-		Layer.setXY(this.sp, hArg, this.spLay, true);
+		Layer.setXY(this.#sp, hArg, this.spLay, true);
 
-		const player = this.inf.player;
+		const player = this.#inf.player;
 		if (hArg.label) {
 			const a = [...player.mainTimelineLabels, ...player.diffTimelineLabels];
 			if (! a.includes(hArg.label)) {
-				console.error(`エラーが発生しました。参考までに ${this.inf.fn}.emtbytes 内に存在するアニメ名を列挙します`);
+				console.error(`エラーが発生しました。参考までに ${this.#inf.fn}.emtbytes 内に存在するアニメ名を列挙します`);
 				a.forEach(v=> console.info(`  label=${v}`));
-				throw `${this.inf.fn}.emtbytes 内に存在しないアニメ（label=${hArg.label}）です`;
+				throw `${this.#inf.fn}.emtbytes 内に存在しないアニメ（label=${hArg.label}）です`;
 			}
 
 			player.mainTimelineLabel = hArg.label;
@@ -123,28 +129,28 @@ export class EmoteLayer extends Layer {
 	}
 
 	clearLay(hArg: HArg): void {
-		if (! this.rt) return;
+		if (! this.#rt) return;
 
 		super.clearLay(hArg);
 
-		if (! this.inf) return;
-		this.inf.player.onUpdate = ()=> {};
-		this.inf.player.unloadData();
-		this.inf = null;
+		if (! this.#inf) return;
+		this.#inf.player.onUpdate = ()=> {};
+		this.#inf.player.unloadData();
+		this.#inf = null;
 
-		this.sp.visible = false;
-		this.pia.render(this.sp, this.rt, true);
-		this.sp.visible = true;
+		this.#sp.visible = false;
+		this.pia.render(this.#sp, this.#rt, true);
+		this.#sp.visible = true;
 	}
-	record = ()=> Object.assign(super.record(), (this.inf)
+	record = ()=> Object.assign(super.record(), (this.#inf)
 		? {
-			fn		: this.inf.fn,
-			label	: this.inf.player.mainTimelineLabel,
-			scale	: this.inf.player.scale,
-			grayscale	: this.inf.player.grayscale,
-			windSpeed	: this.inf.player.windSpeed,
-			windPowerMin	: this.inf.player.windPowerMin,
-			windPowerMax	: this.inf.player.windPowerMax,
+			fn		: this.#inf.fn,
+			label	: this.#inf.player.mainTimelineLabel,
+			scale	: this.#inf.player.scale,
+			grayscale	: this.#inf.player.grayscale,
+			windSpeed	: this.#inf.player.windSpeed,
+			windPowerMin	: this.#inf.player.windPowerMin,
+			windPowerMax	: this.#inf.player.windPowerMax,
 		}
 		: {fn: ''}
 	);
@@ -157,20 +163,20 @@ export class EmoteLayer extends Layer {
 	}
 
 	dump(): string {
-		if (! this.rt) return `"is":"nothing"`;
+		if (! this.#rt) return `"is":"nothing"`;
 
-		return super.dump() + ((this.inf)
-			? `, "mdl":{"fn":"${this.inf.fn
-				}","label":"${this.inf.player.mainTimelineLabel
-				}","scale":"${this.inf.player.scale}"}`
+		return super.dump() + ((this.#inf)
+			? `, "mdl":{"fn":"${this.#inf.fn
+				}","label":"${this.#inf.player.mainTimelineLabel
+				}","scale":"${this.#inf.player.scale}"}`
 			: `, "mdl":{"fn":""}`);
 	};
 
 	destroy() {
-		if (! this.rt) return;
+		if (! this.#rt) return;
 
 		this.clearLay({});
-		this.cvs!.parentElement!.removeChild(this.cvs);
+		this.#cvs!.parentElement!.removeChild(this.#cvs);
 		this.spLay.removeChildren().forEach((v: Sprite)=> v.destroy());
 	}
 
