@@ -2,7 +2,7 @@ define(['exports'], (function (exports) { 'use strict';
 
     // @ts-ignore
     try {
-      self['workbox:core:6.6.0'] && _();
+      self['workbox:core:7.0.0'] && _();
     } catch (e) {}
 
     /*
@@ -575,7 +575,7 @@ define(['exports'], (function (exports) { 'use strict';
 
     // @ts-ignore
     try {
-      self['workbox:routing:6.6.0'] && _();
+      self['workbox:routing:7.0.0'] && _();
     } catch (e) {}
 
     /*
@@ -1325,7 +1325,7 @@ define(['exports'], (function (exports) { 'use strict';
 
     // @ts-ignore
     try {
-      self['workbox:precaching:6.6.0'] && _();
+      self['workbox:precaching:7.0.0'] && _();
     } catch (e) {}
 
     /*
@@ -1770,7 +1770,7 @@ define(['exports'], (function (exports) { 'use strict';
 
     // @ts-ignore
     try {
-      self['workbox:strategies:6.6.0'] && _();
+      self['workbox:strategies:7.0.0'] && _();
     } catch (e) {}
 
     /*

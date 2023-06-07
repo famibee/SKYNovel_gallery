@@ -17,15 +17,15 @@
 	[button layer=btn text=pageup left=20 top=430 page=fore global=true call=true label=*page arg=prev style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
 	[button layer=btn text=pagedown left=20 top=460 page=fore global=true call=true label=*page arg=next style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
 
-	&save:sn.doRecLog = true	; 必須
-	[record_place]		; 必須・冒頭の save:sn.doRecLog = true を保存
-
 	[macro name=plc]
-		[p]
-		[er]
+		[p er=true]
 		[record_place]	; 必須・途中のレイヤ画像変化を保存
 	[endmacro]
 	[char2macro char=¥ name=plc]
+
+	&save:sn.doRecLog = true	; 必須
+	[record_place]		; 必須・冒頭の save:sn.doRecLog = true を保存
+	[page style='color: yellow; text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;']
 [endif]
 
 	[fg fn=01 layer=0]
@@ -38,12 +38,14 @@
 [span style='color: #00aa00;']2．[span]春すぎて 夏来にけらし 白妙の[l][r]衣ほすてふ 天の香具山 （持統天皇）¥
 
 	[fg fn=03 layer=0]
+	[page style='color: red;']
 [span style='color: #00aa00;']3．[span]あしびきの 山鳥の尾の しだり尾の[l][r]ながながし夜を ひとりかも寝む （柿本人麻呂）¥
 
 	[fg fn=04 layer=0]
 [span style='color: #00aa00;']4．[span]田子の浦に うち出でて見れば 白妙の[l][r]富士の高嶺に 雪はふりつつ （山部赤人）¥
 
 	[fg layer=base time=0 fn=japanese-style_00022]
+	[page style='color: yellow;']
 	[fg fn=05 layer=0]
 [span style='color: #00aa00;']5．[span]奥山に もみぢ踏み分け 鳴く鹿の[l][r]声聞く時ぞ 秋は悲しき （猿丸大夫）¥
 

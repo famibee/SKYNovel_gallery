@@ -67,7 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-dc3b8696'], (function (workbox) { 'use strict';
+define(['./workbox-c6de018f'], (function (workbox) { 'use strict';
 
   workbox.setCacheNameDetails({
     prefix: "SKYNovel Gallery"
@@ -85,7 +85,7 @@ define(['./workbox-dc3b8696'], (function (workbox) { 'use strict';
     "revision": "b1fa52443fc5ec297159ff99851f5ebd"
   }, {
     "url": "web.skynovel.js",
-    "revision": "86a2dfb7f796537dcf05b7ea404e9a09"
+    "revision": "6c7a11fa471c536e5873522143a8a996"
   }, {
     "url": "web.three.js",
     "revision": "e60cace11d7afd02620e8e68e648b620"
