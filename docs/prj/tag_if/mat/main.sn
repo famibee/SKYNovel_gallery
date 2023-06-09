@@ -2,6 +2,9 @@
 
 [add_lay layer=mes class=txt]
 
+&cs = const.sn.vctCallStk.length
+&is = const.sn.aIfStk.length
+
 ;o	[endif]
 	0[if exp=0==0]o[endif]
 	[if exp=0==1]x[endif].
@@ -67,6 +70,18 @@ m
 	8[if exp=0==0][m3][call label=*sub3]o[else]x[endif].[r]
 	9[if exp=0==1]x[else][m3][call label=*sub3]o[endif].[r]
 
+[macro name=m4]
+	[if exp=0==0]
+		;[return]
+		[if exp=0==0]
+			[if exp=0==0][return]X[endif]
+			X
+		[endif]
+		X
+	[else]x[endif]
+[endmacro]
+	[m4]
+
 	0[if exp=0==0]o[if exp=1==1][m]o[endif]o[endif]
 	[if exp=0==1]x[if exp=1==1][m]x[endif]x[endif].
 	[if exp=0==0]o[if exp=0==1][m]x[endif]o[endif].
@@ -76,7 +91,17 @@ m
 [macro name=b]
 o[return]x
 [endmacro]
-	T[b][b].
+	T[b][b].[r]
+
+	コールスタックの深さ　冒頭：
+		&cs&
+	　末尾：
+		&const.sn.vctCallStk.length&[r]
+
+	IFスタックの深さ　冒頭：
+		&is&
+	　末尾：
+		&const.sn.aIfStk.length&[r]
 
 	以上
 [s]
@@ -98,7 +123,9 @@ BAD
 	[if exp=0==0][call label=*sub2][m2]:[else]x[endif]
 	[if exp=0==1]x[else][call label=*sub2][m2]:[endif]
 	[span]
-[return]
+
+	[if exp=0==0][return]X[else]x[endif]
+X[return]
 
 
 *init
