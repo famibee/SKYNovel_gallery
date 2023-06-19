@@ -82,16 +82,13 @@ define(['./workbox-c6de018f'], (function (workbox) { 'use strict';
    */
   workbox.precacheAndRoute([{
     "url": "web.main.js",
-    "revision": "b1fa52443fc5ec297159ff99851f5ebd"
-  }, {
-    "url": "web.skynovel.js",
-    "revision": "123e11a06ed075da7fe37040a3502466"
+    "revision": "d3e1633266872e63625a2edc0a5cccb5"
   }, {
     "url": "web.three.js",
     "revision": "e60cace11d7afd02620e8e68e648b620"
   }, {
     "url": "web.vendor.js",
-    "revision": "f0fb590b6b5508d117851c486b27af25"
+    "revision": "be649b967e4288e0a10e957d78031f0c"
   }], {
     "directoryIndex": "/"
   });

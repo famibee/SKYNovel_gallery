@@ -4,17 +4,13 @@ exports.Cubism3Layer = void 0;
 const { Layer, argChk_Num } = require('@famibee/skynovel/web');
 const pixi_js_1 = require("pixi.js");
 class Cubism3Layer extends Layer {
-    constructor() {
-        super(...arguments);
-        this.ldr = new pixi_js_1.Loader;
-        this.state = {
-            fn: '',
-            label: '',
-            scale: 1,
-        };
-        this.hdl_tick = 0;
-        this.record = () => Object.assign(super.record(), this.state);
-    }
+    model;
+    ldr = new pixi_js_1.Loader;
+    state = {
+        fn: '',
+        label: '',
+        scale: 1,
+    };
     lay(hArg, fncComp) {
         super.lay(hArg);
         const id = hArg.id || '0';
@@ -116,6 +112,7 @@ class Cubism3Layer extends Layer {
         Layer.setXY(this.model, hArg, this.spLay, true);
         return false;
     }
+    hdl_tick = 0;
     clearLay(hArg) {
         super.clearLay(hArg);
         if (this.model) {
@@ -129,6 +126,7 @@ class Cubism3Layer extends Layer {
             scale: 1,
         };
     }
+    record = () => Object.assign(super.record(), this.state);
     playback(hLay, fncComp = undefined) {
         super.playback(hLay);
         return this.lay(hLay, fncComp);

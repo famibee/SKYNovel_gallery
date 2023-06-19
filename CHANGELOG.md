@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.4.4
+- fix: ext_fg.sn、ext_fg2.sn を微更新
+- fix: ライブラリ更新(SKYNovel v1.48.6)
 ## v2.4.3
 - fix: 【if文タグ】コール・IFスタックのテスト追加と表示(SKYNovel v1.47.3)
 ## v2.4.2

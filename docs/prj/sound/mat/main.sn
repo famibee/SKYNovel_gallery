@@ -59,6 +59,7 @@
 
 	[button text='xchgbuf' left=20 top=260 page=fore label=*xchgbuf global=true style='{"fill": "burlywood"}' fill_hover=tomato]
 	[button text='pan' left=120 top=260 page=fore label=*pan global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='playplay' left=220 top=260 page=fore label=*playplay global=true style='{"fill": "burlywood"}' fill_hover=tomato]
 
 	[button text='(s2)' left=20 top=320 page=fore label=*s2 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
 	[button text='(s2L)' left=120 top=320 page=fore label=*s2L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
@@ -178,6 +179,15 @@
 	[playse fn=&m buf=SE loop=true pan=1]
 		pan= 1 (right)[r]
 		end.[p]
+[jump label=**before]
+
+
+*playplay
+	[demo]
+	[playse fn=&m buf=SE loop=true]
+	click 2 play@
+	[playse fn=jngl0005b_m4a buf=SE loop=true]
+	end.[p]
 [jump label=**before]
 
 
