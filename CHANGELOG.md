@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.4.5
+- fix: ライブラリ更新(SKYNovel v1.48.7)
 ## v2.4.4
 - fix: ext_fg.sn、ext_fg2.sn を微更新
 - fix: ライブラリ更新(SKYNovel v1.48.6)

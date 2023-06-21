@@ -7,10 +7,10 @@
 &m = 'rain01_m4a'
 ;&m = 'rain01_wav'
 
-[macro name="lr"][l][r][endmacro]
+[macro name=lr][l][r][endmacro]
 [char2macro char=@ name=lr]
 
-[macro name="demo"]
+[macro name=demo]
 	[er]
 	[span style='color: tomato;']
 		[ch text='&"【"+ sn.eventLabel +"】"']
