@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.4.8
+- fix: ライブラリ更新(SKYNovel v1.48.15)など
+- docs: コードブロックライセンス年更新
 ## v2.4.7
 - fix: ライブラリ更新(SKYNovel v1.48.11)
 ## v2.4.6
