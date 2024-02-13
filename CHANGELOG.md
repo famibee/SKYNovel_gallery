@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.4.9
+- fix: ライブラリ更新(SKYNovel v1.49.1)など
+- fix(tsconfig.json): suppressImplicitAnyIndexErrors・newLine 削除（TypeScript 5.5 以降は完全に削除されるので）
 ## v2.4.8
 - fix: ライブラリ更新(SKYNovel v1.48.15)など
 - docs: コードブロックライセンス年更新
