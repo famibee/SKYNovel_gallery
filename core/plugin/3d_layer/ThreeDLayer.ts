@@ -21,14 +21,15 @@ export class ThreeDLayer extends Layer {
 	static	#stageW		= 0;
 	static	#stageH		= 0;
 
-//	static	THREE		: any;
+	static	THREE		: any;
 	#scene_3D	: Scene;
 	#canvas_3D	: WebGLRenderer;
 	#sprite_3D	: Sprite;
 
 	#camera		: Camera;
 
-	static	async init() {globalThis.THREE ??= await import('three');}
+	static	async init() {ThreeDLayer.THREE ??= await import('three');}
+//	static	async init() {globalThis.THREE ??= await import('three');}	// 2024/3/30まで
 
 	constructor(private pia: IPluginInitArg) {
 		super();

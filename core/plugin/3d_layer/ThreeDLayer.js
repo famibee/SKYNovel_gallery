@@ -35,11 +35,12 @@ class ThreeDLayer extends Layer {
     static #uniq_num = 0;
     static #stageW = 0;
     static #stageH = 0;
+    static THREE;
     #scene_3D;
     #canvas_3D;
     #sprite_3D;
     #camera;
-    static async init() { globalThis.THREE ??= await Promise.resolve().then(() => __importStar(require('three'))); }
+    static async init() { ThreeDLayer.THREE ??= await Promise.resolve().then(() => __importStar(require('three'))); }
     constructor(pia) {
         super();
         this.pia = pia;

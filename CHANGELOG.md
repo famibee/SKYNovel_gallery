@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.4.10
+- fix: ライブラリ更新(SKYNovel v1.49.2)
+- refactor(core/plugin/3d_layer/ThreeDLayer.ts): 警告を消去
 ## v2.4.9
 - fix: ライブラリ更新(SKYNovel v1.49.1)など
 - fix(tsconfig.json): suppressImplicitAnyIndexErrors・newLine 削除（TypeScript 5.5 以降は完全に削除されるので）
