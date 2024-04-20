@@ -1,6 +1,6 @@
 ;********************************************************
 ;@EXT_DESC	レイヤのクロスフェードと画像変更と動きの拡張機能
-;@VER		2024.04.18.007	引数説明記述を拡張機能v4.16.0準拠に。[zoom_tsy]内の無意味な[lay pos=stay]を削除
+;@VER		2024.04.20.007	引数説明記述を拡張機能v4.16.0準拠に。[zoom_tsy]内の無意味な[lay pos=stay]を削除。[zoom_tsy]動作修正
 ;@VER		2023.06.19.006	sn更新で不要になった sn.skip.enabled の扱いを削除
 ;@VER		2023.05.15.005	一部残っていた AIRNovel の scaleX,Y 属性名を修正
 ;@VER		2022.11.02.004	[fg]に snippet_ext 追加
@@ -201,10 +201,10 @@
 		pivot_x='&w/2' pivot_y='&h/2'
 		visible=true]
 
-	[tsy * layer=&layer path=#&'{"scale_x":"$valTo", "scale_y":"$valTo"}'#]
+	[tsy * layer=&layer scale_x=&valTo scale_y=&valTo ease=Back.InOut]
 	[wait_tsy * layer=&layer]
 
-	[lay layer=&layer visible=&v]
+	[lay layer=&layer visible=false cond=!v]
 [endmacro]
 
 ;********************************************************
