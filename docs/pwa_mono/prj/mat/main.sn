@@ -57,6 +57,12 @@
 	[endif]
 [endmacro]
 
+; 名前とレイヤ切り替え、連番ファイル名の音声再生
+[macro name=voice]
+	[stopse * buf=%buf|VOICE cond='mp:fn == null']
+	[playse * buf=%buf|VOICE cond='mp:fn != null']
+[endmacro]
+
 
 ; 履歴画面
 [add_frame id=log src="log" b_color=lightgray height=&const.sn.config.window.height*2/3 visible=false]

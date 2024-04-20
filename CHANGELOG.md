@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.4.11
+- fix: 拡張機能更新、ただし引数説明記述のみ(ext_fg, ext_fg2)
 ## v2.4.10
 - fix: ライブラリ更新(SKYNovel v1.49.2)
 - refactor(core/plugin/3d_layer/ThreeDLayer.ts): 警告を消去
