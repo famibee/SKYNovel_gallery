@@ -1,5 +1,11 @@
 # Change Log
 
+## v2.5.0
+- feat(【フィルター】サンプル): 追加、[fg2]に最後に変化した立ち絵を目立たせる機能も
+	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=filter
+- fix(【簡単立ち絵マクロ】サンプル): 更新、微修正
+- fix(ext_fg.sn、ext_fg2.sn): 拡張機能更新
+- fix: ライブラリ更新(SKYNovel v1.52.0)
 ## v2.4.11
 - fix: 拡張機能更新、ただし引数説明記述のみ(ext_fg, ext_fg2)
 ## v2.4.10

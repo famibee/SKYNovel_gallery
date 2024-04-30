@@ -7,10 +7,12 @@
 [add_lay layer=3 class=grp]
 
 	[call fn=ext_*]
+	[lay layer=mes float=true]
 
 	[char2macro char=@ name=l]
 
 
+;*********************************************************
 0	[fg2 fn=鑑定官_通常]@
 ;	aa	[fg2 swap=鑑定官 fn=女子中_惚れる]@
 ;	ax	[fg2 swap=鑑定官0 fn=女子中_惚れる]@
@@ -18,14 +20,8 @@
 2	[fg2 fn=女子中_惚れる]@
 屈	[fg2_squat name=女子中]@
 震	[fg2_shake name=女子中]@
-;横跳	[fg2_sidestep name=女子中]@
-横跳	[fg2_sidestep name=女子中 no_wait=true]@
-
-;	[zoom_tsy layer=0 fn=女子中_勝ち誇り time=2000 visible=true ease=Back.Out]
-;	ズームイン登場、[l]
-;	[zoom_tsy layer=0 fn=女子中_勝ち誇り time=2000 visible=false ease=Back.In]
-;	ズームアウト退場[l]
-
+横跳	[fg2_sidestep name=女子中]@
+;横跳	[fg2_sidestep name=女子中 no_wait=true]@
 ;	[clear_lay layer=0]	; [fg2]があずかり知らぬところで
 ;	[clear_lay layer=1]	; [fg2]があずかり知らぬところで
 3	[fg2 fn=医師_会話 add=l]@
