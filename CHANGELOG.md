@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.5.1
+- fix: グレースケールの綴りミス修正（greyscale -> grayscale）
 ## v2.5.0
 - feat(【フィルター】サンプル): 追加、[fg2]に最後に変化した立ち絵を目立たせる機能も
 	- https://famibee.github.io/SKYNovel_gallery/index.html?cur=filter

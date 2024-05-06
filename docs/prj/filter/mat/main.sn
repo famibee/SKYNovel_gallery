@@ -23,7 +23,7 @@
 [button text=browni left=130 top=70 page=fore call=true label=*almighty global=true arg=browni style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=おいしいブラウニー]
 [button text=color_tone left=240 top=70 page=fore call=true label=*color_tone global=true arg=color_tone style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=カラートーン]
 [button text=contrast left=350 top=70 page=fore call=true label=*almighty global=true arg=contrast style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=コントラスト]
-[button text=greyscale left=460 top=70 page=fore call=true label=*almighty global=true arg=greyscale style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=グレースケール]
+[button text=grayscale left=460 top=70 page=fore call=true label=*almighty global=true arg=grayscale style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=グレースケール]
 [button text=hue left=570 top=70 page=fore call=true label=*almighty global=true arg=hue style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=色相]
 
 [button text=kodachrome left=20 top=100 page=fore call=true label=*almighty global=true arg=kodachrome style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=コダクローム]
