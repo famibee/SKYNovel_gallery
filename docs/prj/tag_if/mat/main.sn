@@ -40,56 +40,57 @@ m
 	[if exp=0==0][m]M[endif]
 	[if exp=0==0][m][call label=*sub].[endif]
 	
-	[if exp=0==1][m]x[endif]o
-	[if exp=0==1][call label=*sub]x[endif]o
-	[if exp=0==1][m][call label=*sub]x[endif]o[r]
-	[if exp=0==0][m]o[else]x[endif]
-	[if exp=0==0][call label=*sub]o[else]x[endif]
-	[if exp=0==0][m][call label=*sub].[else]x[endif]
-	[if exp=0==1]x[else][m]o[endif]
-	[if exp=0==1]x[else][call label=*sub]o[endif]
-	[if exp=0==1]x[else][m][call label=*sub].[endif][r]
+	[if exp=0==1][m]❌️[endif]o
+	[if exp=0==1][call label=*sub]❌️[endif]o
+	[if exp=0==1][m][call label=*sub]❌️[endif]o[r]
+	[if exp=0==0][m]o[else]❌️[endif]
+	[if exp=0==0][call label=*sub]o[else]❌️[endif]
+	[if exp=0==0][m][call label=*sub].[else]❌️[endif]
+	[if exp=0==1]❌️[else][m]o[endif]
+	[if exp=0==1]❌️[else][call label=*sub]o[endif]
+	[if exp=0==1]❌️[else][m][call label=*sub].[endif][r]
 
 [macro name=m2]
 	[span style='color: #00aa00;']
-	[if exp=0==0]m[else]x[endif]
-	[if exp=0==1]x[else]m[endif]
+	[if exp=0==0]m[else]❌️[endif]
+	[if exp=0==1]❌️[else]m[endif]
 	[span]
 [endmacro]
-	7[if exp=0==0][m2]o[else]x[endif]
-	[if exp=0==1]x[else][m2]o[endif]
-	[if exp=0==0][call label=*sub2]o[else]x[endif]
-	[if exp=0==1]x[else][call label=*sub2]o[endif]
-	[if exp=0==0][m2][call label=*sub2]o[else]x[endif]
-	[if exp=0==1]x[else][m2][call label=*sub2].[endif][r]
+	7[if exp=0==0][m2]o[else]❌️[endif]
+	[if exp=0==1]❌️[else][m2]o[endif]
+	[if exp=0==0][call label=*sub2]o[else]❌️[endif]
+	[if exp=0==1]❌️[else][call label=*sub2]o[endif]
+	[if exp=0==0][m2][call label=*sub2]o[else]❌️[endif]
+	[if exp=0==1]❌️[else][m2][call label=*sub2].[endif][r]
 
 [macro name=m3]
-	[if exp=0==0][m2][call label=*sub2],[else]x[endif]
-	[if exp=0==1]x[else][m2][call label=*sub2],[endif]
+	[if exp=0==0][m2][call label=*sub2],[else]❌️[endif]
+	[if exp=0==1]❌️[else][m2][call label=*sub2],[endif]
 [endmacro]
-	8[if exp=0==0][m3][call label=*sub3]o[else]x[endif].[r]
-	9[if exp=0==1]x[else][m3][call label=*sub3]o[endif].[r]
+	8[if exp=0==0][m3][call label=*sub3]o[else]❌️[endif].[r]
+	9[if exp=0==1]❌️[else][m3][call label=*sub3]o[endif].[r]
 
 [macro name=m4]
 	[if exp=0==0]
 		;[return]
 		[if exp=0==0]
-			[if exp=0==0][return]X[endif]
-			X
+			[if exp=0==0][return]❌️[endif]
+			❌️
 		[endif]
-		X
-	[else]x[endif]
+		❌️
+	[else]❌️[endif]
+	❌️
 [endmacro]
 	[m4]
 
 	0[if exp=0==0]o[if exp=1==1][m]o[endif]o[endif]
-	[if exp=0==1]x[if exp=1==1][m]x[endif]x[endif].
-	[if exp=0==0]o[if exp=0==1][m]x[endif]o[endif].
-	[if exp=0==0]o[if exp=0==1][m]x[else]o[endif]o[endif]
+	[if exp=0==1]❌️[if exp=1==1][m]❌️[endif]❌️[endif].
+	[if exp=0==0]o[if exp=0==1][m]❌️[endif]o[endif].
+	[if exp=0==0]o[if exp=0==1][m]❌️[else]o[endif]o[endif]
 
 
 [macro name=b]
-o[return]x
+o[return]❌️
 [endmacro]
 	T[b][b].[r]
 
@@ -113,18 +114,18 @@ BAD
 
 *sub2
 	[span style='color: #bbbbff;']
-	[if exp=0==0]s[else]x[endif]
-	[if exp=0==1]x[else]s[endif]
+	[if exp=0==0]s[else]❌️[endif]
+	[if exp=0==1]❌️[else]s[endif]
 	[span]
 [return]
 
 *sub3
 	[span style='color: #bbbbff;']
-	[if exp=0==0][call label=*sub2][m2]:[else]x[endif]
-	[if exp=0==1]x[else][call label=*sub2][m2]:[endif]
+	[if exp=0==0][call label=*sub2][m2]:[else]❌️[endif]
+	[if exp=0==1]❌️[else][call label=*sub2][m2]:[endif]
 	[span]
 
-	[if exp=0==0][return]X[else]x[endif]
+	[if exp=0==0][return]❌️[else]❌️[endif]
 X[return]
 
 

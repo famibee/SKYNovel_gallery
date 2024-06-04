@@ -8,12 +8,12 @@
 	[call fn=ext_*]
 
 &pg=0
-[macro name="pg"]
+[macro name=pg]
 	[clear_lay layer=bg page=back]
 	[clear_lay layer=0 page=back]
 	[clear_lay layer=mes page=back]
 	[lay layer=bg page=back fn=%bg]
-	[lay layer=mes page=back filter=%filter|null]
+	[lay layer=mes page=back style=%style|null]
 	[trans layer='bg,0,mes' time=500][wt]
 
 	&pg=pg+1
@@ -142,7 +142,7 @@
 
 ; ==================================
 *pg7
-[pg bg=kuma425008_TP_V4 filter='1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000']
+[pg bg=kuma425008_TP_V4 style='text-shadow: 1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000']
 
 [fg layer=0 fn=face_hiiragi_seifuku face=face_hiiragi_kuchi_egao,face_hiiragi_me_matataki_tsujyo,face_hiiragi_mayu_tsujyo,face_hiiragi_maegami]
 【２ｂ．その他AIRNovelには無かった機能】[r]
@@ -161,7 +161,7 @@
 
 ; ==================================
 *pg8
-[pg bg=bg_dodomeki filter='1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000']
+[pg bg=bg_dodomeki style='text-shadow: 1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000']
 
 【２ｂ．その他AIRNovelには無かった機能】[r]
 ●テキスト表示＆消去時にアニメーション＆フィルタ適用。[r]

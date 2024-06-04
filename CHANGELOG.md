@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.5.2
+- fix: ギャラリー用の試作機能として、CSS の text-shadow 設定するためだけの filter 属性があったので修正対応（v1.50.1 までの仕様）
+	- 旧 filter 属性記述を style='text-shadow: 〜'に修正
+	- 対象は【トップ画面】、【スライドなプロジェクト】サンプル
+- fix: ライブラリ更新(SKYNovel v1.53.9)
 ## v2.5.1
 - fix: グレースケールの綴りミス修正（greyscale -> grayscale）
 ## v2.5.0
