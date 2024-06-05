@@ -105,7 +105,6 @@ W[span][ch text='eb' style='color: limegreen;']
 
 *toggle_skip
 	&sn.skip.enabled = true
-	[set_cancel_skip]
 [return]
 
 *stats

@@ -99,7 +99,6 @@
 
 *go_skip
 	&sn.skip.enabled = true
-	[set_cancel_skip]
 [return]
 
 *init

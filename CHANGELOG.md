@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.5.3
+- fix: [set_cancel_skip]が廃止に付き削除
+- fix(【画面を揺らす】サンプル): 既読スキップテストができるように
+- fix(【３Ｄレイヤ・天球】サンプル): エラーを修正
+- fix: ライブラリ更新(SKYNovel v1.53.10)
 ## v2.5.2
 - fix: ギャラリー用の試作機能として、CSS の text-shadow 設定するためだけの filter 属性があったので修正対応（v1.50.1 までの仕様）
 	- 旧 filter 属性記述を style='text-shadow: 〜'に修正
