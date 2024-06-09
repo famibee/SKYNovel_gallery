@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.5.4
+- add(【複数イベント待ち】サンプル): イベントテスト用サンプル追加
+	- http://localhost:8082/index.html?cur=mul_ev
 ## v2.5.3
 - fix: [set_cancel_skip]が廃止に付き削除
 - fix(【画面を揺らす】サンプル): 既読スキップテストができるように
