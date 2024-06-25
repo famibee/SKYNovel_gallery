@@ -10,6 +10,11 @@
 [button text=palt left=130 top=460 page=fore label=*ffs arg='"palt"' global=true style='{"fill": "plum"}']
 [button text=pwid left=240 top=460 page=fore label=*ffs arg='"pwid"' global=true style='{"fill": "plum"}']
 
+&bura_mode = true
+;&bura_mode = false
+[button text=ぶら下げ禁則 left=420 top=430 page=fore label=*bura_mode arg=true global=true call=false style='{"fill": "limegreen"}']
+[button text=旧禁則処理 left=420 top=460 page=fore label=*bura_mode arg=false global=true call=false style='{"fill": "limegreen"}']
+
 &marker = true
 [button text=要点文字着色 left=530 top=430 page=fore label=*marker arg=true global=true call=false style='{"fill": "limegreen"}']
 [button text=無着色 left=530 top=460 page=fore label=*marker arg=false global=true call=false style='{"fill": "limegreen"}']
@@ -22,14 +27,19 @@
 	[call label=*tate]	; これを寝かせば横書きスタート
 
 **
-[title text="&'禁則処理と文字詰め：#{ffs}・#{wm}書'"]
+[let name=title_bura text="&bura_mode?'On':'Off'"]
+[title text="&'禁則処理と文字詰め：#{wm}書・ぶら#{title_bura}・#{ffs}'"]
+	[lay layer=mes page=fore bura=&bura_mode]
 
-	　禁則処理《きん そく しょ り》とは、特に日本語の文書作
+	　禁則処理《きん そく しょ り》とは、特に日本語の
+	[if exp=&!bura_mode]文書作[endif]
 		[if exp="wm == '横'"]成・組版において・・・・[endif]
 	[span style='background-color: skyblue;' cond=marker]ゞ[span]
 		→(行頭禁則文字)[r]
 
-	て約物などが行頭・行末などに
+	て約物など
+	[if exp=&!bura_mode]が[endif]
+	行頭・行末などに
 		[if exp="wm == '横'"]
 			あってはならない」等とされる
 		[else]
@@ -85,6 +95,10 @@
 *ffs
 	&ffs = sn.eventArg
 	[lay layer=mes ffs=&ffs][clear_text][jump label=**before]
+
+*bura_mode
+	&bura_mode = sn.eventArg
+	[clear_text][jump label=**before]
 
 *marker
 	&marker = sn.eventArg

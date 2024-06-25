@@ -38,7 +38,7 @@ eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ?
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = void 0;\nconst ThreeDLayer_1 = __webpack_require__(/*! ./ThreeDLayer */ \"./core/plugin/3d_layer/ThreeDLayer.ts\");\nasync function init(pia) {\n    pia.addLayCls('3d', () => new ThreeDLayer_1.ThreeDLayer(pia));\n    return ThreeDLayer_1.ThreeDLayer.init();\n}\nexports.init = init;\n;\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/3d_layer/index.js?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = init;\nconst ThreeDLayer_1 = __webpack_require__(/*! ./ThreeDLayer */ \"./core/plugin/3d_layer/ThreeDLayer.ts\");\nasync function init(pia) {\n    pia.addLayCls('3d', () => new ThreeDLayer_1.ThreeDLayer(pia));\n    return ThreeDLayer_1.ThreeDLayer.init();\n}\n;\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/3d_layer/index.js?");
 
 /***/ }),
 
@@ -60,7 +60,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexpo
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = void 0;\nconst Cubism3Layer_1 = __webpack_require__(/*! ./Cubism3Layer */ \"./core/plugin/cubism3_layer/Cubism3Layer.ts\");\nasync function init(pia) {\n    pia.addLayCls('cubism3', () => new Cubism3Layer_1.Cubism3Layer);\n}\nexports.init = init;\n;\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/cubism3_layer/index.js?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = init;\nconst Cubism3Layer_1 = __webpack_require__(/*! ./Cubism3Layer */ \"./core/plugin/cubism3_layer/Cubism3Layer.ts\");\nasync function init(pia) {\n    pia.addLayCls('cubism3', () => new Cubism3Layer_1.Cubism3Layer);\n}\n;\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/cubism3_layer/index.js?");
 
 /***/ }),
 
@@ -82,7 +82,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexpo
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = void 0;\nconst EmoteLayer_1 = __webpack_require__(/*! ./EmoteLayer */ \"./core/plugin/emote_layer/EmoteLayer.ts\");\nasync function init(pia) {\n    pia.addLayCls('emote', () => new EmoteLayer_1.EmoteLayer(pia));\n}\nexports.init = init;\n;\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/emote_layer/index.js?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = init;\nconst EmoteLayer_1 = __webpack_require__(/*! ./EmoteLayer */ \"./core/plugin/emote_layer/EmoteLayer.ts\");\nasync function init(pia) {\n    pia.addLayCls('emote', () => new EmoteLayer_1.EmoteLayer(pia));\n}\n;\n//# sourceMappingURL=index.js.map\n\n//# sourceURL=webpack://gallery/./core/plugin/emote_layer/index.js?");
 
 /***/ }),
 
@@ -265,7 +265,7 @@ eval("\nvar __createBinding = (this && this.__createBinding) || (Object.create ?
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = void 0;\nconst ThreeDLayer_1 = __webpack_require__(/*! ./ThreeDLayer */ \"./core/plugin/3d_layer/ThreeDLayer.ts\");\nasync function init(pia) {\n    pia.addLayCls('3d', () => new ThreeDLayer_1.ThreeDLayer(pia));\n    return ThreeDLayer_1.ThreeDLayer.init();\n}\nexports.init = init;\n;\n\n\n//# sourceURL=webpack://gallery/./core/plugin/3d_layer/index.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = init;\nconst ThreeDLayer_1 = __webpack_require__(/*! ./ThreeDLayer */ \"./core/plugin/3d_layer/ThreeDLayer.ts\");\nasync function init(pia) {\n    pia.addLayCls('3d', () => new ThreeDLayer_1.ThreeDLayer(pia));\n    return ThreeDLayer_1.ThreeDLayer.init();\n}\n;\n\n\n//# sourceURL=webpack://gallery/./core/plugin/3d_layer/index.ts?");
 
 /***/ }),
 
@@ -287,7 +287,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexpo
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = void 0;\nconst Cubism3Layer_1 = __webpack_require__(/*! ./Cubism3Layer */ \"./core/plugin/cubism3_layer/Cubism3Layer.ts\");\nasync function init(pia) {\n    pia.addLayCls('cubism3', () => new Cubism3Layer_1.Cubism3Layer);\n}\nexports.init = init;\n;\n\n\n//# sourceURL=webpack://gallery/./core/plugin/cubism3_layer/index.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = init;\nconst Cubism3Layer_1 = __webpack_require__(/*! ./Cubism3Layer */ \"./core/plugin/cubism3_layer/Cubism3Layer.ts\");\nasync function init(pia) {\n    pia.addLayCls('cubism3', () => new Cubism3Layer_1.Cubism3Layer);\n}\n;\n\n\n//# sourceURL=webpack://gallery/./core/plugin/cubism3_layer/index.ts?");
 
 /***/ }),
 
@@ -309,7 +309,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexpo
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = void 0;\nconst EmoteLayer_1 = __webpack_require__(/*! ./EmoteLayer */ \"./core/plugin/emote_layer/EmoteLayer.ts\");\nasync function init(pia) {\n    pia.addLayCls('emote', () => new EmoteLayer_1.EmoteLayer(pia));\n}\nexports.init = init;\n;\n\n\n//# sourceURL=webpack://gallery/./core/plugin/emote_layer/index.ts?");
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.init = init;\nconst EmoteLayer_1 = __webpack_require__(/*! ./EmoteLayer */ \"./core/plugin/emote_layer/EmoteLayer.ts\");\nasync function init(pia) {\n    pia.addLayCls('emote', () => new EmoteLayer_1.EmoteLayer(pia));\n}\n;\n\n\n//# sourceURL=webpack://gallery/./core/plugin/emote_layer/index.ts?");
 
 /***/ }),
 

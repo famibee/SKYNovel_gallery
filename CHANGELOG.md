@@ -1,6 +1,10 @@
 # Change Log
 
-## v2.5.4
+## v2.6.1
+- feat(【禁則処理】サンプル): ぶら下げ禁則のON/OFF切り替え追加
+	- http://localhost:8082/index.html?cur=line_breaking_rules
+- fix: ライブラリ更新(SKYNovel v1.54.1)など
+## v2.5.4 -> v2.6.0
 - add(【複数イベント待ち】サンプル): イベントテスト用サンプル追加
 	- http://localhost:8082/index.html?cur=mul_ev
 ## v2.5.3
