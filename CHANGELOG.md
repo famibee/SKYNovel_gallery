@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.6.2
+- fix: ライブラリ更新(SKYNovel v1.57.0)など
 ## v2.6.1
 - feat(【禁則処理】サンプル): ぶら下げ禁則のON/OFF切り替え追加
 	- http://localhost:8082/index.html?cur=line_breaking_rules
