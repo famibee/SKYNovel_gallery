@@ -12,6 +12,9 @@
 
 	[event global=true call=true key=pageup label=*page arg=prev]
 	[event global=true call=true key=pagedown label=*page arg=next]
+	[event global=true call=true key=rightclick label=*escape arg=load]
+	[event global=true call=true key=shift label=*escape arg=load]
+	[event global=true call=true key=escape label=*escape arg=exit]
 
 	[add_lay layer=btn class=txt]
 	[button layer=btn text=pageup left=20 top=430 page=fore global=true call=true label=*page arg=prev style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
@@ -69,7 +72,7 @@
 BAD
 
 *page	[page to=&sn.eventArg][return]
-
+*escape	[page to=&sn.eventArg cond=const.sn.isPaging][return]
 
 *init
 	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]

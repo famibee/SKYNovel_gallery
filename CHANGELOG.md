@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.6.3
+- feat(ページ移動 サンプル): [page to=exit、load] ショートカット追加
+- fix: ライブラリ更新(SKYNovel v1.58.0)など
 ## v2.6.2
 - fix: ライブラリ更新(SKYNovel v1.57.0)など
 ## v2.6.1
