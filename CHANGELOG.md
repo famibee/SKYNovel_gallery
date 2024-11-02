@@ -1,5 +1,9 @@
 # Change Log
 
+## v2.6.5
+- fix: ライブラリ更新(SKYNovel v1.61.2)など
+- fix(core/webpack.config.js): 【Module not found: Error: Can't resolve 'url'〜】対策
+	- angular14 - Module not found: Error: Can't resolve 'url' in webpack 5/Angular 14 - Stack Overflow https://stackoverflow.com/questions/72720744/module-not-found-error-cant-resolve-url-in-webpack-5-angular-14
 ## v2.6.4
 - fix: ライブラリ更新(SKYNovel v1.60.2)など
 ## v2.6.3

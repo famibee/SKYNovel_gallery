@@ -67,7 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-7c081085'], (function (workbox) { 'use strict';
+define(['./workbox-7707f474'], (function (workbox) { 'use strict';
 
   workbox.setCacheNameDetails({
     prefix: "SKYNovel Gallery"
@@ -82,16 +82,22 @@ define(['./workbox-7c081085'], (function (workbox) { 'use strict';
    */
   workbox.precacheAndRoute([{
     "url": "web.main.js",
-    "revision": "3d9d0d2a16480de1d8df7a902718ea11"
+    "revision": "c0d1a44dfb39739b65c93ccc50de38f5"
   }, {
     "url": "web.skynovel.js",
-    "revision": "8afb44786cea6b38935fa45b85f4ba28"
+    "revision": "cb336056c3580592919114676424a7aa"
   }, {
     "url": "web.three.js",
-    "revision": "3cb4c50ff83ed67e60931f29149c9bfb"
+    "revision": "e76ca7f34f0e8c9570e5508c3d921521"
   }, {
     "url": "web.vendor.js",
-    "revision": "8d940e5fdb931f7b650945c6ab6900f4"
+    "revision": "3f376068888fb20293cb914d46cf5912"
+  }, {
+    "url": "web.vendors-node_modules_famibee_skynovel_dist_SoundMng_js.js",
+    "revision": "1bfc0628157dccc80ec9ce6eaf8cec33"
+  }, {
+    "url": "web.vendors-node_modules_famibee_skynovel_dist_gamepad_js.js",
+    "revision": "dd5543b82644af1ab7f1393e63bf3ce7"
   }], {
     "directoryIndex": "/"
   });

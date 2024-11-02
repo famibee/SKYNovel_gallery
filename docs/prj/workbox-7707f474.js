@@ -2,7 +2,7 @@ define(['exports'], (function (exports) { 'use strict';
 
     // @ts-ignore
     try {
-      self['workbox:core:7.0.0'] && _();
+      self['workbox:core:7.2.0'] && _();
     } catch (e) {}
 
     /*
@@ -574,7 +574,7 @@ define(['exports'], (function (exports) { 'use strict';
 
     // @ts-ignore
     try {
-      self['workbox:routing:7.0.0'] && _();
+      self['workbox:routing:7.2.0'] && _();
     } catch (e) {}
 
     /*
@@ -1324,7 +1324,7 @@ define(['exports'], (function (exports) { 'use strict';
 
     // @ts-ignore
     try {
-      self['workbox:precaching:7.0.0'] && _();
+      self['workbox:precaching:7.2.0'] && _();
     } catch (e) {}
 
     /*
@@ -1769,7 +1769,7 @@ define(['exports'], (function (exports) { 'use strict';
 
     // @ts-ignore
     try {
-      self['workbox:strategies:7.0.0'] && _();
+      self['workbox:strategies:7.2.0'] && _();
     } catch (e) {}
 
     /*
@@ -1972,8 +1972,8 @@ define(['exports'], (function (exports) { 'use strict';
        * defined on the strategy object.
        *
        * The following plugin lifecycle methods are invoked when using this method:
-       * - cacheKeyWillByUsed()
-       * - cachedResponseWillByUsed()
+       * - cacheKeyWillBeUsed()
+       * - cachedResponseWillBeUsed()
        *
        * @param {Request|string} key The Request or URL to use as the cache key.
        * @return {Promise<Response|undefined>} A matching response, if found.
@@ -2014,7 +2014,7 @@ define(['exports'], (function (exports) { 'use strict';
        * the strategy object.
        *
        * The following plugin lifecycle methods are invoked when using this method:
-       * - cacheKeyWillByUsed()
+       * - cacheKeyWillBeUsed()
        * - cacheWillUpdate()
        * - cacheDidUpdate()
        *
