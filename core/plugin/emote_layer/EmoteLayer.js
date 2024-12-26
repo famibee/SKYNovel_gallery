@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmoteLayer = void 0;
-const { Layer, argChk_Num } = require('@famibee/skynovel/web');
+const skynovel_1 = require("@famibee/skynovel");
 const pixi_js_1 = require("pixi.js");
-class EmoteLayer extends Layer {
+class EmoteLayer extends skynovel_1.Layer {
     pia;
     static #uniq_num = 0;
     static #stageW = 0;
@@ -30,7 +30,7 @@ class EmoteLayer extends Layer {
             EmotePlayer.createRenderCanvas(EmoteLayer.#stageW, EmoteLayer.#stageH);
         }
         this.#rt = pixi_js_1.RenderTexture.create({ width: EmoteLayer.#stageW, height: EmoteLayer.#stageH });
-        this.spLay.addChild(new pixi_js_1.Sprite(this.#rt));
+        this.ctn.addChild(new pixi_js_1.Sprite(this.#rt));
         this.#cvs = document.createElement('canvas');
         this.#cvs.id = `emote:${EmoteLayer.#uniq_num}`;
         this.#cvs.width = EmoteLayer.#stageW;
@@ -79,7 +79,7 @@ class EmoteLayer extends Layer {
             return false;
         if (!this.#inf)
             return false;
-        Layer.setXY(this.#sp, hArg, this.spLay, true);
+        skynovel_1.Layer.setXY(this.#sp, hArg, this.ctn, true);
         const player = this.#inf.player;
         if (hArg.label) {
             const a = [...player.mainTimelineLabels, ...player.diffTimelineLabels];
@@ -91,15 +91,15 @@ class EmoteLayer extends Layer {
             player.mainTimelineLabel = hArg.label;
         }
         if ('scale' in hArg)
-            player.scale = argChk_Num(hArg, 'scale', 1);
+            player.scale = (0, skynovel_1.argChk_Num)(hArg, 'scale', 1);
         if ('grayscale' in hArg)
-            player.grayscale = argChk_Num(hArg, 'grayscale', 1);
+            player.grayscale = (0, skynovel_1.argChk_Num)(hArg, 'grayscale', 1);
         if ('windSpeed' in hArg)
-            player.windSpeed = argChk_Num(hArg, 'windSpeed', 0);
+            player.windSpeed = (0, skynovel_1.argChk_Num)(hArg, 'windSpeed', 0);
         if ('windPowerMin' in hArg)
-            player.windPowerMin = argChk_Num(hArg, 'windPowerMin', 0);
+            player.windPowerMin = (0, skynovel_1.argChk_Num)(hArg, 'windPowerMin', 0);
         if ('windPowerMax' in hArg)
-            player.windPowerMax = argChk_Num(hArg, 'windPowerMax', 0);
+            player.windPowerMax = (0, skynovel_1.argChk_Num)(hArg, 'windPowerMax', 0);
         return false;
     }
     clearLay(hArg) {
@@ -126,10 +126,10 @@ class EmoteLayer extends Layer {
             windPowerMax: this.#inf.player.windPowerMax,
         }
         : { fn: '' });
-    playback(hLay, fncComp = undefined) {
-        super.playback(hLay);
+    playback(hLay, aPrm) {
+        super.playback(hLay, aPrm);
         if (hLay.fn)
-            return this.lay(hLay, fncComp);
+            return this.lay(hLay);
         this.clearLay(hLay);
         return false;
     }
@@ -146,7 +146,7 @@ class EmoteLayer extends Layer {
             return;
         this.clearLay({});
         this.#cvs.parentElement.removeChild(this.#cvs);
-        this.spLay.removeChildren().forEach((v) => v.destroy());
+        this.ctn.removeChildren().forEach((v) => v.destroy());
     }
 }
 exports.EmoteLayer = EmoteLayer;

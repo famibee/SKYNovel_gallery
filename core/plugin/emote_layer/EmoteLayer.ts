@@ -5,8 +5,8 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-const {Layer, argChk_Num} = require('@famibee/skynovel/web');
-import {HArg, IPluginInitArg} from '@famibee/skynovel';
+import {Layer, argChk_Num} from '@famibee/skynovel';
+import type {HArg, IPluginInitArg} from '@famibee/skynovel';
 declare const EmotePlayer: any;	// 【名前 '〜' が見つかりません。】対策
 
 import {RenderTexture, Sprite, Texture, BaseTexture} from 'pixi.js';
@@ -46,7 +46,7 @@ export class EmoteLayer extends Layer {
 		}
 
 		this.#rt = RenderTexture.create({width: EmoteLayer.#stageW, height: EmoteLayer.#stageH});
-		this.spLay.addChild(new Sprite(this.#rt));
+		this.ctn.addChild(new Sprite(this.#rt));
 
 		this.#cvs = document.createElement('canvas');
 		this.#cvs.id = `emote:${EmoteLayer.#uniq_num}`;
@@ -61,7 +61,7 @@ export class EmoteLayer extends Layer {
 		// TODO: width, height 指定で程良い大きさにトリム・処理軽量化したい
 	}
 
-	lay(hArg: HArg, fncComp?: ()=> void): boolean {
+	override lay(hArg: HArg, fncComp?: ()=> void): boolean {
 		if (! this.#rt) return false;
 
 		const layer = hArg.layer;
@@ -93,7 +93,7 @@ export class EmoteLayer extends Layer {
 				this.#sp.texture = new Texture(new BaseTexture(this.#cvs));
 				this.pia.render(this.#sp, this.#rt, true);
 			}
-			player.promiseLoadDataFromURL(this.pia.searchPath(fn, 'emtbytes_|emtbytes'))
+			player.promiseLoadDataFromURL(this.pia.searchPath(fn, <any>'emtbytes_|emtbytes'))
 			.then(()=> {
 				this.lay(a, fncComp);
 				this.pia.resume(fncComp);
@@ -106,7 +106,7 @@ export class EmoteLayer extends Layer {
 		// 以後の操作
 		if (! this.#inf) return false;
 
-		Layer.setXY(this.#sp, hArg, this.spLay, true);
+		Layer.setXY(this.#sp, hArg, this.ctn, true);
 
 		const player = this.#inf.player;
 		if (hArg.label) {
@@ -128,7 +128,7 @@ export class EmoteLayer extends Layer {
 		return false;
 	}
 
-	clearLay(hArg: HArg): void {
+	override clearLay(hArg: HArg): void {
 		if (! this.#rt) return;
 
 		super.clearLay(hArg);
@@ -142,7 +142,7 @@ export class EmoteLayer extends Layer {
 		this.pia.render(this.#sp, this.#rt, true);
 		this.#sp.visible = true;
 	}
-	record = ()=> Object.assign(super.record(), (this.#inf)
+	override record = ()=> Object.assign(super.record(), (this.#inf)
 		? {
 			fn		: this.#inf.fn,
 			label	: this.#inf.player.mainTimelineLabel,
@@ -154,15 +154,15 @@ export class EmoteLayer extends Layer {
 		}
 		: {fn: ''}
 	);
-	playback(hLay: any, fncComp: undefined | {(): void} = undefined): boolean {
-		super.playback(hLay);
-		if (hLay.fn) return this.lay(hLay, fncComp);
+	override playback(hLay: any, aPrm: Promise<void>[]): boolean {
+		super.playback(hLay, aPrm);
+		if (hLay.fn) return this.lay(hLay);
 
 		this.clearLay(hLay);
 		return false;
 	}
 
-	dump(): string {
+	override dump(): string {
 		if (! this.#rt) return `"is":"nothing"`;
 
 		return super.dump() + ((this.#inf)
@@ -172,12 +172,12 @@ export class EmoteLayer extends Layer {
 			: `, "mdl":{"fn":""}`);
 	};
 
-	destroy() {
+	override destroy() {
 		if (! this.#rt) return;
 
 		this.clearLay({});
 		this.#cvs!.parentElement!.removeChild(this.#cvs);
-		this.spLay.removeChildren().forEach((v: Sprite)=> v.destroy());
+		this.ctn.removeChildren().forEach((v: Sprite)=> v.destroy());
 	}
 
 }

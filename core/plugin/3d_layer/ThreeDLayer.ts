@@ -5,8 +5,8 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-const {Layer, argChk_Num, argChk_Boolean} = require('@famibee/skynovel/web');
-import {HArg, IPluginInitArg} from '@famibee/skynovel';
+import {Layer, argChk_Num, argChk_Boolean} from '@famibee/skynovel';
+import type {HArg, IPluginInitArg} from '@famibee/skynovel';
 import {Scene, WebGLRenderer, Camera, Clock, GridHelper, PerspectiveCamera, DirectionalLight, Mesh, BoxGeometry, MeshNormalMaterial, SphereGeometry, TextureLoader, LinearFilter, MeshBasicMaterial, AnimationClip, LoopRepeat, LoopOnce, Material, Object3D, AnimationMixer, Vector3} from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
@@ -50,7 +50,7 @@ export class ThreeDLayer extends Layer {
 		// Map 3D canvas to 2D Canvas
 		const texture_3D = Texture.from(this.#canvas_3D.domElement);
 		this.#sprite_3D = new Sprite(texture_3D);
-		this.spLay.addChild(this.#sprite_3D);
+		this.ctn.addChild(this.#sprite_3D);
 		this.#sprite_3D.x = (ThreeDLayer.#stageW -this.#sprite_3D.width) /2
 		this.#sprite_3D.y = (ThreeDLayer.#stageH -this.#sprite_3D.height) /2
 	}
@@ -75,7 +75,7 @@ export class ThreeDLayer extends Layer {
 	#ctxEff	: effekseer.EffekseerContext;
 	#hEff	: any = {};
 	#tickUpdEff	= ()=> {};
-	lay(hArg: HArg): boolean {
+	override lay(hArg: HArg): boolean {
 		if (! this.#scene_3D) return false;
 
 		if ('grid' in hArg) {	// 開発者用基準グリッド
@@ -170,7 +170,7 @@ export class ThreeDLayer extends Layer {
 						// https://github.com/effekseer/EffekseerForWebGL
 						const fncEff = ()=> {
 							this.#hEff[fn] = this.#ctxEff.loadEffect(
-								this.pia.searchPath(fn, 'efk'),
+								this.pia.searchPath(fn, <any>'efk'),
 								argChk_Num(hArg, 'scale', 1),
 	()=> {
 		const [x, y, z] = String(hArg.pos || '0,0,0').split(',');
@@ -204,7 +204,7 @@ export class ThreeDLayer extends Layer {
 						geometry.scale(-1, 1, 1);
 						const ldr = new TextureLoader();
 						if (! fn) throw 'fnがありません';
-						const tx = ldr.load(this.pia.searchPath(fn, EXT_STILL_IMG));
+						const tx = ldr.load(this.pia.searchPath(fn, <any>EXT_STILL_IMG));
 						tx.minFilter = LinearFilter;
 						const material = new MeshBasicMaterial({map: tx});
 						mdl = new Mesh(geometry, material);
@@ -220,7 +220,7 @@ export class ThreeDLayer extends Layer {
 								console.log(`${( xhr.loaded /xhr.total *100 )}% loaded`)
 							: ()=> {};
 						(new GLTFLoader()).load(
-							this.pia.searchPath(fn, 'gltf|glb'),
+							this.pia.searchPath(fn, <any>'gltf|glb'),
 							(gltf: any)=> {	// called when the resource is loaded
 								const mdl = gltf.scene;
 /*
@@ -341,7 +341,7 @@ export class ThreeDLayer extends Layer {
 		const [x, y, z] = String(hArg[name]).split(',').map(v=> Number(v));
 		o.scale.set(x, y, z);
 	}
-	clearLay(hArg: HArg): void {
+	override clearLay(hArg: HArg): void {
 		super.clearLay(hArg);
 		if (! this.#scene_3D) return;
 		if (! this.#running) return;
@@ -381,10 +381,10 @@ export class ThreeDLayer extends Layer {
 		}
 	}
 
-	record = ()=> Object.assign(super.record(), {
+	override record = ()=> Object.assign(super.record(), {
 		hInf	: this.#hInf,
 	});
-	playback(hLay: any, aPrm: Promise<void>[]): void {
+	override playback(hLay: any, aPrm: Promise<void>[]): void {
 		super.playback(hLay, aPrm);
 		this.#hInf	= hLay.hInf;
 		if (! this.#scene_3D) return;
@@ -398,7 +398,7 @@ export class ThreeDLayer extends Layer {
 		}*/
 	}
 
-	dump(): string {
+	override dump(): string {
 		if (! this.#scene_3D) return `"is":"nothing"`;
 
 		const aChi: string[] = [];

@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.6.6
+- fix: ライブラリ更新(SKYNovel v1.61.9)など
+- fix: Layer クラス変更対応
 ## v2.6.5
 - fix: ライブラリ更新(SKYNovel v1.61.2)など
 - fix(core/webpack.config.js): 【Module not found: Error: Can't resolve 'url'〜】対策

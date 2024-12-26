@@ -82,22 +82,37 @@ define(['./workbox-7707f474'], (function (workbox) { 'use strict';
    */
   workbox.precacheAndRoute([{
     "url": "web.main.js",
-    "revision": "c0d1a44dfb39739b65c93ccc50de38f5"
+    "revision": "22fb34225aed593f5f263be1176aea6b"
   }, {
-    "url": "web.skynovel.js",
-    "revision": "cb336056c3580592919114676424a7aa"
+    "url": "web.skynovel_dist_EventMng_js.js",
+    "revision": "360bae302ca9016f8321ea2590a69d40"
+  }, {
+    "url": "web.skynovel_dist_LayerMng_js.js",
+    "revision": "869f83d6159b4bcce0763334695d8622"
+  }, {
+    "url": "web.skynovel_dist_PropParser_js.js",
+    "revision": "38899c0a209111a6c45e4e7a5546ee48"
+  }, {
+    "url": "web.skynovel_dist_ReadState_js.js",
+    "revision": "83463ec4072dcda2d363c2ec890b8f1f"
+  }, {
+    "url": "web.skynovel_dist_ScriptIterator_js.js",
+    "revision": "253322556324b5c4a4eab25135250c01"
+  }, {
+    "url": "web.skynovel_dist_SoundMng_js.js",
+    "revision": "f7832432f2366ed44f75dac51439efb7"
+  }, {
+    "url": "web.skynovel_dist_Variable_js.js",
+    "revision": "48ef7da697519c04e5e19348b0236c26"
+  }, {
+    "url": "web.skynovel_dist_gamepad_js.js",
+    "revision": "aa8a3cdaebd5998cac50453d0a3fdccb"
   }, {
     "url": "web.three.js",
     "revision": "e76ca7f34f0e8c9570e5508c3d921521"
   }, {
     "url": "web.vendor.js",
-    "revision": "3f376068888fb20293cb914d46cf5912"
-  }, {
-    "url": "web.vendors-node_modules_famibee_skynovel_dist_SoundMng_js.js",
-    "revision": "1bfc0628157dccc80ec9ce6eaf8cec33"
-  }, {
-    "url": "web.vendors-node_modules_famibee_skynovel_dist_gamepad_js.js",
-    "revision": "dd5543b82644af1ab7f1393e63bf3ce7"
+    "revision": "85a9ce5b214e2d75ed2f366a6144c27d"
   }], {
     "directoryIndex": "/"
   });
