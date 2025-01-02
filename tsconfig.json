@@ -15,7 +15,7 @@
 
 		/* Output */
 		"sourceMap": true,
-		"outDir": "dist/",
+		"outDir": "docs/",
 		"declaration": true,
 		"declarationMap": true,
 		"removeComments": true,
