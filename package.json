@@ -8,39 +8,20 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.61.9",
+		"@famibee/skynovel": "^1.61.17",
 		"pixi.js": "^6.5.10",
 		"three": "^0.170.0"
 	},
 	"devDependencies": {
-		"@types/offscreencanvas": "^2019.7.3",
-		"@types/tar-fs": "^2.0.4",
 		"@types/three": "^0.170.0",
-		"css-loader": "^7.1.2",
-		"electron": "^33.2.1",
-		"electron-builder": "^25.1.8",
-		"ignore-loader": "^0.1.2",
-		"rimraf": "^6.0.1",
-		"ts-loader": "^9.5.1",
 		"typescript": "^5.7.2",
-		"url": "^0.11.4",
-		"webpack": "^5.97.1",
-		"webpack-cli": "^5.1.4",
-		"webpack-dev-server": "^5.2.0",
-		"workbox-sw": "^7.3.0",
-		"workbox-webpack-plugin": "^7.3.0"
+		"vite": "^6.0.6"
 	},
 	"scripts": {
-		"start": "bun webpack:dev:w & tsc -p core/ -w & bun watch:wds",
-		"webpack:dev": "webpack --mode development --config ./core/webpack.config.js",
-		"webpack:dev:w": "webpack --mode development --watch --config ./core/webpack.config.js",
-		"webpack:dev:w_s": "webpack --mode production --config ./core/webpack_s.config.js --watch",
-		"watch:wds": "webpack-cli serve --config ./core/wds.config.js",
-		"watch:wds_s": "webpack-cli serve --config ./core/wds_s.config.js",
-		"dev_simple": "bun webpack:dev:w_s & bun watch:wds_s",
-		"update": "bun update && bun run build",
-		"build": "webpack --mode production --config ./core/webpack.config.js",
-		"rebuild": "rimraf package-lock.json && rimraf node_modules && bun pm cache rm && bun i && bun webpack:dev"
+		"web_dev": "vite",
+		"web_prd": "tsc && vite build",
+		"web_pv": "vite preview",
+		"update": "bun update && bun web_dev"
 	},
 	"build": {
 		"appId": "com.fc2.blog.famibee.gallery",

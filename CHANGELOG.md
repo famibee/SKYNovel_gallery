@@ -1,5 +1,17 @@
 # Change Log
 
+## v2.7.0
+- chore: webpack から vite へ移行
+- fix: ライブラリ更新
+	- SKYNovel 1.61.17
+	- font-awesome 5.15.3 -> 6.7.2
+	- bootstrap 4.5.0 -> 5.3.3
+	- jquery 3.5.1 -> 削除
+	- Effekseer for WebGL v1.61c -> v1.70e
+	- ace 1.4.12 -> 1.37.1
+- fix(【えもふりレイヤ】サンプル): エラーを修正
+- 既知の問題
+	- (【３Ｄレイヤ・天球】サンプル): ThreeDLayer で天球が表示されない
 ## v2.6.6
 - fix: ライブラリ更新(SKYNovel v1.61.9)など
 - fix: Layer クラス変更対応

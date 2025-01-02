@@ -1,0 +1,62 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"target": "esnext",
+		"lib": ["esnext","dom"],
+		"module": "commonjs",
+
+		/* Bundler mode */
+		"moduleResolution": "node",
+		// "moduleResolution": "bundler",
+		"esModuleInterop": true,	// CommonJS/AMD/UMD モジュールを ES6 モジュールと同様に扱う
+			// pixi.js 6.1.0以降必須
+		"resolveJsonModule": true,	// JSON ファイルの型検証、json をインポートできるように
+
+		/* Output */
+		"sourceMap": true,
+		"outDir": "dist/",
+		"declaration": true,
+		"declarationMap": true,
+		"removeComments": true,
+		//emitDecoratorMetadata		// 出力 js に型を発行
+
+		/* Linting */
+		"strict": true,
+		/*
+			noImplicitAny
+			strictNullChecks
+			strictFunctionTypes
+			strictBindCallApply
+			strictPropertyInitialization
+			noImplicitThis
+			useUnknownInCatchVariables
+			alwaysStrict
+		*/
+		"strictPropertyInitialization": false,	// クラスプロパティの初期化を必須に
+
+		"allowUnreachableCode": false,	// 到達しえないコードを許容しない (false)
+		"allowUnusedLabels": true,	// 到達しえないラベルを許容しない
+		"noFallthroughCasesInSwitch": true,	// switch文のfallthroughを禁止
+		"noImplicitOverride": true,	// overrideキーワードを必須
+		"noImplicitReturns": true,	// 関数戻り値の型注釈を必須に
+		//"noPropertyAccessFromIndexSignature": false,	// インデックス型のプロパティ参照に[]を必須にする
+		"noUncheckedIndexedAccess": true,	// undefined の可能性があるプロパティへのアクセスを厳密に
+		"noUnusedLocals": true,		// 使っていないローカル変数をエラーに
+		"noUnusedParameters": true,	// 使っていない仮引数をエラーに
+								// ただし引数名の先頭にアンダースコアを付けると回避できる
+
+		"forceConsistentCasingInFileNames": true,	// import時にファイルパスの文字列で大文字小文字を区別するか
+		//"isolatedDeclarations": true,	// 変数や関数をエクスポート時、ユーザーに明示的な型注釈を求める（トランスパイラ向け）
+			// 時々 true でチェックできたら
+		"isolatedModules": true,		// 各ファイルを独立して変換する際に、解釈できないコードがある場合に警告（トランスパイラ向け）
+		//preserveSymlinks	false
+		//verbatimModuleSyntax	false
+		//"extendedDiagnostics": true,	// コンパイル時に TypeScript が時間を費やしている場所を検出
+		"noUncheckedSideEffectImports": true,
+
+		/* Other */
+		// experimentalDecorators
+		"incremental": true
+	},
+	"include": ["src/**/*"]
+}
