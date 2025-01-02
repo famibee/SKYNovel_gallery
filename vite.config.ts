@@ -1,6 +1,7 @@
 import type {UserConfig} from 'vite';
 
 export default {
+	publicDir: 'docs',
 	build: {
 		target: 'esnext',
 		rollupOptions: {
@@ -10,6 +11,8 @@ export default {
 			},
 		},
 		outDir: 'docs',
+		emptyOutDir: false,
+		copyPublicDir: false,
 	},
 	server: {
 		port: 8082,
