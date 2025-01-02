@@ -1,0 +1,54 @@
+[call label=*init]
+; Webフォントの読み込み
+; こころ明朝
+[loadplugin fn='https://fonts.googleapis.com/earlyaccess/kokoro.css']
+; ニコモジ
+[loadplugin fn='https://fonts.googleapis.com/earlyaccess/nicomoji.css']
+; はんなり明朝
+[loadplugin fn='https://fonts.googleapis.com/earlyaccess/hannari.css']
+	; Google Fonts + Japanese • Google Fonts + 日本語 https://googlefonts.github.io/japanese/
+
+; プロジェクト中の拡張子woff2、otf、ttfのフォントファイルを自動で読み込む
+	; このサンプルでは my_himajihoso.woff2
+
+[add_lay layer=mes class=txt]
+
+&wm = '横'
+[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='{"fill": "bisque"}']
+[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='{"fill": "bisque"}']
+
+[jump label=*tate]	; 縦書きスタートにする
+
+**
+[title text="&'フォント利用（#{wm}書き）'"]
+; Webフォントの利用
+[span style='font-size: 48px; font-family: "Kokoro"; color: greenyellow;']｜フォント《WEB》愉快《おもしろ》いな──。[span][r]
+[span style='font-size: 48px; font-family: "Nico Moji"; color: greenyellow;']｜フォント《WEB》愉快《おもしろ》いな──。[span][r]
+[span style='font-size: 48px; font-family: "Hannari"; color: greenyellow;']｜フォント《WEB》愉快《おもしろ》いな──。[span][r]
+[span style='font-size: 48px; font-family: KFhimajihoso; color: lightcoral;']｜フォント《ローカル》愉快《おもしろ》いな──。[span][p][clear_text]
+
+[jump label=**before]
+
+
+*yoko
+	&wm = '横'
+	[lay layer=mes style='writing-mode: horizontal-tb;'][clear_text][jump label=**before]
+*tate
+	&wm = '縦'
+	[lay layer=mes style='writing-mode: vertical-rl;'][clear_text][jump label=**before]
+
+***
+[clear_text][jump label=**before]
+
+*go_skip
+	&sn.skip.enabled = true
+[return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

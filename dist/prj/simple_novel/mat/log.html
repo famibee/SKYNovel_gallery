@@ -1,0 +1,102 @@
+<!doctype html><html lang="ja">
+<head><meta charset="utf-8"/><title>&nbsp;</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">html {user-select: none; -webkit-user-select: none;}</style>
+<script>
+	let a = [
+		{name: '語部', text: '　桜の樹の下には屍体が埋まつてゐる！', v: 'true'},
+		{name: '語部', text: '　これは信じていいことなんだよ。何故つて、桜の花があんなにも見事に咲くなんて信じられないことぢやないか。<br/>俺はあの美しさが信じられないので、この二三日不安だつた。しかしいま、やつとわかるときが来た。桜の樹の下には屍体が埋まつてゐる。これは信じていいことだ。', v: null},
+		{name: '語部', text: '　どうして俺が毎晩家へ帰つて来る道で、俺の部屋の数ある道具のうちの、選《よ》りに選つてちつぽけな薄つぺらいもの、安全<ruby>剃刀<rt>かみそり</rt></ruby>の刃なんぞが、千里眼のやうに思ひ浮んで来るのか──お前はそれがわからないと云つたが──そして俺にもやはりそれがわからないのだが──それもこれもやつぱり同じやうなことにちがひない。', v: 'true'},
+		{name: '語部', text: '　一体どんな樹の花でも、所謂《いはゆる》真つ盛りといふ状態に達すると、あたりの空気のなかへ一種神秘な雰囲気を撒《ま》き散らすものだ。それは、よく廻つた独楽《こ ま》が完全な静止に澄むやうに、また、音楽の上手な演奏がきまつてなにかの幻覚を伴ふやうに、灼熱《しやくねつ》した生殖の幻覚させる後光のやうなものだ。それは人の心を撲《う》たずにはおかない、不思議な、生き生きとした、美しさだ。', v: null},
+		{name: '語部', text: '　しかし、昨日、一昨日、俺の心をひどく陰気にしたものもそれなのだ。俺にはその美しさがなにか信じられないもののやうな気がした。俺は反対に不安になり、憂欝になり、空虚な気持になつた。しかし、俺はいまやつとわかつた。', v: true},
+	];
+	document.addEventListener('DOMContentLoaded', ()=> {
+		const proc_mode = (location.protocol.slice(0, 4) == 'http')
+			? 'server'
+			: ('val2ctrl' in window.parent) ?'local' :'electron';
+		if (proc_mode == 'local') val2ctrl();	// ローカルデバッグ用
+	}, false);
+
+	var val_dic = null;
+	function val2ctrl() {	// 変数→コンポーネント
+		if (val_dic) a = JSON.parse(val_dic);
+
+		let htm = '';
+		const len = a.length;
+		for (let i=len -1; i>=0; --i) {
+			const e = a[i];
+			htm += `
+<tr>
+	<td>${len-i}</td>
+	<td>${
+		e.v ?`<a class="btn-push" data-vfn="${e.v}">再生</a>` :''
+	}</td>
+	<td style="color: black;${
+		e.col ?`background-color: ${e.col};` :''
+	}"><div class="vr">${e.name}</div></td>
+	<td>${e.text}</td>
+</tr>`;
+		}
+		document.getElementById('tbody').innerHTML = htm;
+	}
+</script>
+</head>
+<body oncontextmenu="return false;">
+
+<style type="text/css">
+	body {margin: 0px 4px;}
+	.scroll {height: 100vh; overflow: scroll;}
+	.scroll table {
+		border-spacing: 0;
+		width: 100%;	/* フレームとして使用した際に最大に */
+	}
+	.scroll th, .scroll td {
+		color: white;
+		padding: 10px;
+		text-align: inherit;
+		border: solid 1px white;
+	}
+	.scroll th:nth-child(1) {z-index: 1; position: sticky; left: 0;}
+	.scroll thead tr:nth-child(1) th {position: sticky; top: 0;}
+	.scroll thead th {background-color: tomato; z-index: 2;}
+	.scroll thead th:nth-child(1) {z-index: 3;}
+
+	th:nth-child(1), td:nth-child(1) {background: #49c5f0;}
+	th:nth-child(2), td:nth-child(2) {background: #57b3e8;}
+	th:nth-child(3), td:nth-child(3) {background: #649cdf;}
+	th:nth-child(4), td:nth-child(4) {background: #6e87d7;}
+	.vr {writing-mode: vertical-rl;}
+
+	.btn-push {
+		display: inline-block;
+		max-width: 180px;
+		text-align: left;
+		background-color: #d37800;
+		font-size: 16px;
+		text-decoration: none;
+		font-weight: bold;
+		padding: 6px 4px;
+		border-radius: 4px;
+		border-bottom: 4px solid #ffa300;
+	}
+	.btn-push:active {
+		transform: translateY(4px);
+		border-bottom: none;
+	}
+	.btn-x {
+		position: absolute;
+		top: 2px;
+		right: 10px;
+	}
+</style>
+<div class="scroll"><table>
+<thead><tr>
+	<th>No</th>
+	<th>声</th>
+	<th>人</th>
+	<th>テキスト<a id="close" class="btn-push btn-x">閉じる</a></th>
+</tr></thead>
+<tbody id="tbody"></tbody>
+</table></div>
+
+</body></html>

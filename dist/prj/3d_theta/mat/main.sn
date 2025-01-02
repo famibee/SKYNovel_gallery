@@ -1,0 +1,32 @@
+[title text='３Ｄレイヤ・天球'][call label=*init]
+
+[add_lay layer=3d class=3d]
+[add_lay layer=mes class=txt]
+
+	[lay layer=mes style='text-shadow: 1px 1px 2px gray, 0 0 1em #000, 0 0 0.2em #000;']
+;	[lay layer=3d type=celestial_sphere fn=EWHQ1887 camera=0,0,0.1]
+	[lay layer=3d type=celestial_sphere fn=EWHQ1887 camera=0,0,0.1 controls=true]
+
+	　画像・文字レイヤに続き第三のレイヤ「３Ｄレイヤ」を[r]
+	使えます。画面ドラッグ・ホイールで視点操作可能です。[r]
+	※山口県祝島の神舞2016/8/17をRICOH THETAで[r]
+	撮影した、360°パノラマ画像を表示しています。
+;	クリックで消去[l][clear_lay layer=3d]
+[s]
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
+[return]
+
+*snapshot
+[snapshot fn=pic][return]
+
+*dump
+	[dump_lay]
+;	[dump_val]
+;	[dump_stack]
+[return]

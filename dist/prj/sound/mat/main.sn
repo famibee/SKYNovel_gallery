@@ -1,0 +1,327 @@
+[title text='効果音とBGM'][call label=*init]
+
+[add_lay layer=mes class=txt]
+
+;&m = 'jngl0005_mp3'
+;&m = 'jngl0005b_m4a'
+&m = 'rain01_m4a'
+;&m = 'rain01_wav'
+
+[macro name=lr][l][r][endmacro]
+[char2macro char=@ name=lr]
+
+[macro name=demo]
+	[er]
+	[span style='color: tomato;']
+		[ch text='&"【"+ sn.eventLabel +"】"']
+	[span]
+	[r]
+[endmacro]
+
+
+**
+[stop_allse]
+[er]
+[ch text='単発再生（効果音）後、　　　　　　連続再生（ＢＧＭ）後、' wait=0]
+
+	; col 1
+	[button text='stopse' left=20 top=50 page=fore label=*単発再生（効果音）stopse global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='stop_allse' left=20 top=80 page=fore label=*単発再生（効果音）stop_allse global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='ws' left=20 top=110 page=fore label=*単発再生（効果音）ws global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='ws_canskip' left=20 top=140 page=fore label=*単発再生（効果音）ws_canskip global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+
+	; col 2
+	[button text='fadese0.2' left=220 top=50 page=fore label=*単発再生（効果音）fadese0.2 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='fadese0wf' left=220 top=80 page=fore label=*単発再生（効果音）fadese0wf global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='fadese0sfs' left=220 top=110 page=fore label=*単発再生（効果音）fadese0sfs global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='fadeoutse' left=220 top=140 page=fore label=*単発再生（効果音）fadeoutse global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+
+	; col 3
+	[button text='stopse' left=420 top=50 page=fore label=*連続再生（ＢＧＭ）stopse global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='stop_allse' left=420 top=80 page=fore label=*連続再生（ＢＧＭ）stop_allse global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='ws' left=420 top=110 page=fore label=*連続再生（ＢＧＭ）ws global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='ws_canskip' left=420 top=140 page=fore label=*連続再生（ＢＧＭ）ws_canskip global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+
+	; col 4
+	[button text='fadese0.2' left=620 top=50 page=fore label=*連続再生（効果音）fadese0.2 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='fadese0wf' left=620 top=80 page=fore label=*連続再生（効果音）fadese0wf global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='fadese0sfs' left=620 top=110 page=fore label=*連続再生（効果音）fadese0sfs global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='fadeoutse' left=620 top=140 page=fore label=*連続再生（効果音）fadeoutse global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+
+
+	; 音声フォーマット別
+	[button text='(m4a)' left=20 top=200 page=fore label=*m4a再生 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(ogg)' left=120 top=200 page=fore label=*ogg再生 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(aac)' left=220 top=200 page=fore label=*aac再生 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(flac)' left=320 top=200 page=fore label=*flac再生 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(wav)' left=420 top=200 page=fore label=*wav再生 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(stopse)' left=620 top=200 page=fore label=*stopse global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+
+	[button text='xchgbuf' left=20 top=260 page=fore label=*xchgbuf global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='pan' left=120 top=260 page=fore label=*pan global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='playplay' left=220 top=260 page=fore label=*playplay global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+
+	[button text='(s2)' left=20 top=320 page=fore label=*s2 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(s2L)' left=120 top=320 page=fore label=*s2L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(e2)' left=220 top=320 page=fore label=*e2 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(e2L)' left=320 top=320 page=fore label=*e2L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(s1e3)' left=420 top=320 page=fore label=*s1e3 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(s1e3L)' left=520 top=320 page=fore label=*s1e3L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(s2e3L)' left=620 top=320 page=fore label=*s2e3L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+
+	[button text='(r2)' left=20 top=380 page=fore label=*r2 global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(r2L)' left=120 top=380 page=fore label=*r2L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(s1e3r2L)' left=220 top=380 page=fore label=*s1e3r2L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(s1e-1r2L)' left=320 top=380 page=fore label=*s1e-1r2L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(r1e3L)' left=420 top=380 page=fore label=*r1e3L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(r2e3L)' left=520 top=380 page=fore label=*r2e3L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+	[button text='(r2e-1L)' left=620 top=380 page=fore label=*r2e-1L global=true style='{"fill": "burlywood"}' fill_hover=tomato]
+
+***
+[s]
+
+
+*r2	[playse fn=jngl0005_mp3 ret_ms=2000][jump label=***before]	; (無視)
+*r2L
+	[demo]
+	[playse fn=jngl0005_mp3 ret_ms=2000 loop=true]
+	jngl loop ret_ms=2000[r]
+	end.[p]
+[jump label=**before]
+
+*s1e3r2L
+	[demo]
+	[playse fn=jngl0005_mp3 start_ms=1000 end_ms=3000 ret_ms=2000 loop=true]
+	jngl loop start_ms=1000 end_ms=3000 ret_ms=2000[r]
+	end.[p]
+[jump label=**before]
+*s1e-1r2L
+	[demo]
+	[playse fn=jngl0005_mp3 start_ms=1000 end_ms=-1500 ret_ms=2000 loop=true]
+	jngl loop start_ms=1000 end_ms=-1500 ret_ms=2000[r]
+	end.[p]
+[jump label=**before]
+
+*r1e3L
+	[demo]
+	[playse fn=jngl0005_mp3 ret_ms=1000 end_ms=3000 loop=true]
+	jngl loop ret_ms=1000 end_ms=3000[r]
+	end.[p]
+[jump label=**before]
+*r2e3L
+	[demo]
+	[playse fn=jngl0005_mp3 ret_ms=2000 end_ms=3500 loop=true]
+	jngl loop ret_ms=2000 end_ms=3500[r]
+	end.[p]
+[jump label=**before]
+*r2e-1L
+	[demo]
+	[playse fn=jngl0005_mp3 ret_ms=2000 end_ms=-1500 loop=true]
+	jngl loop ret_ms=2000 end_ms=-1500[r]
+	end.[p]
+[jump label=**before]
+
+
+*s2	[playse fn=jngl0005_mp3 start_ms=2000][jump label=***before]
+*s2L
+	[demo]
+	[playse fn=jngl0005_mp3 start_ms=2000 loop=true]
+	jngl loop start_ms=2000[r]
+	end.[p]
+[jump label=**before]
+
+*e2	[playse fn=jngl0005_mp3 end_ms=1000][jump label=***before]
+*e2L
+	[demo]
+	[playse fn=jngl0005_mp3 end_ms=1000 loop=true]
+	jngl loop end_ms=2000[r]
+	end.[p]
+[jump label=**before]
+
+*s1e3	[playse fn=jngl0005_mp3 start_ms=1500 end_ms=3000][jump label=***before]
+*s1e3L
+	[demo]
+	[playse fn=jngl0005_mp3 start_ms=1500 end_ms=3000 loop=true]
+	jngl loop start_ms=1500ms end_ms=3000[r]
+	end.[p]
+[jump label=**before]
+*s2e3L
+	[demo]
+	[playse fn=jngl0005_mp3 start_ms=2000 end_ms=3500 loop=true]
+	jngl loop start_ms=2000ms end_ms=3500[r]
+	end.[p]
+[jump label=**before]
+
+
+*xchgbuf
+	[demo]
+	[playse fn=&m buf=SE loop=true]
+	[playse fn=jngl0005b_m4a buf=SE2 loop=true]
+	rain is buf=SE[r]
+	jngl is buf=SE2[r]
+
+	click 2 xchgbuf@[xchgbuf buf=SE buf2=SE2][r]
+	click 2 stopse buf=SE2、but stop rain@[stopse buf=SE2][r]
+	end.[p]
+[jump label=**before]
+
+
+*pan
+	[demo]
+	[playse fn=&m buf=SE loop=true pan=-1]
+		pan=-1 (left)[p][r]
+	[playse fn=&m buf=SE loop=true pan=-0.5]
+		pan=-0.5[p][r]
+	[playse fn=&m buf=SE loop=true pan=0]
+		pan= 0 (center)[p][r]
+	[playse fn=&m buf=SE loop=true pan=0.5]
+		pan= 0.5[p][r]
+	[playse fn=&m buf=SE loop=true pan=1]
+		pan= 1 (right)[r]
+		end.[p]
+[jump label=**before]
+
+
+*playplay
+	[demo]
+	[playse fn=&m buf=SE loop=true]
+	click 2 play@
+	[playse fn=jngl0005b_m4a buf=SE loop=true]
+	end.[p]
+[jump label=**before]
+
+
+*m4a再生	[playse fn=don15][jump label=***before]
+*ogg再生	[playse fn=ys001PopFunk][jump label=***before]
+*aac再生	[playse fn=45king_aac][jump label=***before]
+*flac再生	[playse fn=bgm_ringil_build_good][jump label=***before]
+*wav再生	[playse fn=pon][jump label=***before]
+*stopse		[jump label=**before]
+
+
+; col 1
+*単発再生（効果音）stopse
+	[demo][playse fn=&m]
+	click 2 stopse@[stopse][r]
+	end.[p]
+[jump label=**before]
+
+*単発再生（効果音）stop_allse
+	[demo][playse fn=&m]
+	click 2 stop_allse@[stop_allse][r]
+	end.[p]
+[jump label=**before]
+
+*単発再生（効果音）ws
+	[demo][playse fn=&m]
+	ws(can not skip)...[ws]ok.[r]
+	end.[p]
+[jump label=**before]
+
+*単発再生（効果音）ws_canskip
+	[demo][playse fn=&m]
+	ws(canskip)...[ws canskip=true]ok.[r]
+	end.[p]
+[jump label=**before]
+
+
+; col 2
+*単発再生（効果音）fadese0.2
+	[demo][playse fn=&m]
+	fadese 0.2[r]
+	[fadese volume=0.2 time=2000]wf...[wf]ok.[r]
+	end.[p]
+[jump label=**before]
+
+*単発再生（効果音）fadese0wf
+	[demo][playse fn=&m]
+	fadese 0[r]
+	[fadese volume=0 time=2000]wf...[wf]ok.[r]
+	end.[p]
+[jump label=**before]
+
+*単発再生（効果音）fadese0sfs
+	[demo][playse fn=&m]
+	fadese 0[r]
+	[fadese volume=0 time=2000][r]
+	click 2 stopfadese 0@	; err
+	[stopfadese][r]
+	end.[p]		; stop
+[jump label=**before]
+
+*単発再生（効果音）fadeoutse
+	[demo][playse fn=&m]
+	fadeoutse[r]
+	[fadeoutse time=2000]wf...[wf]ok.[r]	; err
+	end.[p]
+[jump label=**before]
+
+
+; col 3
+*連続再生（ＢＧＭ）stopse
+	[demo][playse fn=&m loop=true]
+	click 2 stopse@[stopse][r]
+	end.[p]
+[jump label=**before]
+
+*連続再生（ＢＧＭ）stop_allse
+	[demo][playse fn=&m loop=true]
+	click 2 stop_allse@[stop_allse][r]
+	end.[p]
+[jump label=**before]
+
+*連続再生（ＢＧＭ）ws
+	[demo][playse fn=&m loop=true]
+	ws(can not skip)...[ws]ok. ws無視[r]
+	end.[p]
+[jump label=**before]
+
+*連続再生（ＢＧＭ）ws_canskip
+	[demo][playse fn=&m loop=true]
+	ws(canskip)...[ws canskip=true]ok. ws無視[r]
+	end.[p]
+[jump label=**before]
+
+
+; col 4
+*連続再生（効果音）fadese0.2
+	[demo][playse fn=&m loop=true]
+	click 2 fadese 0.2@
+	[fadese volume=0.2 time=2000]wf...[wf]ok.[r]
+	end.[p]
+[jump label=**before]
+
+*連続再生（効果音）fadese0wf
+	[demo][playse fn=&m loop=true]
+	click 2 fadese 0@
+	[fadese volume=0 time=2000]wf...[wf]ok.[r]
+	end.[p]
+[jump label=**before]
+
+*連続再生（効果音）fadese0sfs
+	[demo][playse fn=&m loop=true]
+	click 2 fadese 0@
+	[fadese volume=0 time=2000][r]
+	click 2 stopfadese 0@
+	[stopfadese][r]
+	end.[p]
+[jump label=**before]
+
+*連続再生（効果音）fadeoutse
+	[demo][playse fn=&m loop=true]
+	click 2 fadeoutse@
+	[fadeoutse time=2000]wf...[wf]ok.[r]
+	end.[p]
+[jump label=**before]
+
+
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

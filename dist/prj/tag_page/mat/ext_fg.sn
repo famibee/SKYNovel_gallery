@@ -1,0 +1,216 @@
+;********************************************************
+;@EXT_DESC	レイヤのクロスフェードと画像変更と動きの拡張機能
+;@VER		2024.04.30.008	フィルター機能など[lay]の機能追加に対応
+;@VER		2024.04.20.007	引数説明記述を拡張機能v4.16.0準拠に[zoom_tsy]内の無意味な[lay pos=stay]を削除。[zoom_tsy]動作修正
+;@VER		2023.06.19.006	sn更新で不要になった sn.skip.enabled の扱いを削除
+;@VER		2023.05.15.005	一部残っていた AIRNovel の scaleX,Y 属性名を修正
+;@VER		2022.11.02.004	[fg]に snippet_ext 追加
+;@VER		2022.10.18.003	[fg][img]@face説明追加
+;@VER		2018.6.22.000
+;********************************************************
+
+;********************************************************
+[macro name=fg nowarn_unused=true design_unit=true
+	sum='レイヤ画像を変更\nクロスフェードしながらレイヤ画像を変更する'
+	snippet_ext=SP_GSM
+
+	%layer='レイヤ名||処理対象のレイヤ'
+	%page?='fore、back|fore|ページの裏表'
+	%fn?='差分名称（カンマ区切りで複数可）|レイヤをクリア|基本画像ファイルを指定する'
+	%face?='差分名称（カンマ区切りで複数可）|何もしない|差分名称または画像ファイル名を指定する。[fg fn="a" face="b,c,d"]なら「基本a」の上に「差分b」を重ね、「差分c」を重ね、「差分d」を重ねる'
+	%alpha?='0.0〜1.0；透過度|1.0|レイヤの透過度。0（完全透明）〜0.5（半透明）〜1（不透明）\n引数は[lay]（画像レイヤ）、[trans]（ページ裏表を交換）の物を指定。主にlayer、fn、pos属性'
+	%time?='0〜；ミリ秒|500|変化にかける時間'
+	%（その他）?='…|…|引数は[lay]（画像レイヤ）、[trans]（ページ裏表を交換）の物を指定。\n立ち絵なら主にlayer、fn、pos、rule、time属性を使用すれば表現できる'
+]
+	[let name=lay text=%layer|0]
+	[img * layer=&lay]
+	[trans * layer=&lay time=%time|500]
+	[wt]
+[endmacro]
+
+;********************************************************
+[macro name=img design_unit=true
+	sum='画像レイヤ設定サブ\n背景レイヤに画像を設定する'
+
+	%layer='レイヤ名||処理対象のレイヤ'
+	%page?='fore、back|back|ページの裏表'
+	%fn?='差分名称（カンマ区切りで複数可）|レイヤをクリア|基本画像ファイルを指定する'
+	%face?='差分名称（カンマ区切りで複数可）|何もしない|差分名称または画像ファイル名を指定する。[fg fn="a" face="b,c,d"]なら「基本a」の上に「差分b」を重ね、「差分c」を重ね、「差分d」を重ねる'
+	%alpha?='0.0〜1.0；透過度|1.0|レイヤの透過度。0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%（その他）?='…|…|引数は[lay]（画像レイヤ）、[trans]（ページ裏表を交換）の物を指定。主にlayer、fn、pos属性'
+]
+	[lay * page=back visible=true rotation=%rotation|0 scale_x=%scale_x|1 cond='mp:fn != null']
+	[clear_lay layer=%layer page=back cond='mp:fn == null']
+	[lay * page=back visible=false cond='mp:fn == null']
+[endmacro]
+
+;********************************************************
+; フェードイン
+[macro name=fg_fi nowarn_unused=true design_unit=true
+	sum='フェードイン\nフェードインしながらレイヤ画像を出現させる'
+
+	%layer?='レイヤ名|0|処理対象のレイヤ'
+	%fn?='差分名称（カンマ区切りで複数可）|レイヤをクリア|基本画像ファイルを指定する'
+	%face?='差分名称（カンマ区切りで複数可）|何もしない|差分名称または画像ファイル名を指定する。[fg fn="a" face="b,c,d"]なら「基本a」の上に「差分b」を重ね、「差分c」を重ね、「差分d」を重ねる'
+	%time?='0〜；ミリ秒|500|変化にかける時間'
+	%left?="相対値か絶対値|（現在位置）|移動元・横位置の絶対位置\n（x='=-50'だと相対位置移動、x='-50'だと絶対位置移動）"
+	%top?="相対値か絶対値|（現在位置）|移動先・縦位置の絶対位置\n（y='=-50'だと相対位置移動、y='-50'だと絶対位置移動）"
+	%x?="相対値か絶対値|（移動しない）|移動元・横位置の絶対位置\n（x='=-50'だと相対位置移動、x='-50'だと絶対位置移動）"
+	%y?="相対値か絶対値|（移動しない）|移動先・縦位置の絶対位置\n（y='=-50'だと相対位置移動、y='-50'だと絶対位置移動）"
+	%alpha?='相対値か絶対値|0|レイヤの透過度（初期値）。0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%to_alpha?='相対値か絶対値|1|レイヤの透過度（終端値）'
+	%scale_x?='相対値か絶対値|1|移動元・横方向拡大／縮小するか。負の値ならレイヤを左右反転'
+	%scale_y?='相対値か絶対値|1|移動元・縦方向拡大／縮小するか。負の値ならレイヤを上下反転'
+	%to_scale_x?='相対値か絶対値|1|移動先・横方向拡大／縮小するか。負の値ならレイヤを左右反転'
+	%to_scale_y?='相対値か絶対値|1|移動先・縦方向拡大／縮小するか。負の値ならレイヤを上下反転'
+	%ease?='イージング名|Circular.easeOut|alpha・x・yなど値変化のイージング（値の変化の仕方）を指定する'
+	%no_wait?='true、false|false|trueを指定すると、終了を待たない'
+	%（その他）?='…|…|引数は[lay]（画像レイヤ）、[trans]（ページ裏表を交換）の物を指定。\n立ち絵なら主にlayer、fn、pos、rule、time属性を使用すれば表現できる'
+]
+	[let name=lay text=%layer|0]
+	[stop_tsy layer=&lay]
+	[lay * visible=true alpha=%alpha|0]
+		; left,topなど[lay]属性は主に初期位置
+	[tsy * name=&lay layer=&lay time=%time|500 alpha=%to_alpha|1 left=%to_left|0 top=%to_top|0 scale_x=%to_scale_x|1 scale_y=%to_scale_y|1]
+		; x,yなどは移動先指定。つまり終端
+		; x,yは x='=-50'だと相対、x='-50'だと絶対位置移動
+	[wait_tsy layer=&lay chk_exist_tw=true cond='! mp:no_wait']
+[endmacro]
+
+;********************************************************
+; フェードアウト
+[macro name=fg_fo nowarn_unused=true design_unit=true
+	sum='フェードアウト\nフェードアウトしながらレイヤ画像を消去する'
+
+	%layer?='レイヤ名|0|処理対象のレイヤ'
+	%time?='0〜；ミリ秒|500|変化にかける時間'
+	%left?="相対値か絶対値|（現在位置）|移動元・横位置の絶対位置\n（x='=-50'だと相対位置移動、x='-50'だと絶対位置移動）"
+	%top?="相対値か絶対値|（現在位置）|移動先・縦位置の絶対位置\n（y='=-50'だと相対位置移動、y='-50'だと絶対位置移動）"
+	%x?="相対値か絶対値|（移動しない）|移動元・横位置の絶対位置\n（x='=-50'だと相対位置移動、x='-50'だと絶対位置移動）"
+	%y?="相対値か絶対値|（移動しない）|移動先・縦位置の絶対位置\n（y='=-50'だと相対位置移動、y='-50'だと絶対位置移動）"
+	%alpha?='相対値か絶対値|0|レイヤの透過度（初期値）。0（完全透明）〜0.5（半透明）〜1（不透明）'
+	%scale_x?='相対値か絶対値|1|移動元・横方向拡大／縮小するか。負の値ならレイヤを左右反転'
+	%scale_y?='相対値か絶対値|1|移動元・縦方向拡大／縮小するか。負の値ならレイヤを上下反転'
+	%ease?='イージング名|Circular.easeOut|alpha・x・yなど値変化のイージング（値の変化の仕方）を指定する'
+	%no_wait?='true、false|false|trueを指定すると、終了を待たない'
+]
+	[let name=lay text=%layer|0]
+	[stop_tsy layer=&lay]
+	[tsy * name=&lay layer=&lay time=%time|500 alpha=%alpha|0]
+		; x,yなどは移動先指定。つまり終端。
+		; x,yは x='=-50'だと相対、x='-50'だと絶対位置移動
+	[wait_tsy layer=&lay chk_exist_tw=true cond='! mp:no_wait']
+[endmacro]
+
+;********************************************************
+; 立ち絵を屈伸させる
+[macro name=fg_squat nowarn_unused=true design_unit=true
+	sum='立ち絵を屈伸させる'
+
+	%layer?='レイヤ名|0|処理対象のレイヤ'
+	%time?='0〜；ミリ秒|250|変化にかける時間'
+	%y?='相対値か絶対値|50|下へ沈ませる移動量'
+	%ease?='イージング名|Circular.easeOut|揺れのイージング（値の変化の仕方）を指定する'
+	%repeats?='0〜（整数）|1|繰返し回数。0は無限ループ'
+	%no_wait?='true、false|false|trueを指定すると、終了を待たない'
+	%ease?='イージング名|Linear.None|揺れのイージング（値の変化の仕方）を指定する'
+]
+	[return cond=sn.skip.enabled]	; skip時は処理なし
+	[let name=t text=%time|250]
+	[return cond=t==0]		; 処理なし
+
+	[let name=lay text=%layer|0]
+	[let name=y text=%y|50]
+	[let name=ease text=%ease|Circular.Out]
+
+	[tsy * name=&lay layer=&lay time=&t ease=&ease path=#&"(,=$y) (,=0)"#]
+	[wait_tsy layer=&lay chk_exist_tw=true cond='! mp:no_wait']
+[endmacro]
+
+;********************************************************
+; 立ち絵を震わせる
+[macro name=fg_shake nowarn_unused=true design_unit=true
+	sum='立ち絵を震わせる'
+
+	%layer?='レイヤ名|0|処理対象のレイヤ'
+	%time?='0〜；ミリ秒|250|ひと揺れにかける時間（実際に掛かる時間 = time * repeats *5【マクロ内の[push_tsy_seq]の数】）'
+	%x?='相対値か絶対値|5|左右へ揺らす最大移動量'
+	%repeats?='0〜（整数）|5|繰返し回数。0は無限ループ'
+	%no_wait?='true、false|false|trueを指定すると、終了を待たない'
+]
+	[return cond=sn.skip.enabled]	; skip時は処理なし
+	[let name=t text=%time|20]
+	[return cond=t==0]		; 処理なし
+
+	[let name=lay text=%layer|0]
+	[let name=x text=%x|5]
+	[let name=w text=#&'("=-'+ x +','+ x +'")'#]
+
+	[tsy * name=&lay layer=&lay time=&t path=#&"$w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w (=0)"#]
+	[wait_tsy layer=&lay chk_exist_tw=true canskip=false cond='! mp:no_wait']
+[endmacro]
+
+;********************************************************
+; 立ち絵を反復横跳びさせる（楽しそう）
+[macro name=fg_sidestep nowarn_unused=true design_unit=true
+	sum='レイヤを反復横跳びさせる'
+
+	%layer?='レイヤ名|0|処理対象のレイヤ'
+	%time?='0〜；ミリ秒|250|一動作にかける時間（実際に掛かる時間 = time * 4）'
+	%x?='相対値か絶対値|25|左右へ揺らす移動量'
+	%y?='相対値か絶対値|25|下へ沈ませる移動量'
+	%repeats?='0〜（整数）|1|繰返し回数。0は無限ループ'
+	%no_wait?='true、false|false|trueを指定すると、終了を待たない'
+]
+	[return cond=sn.skip.enabled]	; skip時は処理なし
+	[let name=t text=%time|250]
+	[return cond=t==0]		; 処理なし
+
+	[let name=lay text=%layer|0]
+	[let name=x text=%x|25]
+	[let name=y text=%y|25]
+
+	[tsy * name=&lay layer=&lay time=&t ease=Back.Out
+		path=#&"(=-$x,=$y) (=0,=0) (=$x,=$y) (=0,=0)"#]
+	[wait_tsy layer=&lay chk_exist_tw=true canskip=false cond='! mp:no_wait']
+[endmacro]
+
+;********************************************************
+[macro name=zoom_tsy nowarn_unused=true design_unit=true
+	sum='ズームイン・アウトのトゥイーンを行う'
+
+	%layer?='レイヤ名|0|処理対象のレイヤ'
+	%fn?='差分名称（カンマ区切りで複数可）|レイヤをクリア|基本画像ファイルを指定する'
+	%time?='0〜；ミリ秒|250|一動作にかける時間（実際に掛かる時間 = time * 4）'
+	%visible?='true、false|true|true：表示、false：非表示'
+	%ease?='イージング名|Linear.None|揺れのイージング（値の変化の仕方）を指定する'
+]
+	[let name=v text=%visible|false]
+	[if exp=v]
+		&valFrom = 0.5
+		&valTo = 1
+	[else]
+		&valFrom = 1
+		&valTo = 0.5
+	[endif]
+
+	[let name=lay text=%layer|0]
+	[let name=w text=%width|'&const.sn.lay[lay].fore.width']
+	[let name=h text=%height|'&const.sn.lay[lay].fore.height']
+
+	[lay * layer=&lay
+		scale_x=&valFrom scale_y=&valFrom
+		left='&const.sn.config.window.width/2'
+		top='&const.sn.config.window.height/2'
+		pivot_x='&w/2' pivot_y='&h/2'
+		visible=true]
+
+	[tsy * name=&lay layer=&lay scale_x=&valTo scale_y=&valTo ease=Back.InOut]
+	[wait_tsy layer=&lay chk_exist_tw=true]
+
+	[lay layer=&lay visible=false cond=!v]
+[endmacro]
+
+;********************************************************
+
+[return]

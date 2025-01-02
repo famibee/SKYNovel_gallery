@@ -1,0 +1,38 @@
+[title text='既読スキップ'][call label=*init]
+
+[add_lay layer=mes class=txt]
+
+[button text=既読情報クリア left=340 top=80 page=fore label=*go_skip_clear global=true call=true style='{"fill": "bisque"}']
+[button text=既読スキップ left=340 top=120 page=fore label=*go_skip arg='go skip' global=true call=true style='{"fill": "bisque"}']
+
+　一[graph pic=breakpage]ページ目[l][r]
+　　２行目[l][r]
+　　３行目[p][clear_text]
+
+　二ペ[graph pic=breakpage]ージ目[l][r]
+　　２行目[l][r]
+　　３行目[p][clear_text]
+
+　三ペー[graph pic=breakpage]ジ目[l][r]
+　　２行目[l][r]
+　　３行目[p]
+
+[s]
+
+
+*go_skip_clear
+	[clearsysvar]
+[return]
+
+*go_skip
+	&sn.skip.enabled = true
+[return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]
