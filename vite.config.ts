@@ -13,6 +13,7 @@ export default {
 		outDir: 'docs',
 		emptyOutDir: false,
 		copyPublicDir: false,
+		chunkSizeWarningLimit: 760,
 	},
 	server: {
 		port: 8082,

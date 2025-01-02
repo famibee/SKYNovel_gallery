@@ -45,25 +45,8 @@
 		height: calc(100vh - 57px - 500px);
 	}
 </style>
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script defer type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	<!-- https://getbootstrap.com/ deferも忘れず -->
-<script defer>
-	const setBodyPT = ()=> {
-		const h = document.getElementsByClassName('navbar')[0].clientHeight;
-		document.getElementsByTagName('body')[0].style.paddingTop = (h +1) +'px';
-	};
-	window.addEventListener('load', setBodyPT, {once: true, passive: true});
-	window.addEventListener('resize', setBodyPT, {passive: true});
-
-	window.addEventListener('DOMContentLoaded', ()=> {
-		const wrp = document.getElementById('wrp');
-		document.getElementById('menu-toggle').onclick = ()=> {
-			wrp.classList.toggle('toggled');
-			return false;
-		};
-	}, {once: true, passive: true});
-
-</script>
 <!-- プラグイン系のスクリプト -->
 <!--
 	<script defer src="./plugin_lib/live2dcubismcore.min.js"></script>
@@ -75,10 +58,10 @@
 
 	<script defer src="./plugin_lib/effekseer_asmjs.min.js"></script>
 
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.1/ace.min.js" integrity="sha512-39pMYj4We1YvsGIsTFctdfIdkqFG09F5lVUM4NzwUgE20xuBHdPWI2Ra4AShMX4qMdwTN2vfb9ATOdkoMU512Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer type="module" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.37.1/ace.min.js" integrity="sha512-39pMYj4We1YvsGIsTFctdfIdkqFG09F5lVUM4NzwUgE20xuBHdPWI2Ra4AShMX4qMdwTN2vfb9ATOdkoMU512Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<!-- https://cdnjs.com/libraries/ace/ deferも忘れず -->
 
-  <script type="module" crossorigin src="/web.js"></script>
+  <script type="module" crossorigin src="web.js"></script>
 </head><body oncontextmenu="return false;">
 
 <nav class="navbar navbar-expand-md navbar-light bg-secondary fixed-top text-body">
