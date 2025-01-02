@@ -4,7 +4,7 @@
 - fix: Github Pages で動作するよう修正
 	- pixijs の ModernContext2D 定義を【letterSpacing: string】に手修正
 		- 直してくれないので
-		- 
+		- https://github.com/pixijs/pixijs/issues/11044
 ## v2.7.0
 - chore: webpack から vite へ移行
 - fix: ライブラリ更新
