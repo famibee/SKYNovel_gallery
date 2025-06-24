@@ -1,5 +1,10 @@
 # Change Log
 
+## v2.7.2
+- chore: vite 開発コマンド整理
+- fix: ライブラリ更新
+	- @famibee/skynovel v1.61.20
+	- vite v7.0.0
 ## v2.7.1
 - fix: Github Pages で動作するよう修正
 	- pixijs の ModernContext2D 定義を【letterSpacing: string】に手修正

@@ -8,20 +8,19 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.61.17",
+		"@famibee/skynovel": "^1.61.20",
 		"pixi.js": "^6.5.10",
-		"three": "^0.170.0"
+		"three": "^0.177.0"
 	},
 	"devDependencies": {
-		"@types/three": "^0.170.0",
-		"typescript": "^5.7.2",
-		"vite": "^6.0.6"
+		"@types/three": "^0.177.0",
+		"typescript": "^5.8.3",
+		"vite": "^7.0.0"
 	},
 	"scripts": {
-		"web_dev": "vite",
+		"start": "vite build -w & vite preview --open --port 8082",
 		"web_prd": "vite build",
-		"web_pv": "vite preview",
-		"update": "bun update && bun web_dev"
+		"update": "bun update"
 	},
 	"build": {
 		"appId": "com.fc2.blog.famibee.gallery",
