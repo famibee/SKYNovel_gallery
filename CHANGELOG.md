@@ -1,5 +1,14 @@
 # Change Log
 
+## v2.8.0
+- feat(ページ移動 サンプル): [page to] で oldest, newest, load ボタンやショートカット追加
+- fix: ライブラリ更新
+	- SKYNovel 1.62.0
+- fix(画面を揺らす サンプル): 手直し
+- fix(トゥイーンアニメを行なう サンプル): 手直し
+- fix(効果音とBGM サンプル): 手直し
+- fix(天球表示 サンプル): 表示されない不具合修正（ThreeDLayer.ts）
+- test: これ以外も含め一通り動作確認
 ## v2.7.2
 - chore: vite 開発コマンド整理
 - fix: ライブラリ更新

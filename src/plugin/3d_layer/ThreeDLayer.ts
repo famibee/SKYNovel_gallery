@@ -24,18 +24,19 @@ export class ThreeDLayer extends Layer {
 	static	#stageH		= 0;
 
 	static	THREE		: any;
+	static	async init() {ThreeDLayer.THREE ??= await import('three');}
+//	static	async init() {globalThis.THREE ??= await import('three');}	// 2024/3/30まで
+
 	#scene_3D	: Scene;
 	#canvas_3D	: WebGLRenderer;
 	#sprite_3D	: Sprite;
 
 	#camera		: Camera;
 
-	static	async init() {ThreeDLayer.THREE ??= await import('three');}
-//	static	async init() {globalThis.THREE ??= await import('three');}	// 2024/3/30まで
-
 	constructor(private pia: IPluginInitArg) {
 		super();
 
+		// 裏pageまでやると重そうなので
 		if (ThreeDLayer.#uniq_num++ % 2 == 1) return;
 		if (ThreeDLayer.#uniq_num === 1) {
 			const {window: {width, height}} = pia.getInfo();
@@ -115,9 +116,7 @@ export class ThreeDLayer extends Layer {
 			this.#scene_3D.add(light);
 		}
 		if ('controls' in hArg) {	// マウスドラッグで操作
-			const elm = document.getElementById('skynovel');
-			if (! elm) return false;
-			const controls = new OrbitControls(this.#camera, elm);
+			const controls = new OrbitControls(this.#camera, document.body);
 			controls.target.set(
 				this.#camera.position.x + 0.15,
 				this.#camera.position.y,
@@ -284,7 +283,7 @@ export class ThreeDLayer extends Layer {
 		if ('label' in hArg) {
 			inf.label = hArg['label'];
 			if (inf.gltf) {
-				const ac: AnimationClip = AnimationClip.findByName(inf.gltf.animations, inf.label || '');
+				const ac = AnimationClip.findByName(inf.gltf.animations, inf.label || '');
 			//	const ac: AnimationClip = AnimationClip.findByName(inf.gltf.animations, inf.label ?? '');	// 2020/10/20 エラーになるので
 				if (! ac) {
 					console.info(`エラーが発生しました。参考までに ${inf.fn}(glTF)内に存在するアニメ名を列挙します`);

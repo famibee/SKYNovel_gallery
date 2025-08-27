@@ -12,8 +12,6 @@
 	[button text=既読情報クリア left=600 top=20 page=fore label=*go_skip_clear global=true call=true style='{"fill": "tomato"}']
 	[button text=既読スキップ left=600 top=60 page=fore label=*go_skip arg='go skip' global=true call=true style='{"fill": "tomato"}']
 
-	停止（クリックで開始）
-		[waitclick][r]
 	縦横8ドット揺れを2秒/
 	[quake time=2000 hmax=8 vmax=8]
 		[wq]
@@ -23,9 +21,11 @@
 	横揺れを1秒/
 	[quake time=1000 vmax=0]
 		[wq]
-	縦横2ドット揺れを1.5秒
+	縦横2ドット揺れを1.5秒/
 	[quake time=1500 hmax=2 vmax=2]
-		[wq][er]
+		[wq]
+	停止（クリックで最初に戻る）[waitclick]
+		[er]
 
 	; サンプルは最初に戻るが、既読スキップすると永久ループになるので、その対策
 	&sn.tagL.enabled = true		; 頁末まで一気に読み進むか(l無視)
@@ -34,13 +34,9 @@
 [jump label=*loop]
 
 
-*go_skip_clear
-	[clearsysvar]
-[return]
-
-*go_skip
-	&sn.skip.enabled = true
-[return]
+*go_skip_clear	[clearsysvar][return]
+*go_skip	&sn.skip.enabled = true
+	[return]
 
 *init
 	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]

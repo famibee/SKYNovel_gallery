@@ -1,16 +1,13 @@
 [title text='トゥイーンアニメを行なう'][call label=*init]
 
-[add_lay layer=bg class=grp]
-	[lay layer=bg fn=bg]
-
-[add_lay layer=絵 class=grp]
-	[lay layer=絵 fn=sn_logo pivot_x=56 pivot_y=56]
-
+[add_lay layer=bg class=grp fn=bg]
+[add_lay layer=絵 class=grp fn=sn_logo pivot_x=56 pivot_y=56]
 [add_lay layer=mes class=txt]
 
-[button text=pause left=240 top=120 page=fore label=*pause global=true call=true fill_hover=tomato]
-[button text=resume left=240 top=160 page=fore label=*resume global=true call=true fill_hover=tomato]
-[button text=MouseOn.. left=240 top=200 page=fore label=*resume onenter=*pause onleave=*resume global=true call=true fill_hover=tomato]
+&sty = '{"align": "center","dropShadow": true,"dropShadowAlpha": 0.7,"dropShadowColor": "white","dropShadowBlur": 7,"dropShadowDistance": 0,"fill": "gray","fontSize": 30,"padding": 5}'
+[button text=pause left=240 top=120 page=fore label=*pause global=true call=true fill_hover=tomato style_hover=&sty]
+[button text=resume left=240 top=160 page=fore label=*resume global=true call=true fill_hover=tomato style_hover=&sty]
+[button text=MouseOn.. left=240 top=200 page=fore label=*resume onenter=*pause onleave=*resume global=true call=true fill_hover=tomato style_hover=&sty]
 
 
 *loop
@@ -34,14 +31,8 @@
 [jump label=*loop]
 
 
-*pause
-[pause_tsy layer=絵][return]
-
-*resume
-[resume_tsy layer=絵][return]
-
-
-[jump label=*ループ処理]
+*pause	[pause_tsy layer=絵][return]
+*resume	[resume_tsy layer=絵][return]
 
 
 *init

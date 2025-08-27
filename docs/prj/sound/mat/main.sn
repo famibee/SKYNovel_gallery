@@ -287,14 +287,14 @@
 *連続再生（効果音）fadese0.2
 	[demo][playse fn=&m loop=true]
 	click 2 fadese 0.2@
-	[fadese volume=0.2 time=2000]wf...[wf]ok.[r]
+	[fadese volume=0.2 time=2000]wf(can not skip)...[wf]ok.[r]
 	end.[p]
 [jump label=**before]
 
 *連続再生（効果音）fadese0wf
 	[demo][playse fn=&m loop=true]
 	click 2 fadese 0@
-	[fadese volume=0 time=2000]wf...[wf]ok.[r]
+	[fadese volume=0 time=2000]wf(can not skip)...[wf]ok.[r]
 	end.[p]
 [jump label=**before]
 
@@ -310,7 +310,7 @@
 *連続再生（効果音）fadeoutse
 	[demo][playse fn=&m loop=true]
 	click 2 fadeoutse@
-	[fadeoutse time=2000]wf...[wf]ok.[r]
+	[fadeoutse time=2000]wf(can not skip)...[wf]ok.[r]
 	end.[p]
 [jump label=**before]
 

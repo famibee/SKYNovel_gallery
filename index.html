@@ -667,6 +667,8 @@ window.addEventListener('load', ()=> {
 		}]);
 	};
 	//code.resize();
+	const ta = code.container.children[0];
+	ta.id = 'code_ta';	// コンソールエラー回避
 
 	const clpCode = document.getElementById('clpCode');
 	clpCode.addEventListener('shown.bs.collapse', ()=> code.scrollToRow(ln -5));

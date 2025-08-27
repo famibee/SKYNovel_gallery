@@ -10,15 +10,19 @@
 
 	[call fn=ext_*]
 
+	[event global=true call=true key=home label=*page arg=oldest]
 	[event global=true call=true key=pageup label=*page arg=prev]
 	[event global=true call=true key=pagedown label=*page arg=next]
-	[event global=true call=true key=rightclick label=*escape arg=load]
+	[event global=true call=true key=end label=*page arg=newest]
 	[event global=true call=true key=shift label=*escape arg=load]
 	[event global=true call=true key=escape label=*escape arg=exit]
 
 	[add_lay layer=btn class=txt]
-	[button layer=btn text=pageup left=20 top=430 page=fore global=true call=true label=*page arg=prev style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
-	[button layer=btn text=pagedown left=20 top=460 page=fore global=true call=true label=*page arg=next style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=oldest left=20 top=370 page=fore global=true call=true label=*page arg=oldest style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=prev left=20 top=400 page=fore global=true call=true label=*page arg=prev style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=next left=20 top=430 page=fore global=true call=true label=*page arg=next style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=newest left=20 top=460 page=fore global=true call=true label=*page arg=newest style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=load left=120 top=460 page=fore global=true call=true label=*page arg=load style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
 
 	[macro name=plc]
 		[p er=true]
@@ -28,6 +32,7 @@
 
 	&save:sn.doRecLog = true	; 必須
 	[record_place]		; 必須・冒頭の save:sn.doRecLog = true を保存
+	[page clear=true]
 	[page style='color: yellow; text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;']
 [endif]
 
