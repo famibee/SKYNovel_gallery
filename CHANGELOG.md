@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.8.1
+- fix: ライブラリ更新
+	- SKYNovel 1.62.1
 ## v2.8.0
 - feat(ページ移動 サンプル): [page to] で oldest, newest, load ボタンやショートカット追加
 - fix: ライブラリ更新
