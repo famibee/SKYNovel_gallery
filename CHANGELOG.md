@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.8.2
+- fix: ライブラリ更新
+	- SKYNovel 1.62.2
 ## v2.8.1
 - fix: ライブラリ更新
 	- SKYNovel 1.62.1
