@@ -1,0 +1,43 @@
+[title text='３Ｄレイヤ・glTF'][call label=*init]
+
+[add_lay layer=bg class=grp]
+[add_lay layer=3d class=3d]
+[add_lay layer=mes class=txt]
+
+	[lay layer=bg fn=wp1680]
+
+*loop
+;	[lay layer=3d type=gltf fn=Spacesuit label=mixamo.com camera=0,2,10 directional_light=-15,4,10 grid=0,-2,-10]
+	[lay layer=3d camera=0,2,10 directional_light=-15,4,10 grid=0,-2,-10]
+	[lay layer=3d name=てすと type=gltf fn=Spacesuit label=mixamo.com]
+	３Ｄレイヤに glTF モデルを表示しています。[r]
+
+	クリックで別アニメ[l][r]
+	[lay layer=3d name=てすと label=mixamo.com2 time=1000]
+;	[lay layer=3d name=てすと type=gltf fn=Spacesuit label=mixamo.com2]	; ロードname重複エラー
+
+	クリックで元のアニメ、終端停止[l][r]
+	[lay layer=3d name=てすと label=mixamo.com time=1000 loop=false]
+
+	クリックで消去[l][r]
+	[clear_lay layer=3d]
+
+	クリックで再度表示[l][er]
+[jump label=*loop]
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
+[return]
+
+*snapshot
+[snapshot fn=pic][return]
+
+*dump
+	[dump_lay]
+;	[dump_val]
+;	[dump_stack]
+[return]

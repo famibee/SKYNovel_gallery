@@ -1,0 +1,63 @@
+[title text='mp4, webp動画再生'][call label=*init]
+
+[add_lay layer=bg class=grp]
+	[lay layer=bg fn=DSC_0040]
+[add_lay layer=mov class=grp]
+[add_lay layer=mes class=txt]
+
+*loop
+	クリックで動画再生…と
+　[link label=*trans style='background-color: rgba(0,180,180,0.5);' style_hover='background-color: rgba(200,200,200,0.9);']ＴＲＡＮＳ[endlink]
+	、または
+　[link label=*tsy style='background-color: rgba(180,180,0,0.5);' style_hover='background-color: rgba(200,200,200,0.9);']ＴＳＹ[endlink]
+を行う[r][s]
+
+*trans
+	ＴＲＡＮＳ……
+	[lay layer=mov page=back fn=nc10889 visible=true]
+		[trans layer=mov time=2000]
+		[wt]
+	[wv fn=nc10889]
+	終了[r]
+
+	クリックで再生と退場……[l]
+	[lay layer=mov page=back visible=false]
+	[lay layer=mov fn=nc10889]
+		[trans layer=mov time=2000]
+		[wt]
+	[wv fn=nc10889]
+	終了、クリックで冒頭に戻る[l][er]
+[jump label=*loop]
+
+*tsy
+	ＴＳＹ……
+	[lay layer=mov fn=nc10889 visible=true left=750 top=0]
+		[tsy layer=mov time=1000 x=100 ease=Bounce.Out]
+		[wait_tsy layer=mov]
+	[wv fn=nc10889]
+	終了[r]
+
+	クリックで再生と退場……[l]
+	[lay layer=mov fn=nc10889 visible=true]
+		[tsy layer=mov time=3000 y=500]
+		[wait_tsy layer=mov]
+	[wv fn=nc10889]
+	終了、クリックで冒頭に戻る[l][er]
+[jump label=*loop]
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
+[return]
+
+*snapshot
+[snapshot fn=pic][return]
+
+*dump
+	[dump_lay]
+;	[dump_val]
+;	[dump_stack]
+[return]

@@ -282,7 +282,6 @@
 *fg2_dspw
 	[let_char_at name=lay text=&save:sn.fg2.lays@str pos=&for_call_idx.l]
 	[wait_tsy layer=&lay]
-;	[wait_tsy layer=&lay chk_exist_tw=true]	;4tst
 [return]
 ;********************************************************
 *fg2_init

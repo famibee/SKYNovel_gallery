@@ -74,7 +74,7 @@
 	[tsy * name=&lay layer=&lay time=%time|500 alpha=%to_alpha|1 left=%to_left|0 top=%to_top|0 scale_x=%to_scale_x|1 scale_y=%to_scale_y|1]
 		; x,yなどは移動先指定。つまり終端
 		; x,yは x='=-50'だと相対、x='-50'だと絶対位置移動
-	[wait_tsy layer=&lay chk_exist_tw=true cond='! mp:no_wait']
+	[wait_tsy layer=&lay cond='! mp:no_wait']
 [endmacro]
 
 ;********************************************************
@@ -99,7 +99,7 @@
 	[tsy * name=&lay layer=&lay time=%time|500 alpha=%alpha|0]
 		; x,yなどは移動先指定。つまり終端。
 		; x,yは x='=-50'だと相対、x='-50'だと絶対位置移動
-	[wait_tsy layer=&lay chk_exist_tw=true cond='! mp:no_wait']
+	[wait_tsy layer=&lay cond='! mp:no_wait']
 [endmacro]
 
 ;********************************************************
@@ -124,7 +124,7 @@
 	[let name=ease text=%ease|Circular.Out]
 
 	[tsy * name=&lay layer=&lay time=&t ease=&ease path=#&"(,=$y) (,=0)"#]
-	[wait_tsy layer=&lay chk_exist_tw=true cond='! mp:no_wait']
+	[wait_tsy layer=&lay cond='! mp:no_wait']
 [endmacro]
 
 ;********************************************************
@@ -147,7 +147,7 @@
 	[let name=w text=#&'("=-'+ x +','+ x +'")'#]
 
 	[tsy * name=&lay layer=&lay time=&t path=#&"$w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w $w (=0)"#]
-	[wait_tsy layer=&lay chk_exist_tw=true canskip=false cond='! mp:no_wait']
+	[wait_tsy layer=&lay canskip=false cond='! mp:no_wait']
 [endmacro]
 
 ;********************************************************
@@ -172,7 +172,7 @@
 
 	[tsy * name=&lay layer=&lay time=&t ease=Back.Out
 		path=#&"(=-$x,=$y) (=0,=0) (=$x,=$y) (=0,=0)"#]
-	[wait_tsy layer=&lay chk_exist_tw=true canskip=false cond='! mp:no_wait']
+	[wait_tsy layer=&lay canskip=false cond='! mp:no_wait']
 [endmacro]
 
 ;********************************************************
@@ -206,7 +206,7 @@
 		visible=true]
 
 	[tsy * name=&lay layer=&lay scale_x=&valTo scale_y=&valTo ease=Back.InOut]
-	[wait_tsy layer=&lay chk_exist_tw=true]
+	[wait_tsy layer=&lay]
 
 	[lay layer=&lay visible=false cond=!v]
 [endmacro]

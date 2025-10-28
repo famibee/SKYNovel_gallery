@@ -1,0 +1,110 @@
+[call label=*init]
+
+[add_lay layer=mes class=txt]
+
+&r_align = ''
+[button text=デフォルト left=20 top=460 page=fore label=*r_align arg='' global=true style='{"fill": "plum"}']
+[button text=center left=130 top=460 page=fore label=*r_align arg=center global=true style='{"fill": "plum"}']
+[button text=justify left=240 top=460 page=fore label=*r_align arg=justify global=true style='{"fill": "plum"}']
+[button text=121 left=350 top=460 page=fore label=*r_align arg=121 global=true style='{"fill": "plum"}']
+[button text=1ruby left=460 top=460 page=fore label=*r_align arg=1ruby global=true style='{"fill": "plum"}']
+
+&wm = '横'
+[button text=横書き left=640 top=430 page=fore label=*yoko global=true call=false style='{"fill": "bisque"}']
+[button text=縦書き left=640 top=460 page=fore label=*tate global=true call=false style='{"fill": "bisque"}']
+
+**
+[title text="&'ルビ記法（r_align=#{r_align}・#{wm}書き）'"]
+
+[span style='font-size: 30px; color: greenyellow;']｜奇天烈大百科《るびもじ》・蜊《あさり》[span]無指定
+	 [span style='font-size: 30px; color: plum;']
+		[tcy t=628 r=炎]
+		[tcy t=》｜《 r=《｜》 dummy=｜《》 r_style='color: orange;']
+		[graph pic=breakline r=絵 r_style='color: magenta;' dummy=｜《》]
+		｜傍点《*》
+	[span style='font-size: 30px; background-image: linear-gradient(0deg, rgba(128,128,128,0.3) 0%, rgba(255,255,255,0.5) 100%); border-radius: 4px;' r_style='color: lime; background-image: linear-gradient(180deg, rgba(255,128,0,0.7) 0%, rgba(128,128,128,0.3) 100%); border-radius: 8px;']
+		｜変《*♥》
+		[graph pic=breakline r=絵 r_style='color: magenta;' dummy=｜《》]
+		[tcy t=451 r=華氏 style='color: mediumslateblue;']
+	[span]
+[r]
+[span style='font-size: 30px; color: greenyellow;']｜奇天烈大百科《left｜るびもじ》・蜊《left｜あさり》[span]left
+	　 [span style='font-size: 30px; color: plum;']
+		％《%25》｜%5B%26%5D《%5B%26%20%5D》
+		[ruby2 t=蜊 r=left｜あさり style='color: purple;' r_style='color: lime;' dummy=｜《》]
+	[span style='color: red;']
+		｜考えるな《center｜Don't%20think,》、
+		[ch text=感じよ《Feel.》 style='color: lime;' r_style='color: magenta;']
+	[span]
+[r]
+[span style='font-size: 30px; color: greenyellow;']｜奇天烈大百科《center｜るびもじ》・蜊《center｜あさり》[span]center
+	 [link label=*yoko global=true style='font-size: 30px; color: blue; background-color: rgba(255,128,0,0.3);' style_hover='outline: thick dashed red;' r_style_hover='color: crimson;' r_style_clicked='color: maroon;' hint='リンク内のルビ' hint_opt='{"placement": "bottom"}']
+		[tcy t=628 r=炎]
+		[tcy t=》｜《 r=《｜》 dummy=｜《》 r_style='color: orange;']
+		[graph pic=breakline r=絵 r_style='color: magenta;' dummy=｜《》]
+		｜傍点《*》
+	[span style='background-image: linear-gradient(0deg, rgba(128,128,128,0.3) 0%, rgba(255,255,255,0.5) 100%); border-radius: 4px;' r_style='color: lime; background-image: linear-gradient(180deg, rgba(255,128,0,0.7) 0%, rgba(128,128,128,0.3) 100%); border-radius: 8px;']
+		｜変《*♥》
+		[graph pic=breakline r=絵 r_style='color: magenta;' dummy=｜《》]
+		[tcy t=451 r=華氏 style='color: mediumslateblue;']
+	[endlink]
+[r]
+[span style='font-size: 30px; color: greenyellow;']｜奇天烈大百科《right｜るびもじ》・蜊《right｜あさり》[span]right
+	　[link label=*tate global=true style='font-size: 28px; color: blue; background-color: rgba(128,255,0,0.3);' style_hover='outline: thick dashed red;' r_style_hover='color: crimson;' r_style_clicked='color: maroon;' hint='リンク内のルビ' hint_opt='{"placement": "bottom"}']
+		％《%25》｜%5B%26%5D《%5B%26%20%5D》
+		[ruby2 t=蜊 r=left｜あさり style='color: purple;' r_style='color: lime;' dummy=｜《》]
+	[span style='color: red;']
+		｜考えるな《center｜Don't%20think,》、
+		[ch text=感じよ《Feel.》 style='color: lime;' r_style='color: magenta;']
+	[endlink]
+[r]
+[span style='font-size: 30px; color: greenyellow;']｜奇天烈大百科《justify｜るびもじ》・蜊《justify｜あさり》[span]justify
+	 [span style='background-image: linear-gradient(70deg, tomato 0%, lightskyblue 100%); border-radius: 8px;']SPAN[span]
+	[ch text='CH' style='background-image: linear-gradient(70deg, tomato 0%, lightskyblue 100%); border-radius: 8px;']
+	　
+	 [link label=*yoko global=true style='color: blue; background-color: rgba(255,128,0,0.3);' style_hover='outline: thick dashed red;' r_style_hover='color: crimson;' r_style_clicked='color: maroon;' hint='リンク内のルビ' hint_opt='{"placement": "bottom"}']
+		[span style='background-image: linear-gradient(70deg, tomato 0%, lightskyblue 100%); border-radius: 8px;']SPAN[span]
+		[ch text='CH' style='background-image: linear-gradient(70deg, tomato 0%, lightskyblue 100%); border-radius: 8px;']
+	[endlink]
+[r]
+[span style='font-size: 30px; color: greenyellow;']｜奇天烈大百科《121｜るびもじ》・蜊《121｜あさり》[span]121
+
+[r]
+[span style='font-size: 30px; color: greenyellow;']｜奇天烈大百科《even｜るびもじ》・蜊《even｜あさり》[span]even
+
+[r]
+[span style='font-size: 30px; color: greenyellow;']｜奇天烈大百科《1ruby｜るびもじ》・蜊《1ruby｜あさり》[span]1ruby
+	
+	
+	[ch text='[r]※ご覧の環境はFirefoxですが、rightは未サポートです' cond="const.sn.platform.name == 'Firefox'"]
+[p][clear_text]
+
+[jump label=**before]
+
+
+*r_align
+	&r_align = sn.eventArg
+	[span r_align=&sn.eventArg][clear_text][jump label=**before]
+
+*yoko
+	&wm = '横'
+	[lay layer=mes style='writing-mode: horizontal-tb;'][clear_text][jump label=**before]
+*tate
+	&wm = '縦'
+	[lay layer=mes style='writing-mode: vertical-rl;'][clear_text][jump label=**before]
+
+***
+[clear_text][jump label=**before]
+
+*go_skip
+	&sn.skip.enabled = true
+[return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

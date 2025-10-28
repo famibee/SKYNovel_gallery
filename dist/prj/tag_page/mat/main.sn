@@ -1,0 +1,89 @@
+[if exp=!inited]	; ページ戻りの限界は先頭まで戻ってしまうので
+	&inited = true
+	[title text='ページ移動'][call label=*init]
+
+	[add_lay layer=base class=grp fn=japanese-style_00032]
+		; 素材お借りしました 「和風」の画像・写真素材を無料ダウンロード（1）背景フリー素材 BEIZ images https://www.beiz.jp/%E7%B4%A0%E6%9D%90/%E5%92%8C%E9%A2%A8/
+	[add_lay layer=0 class=grp]
+	[add_lay layer=mes class=txt
+		style='text-shadow: 2px 2px 10px #777, -2px 2px 10px #777, 2px -2px 10px #777, -2px -2px 10px #777;']
+
+	[call fn=ext_*]
+
+	[event global=true call=true key=home label=*page arg=oldest]
+	[event global=true call=true key=pageup label=*page arg=prev]
+	[event global=true call=true key=pagedown label=*page arg=next]
+	[event global=true call=true key=end label=*page arg=newest]
+	[event global=true call=true key=shift label=*escape arg=load]
+	[event global=true call=true key=escape label=*escape arg=exit]
+
+	[add_lay layer=btn class=txt]
+	[button layer=btn text=oldest left=20 top=370 page=fore global=true call=true label=*page arg=oldest style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=prev left=20 top=400 page=fore global=true call=true label=*page arg=prev style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=next left=20 top=430 page=fore global=true call=true label=*page arg=next style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=newest left=20 top=460 page=fore global=true call=true label=*page arg=newest style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+	[button layer=btn text=load left=120 top=460 page=fore global=true call=true label=*page arg=load style='{"fill": "bisque"}' style_hover='{"fill": "#4444ff"}']
+
+	[macro name=plc]
+		[p er=true]
+		[record_place]	; 必須・途中のレイヤ画像変化を保存
+	[endmacro]
+	[char2macro char=¥ name=plc]
+
+	&save:sn.doRecLog = true	; 必須
+	[record_place]		; 必須・冒頭の save:sn.doRecLog = true を保存
+	[page clear=true]
+	[page style='color: yellow; text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;']
+[endif]
+
+	[fg fn=01 layer=0]
+	既読ページを page down / up キーで移動できます[r]
+	[r]
+[span style='color: #00aa00;']1．[span]秋の田の かりほの庵の 苫をあらみ[l][r]わが衣手は 露にぬれつつ （天智天皇）¥
+
+	[fg layer=base time=0 fn=japanese-style_00051]
+	[fg fn=02 layer=0]
+[span style='color: #00aa00;']2．[span]春すぎて 夏来にけらし 白妙の[l][r]衣ほすてふ 天の香具山 （持統天皇）¥
+
+	[fg fn=03 layer=0]
+	[page style='color: red;']
+[span style='color: #00aa00;']3．[span]あしびきの 山鳥の尾の しだり尾の[l][r]ながながし夜を ひとりかも寝む （柿本人麻呂）¥
+
+	[fg fn=04 layer=0]
+[span style='color: #00aa00;']4．[span]田子の浦に うち出でて見れば 白妙の[l][r]富士の高嶺に 雪はふりつつ （山部赤人）¥
+
+	[fg layer=base time=0 fn=japanese-style_00022]
+	[page style='color: yellow;']
+	[fg fn=05 layer=0]
+[span style='color: #00aa00;']5．[span]奥山に もみぢ踏み分け 鳴く鹿の[l][r]声聞く時ぞ 秋は悲しき （猿丸大夫）¥
+
+	[fg fn=06 layer=0]
+[span style='color: #00aa00;']6．[span]かささぎの 渡せる橋に おく霜の[l][r]白きを見れば 夜ぞふけにける （中納言家持）¥
+
+	[fg fn=07 layer=0]
+[span style='color: #00aa00;']7．[span]天の原 ふりさけ見れば 春日なる[l][r]三笠の山に 出でし月かも （安倍仲麿）¥
+
+	[fg layer=base time=0 fn=japanese-style_00189]
+	[fg fn=08 layer=0]
+[span style='color: #00aa00;']8．[span]わが庵は 都のたつみ しかぞすむ[l][r]世をうぢ山と 人はいふなり （喜撰法師）¥
+
+	[fg fn=09 layer=0]
+[span style='color: #00aa00;']9．[span]花の色は うつりにけりな いたづらに[l][r]わが身世にふる ながめせしまに （小野小町）¥
+
+	[fg fn=10 layer=0]
+[span style='color: #00aa00;']10[span]．これやこの 行くも帰るも 別れては[l][r]知るも知らぬも あふ坂の関 （蟬丸）
+
+[s]
+BAD
+
+*page	[page to=&sn.eventArg][return]
+*escape	[page to=&sn.eventArg cond=const.sn.isPaging][return]
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

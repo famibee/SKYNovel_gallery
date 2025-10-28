@@ -1,0 +1,204 @@
+[title text='フィルター'][call label=*init]
+
+[add_lay layer=bg class=grp]
+;	[lay layer=bg fn=bg_0 visible=true filter=black_and_white]
+[add_lay layer=mes class=txt]
+	[lay layer=mes style="color: black;"]
+[add_lay layer=3 class=grp]
+
+	[call fn=ext_*]
+	[lay layer=mes float=true]
+
+	[char2macro char=@ name=l]
+
+
+[button text=クリア left=20 top=40 page=fore call=true label=*clear global=true arg=クリア style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=フィルタをクリア]
+;[button text=blur left=130 top=40 page=fore call=true label=*almighty global=true arg=blur style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}']
+[button text=blur left=240 top=40 page=fore call=true label=*almighty global=true arg=blur style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=ガウスぼかし]
+[button text=noise left=350 top=40 page=fore call=true label=*almighty global=true arg=noise style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=ノイズエフェクト]
+[button text=color_matrix left=460 top=40 page=fore call=true label=*color_matrix global=true arg=color_matrix style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=カラーマトリックス]
+[button text=black_and_white left=570 top=40 page=fore call=true label=*almighty global=true arg=black_and_white style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=白黒]
+
+[button text=brightness left=20 top=70 page=fore call=true label=*almighty global=true arg=brightness style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=明るさを調整]
+[button text=browni left=130 top=70 page=fore call=true label=*almighty global=true arg=browni style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=おいしいブラウニー]
+[button text=color_tone left=240 top=70 page=fore call=true label=*color_tone global=true arg=color_tone style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=カラートーン]
+[button text=contrast left=350 top=70 page=fore call=true label=*almighty global=true arg=contrast style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=コントラスト]
+[button text=grayscale left=460 top=70 page=fore call=true label=*almighty global=true arg=grayscale style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=グレースケール]
+[button text=hue left=570 top=70 page=fore call=true label=*almighty global=true arg=hue style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=色相]
+
+[button text=kodachrome left=20 top=100 page=fore call=true label=*almighty global=true arg=kodachrome style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=コダクローム]
+[button text=lsd left=130 top=100 page=fore call=true label=*almighty global=true arg=lsd style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=LSD効果]
+[button text=negative left=240 top=100 page=fore call=true label=*almighty global=true arg=negative style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=ネガティブ]
+[button text=night left=350 top=100 page=fore call=true label=*almighty global=true arg=night style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=ナイトエフェクト]
+[button text=polaroid left=460 top=100 page=fore call=true label=*almighty global=true arg=polaroid style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=ポラロイド]
+[button text=predator left=570 top=100 page=fore call=true label=*almighty global=true arg=predator style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=捕食者効果]
+
+[button text=saturate left=20 top=130 page=fore call=true label=*almighty global=true arg=saturate style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=彩度]
+[button text=sepia left=130 top=130 page=fore call=true label=*almighty global=true arg=sepia style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=セピア]
+[button text=technicolor left=240 top=130 page=fore call=true label=*almighty global=true arg=technicolor style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=テクニカラー]
+[button text=tint left=350 top=130 page=fore call=true label=*almighty global=true arg=tint style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=色合い]
+[button text=to_bgr left=460 top=130 page=fore call=true label=*almighty global=true arg=to_bgr style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=赤と青の交換]
+[button text=vintage left=570 top=130 page=fore call=true label=*almighty global=true arg=vintage style='{"fill": "tomato"}' style_hover='{"fill": "#006e54"}' hint=ビンテージ]
+
+
+[button text=屈伸 left=640 top=440 page=fore call=true label=*squat global=true style='{"fill": "#7a4171"}' style_hover='{"fill": "tomato"}']
+[button text=反復横跳び left=640 top=470 page=fore call=true label=*sidestep global=true style='{"fill": "#7a4171"}' style_hover='{"fill": "tomato"}']
+
+
+;*********************************************************
+&sn.fg2.attention_filter = 'brightness'	; これを本文中に書くと最後に変化した立ち絵を目立たせる（それ以外暗くする）
+
+&sn.eventArg = 'black_and_white'
+[call label=*clear]	; タイトルなど
+	[lay layer=bg fn=bg_0 visible=true filter=black_and_white]
+
+
+0	[fg2 fn=鑑定官_通常]@
+;	aa	[fg2 swap=鑑定官 fn=女子中_惚れる]@
+;	ax	[fg2 swap=鑑定官0 fn=女子中_惚れる]@
+1	[fg2 fn=鑑定官_眼鏡]@
+2	[fg2 fn=女子中_惚れる]@
+屈	[fg2_squat name=女子中]@
+震	[fg2_shake name=女子中]@
+横跳	[fg2_sidestep name=女子中]@
+;横跳	[fg2_sidestep name=女子中 no_wait=true]@
+;	[clear_lay layer=0]	; [fg2]があずかり知らぬところで
+;	[clear_lay layer=1]	; [fg2]があずかり知らぬところで
+3	[fg2 fn=医師_会話 add=l]@
+4	[fg2 fn=医師_笑み]@
+5	[fg2 fn=女子中_勝ち誇り]@
+6	[fg2 del=女子中]@
+7	[fg2 fn=記者_通常]@
+8	[fg2 del=記者]@
+9	[fg2 fn=工員_通常 add=r]@
+A	[fg2 fn=女子中_勝ち誇り add=cr]@
+B	[fg2 del=女子中]@
+C	[fg2 fn=記者_通常 add=cl]@
+D	[fg2 swap=医師 fn=女子中_惚れる]@
+	[fg2 fn=女子中_惚れる]@
+[s]
+
+
+;[jump label=*main_attention]
+*main_attention
+
+; alpha変化中だけfilterが外れるので[fg2]は未サポート
+	[fg fn=鑑定官_眼鏡]
+	[fg fn=鑑定官_眼鏡 layer=1 pos=r filter=to_bgr]
+	[fg fn=鑑定官_眼鏡 layer=2 pos=l filter=technicolor]
+[s]
+
+
+; ===
+;0	[fg fn=鑑定官_通常 filter=to_bgr]	; ok
+0	[fg2 fn=鑑定官_通常 filter=to_bgr]	; trans中はフィルタ掛からない
+;0	[fg2 fn=鑑定官_通常 filter=night]	; trans中にもフィルタ、終わるとＷ
+@
+2	[fg2 fn=女子中_惚れる filter=technicolor]
+;@
+;3	[fg2 fn=医師_会話 add=l filter=night]
+3	[fg2 fn=医師_会話 add=l filter=to_bgr]
+@
+; ===
+
+
+
+;0	[fg fn=鑑定官_通常 filter=night]@
+0	[fg2 fn=鑑定官_通常 filter=night]@
+
+;0	[fg2 fn=鑑定官_通常]@
+;	[add_filter layer=0 filter=sepia]
+
+
+;	aa	[fg2 swap=鑑定官 fn=女子中_惚れる]@
+;	ax	[fg2 swap=鑑定官0 fn=女子中_惚れる]@
+1	[fg2 fn=鑑定官_眼鏡 filter=vintage]@
+2	[fg2 fn=女子中_惚れる filter=technicolor]@
+
+屈
+;	[clear_filter layer=1]
+;	[add_filter layer=1 filter=sepia]
+;	[fg2_squat name=女子中]@
+	[fg2_squat name=女子中 filter=sepia]@
+
+震
+;	[clear_filter layer=1]
+;	[add_filter layer=1 filter=lsd]
+;	[fg2_shake name=女子中]@
+	[fg2_shake name=女子中 filter=lsd]@
+
+横跳
+;		[clear_filter layer=1]
+;		[add_filter layer=1 filter=polaroid]
+;		[fg2_sidestep name=女子中]@
+		[fg2_sidestep name=女子中 filter=saturate]@
+;		[fg2_sidestep name=女子中 filter=saturate no_wait=true]@
+
+;	[clear_lay layer=0]	; [fg2]があずかり知らぬところで
+;	[clear_lay layer=1]	; [fg2]があずかり知らぬところで
+3	[fg2 fn=医師_会話 add=l filter=to_bgr]@
+
+4	[fg2 fn=医師_笑み filter=lsd]@
+5	[fg2 fn=女子中_勝ち誇り]@
+6	[fg2 del=女子中]@
+7	[fg2 fn=記者_通常]@
+8	[fg2 del=記者]@
+9	[fg2 fn=工員_通常 add=r]@
+A	[fg2 fn=女子中_勝ち誇り add=cr]@
+B	[fg2 del=女子中]@
+C	[fg2 fn=記者_通常 add=cl]@
+D	[fg2 swap=医師 fn=女子中_惚れる]@
+	[fg2 fn=女子中_惚れる]@
+[s]
+
+
+*clear
+	[title text=#&'フィルター bg:'+ sn.eventArg#]
+	[clear_filter layer=bg]
+[return]
+
+
+*almighty
+	[call label=*clear]
+	[add_filter layer=bg filter=&sn.eventArg]
+[return]
+
+
+*color_matrix
+	[call label=*clear]
+	[add_filter layer=bg filter=color_matrix matrix='2.0, 0.0, 0.0, 0.0, 0.0,  0.0, 1.0, 0.0, 0.0, 0.0,  0.0, 0.0, 1.0, 0.0, 0.0,  0.0, 0.0, 0.0, 1.0, 0.0']
+[return]
+
+*color_tone
+	[call label=*clear]
+	[add_filter layer=bg filter=color_tone desaturation=0.2 toned=0.15 light_color=0xFFFFFF dark_color=0x000000]
+[return]
+
+
+*squat
+	[fg_squat layer=0]
+;	[fg2_squat name=鑑定官_眼鏡]
+[return]
+
+*sidestep
+	[fg_sidestep layer=0]
+;	[fg2_sidestep name=鑑定官_眼鏡]
+;	[fg2_sidestep name=鑑定官_眼鏡 no_wait=true]
+[return]
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+	[event global=true call=true key=F8 label=*dump]
+[return]
+
+*dump
+	[dump_lay]
+;	[dump_val]
+;	[dump_stack]
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

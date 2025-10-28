@@ -1,0 +1,18 @@
+{
+	"save_ns": "gallery_log_and_resume",
+	"window": {
+		"width": 750,
+		"height": 500
+	},
+	"debug"	: {
+		"devtool"		: true,
+		"token"			: false,
+		"tag"			: false,
+		"putCh"			: false,
+		"debugLog"		: false,
+		"baseTx"		: false,
+		"masume"		: false,
+		"variable"		: false
+	},
+	"init"	: {"escape"	: "¥"}
+}

@@ -1,0 +1,681 @@
+[title text='複数イベント待ち'][call label=*init]
+
+[add_lay layer=bg class=grp fn=bg_0 filter=negative]
+[add_lay layer=0 class=grp fn=鑑定官_眼鏡]
+[add_lay layer=mes class=txt style='text-shadow: slategray 1px 1px 0, slategray -1px -1px 0, slategray -1px 1px 0, slategray 1px -1px 0, slategray 0px 1px 0, slategray  0-1px 0, slategray -1px 0 0, slategray 1px 0 0;']
+[add_frame id=frame src='frame' visible=false b_color=lightgray height=&const.sn.config.window.height*2/3]
+
+
+&st='background-color: rgba(0,180,180,0.5);'
+&st_bug='background-color: rgba(255,80,80,0.5);'
+&st_hv='background-color: rgba(200,200,200,0.9);'
+
+**
+&doWait = sys:sn.tagCh.doWait
+&sys:sn.tagCh.doWait = false
+&doWait_Kidoku = sys:sn.tagCh.doWait_Kidoku
+&sys:sn.tagCh.doWait_Kidoku = false
+
+;	&'テンプレ素材の拡張子を変えた場合（png→jpgなど）に、分かりづらい不具合になっていたので[r]'&
+;	テンプレ素材の拡張子を変えた場合（png→jpgなど）に、分かりづらい不具合になっていたので[r]
+
+[ch text='　発生＼待ち　p　  s　ws wf　wq wait_tsy wt　wv wait' style='color: #e6b422;']
+[ch text='[r]A quake' style='color: #e6b422;']
+	　　 
+	[link label=*A01 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*A02 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*A03 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*A04 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*A05 style=&st style_hover=&st_hv]Tst[endlink]    
+	[link label=*A06 style=&st style_hover=&st_hv]Tst[endlink]　　
+	[link label=*A07 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*A08 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*A09 style=&st style_hover=&st_hv]Tst[endlink]
+
+[ch text='[r]B fadese' style='color: #e6b422;']
+	　　
+	[link label=*B01 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*B02 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*B03 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*B04 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*B05 style=&st style_hover=&st_hv]Tst[endlink]    
+	[link label=*B06 style=&st style_hover=&st_hv]Tst[endlink]　　
+	[link label=*B07 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*B08 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*B09 style=&st style_hover=&st_hv]Tst[endlink]
+
+[ch text='[r]C playse' style='color: #e6b422;']
+	　　 
+	[link label=*C01 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*C02 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*C03 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*C04 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*C05 style=&st style_hover=&st_hv]Tst[endlink]    
+	[link label=*C06 style=&st style_hover=&st_hv]Tst[endlink]　　
+	[link label=*C07 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*C08 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*C09 style=&st style_hover=&st_hv]Tst[endlink]
+
+[ch text='[r]D tsy' style='color: #e6b422;']
+	　　　　
+	[link label=*D01 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*D02 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*D03 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*D04 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*D05 style=&st style_hover=&st_hv]Tst[endlink]    
+	[link label=*D06 style=&st style_hover=&st_hv]Tst[endlink]　　
+	[link label=*D07 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*D08 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*D09 style=&st style_hover=&st_hv]Tst[endlink]
+
+[ch text='[r]E tsy_frame' style='color: #e6b422;']
+	 
+	[link label=*E01 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*E02 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*E03 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*E04 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*E05 style=&st style_hover=&st_hv]Tst[endlink]    
+	[link label=*E06 style=&st style_hover=&st_hv]Tst[endlink]　　
+	[link label=*E07 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*E08 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*E09 style=&st style_hover=&st_hv]Tst[endlink]
+
+[ch text='[r]F trans' style='color: #e6b422;']
+	　　　
+	[link label=*F01 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*F02 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*F03 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*F04 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*F05 style=&st style_hover=&st_hv]Tst[endlink]    
+	[link label=*F06 style=&st style_hover=&st_hv]Tst[endlink]　　
+	[link label=*F07 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*F08 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*F09 style=&st style_hover=&st_hv]Tst[endlink]
+
+[ch text='[r]G lay mov' style='color: #e6b422;']
+	　 
+	[link label=*G01 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*G02 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*G03 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*G04 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*G05 style=&st style_hover=&st_hv]Tst[endlink]    
+	[link label=*G06 style=&st style_hover=&st_hv]Tst[endlink]　　
+	[link label=*G07 style=&st style_hover=&st_hv]Tst[endlink] 
+	[link label=*G08 style=&st style_hover=&st_hv]Tst[endlink]  
+	[link label=*G09 style=&st style_hover=&st_hv]Tst[endlink]
+
+	[r]
+
+	&sys:sn.tagCh.doWait = doWait
+	&sys:sn.tagCh.doWait_Kidoku = doWait_Kidoku
+[s]
+
+
+*A01	[ch text='A01=' wait=0]	; quake / p
+[quake time=1000 hmax=8 vmax=8]
+	[ch text='p.' wait=0]
+	[p]勝手に進んだ？	; 勝手に進んでしまう
+wq[wq]
+[r]END.[s]
+
+
+*A02	[ch text='A02=' wait=0]	; quake / s
+[quake time=1000 hmax=8 vmax=8]
+	[ch text='s.' wait=0]
+	[s]ここに来たらアウト	; OK
+wq[wq]
+[r]END.[s]
+
+
+*A03	[ch text='A03=' wait=0]	; quake / ws
+[playse fn=jngl0005_mp3 buf=tst]
+[quake time=1000 hmax=8 vmax=8]
+	[ch text='ws.' wait=0]
+	[ws buf=tst]音停止で進んだ？	; 勝手に進んでしまう
+wq[wq]
+[r]END.[s]
+
+
+*A04	[ch text='A04=' wait=0]	; quake / wf
+[playse fn=jngl0005_mp3][fadese volume=0 time=3000]fadese...[r]
+[quake time=1000 hmax=8 vmax=8]
+	[ch text='wf.' wait=0]
+	[wf]FOで進んだ？	; 勝手に進んでしまう
+wq[wq]
+[r]END.[s]
+
+
+*A05	[ch text='A05=' wait=0]	; quake / wq
+;[quake time=3000 hmax=8 vmax=8]
+[quake time=1000 hmax=8 vmax=8]
+	[ch text='wq.' wait=0]
+	[wq]揺れ停止で進んだ？	; 本来の動作、OK
+[r]END.[s]
+
+
+*A06	[ch text='A06=' wait=0]	; quake / wait_tsy
+[tsy layer=bg x==500 time=4000]
+[quake time=1000 hmax=8 vmax=8]
+	[ch text='wait_tsy.' wait=0]
+	[wait_tsy layer=bg]動作停止で進んだ？	; 勝手に進んでしまう
+wq[wq]
+[r]END.[s]
+
+
+*A07	[ch text='A07=' wait=0]	; quake / wt
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=2000]
+[quake time=1000 hmax=8 vmax=8]
+	[ch text='wt.' wait=0]
+	[wt]trans完了で進んだ？	; [quake]冒頭で[trans]瞬時終了、仕様、OK
+wq[wq]
+[r]END.[s]
+
+
+*A08	[ch text='A08=' wait=0]	; quake / wv
+[lay layer=0 fn=nc10889]
+[quake time=1000 hmax=8 vmax=8]
+	[ch text='wv.' wait=0]
+	[wv fn=nc10889]動画停止で進んだ？	; 勝手に進んでしまう
+wq[wq]
+[r]END.[s]
+
+
+*A09	[ch text='A09=' wait=0]	; quake / wait
+[quake time=1000 hmax=8 vmax=8]
+	[ch text='wait.' wait=0]
+	[wait time=3000]三秒で進んだ？	; 勝手に進んでしまう
+wq[wq]
+[r]END.[s]
+
+
+
+*B01	[ch text='B01=' wait=0]	; fadese / p
+[playse fn=rain01_m4a][fadese volume=0 time=2000]fadese...[r]
+	[ch text='p.' wait=0]
+	[p]勝手に進んだ？	; OK
+wf[wf]
+[r]END.[s]
+
+
+*B02	[ch text='B02=' wait=0]	; fadese / s
+[playse fn=rain01_m4a][fadese volume=0 time=2000]fadese...[r]
+	[ch text='s.' wait=0]
+	[s]ここに来たらアウト	; OK
+wf[wf]
+[r]END.[s]
+
+
+*B03	[ch text='B03=' wait=0]	; fadese / ws
+[playse fn=jngl0005_mp3 buf=tst]
+[playse fn=rain01_m4a][fadese volume=0 time=2000]fadese...[r]
+	[ch text='wait ' wait=0]
+	ws(tst).[ws buf=tst]音停止で進んだ？	; OK
+wf[wf]
+[r]END.[s]
+
+
+*B04	[ch text='B04=' wait=0]	; fadese / wf
+[playse fn=jngl0005_mp3 buf=tst][fadese volume=0 time=3000 buf=tst]fadese(tst)...
+[playse fn=rain01_m4a][fadese volume=0 time=2000]fadese...[r]
+	[ch text='wait ' wait=0]
+	wf(tst).[wf buf=tst]FOで進んだ？	; OK
+wf[wf]
+[r]END.[s]
+
+
+*B05	[ch text='B05=' wait=0]	; fadese / wq
+[quake time=2000 hmax=8 vmax=8]
+[playse fn=rain01_m4a][fadese volume=0 time=1000]fadese...[r]
+	[ch text='wq.' wait=0]
+	[wq]揺れ停止で進んだ？	; OK
+wf[wf]
+[r]END.[s]
+
+
+*B06	[ch text='B06=' wait=0]	; fadese / wait_tsy
+[tsy layer=bg x==500 time=4000]
+[playse fn=rain01_m4a][fadese volume=0 time=1000]fadese...[r]
+	[ch text='wait_tsy.' wait=0]
+	[wait_tsy layer=bg]動作停止で進んだ？	; OK
+wf[wf]
+[r]END.[s]
+
+
+*B07	[ch text='B07=' wait=0]	; fadese / wt
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=2000]
+[playse fn=rain01_m4a][fadese volume=0 time=1000]fadese...[r]
+	[ch text='wt.' wait=0]
+	[wt]trans完了で進んだ？	; OK
+wf[wf]
+[r]END.[s]
+
+
+*B08	[ch text='B08=' wait=0]	; fadese / wv
+[lay layer=0 fn=nc10889]
+[playse fn=rain01_m4a][fadese volume=0 time=1000]fadese...[r]
+	[ch text='wv.' wait=0]
+	[wv fn=nc10889]動画停止で進んだ？	; OK
+wf[wf]
+[r]END.[s]
+
+
+*B09	[ch text='B09=' wait=0]	; fadese / wait
+[playse fn=rain01_m4a][fadese volume=0 time=1000]fadese...[r]
+	[ch text='wait.' wait=0]
+	[wait time=3000]三秒で進んだ？	; OK
+wf[wf]
+[r]END.[s]
+
+
+
+*C01	[ch text='C01=' wait=0]	; playse / p
+[playse fn=pon]
+	[ch text=p. wait=0]
+	[p]勝手に進んだ？	; OK
+ws[ws]
+[r]END.[s]
+
+
+*C02	[ch text='C02=' wait=0]	; playse / s
+[playse fn=jngl0005_mp3]
+	[ch text='s.' wait=0]
+	[s]ここに来たらアウト	; OK
+ws[ws]
+[r]END.[s]
+
+
+*C03	[ch text='C03=' wait=0]	; playse / ws
+[playse fn=jngl0005_mp3 buf=tst]
+[playse fn=pon]
+	[ch text='ws.' wait=0]
+	[ws buf=tst]音停止で進んだ？	; OK
+ws[ws]
+[r]END.[s]
+
+
+*C04	[ch text='C04=' wait=0]	; playse / wf
+[playse fn=jngl0005_mp3 buf=tst][fadese volume=0 time=3000 buf=tst]fadese...[r]
+[playse fn=pon]
+	[ch text='wf.' wait=0]
+	[wf buf=tst]FOで進んだ？	; OK
+ws[ws]
+[r]END.[s]
+
+
+*C05	[ch text='C05=' wait=0]	; playse / wq
+[quake time=2000 hmax=8 vmax=8]
+[playse fn=pon]
+	[ch text='wq.' wait=0]
+	[wq]揺れ停止で進んだ？	; OK
+ws[ws]
+[r]END.[s]
+
+
+*C06	[ch text='C06=' wait=0]	; playse / wait_tsy
+[tsy layer=bg x==500 time=4000]
+[playse fn=pon]
+	[ch text='wait_tsy.' wait=0]
+	[wait_tsy layer=bg]動作停止で進んだ？	; OK
+ws[ws]
+[r]END.[s]
+
+
+*C07	[ch text='C07=' wait=0]	; playse / wt
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=2000]
+[playse fn=pon]
+	[ch text='wt.' wait=0]
+	[wt]trans完了で進んだ？	; OK
+ws[ws]
+[r]END.[s]
+
+
+*C08	[ch text='C08=' wait=0]	; playse / wv
+[lay layer=0 fn=nc10889]
+[playse fn=pon]
+	[ch text='wv.' wait=0]
+	[wv fn=nc10889]動画停止で進んだ？	; OK
+ws[ws]
+[r]END.[s]
+
+
+*C09	[ch text='C09=' wait=0]	; playse / wait
+[playse fn=pon]
+	[ch text='wait.' wait=0]
+	[wait time=3000]三秒で進んだ？	; OK
+ws[ws]
+[r]END.[s]
+
+
+
+*D01	[ch text='D01=' wait=0]	; tsy / p
+[tsy layer=bg x==500 time=1000]
+	[ch text='p.' wait=0]
+	[p]勝手に進んだ？	; 勝手に進んでしまう
+wait_tsy[wait_tsy layer=bg]
+[r]END.[s]
+
+
+*D02	[ch text='D02=' wait=0]	; tsy / s
+[tsy layer=bg x==500 time=1000]
+	[ch text='s.' wait=0]
+	[s]ここに来たらアウト	; OK
+wait_tsy[wait_tsy layer=bg]
+[r]END.[s]
+
+
+*D03	[ch text='D03=' wait=0]	; tsy / ws
+[playse fn=jngl0005_mp3 buf=tst]
+[tsy layer=bg x==500 time=1000]
+	[ch text='ws.' wait=0]
+	[ws buf=tst]音停止で進んだ？	; 勝手に進んでしまう
+wait_tsy[wait_tsy layer=bg]
+[r]END.[s]
+
+
+*D04	[ch text='D04=' wait=0]	; tsy / wf
+[playse fn=jngl0005_mp3][fadese volume=0 time=3000]fadese...[r]
+[tsy layer=bg x==500 time=1000]
+	[ch text='wf.' wait=0]
+	[wf]FOで進んだ？	; 勝手に進んでしまう
+wait_tsy[wait_tsy layer=bg]
+[r]END.[s]
+
+
+*D05	[ch text='D05=' wait=0]	; tsy / wq
+[quake time=3000 hmax=8 vmax=8]
+[tsy layer=bg x==500 time=1000]
+	[ch text='wq.' wait=0]
+	[wq]揺れ停止で進んだ？	; 勝手に進んでしまう
+wait_tsy[wait_tsy layer=bg]
+[r]END.[s]
+
+
+*D06	[ch text='D06=' wait=0]	; tsy / wait_tsy
+[tsy layer=0 x==300 time=4000]
+[tsy layer=bg x==500 time=1000]
+	[ch text='wait_tsy.' wait=0]
+	[wait_tsy layer=0]	; 勝手に進んでしまう
+wait_tsy(0)[wait_tsy layer=bg]
+[r]END.[s]
+
+
+*D07	[ch text='D07=' wait=0]	; tsy / wt
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=2000]
+[tsy layer=bg x==500 time=1000]
+	[ch text='wt.' wait=0]
+	[wt]trans完了で進んだ？	; 勝手に進んでしまう
+wait_tsy[wait_tsy layer=bg]
+[r]END.[s]
+
+
+*D08	[ch text='D08=' wait=0]	; tsy / wv
+[lay layer=0 fn=nc10889]
+[tsy layer=bg x==500 time=1000]
+	[ch text='wv.' wait=0]
+	[wv fn=nc10889]動画停止で進んだ？	; 勝手に進んでしまう
+wait_tsy[wait_tsy layer=bg]
+[r]END.[s]
+
+
+*D09	[ch text='D09=' wait=0]	; tsy / wait
+[tsy layer=bg x==500 time=1000]
+	[ch text='wait.' wait=0]
+	[wait time=3000]三秒で進んだ？	; 勝手に進んでしまう
+wait_tsy[wait_tsy layer=bg]
+[r]END.[s]
+
+
+
+*E01	[ch text='E01=' wait=0]	; tsy_frame / p
+[frame id=frame visible=true]
+[tsy_frame id=frame x=500 time=1000]
+	[ch text='p.' wait=0]
+	[p]勝手に進んだ？	; 勝手に進んでしまう
+[wait_tsy id=frame]
+[r]END.[s]
+
+
+*E02	[ch text='E02=' wait=0]	; tsy_frame / s
+[frame id=frame visible=true]
+[tsy_frame id=frame x=500 time=1000]
+	[ch text='s.' wait=0]
+	[s]ここに来たらアウト	; OK
+[wait_tsy id=frame]
+[r]END.[s]
+
+
+*E03	[ch text='E03=' wait=0]	; tsy_frame / ws
+[playse fn=jngl0005_mp3 buf=tst]
+[frame id=frame visible=true]
+[tsy_frame id=frame x=500 time=1000]
+	[ch text='wait ' wait=0]
+	ws(tst).[ws buf=tst]音停止で進んだ？	; 勝手に進んでしまう
+[wait_tsy id=frame]
+[r]END.[s]
+
+
+*E04	[ch text='E04=' wait=0]	; tsy_frame / wf
+[playse fn=jngl0005_mp3 buf=tst][fadese volume=0 time=3000 buf=tst]fadese(tst)...
+[frame id=frame visible=true]
+[tsy_frame id=frame x=500 time=1000]
+	[ch text='wait ' wait=0]
+	wf(tst).[wf buf=tst]FOで進んだ？	; 勝手に進んでしまう
+[wait_tsy id=frame]
+[r]END.[s]
+
+
+*E05	[ch text='E05=' wait=0]	; tsy_frame / wq
+[quake time=2000 hmax=8 vmax=8]
+[frame id=frame visible=true]
+[tsy_frame id=frame x=500 time=1000]
+	[ch text='wq.' wait=0]
+	[wq]揺れ停止で進んだ？	; 勝手に進んでしまう
+[wait_tsy id=frame]
+[r]END.[s]
+
+
+*E06	[ch text='E06=' wait=0]	; tsy_frame / wait_tsy
+[tsy layer=bg x==500 time=2000]
+[frame id=frame visible=true]
+[tsy_frame id=frame x=500 time=1000]
+	[ch text='wait_tsy.' wait=0]
+	[wait_tsy layer=bg]動作停止で進んだ？	; 勝手に進んでしまう
+[wait_tsy id=frame]
+[r]END.[s]
+
+
+*E07	[ch text='E07=' wait=0]	; tsy_frame / wt
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=2000]
+[frame id=frame visible=true]
+[tsy_frame id=frame x=500 time=1000]
+	[ch text='wt.' wait=0]
+	[wt]trans完了で進んだ？	; 勝手に進んでしまう
+[wait_tsy id=frame]
+[r]END.[s]
+
+
+*E08	[ch text='E08=' wait=0]	; tsy_frame / wv
+[lay layer=0 fn=nc10889]
+[frame id=frame visible=true]
+[tsy_frame id=frame x=500 time=1000]
+	[ch text='wv.' wait=0]
+	[wv fn=nc10889]動画停止で進んだ？	; 勝手に進んでしまう
+[wait_tsy id=frame]
+[r]END.[s]
+
+
+*E09	[ch text='E09=' wait=0]	; tsy_frame / wait
+[frame id=frame visible=true]
+[tsy_frame id=frame x=500 time=1000]
+	[ch text='wait.' wait=0]
+	[wait time=3000]三秒で進んだ？	; 勝手に進んでしまう
+[wait_tsy id=frame]
+[r]END.[s]
+
+
+
+*F01	[ch text='F01=' wait=0]	; trans / p
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=1000]
+	[ch text='p.' wait=0]
+	[p]勝手に進んだ？	; 勝手に進んでしまう
+wt.[wt]
+[r]END.[s]
+
+
+*F02	[ch text='F02=' wait=0]	; trans / s
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=1000]
+	[ch text='s.' wait=0]
+	[s]ここに来たらアウト	; OK
+wt.[wt]
+[r]END.[s]
+
+
+*F03	[ch text='F03=' wait=0]	; trans / ws
+[playse fn=jngl0005_mp3 buf=tst]
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=1000]
+	[ch text='ws.' wait=0]
+	[ws buf=tst]音停止で進んだ？	; 勝手に進んでしまう
+wt.[wt]
+[r]END.[s]
+
+
+*F04	[ch text='F04=' wait=0]	; trans / wf
+[playse fn=jngl0005_mp3][fadese volume=0 time=2000]fadese...[r]
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=1000]
+	[ch text='wf.' wait=0]
+	[wf]FOで進んだ？	; 勝手に進んでしまう
+wt.[wt]
+[r]END.[s]
+
+
+*F05	[ch text='F05=' wait=0]	; trans / wq
+[quake time=2000 hmax=8 vmax=8]
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=1000]
+	[ch text='wq.' wait=0]
+	[wq]普通のtransに見える？	; [trans]冒頭で[quake]瞬時終了、仕様、OK
+wt.[wt]
+[r]END.[s]
+
+
+*F06	[ch text='F06=' wait=0]	; trans / wait_tsy
+[tsy layer=0 x==300 time=2000]
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=1000]
+	[ch text='wait_tsy.' wait=0]
+	[wait_tsy layer=0]動作停止で進んだ？	; 勝手に進んでしまう
+wt.[wt]
+[r]END.[s]
+
+
+*F07	[ch text='F07=' wait=0]	; trans / wt
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=1000]
+	[ch text='wt.' wait=0]
+	[wt]trans完了で進んだ？	; 本来の動作、OK
+wt.[wt]
+[r]END.[s]
+
+
+*F08	[ch text='F08=' wait=0]	; trans / wv
+[lay layer=0 fn=nc10889]
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=1000]
+	[ch text='wv.' wait=0]
+	[wv fn=nc10889]動画停止で進んだ？	; 勝手に進んでしまう
+wt.[wt]
+[r]END.[s]
+
+
+*F09	[ch text='F09=' wait=0]	; trans / wait
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=1000]
+	[ch text='wait.' wait=0]
+	[wait time=3000]三秒で進んだ？	; 勝手に進んでしまう
+wt.[wt]
+[r]END.[s]
+
+
+
+*G01	[ch text='G01=' wait=0]	; lay mov / p
+[lay layer=0 fn=nc10889]
+	[ch text='p.' wait=0]
+	[p]勝手に進んだ？	; OK
+wv[wv fn=nc10889]
+[r]END.[s]
+
+
+*G02	[ch text='G02=' wait=0]	; lay mov / s
+[lay layer=0 fn=nc10889]
+	[ch text='s.' wait=0]
+	[s]ここに来たらアウト	; OK
+wv[wv fn=nc10889]
+[r]END.[s]
+
+
+*G03	[ch text='G03=' wait=0]	; lay mov / ws
+[playse fn=jngl0005_mp3 buf=tst]
+[lay layer=0 fn=nc10889]
+	[ch text='ws.' wait=0]
+	[ws buf=tst]音停止で進んだ？	; OK
+wv[wv fn=nc10889]
+[r]END.[s]
+
+
+*G04	[ch text='G04=' wait=0]	; lay mov / wf
+[playse fn=jngl0005_mp3][fadese volume=0 time=5000]fadese...[r]
+[lay layer=0 fn=nc10889]
+	[ch text='wf.' wait=0]
+	[wf]FOで進んだ？	; OK
+wv[wv fn=nc10889]
+[r]END.[s]
+
+
+*G05	[ch text='G05=' wait=0]	; lay mov / wq
+[quake time=5000 hmax=8 vmax=8]
+[lay layer=0 fn=nc10889]
+	[ch text='wq.' wait=0]
+	[wq]揺れ停止で進んだ？	; OK
+wv[wv fn=nc10889]
+[r]END.[s]
+
+
+*G06	[ch text='G06=' wait=0]	; lay mov / wait_tsy
+[tsy layer=bg x==500 time=5000]
+[lay layer=0 fn=nc10889]
+	[ch text='wait_tsy.' wait=0]
+	[wait_tsy layer=bg]動作停止で進んだ？	; OK
+wv[wv fn=nc10889]
+[r]END.[s]
+
+
+*G07	[ch text='G07=' wait=0]	; lay mov / wt
+[lay layer=bg page=back fn=bg_0][trans layer=bg time=5000]
+[lay layer=0 fn=nc10889]
+	[ch text='wt.' wait=0]
+	[wt]trans完了で進んだ？	; OK
+wv[wv fn=nc10889]
+[r]END.[s]
+
+
+*G08	[ch text='G08=' wait=0]	; lay mov / wv
+[lay layer=bg fn=15061_640x360]
+[lay layer=0 fn=nc10889 left=100 top=0 width=320 height=240]
+	[ch text='wv.' wait=0]
+	[wv fn=15061_640x360]クラッカー動画停止で進んだ？	; OK
+wv[wv fn=nc10889]
+[r]END.[s]
+
+
+*G09	[ch text='G09=' wait=0]	; lay mov / wait
+[lay layer=0 fn=nc10889 left=100 top=0 width=320 height=240]
+	[ch text='wait.' wait=0]
+	[wait time=5000]五秒で進んだ？	; OK
+wv[wv fn=nc10889]
+[r]END.[s]
+
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

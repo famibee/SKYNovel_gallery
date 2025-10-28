@@ -1,0 +1,77 @@
+[title text='複数行タグやマクロ'][call label=*init]
+
+[add_lay
+	layer=mes
+class=txt
+]
+
+[trace text=@【〜line:8】ならOK@]	... 左上に【〜 line:8】[r]
+[if
+exp=true]
+	[trace text=@【〜line:11】ならOK@]	... 左上に【〜 line:11】[r]
+[endif]
+[if
+exp=false][else
+]
+	[trace text=@【〜line:16】ならOK@]	... 左上に【〜 line:16】ならOK[r]
+[endif]
+
+[r]
+		multi
+	line tag[r]
+
+	[span
+		style
+	=
+		'color: #ffaaff;'
+	]
+	タグやマクロは複数行に改行して書ける[r]
+
+[r]
+	[span]
+	... 次２行が同じならOK[r]
+	AbCd111c="0xa"Efbc="0xb"Gh/undefined[r]
+
+[macro name=disp]
+	&mp:page&	&mp:text&	&mp:layer&	&mp:class&	&mp:abc&
+	&mp:def&	&mp:ghi&	&mp:jkl&	&mp:layerb&	&mp:classb&
+	&mp:layout&	&mp:textb&	&mp:textc&	&mp:a&	&mp:b&
+[endmacro]
+
+	[disp
+	page=A	;===
+	text="b"
+
+	layer=C
+class=d
+		abc
+		def	;=====
+		ghi;=====
+		jkl
+	=
+		'c="0xa"'
+;
+	;=====
+	layerb=E	;=====
+classb=f	;======
+	;=====
+		layout;=====
+	=	;"""""
+'bc="0xb"'	;=====
+textb=G|&0xc;=====
+textc=h|'&0xd';=====
+a='/';=====
+b='#{fcol}'|true;=====
+]
+
+[s]
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

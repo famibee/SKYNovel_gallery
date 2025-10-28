@@ -1,5 +1,11 @@
 # Change Log
 
+## v2.9.0
+-fix: vite.config.ts 手直し、更新リロードの修正
+-fix: src/CustomHmr.ts 追加、.sn など更新リロード用
+-fix: [wait_tsy] から【 chk_exist_tw=true】削除
+- fix: ライブラリ更新
+	- SKYNovel 1.63.0
 ## v2.8.2
 - fix: ライブラリ更新
 	- SKYNovel 1.62.2

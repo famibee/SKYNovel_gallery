@@ -1,0 +1,1 @@
+function i(){return{"const.sn.macro":"{}","const.sn.me_call_scriptFn":""}}function r(){return{":hEvt1Time":{},":hMp":i(),":lenIfStk":1}}class o{constructor(t="",n=0,s=r()){this.fn=t,this.idx=n,this.csArg=s}toString=()=>`[fn:${this.fn}, idx:${String(this.idx)}, csArg:${JSON.stringify(this.csArg)}]`}export{o as a,r as c,i as r};
