@@ -38,7 +38,7 @@ jobs:
         run: bun install
 
       - name: 📜 Build
-        run: bun run build
+        run: bun build
 
       - name: 📦 Setup Pages
         uses: actions/configure-pages@v5
