@@ -34,6 +34,7 @@ jobs:
       - name: 🔧 Setup
         uses: actions/setup-node@v6
         with:
+          registry-url: https://npm.pkg.github.com/
           node-version: lts/*
           cache: 'npm'
 
