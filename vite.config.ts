@@ -9,6 +9,7 @@ import type {UserConfig} from 'vite';
 import {CustomHmr} from './src/CustomHmr';
 
 export default {
+	base: '/SKYNovel_gallery/',
 	build: {
 		target: 'esnext',
 		rollupOptions: {
@@ -18,7 +19,6 @@ export default {
 				assetFileNames: `assets/[name].[ext]`,
 			},
 		},
-		outDir: 'docs',
 		chunkSizeWarningLimit: 780,
 	},
 	server: {port: 8082},

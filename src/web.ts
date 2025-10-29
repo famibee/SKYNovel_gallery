@@ -13,7 +13,7 @@ globalThis.addEventListener('DOMContentLoaded', async ()=> {
 	for (const nm in h) hPlg[nm] = await import(`./plugin/${nm}/index.ts`);
 
 	const dip: {expanding: boolean, oninit_run?: boolean} = {expanding: false};
-	let pcur = '/prj/';
+	let pcur = 'prj/';
 	if (location.pathname.endsWith('/index_app.html')) {
 		pcur = '';
 		dip.oninit_run = false;
