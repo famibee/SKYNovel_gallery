@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.9.1
+-fix: vite.config.ts 手直し、Github 公開に向けたフォルダ構成修正
 ## v2.9.0
 -fix: vite.config.ts 手直し、更新リロードの修正
 -fix: src/CustomHmr.ts 追加、.sn など更新リロード用

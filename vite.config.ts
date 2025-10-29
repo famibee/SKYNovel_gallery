@@ -9,8 +9,6 @@ import type {UserConfig} from 'vite';
 import {CustomHmr} from './src/CustomHmr';
 
 export default {
-	publicDir: 'docs',
-	base: '/docs/',
 	build: {
 		target: 'esnext',
 		rollupOptions: {
@@ -20,15 +18,9 @@ export default {
 				assetFileNames: `assets/[name].[ext]`,
 			},
 		},
-		// outDir: 'docs',
-		// emptyOutDir: false,
-		// copyPublicDir: false,
+		outDir: 'docs',
 		chunkSizeWarningLimit: 780,
 	},
-	server: {
-		port: 8082,
-	},
-	plugins: [
-		CustomHmr(),
-	],
+	server: {port: 8082},
+	plugins: [CustomHmr()],
 } satisfies UserConfig;

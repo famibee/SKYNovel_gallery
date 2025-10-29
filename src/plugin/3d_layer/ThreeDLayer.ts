@@ -5,11 +5,10 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import {Layer, argChk_Num, argChk_Boolean} from '@famibee/skynovel';
 import type {HArg, IPluginInitArg} from '@famibee/skynovel';
-import {Scene, WebGLRenderer, Camera, Clock, GridHelper, PerspectiveCamera, DirectionalLight, Mesh, BoxGeometry, MeshNormalMaterial, SphereGeometry, TextureLoader, LinearFilter, MeshBasicMaterial, AnimationClip, LoopRepeat, LoopOnce, Material, Object3D, AnimationMixer, Vector3} from 'three';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {Layer, argChk_Num, argChk_Boolean} from '@famibee/skynovel';
+import type {AnimationClip, AnimationMixer, Camera, Mesh, Object3D, Object3DEventMap, Scene} from 'three';
+import {Material, MeshBasicMaterial} from 'three';
 
 import {Sprite, Texture} from 'pixi.js';
 /// <reference path="./effekseer.d.ts" />
@@ -23,12 +22,14 @@ export class ThreeDLayer extends Layer {
 	static	#stageW		= 0;
 	static	#stageH		= 0;
 
-	static	THREE		: any;
-	static	async init() {ThreeDLayer.THREE ??= await import('three');}
+	static	THREE			: any;
+	static	OrbitControls	: any;
+	static	GLTFLoader		: any;
+	static	async init() {ThreeDLayer.THREE ??= await import('three')}
 //	static	async init() {globalThis.THREE ??= await import('three');}	// 2024/3/30まで
 
-	#scene_3D	: Scene;
-	#canvas_3D	: WebGLRenderer;
+	#scene_3D;
+	#canvas_3D;
 	#sprite_3D	: Sprite;
 
 	#camera		: Camera;
@@ -43,8 +44,8 @@ export class ThreeDLayer extends Layer {
 			ThreeDLayer.#stageW = width;
 			ThreeDLayer.#stageH = height;
 		}
-		this.#scene_3D = new Scene();
-		this.#canvas_3D = new WebGLRenderer({antialias: true, alpha: true});
+		this.#scene_3D = new ThreeDLayer.THREE.Scene();
+		this.#canvas_3D = new ThreeDLayer.THREE.WebGLRenderer({antialias: true, alpha: true});
 
 		// 3D Scene canvas
 		this.#canvas_3D.setSize(ThreeDLayer.#stageW, ThreeDLayer.#stageH);
@@ -73,7 +74,7 @@ export class ThreeDLayer extends Layer {
 	#fncCtrl = ()=> {};
 
 	#fncMixerUpd	= ()=> {};
-	readonly #clock		= new Clock();
+	readonly #clock		= new ThreeDLayer.THREE.Clock();
 
 	#ctxEff	: effekseer.EffekseerContext;
 	#hEff	: any = {};
@@ -82,7 +83,7 @@ export class ThreeDLayer extends Layer {
 		if (! this.#scene_3D) return false;
 
 		if ('grid' in hArg) {	// 開発者用基準グリッド
-			const grid = new GridHelper(
+			const grid = new ThreeDLayer.THREE.GridHelper(
 				argChk_Num(hArg, 'grid_size', 10),	// グリッド全体のサイズ
 				argChk_Num(hArg, 'grid_step', 5)		// 1分割のサイズ
 				// colorCenterLine：中央十字ラインの色
@@ -94,7 +95,7 @@ export class ThreeDLayer extends Layer {
 		}
 		if ('camera' in hArg) {	// カメラ
 			if (! this.#camera) {
-				this.#camera = new PerspectiveCamera(
+				this.#camera = new ThreeDLayer.THREE.PerspectiveCamera(
 					argChk_Num(hArg, 'camera_fov', 50),
 					ThreeDLayer.#stageW / ThreeDLayer.#stageH,
 					argChk_Num(hArg, 'camera_near', 0.1),
@@ -105,39 +106,44 @@ export class ThreeDLayer extends Layer {
 
 			if ('camera_target' in hArg) {
 				const [x, y, z] = String(hArg['camera_target']).split(',').map(v=> Number(v));
-				this.#camera.lookAt(new Vector3(x, y, z));
+				this.#camera.lookAt(new ThreeDLayer.THREE.Vector3(x, y, z));
 			}
 		}
 		if ('directional_light' in hArg) {	// 平行光源
-			const light = new DirectionalLight(0xFFFFFF);
+			const light = new ThreeDLayer.THREE.DirectionalLight(0xFFFFFF);
 			light.intensity = argChk_Num(hArg, 'intensity', 1); // 光の強さ
 			this.#csv2pos(hArg, 'directional_light', light);
 			light.name = '_light';
 			this.#scene_3D.add(light);
 		}
 		if ('controls' in hArg) {	// マウスドラッグで操作
-			const controls = new OrbitControls(this.#camera, document.body);
-			controls.target.set(
-				this.#camera.position.x + 0.15,
-				this.#camera.position.y,
-				this.#camera.position.z
-			);
-			// 視点操作のイージングをONにする
-			controls.enableDamping = true;
-			// 視点操作のイージングの値
-			controls.dampingFactor = 0.2;
-			// 視点変更の速さ
-			controls.rotateSpeed = 0.1;
-			controls.zoomSpeed = 2;
+			Promise.try(
+				async ()=> ThreeDLayer.OrbitControls ??= (await import('three/examples/jsm/controls/OrbitControls.js')).OrbitControls
+			)
+			.then(()=> {
+				const controls = new ThreeDLayer.OrbitControls(this.#camera, document.body);
+				controls.target.set(
+					this.#camera.position.x + 0.15,
+					this.#camera.position.y,
+					this.#camera.position.z
+				);
+				// 視点操作のイージングをONにする
+				controls.enableDamping = true;
+				// 視点操作のイージングの値
+				controls.dampingFactor = 0.2;
+				// 視点変更の速さ
+				controls.rotateSpeed = 0.1;
+				controls.zoomSpeed = 2;
 
-			this.#fncCtrl = ()=> controls.update();	// 毎回呼ぶと慣性がつく
+				this.#fncCtrl = ()=> controls.update();	// 毎回呼ぶと慣性がつく
+			});
 		}
 
 		const type = hArg.type;
 		const name = hArg.name || '';
 //		const name = (! hArg.name) ?'' :hArg.name;
 	//	const name = hArg.name ?? '';	// 2020/10/20 エラーになるので
-		let mdl: Object3D = new Mesh();
+		let mdl: Object3D = new ThreeDLayer.THREE.Mesh();
 		if (type) {
 			if (name in this.#hInf) throw `name（=${name}）が重複しています`;
 
@@ -146,14 +152,14 @@ export class ThreeDLayer extends Layer {
 
 			if (type == 'box') {	// 立方体サンプル
 				const size = argChk_Num(hArg, 'size', 100);
-				const geometry = new BoxGeometry(size, size, size);
+				const geometry = new ThreeDLayer.THREE.BoxGeometry(size, size, size);
 				// new BoxGeometry(幅, 高さ, 奥行き)
-				const material = new MeshNormalMaterial();
-				mdl = new Mesh(geometry, material);
+				const material = new ThreeDLayer.THREE.MeshNormalMaterial();
+				mdl = new ThreeDLayer.THREE.Mesh(geometry, material);
 				mdl.rotation.z = -45;
 
-				this.#fncCtrl = ()=> this.#scene_3D.children.forEach(o=> {
-					const m = o as Mesh;
+				this.#fncCtrl = ()=> this.#scene_3D.children.forEach((o: any)=> {
+					const m = <Mesh>o;
 					if (! m) return;
 
 					m.rotation.x += 0.01;
@@ -189,7 +195,7 @@ export class ThreeDLayer extends Layer {
 							this.#ctxEff = effekseer.createContext();
 							this.#ctxEff.init(this.#canvas_3D.getContext());
 							
-							const clock = new Clock();
+							const clock = new ThreeDLayer.THREE.Clock();
 							this.#tickUpdEff = ()=> {
 								this.#ctxEff.update(clock.getDelta() * 60.0);
 								this.#ctxEff.setProjectionMatrix(Float32Array.from(this.#camera.projectionMatrix.elements));
@@ -201,14 +207,14 @@ export class ThreeDLayer extends Layer {
 						break;
 
 					case 'celestial_sphere':{	// 天球サンプル(theta画像)
-						const geometry = new SphereGeometry(5, 60,40);
+						const geometry = new ThreeDLayer.THREE.SphereGeometry(5, 60,40);
 						geometry.scale(-1, 1, 1);
-						const ldr = new TextureLoader();
+						const ldr = new ThreeDLayer.THREE.TextureLoader();
 						if (! fn) throw 'fnがありません';
 						const tx = ldr.load(this.pia.searchPath(fn, <any>EXT_STILL_IMG));
-						tx.minFilter = LinearFilter;
-						const material = new MeshBasicMaterial({map: tx});
-						mdl = new Mesh(geometry, material);
+						tx.minFilter = ThreeDLayer.THREE.LinearFilter;
+						const material = new ThreeDLayer.THREE.MeshBasicMaterial({map: tx});
+						mdl = new ThreeDLayer.THREE.Mesh(geometry, material);
 
 						this.#camera.lookAt(mdl.position);	// カメラ視野の中心座標
 						this.#fncCtrl = ()=> {mdl.rotation.y += 0.001};
@@ -220,7 +226,10 @@ export class ThreeDLayer extends Layer {
 							? (xhr: {loaded: number; total: number;})=>
 								console.log(`${( xhr.loaded /xhr.total *100 )}% loaded`)
 							: ()=> {};
-						(new GLTFLoader()).load(
+						Promise.try(
+							async ()=> ThreeDLayer.GLTFLoader ??= (await import('three/examples/jsm/loaders/GLTFLoader.js')).GLTFLoader
+						)
+						.then(()=> (new ThreeDLayer.GLTFLoader()).load(
 							this.pia.searchPath(fn, <any>'gltf|glb'),
 							(gltf: any)=> {	// called when the resource is loaded
 								const mdl = gltf.scene;
@@ -238,7 +247,7 @@ export class ThreeDLayer extends Layer {
 							},
 							onProgress,
 							(e: any)=> console.error('An error happened', e),
-						);
+						));
 					}
 						return false;	// load()で mdl セットするので
 
@@ -254,7 +263,7 @@ export class ThreeDLayer extends Layer {
 		else if ('del' in hArg) {
 			const del = hArg['del'];
 			if (! del) return false;
-			const mdl2 = this.#scene_3D.children.find(e=> e.name === del);
+			const mdl2 = this.#scene_3D.children.find((e: { name: string; })=> e.name === del);
 			if (! mdl2) return false;	// エラーにしない
 		//	if (! mdl2) throw `３Ｄレイヤに存在しないモデル name=${del} です`;
 			this.#clearObject3D(mdl2);
@@ -262,7 +271,7 @@ export class ThreeDLayer extends Layer {
 			return false;
 		}
 		else if ('name' in hArg) {
-			const mdl2 = this.#scene_3D.children.find(e=> e.name === name);
+			const mdl2 = this.#scene_3D.children.find((e: { name: string; })=> e.name === name);
 			if (! mdl2) throw `３Ｄレイヤに存在しないモデル name=${name} です`;
 			mdl = mdl2;
 		}
@@ -283,11 +292,11 @@ export class ThreeDLayer extends Layer {
 		if ('label' in hArg) {
 			inf.label = hArg['label'];
 			if (inf.gltf) {
-				const ac = AnimationClip.findByName(inf.gltf.animations, inf.label || '');
+				const ac = ThreeDLayer.THREE.AnimationClip.findByName(inf.gltf.animations, inf.label || '');
 			//	const ac: AnimationClip = AnimationClip.findByName(inf.gltf.animations, inf.label ?? '');	// 2020/10/20 エラーになるので
 				if (! ac) {
 					console.info(`エラーが発生しました。参考までに ${inf.fn}(glTF)内に存在するアニメ名を列挙します`);
-					const a = inf.gltf.animations as AnimationClip[];
+					const a = <AnimationClip[]>inf.gltf.animations;
 					a.map(v=> console.info(`  label=${v.name}`));
 					throw `${inf.fn}(glTF)内に存在しないアニメ（label=${inf.label}）です`;
 				}
@@ -300,11 +309,11 @@ export class ThreeDLayer extends Layer {
 					inf.aa = aa;
 				}
 				else {
-					inf.mixer = new AnimationMixer(o);
+					inf.mixer = new ThreeDLayer.THREE.AnimationMixer(o);
 					inf.aa = inf.mixer!.clipAction(ac);
 
 					this.#fncMixerUpd = ()=> {
-						this.#scene_3D.children.map(v=> {
+						this.#scene_3D.children.map((v: { name: string | number; })=> {
 							const inf2 = this.#hInf[v.name];
 							if (inf2) inf2.mixer!.update(this.#clock.getDelta());
 						});
@@ -314,8 +323,8 @@ export class ThreeDLayer extends Layer {
 				inf.aa.clampWhenFinished = true;
 					// ループしない際、終端フレームで停止しデフォルトポーズに戻さない
 				inf.aa.loop = argChk_Boolean(hArg, 'loop', true)
-					? LoopRepeat
-					: LoopOnce;
+					? ThreeDLayer.THREE.LoopRepeat
+					: ThreeDLayer.THREE.LoopOnce;
 				inf.aa.play();
 			}
 		}
@@ -357,28 +366,28 @@ export class ThreeDLayer extends Layer {
 		//delete this.camera;
 	}
 	#clearScene(sc: Scene) {
-		sc.children.slice().map(o=> this.#clearObject3D(o));
+		sc.children.slice().map((o: Object3D<Object3DEventMap>)=> this.#clearObject3D(o));
 			// slice()で参照コピーしてる
 	}
 	#clearObject3D(o: Object3D) {
 		o.parent!.remove(o);
 
-		const s = o as Scene;
+		const s = <Scene>o;
 		if (s) {
 			const inf = this.#hInf[s.name];
 			if (inf && inf.mixer) inf.mixer.stopAllAction();
 			this.#clearScene(s); return;
 		}
 
-		const m = o as Mesh;
+		const m = <Mesh>o;
 		if (! m) return;
 		m.geometry.dispose();
 		if (m.material instanceof Material)	{
 			m.material.dispose();
-			if (m.material as MeshBasicMaterial) m.material = [];
+			if (<MeshBasicMaterial>m.material) m.material = [];
 		}
 		else {
-			m.material.map(v=> v.dispose());
+			m.material.map((v: { dispose: () => any; })=> v.dispose());
 		}
 	}
 
@@ -403,7 +412,7 @@ export class ThreeDLayer extends Layer {
 		if (! this.#scene_3D) return `"is":"nothing"`;
 
 		const aChi: string[] = [];
-		this.#scene_3D.children.map(o=> {
+		this.#scene_3D.children.map((o: { name: string | number; type: any; })=> {
 			let s = `"${o.name}": {"type":"${o.type}"`;
 			const inf = this.#hInf[o.name];
 			if (inf && inf.mixer) s += `, "label":"${inf.label}"`;
