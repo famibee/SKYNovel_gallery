@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.9.2
+- fix: ライブラリ更新
+	- SKYNovel 1.64.7
 ## v2.9.1
 -fix: vite.config.ts 手直し、Github 公開に向けたフォルダ構成修正
 ## v2.9.0
