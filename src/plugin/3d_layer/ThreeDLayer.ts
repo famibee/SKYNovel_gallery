@@ -5,7 +5,7 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import type {HArg, IPluginInitArg} from '@famibee/skynovel';
+import type {TArg, T_PluginInitArg} from '@famibee/skynovel';
 import {Layer, argChk_Num, argChk_Boolean} from '@famibee/skynovel';
 import type {AnimationClip, AnimationMixer, Camera, Mesh, Object3D, Object3DEventMap, Scene} from 'three';
 import {Material, MeshBasicMaterial} from 'three';
@@ -34,7 +34,7 @@ export class ThreeDLayer extends Layer {
 
 	#camera		: Camera;
 
-	constructor(private pia: IPluginInitArg) {
+	constructor(private pia: T_PluginInitArg) {
 		super();
 
 		// 裏pageまでやると重そうなので
@@ -79,7 +79,7 @@ export class ThreeDLayer extends Layer {
 	#ctxEff	: effekseer.EffekseerContext;
 	#hEff	: any = {};
 	#tickUpdEff	= ()=> {};
-	override lay(hArg: HArg): boolean {
+	override lay(hArg: TArg): boolean {
 		if (! this.#scene_3D) return false;
 
 		if ('grid' in hArg) {	// 開発者用基準グリッド
@@ -351,7 +351,7 @@ export class ThreeDLayer extends Layer {
 		const [x=0, y=0, z=0] = String(hArg[name]).split(',').map(v=> Number(v));
 		o.scale.set(x, y, z);
 	}
-	override clearLay(hArg: HArg): void {
+	override clearLay(hArg: TArg): void {
 		super.clearLay(hArg);
 		if (! this.#scene_3D) return;
 		if (! this.#running) return;

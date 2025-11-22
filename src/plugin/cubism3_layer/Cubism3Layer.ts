@@ -6,7 +6,7 @@
 ** ***** END LICENSE BLOCK ***** */
 
 import {Layer, argChk_Num} from '@famibee/skynovel';
-import type {HArg, IPluginInitArg} from '@famibee/skynovel';
+import type {TArg, T_PluginInitArg} from '@famibee/skynovel';
 
 import {Loader, utils, Point, LoaderResource} from 'pixi.js';
 // 【名前 '〜' が見つかりません。】対策
@@ -26,9 +26,9 @@ export class Cubism3Layer extends Layer {
 		scale	: 1,
 	};
 
-	constructor(private pia: IPluginInitArg) {super();}
+	constructor(private pia: T_PluginInitArg) {super();}
 
-	override lay(hArg: HArg, fncComp?: ()=> void): boolean {
+	override lay(hArg: TArg, fncComp?: ()=> void): boolean {
 		super.lay(hArg);
 
 		const id = hArg.id || '0';
@@ -142,7 +142,7 @@ export class Cubism3Layer extends Layer {
 	}
 	private hdl_tick = 0;
 
-	override clearLay(hArg: HArg): void {
+	override clearLay(hArg: TArg): void {
 		super.clearLay(hArg);
 
 		if (this.model) {

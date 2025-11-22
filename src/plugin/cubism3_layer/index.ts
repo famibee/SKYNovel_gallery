@@ -5,9 +5,9 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import type {IPluginInitArg} from '@famibee/skynovel';
+import type {T_PluginInitArg} from '@famibee/skynovel';
 import {Cubism3Layer} from './Cubism3Layer';
 
-export async function init(pia: IPluginInitArg) {
+export async function init(pia: T_PluginInitArg) {
 	pia.addLayCls('cubism3', ()=> new Cubism3Layer(pia));	// any 逃げ
 };

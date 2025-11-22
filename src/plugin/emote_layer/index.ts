@@ -5,9 +5,9 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import type {IPluginInitArg} from '@famibee/skynovel';
+import type {T_PluginInitArg} from '@famibee/skynovel';
 import {EmoteLayer} from './EmoteLayer';
 
-export async function init(pia: IPluginInitArg) {
+export async function init(pia: T_PluginInitArg) {
 	pia.addLayCls('emote', ()=> <any>new EmoteLayer(pia));	// any 逃げ
 };

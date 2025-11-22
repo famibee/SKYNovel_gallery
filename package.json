@@ -8,14 +8,14 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel": "^1.64.7",
+		"@famibee/skynovel": "^1.64.17",
 		"pixi.js": "^6.5.10",
-		"three": "^0.181.0"
+		"three": "^0.181.2"
 	},
 	"devDependencies": {
 		"@types/three": "^0.181.0",
 		"typescript": "^5.9.3",
-		"vite": "^7.1.12"
+		"vite": "^7.2.4"
 	},
 	"scripts": {
 		"start": "vite --open",

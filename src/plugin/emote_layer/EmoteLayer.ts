@@ -6,7 +6,7 @@
 ** ***** END LICENSE BLOCK ***** */
 
 import {Layer, argChk_Num} from '@famibee/skynovel';
-import type {HArg, IPluginInitArg} from '@famibee/skynovel';
+import type {TArg, T_PluginInitArg} from '@famibee/skynovel';
 
 import {RenderTexture, Sprite, Texture, BaseTexture} from 'pixi.js';
 // 【名前 '〜' が見つかりません。】対策
@@ -28,7 +28,7 @@ export class EmoteLayer extends Layer {
 	readonly	#sp		= new Sprite;
 				#inf	: IInf | null;
 
-	constructor(private pia: IPluginInitArg) {
+	constructor(private pia: T_PluginInitArg) {
 		super();
 
 		if (EmoteLayer.#uniq_num++ % 2 === 1) return;
@@ -64,7 +64,7 @@ export class EmoteLayer extends Layer {
 		// TODO: width, height 指定で程良い大きさにトリム・処理軽量化したい
 	}
 
-	override lay(hArg: HArg, fncComp?: ()=> void): boolean {
+	override lay(hArg: TArg, fncComp?: ()=> void): boolean {
 		if (! this.#rt) return false;
 
 		const layer = hArg.layer;
@@ -131,7 +131,7 @@ export class EmoteLayer extends Layer {
 		return false;
 	}
 
-	override clearLay(hArg: HArg): void {
+	override clearLay(hArg: TArg): void {
 		if (! this.#rt) return;
 
 		super.clearLay(hArg);
