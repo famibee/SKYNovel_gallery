@@ -5,7 +5,7 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import type {T_HPlugin} from '@famibee/skynovel';
+import type {T_HPlugin} from '@famibee/skynovel_esm/web';
 const hPlg: T_HPlugin = {};
 import h from './plugin.json';
 
@@ -19,7 +19,7 @@ globalThis.addEventListener('DOMContentLoaded', async ()=> {
 		dip.oninit_run = false;
 	}
 
-	const {SysWeb} = await import('@famibee/skynovel');
+	const {SysWeb} = await import('@famibee/skynovel_esm/web');
 	const sys = new SysWeb(hPlg, {cur: pcur +'top/', crypto: false, dip: JSON.stringify(dip)});	// 拡張機能で【(hPlg);】置換するので触らない
 	(<any>globalThis).runSN = (cur = pcur +'top')=> sys.runSN(cur);
 	(<any>globalThis).stopSN = ()=> sys.stop();

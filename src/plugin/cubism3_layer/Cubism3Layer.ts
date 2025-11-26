@@ -5,8 +5,8 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import {Layer, argChk_Num} from '@famibee/skynovel';
-import type {TArg, T_PluginInitArg} from '@famibee/skynovel';
+import {Layer, argChk_Num} from '@famibee/skynovel_esm/web';
+import type {TArg, T_PluginInitArg} from '@famibee/skynovel_esm/web';
 
 import {Loader, utils, Point, LoaderResource} from 'pixi.js';
 // 【名前 '〜' が見つかりません。】対策

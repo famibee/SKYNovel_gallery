@@ -5,8 +5,8 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import type {TArg, T_PluginInitArg} from '@famibee/skynovel';
-import {Layer, argChk_Num, argChk_Boolean} from '@famibee/skynovel';
+import type {TArg, T_PluginInitArg} from '@famibee/skynovel_esm/web';
+import {Layer, argChk_Num, argChk_Boolean} from '@famibee/skynovel_esm/web';
 import type {AnimationClip, AnimationMixer, Camera, Mesh, Object3D, Object3DEventMap, Scene} from 'three';
 import {Material, MeshBasicMaterial} from 'three';
 
