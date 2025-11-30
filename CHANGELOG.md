@@ -1,5 +1,7 @@
 # Change Log
 
+## v2.10.1
+- fix: ライブラリ更新・SKYNovel 1.7.18
 ## v2.10.0
 - fix: ライブラリ更新・SKYNovel を ESM版に変更
 - fix: ライブラリ更新・SKYNovel 1.7.16
