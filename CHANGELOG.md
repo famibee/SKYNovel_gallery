@@ -1,5 +1,8 @@
 # Change Log
 
+## v2.11.1
+- update: ライブラリ更新
+	- @famibee/skynovel_esm@2.0.1
 ## v2.11.0
 - feat(効果音とBGM サンプル): 
 	- add: ボイス再生中のBGM音量を絞る機能テスト(downBGM)追加
