@@ -1,0 +1,1 @@
+import{y as e}from"./pixi2.js";var t=class{#e=[];add(t,n,r,i={}){if(t instanceof e.default){t.on(n,r,i),this.#e.push(()=>t.off(n,r,i));return}t.addEventListener(n,r,i),this.#e.push(()=>t.removeEventListener(n,r,{capture:i.capture??!1}))}clear(){for(let e of this.#e)e();this.#e=[]}get isEmpty(){return this.#e.length===0}};export{t};

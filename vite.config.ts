@@ -12,7 +12,7 @@ export default {
 	base: '/SKYNovel_gallery/',
 	build: {
 		target: 'esnext',
-		rollupOptions: {
+		rolldownOptions: {
 			output	: {
 				entryFileNames: 'web.js',
 				chunkFileNames: `assets/[name].js`,

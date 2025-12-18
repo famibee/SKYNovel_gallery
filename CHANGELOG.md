@@ -1,5 +1,12 @@
 # Change Log
 
+## v2.11.0
+- feat(効果音とBGM サンプル): 
+	- add: ボイス再生中のBGM音量を絞る機能テスト(downBGM)追加
+	- remove: [stopfadese] 廃止につきサンプル削除
+- update: ライブラリ更新
+	- @famibee/skynovel_esm@2.0.0
+	- vite@8.0.0-beta.3
 ## v2.10.1
 - fix: ライブラリ更新・SKYNovel 1.7.18
 ## v2.10.0
