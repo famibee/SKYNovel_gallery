@@ -21,6 +21,11 @@ export default {
 		},
 		chunkSizeWarningLimit: 780,
 	},
-	server: {port: 8082},
+	server: {
+		port: 8082,
+		fs: {allow: ['..']},
+		watch: {ignored: ['!**/node_modules/@famibee/skynovel_esm/**']},
+	},
+	optimizeDeps: {exclude: ['@famibee/skynovel_esm']},
 	plugins: [CustomHmr()],
 } satisfies UserConfig;

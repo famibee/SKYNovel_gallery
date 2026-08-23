@@ -9,6 +9,7 @@ import {Layer, argChk_Num} from '@famibee/skynovel_esm/web';
 import type {TArg, T_PluginInitArg} from '@famibee/skynovel_esm/web';
 
 import {RenderTexture, Sprite, Texture, BaseTexture} from 'pixi.js';
+import type {DisplayObject} from 'pixi.js';
 // 【名前 '〜' が見つかりません。】対策
 declare const EmotePlayer: any;
 
@@ -181,7 +182,7 @@ export class EmoteLayer extends Layer {
 		this.clearLay({});
 		// this.#cvs!.parentElement!.removeChild(this.#cvs);
 			// 不要
-		this.ctn.removeChildren().forEach(v=> v.destroy());
+		this.ctn.removeChildren().forEach((v: DisplayObject)=> v.destroy());
 	}
 
 }
