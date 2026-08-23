@@ -5,7 +5,7 @@
     "": {
       "name": "gallery",
       "dependencies": {
-        "@famibee/skynovel_esm": "^2.0.23",
+        "@famibee/skynovel_esm": "^2.0.24",
         "pixi.js": "^6.5.10",
         "three": "^0.185.1",
       },
@@ -19,7 +19,7 @@
   "packages": {
     "@dimforge/rapier3d-compat": ["@dimforge/rapier3d-compat@0.12.0", "", {}, "sha512-uekIGetywIgopfD97oDL5PfeezkFpNhwlzlaEYNOA0N6ghdsOvh/HYjSMek5Q2O1PYvRSDFcqFVJl4r4ZBwOow=="],
 
-    "@famibee/skynovel_esm": ["@famibee/skynovel_esm@2.0.23", "", { "dependencies": { "adm-zip": "^0.6.0", "electron-store": "^11.0.2", "fs-extra": "^11.4.0", "motion": "^13.1.0", "pixi.js": "^6.5.10" } }, "sha512-B08C4ybfxASIZX2tiqlCOqHWuVLZeIH7XfNhFbHTxHXg9mZWjBf0O5UFruJ56NQUXKR0+32Qb8y2Vzvrpuf6/w=="],
+    "@famibee/skynovel_esm": ["@famibee/skynovel_esm@2.0.24", "", { "dependencies": { "adm-zip": "^0.6.0", "electron-store": "^11.0.2", "fs-extra": "^11.4.0", "motion": "^13.1.1", "pixi.js": "^6.5.10" } }, "sha512-2R9az+wufM8cOKuuHgI7vADSGWBoUI4SIPC02xKJoUo2Joti/9qI8XE7NJCBWYw2L8tWAwMTYASktI9dHL2dOg=="],
 
     "@oxc-project/types": ["@oxc-project/types@0.146.0", "", {}, "sha512-XC0QsnnhVe7sLIWmYmdPw7x5P0h4W8vUU3Nv1ySgWXtvCz8NizoAEpGXA0sOYoJQV2Rl13LgURAHQ5cI5ILCSA=="],
 
