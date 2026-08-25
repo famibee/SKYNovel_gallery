@@ -10,7 +10,6 @@ import {Layer, argChk_Num, argChk_Boolean} from '@famibee/skynovel_esm/web';
 import type {AnimationClip, AnimationMixer, Camera, Mesh, Object3D, Object3DEventMap, Scene} from 'three';
 import {Material, MeshBasicMaterial} from 'three';
 
-import {Sprite, Texture} from 'pixi.js';
 /// <reference path="./effekseer.d.ts" />
 	// エラーは上のファイルを開くと消える
 
@@ -30,7 +29,6 @@ export class ThreeDLayer extends Layer {
 
 	#scene_3D;
 	#canvas_3D;
-	#sprite_3D	: Sprite;
 
 	#camera		: Camera;
 
@@ -51,12 +49,21 @@ export class ThreeDLayer extends Layer {
 		this.#canvas_3D.setSize(ThreeDLayer.#stageW, ThreeDLayer.#stageH);
 		this.#canvas_3D.setPixelRatio(window.devicePixelRatio);
 
-		// Map 3D canvas to 2D Canvas
-		const texture_3D = Texture.from(this.#canvas_3D.domElement);
-		this.#sprite_3D = new Sprite(texture_3D);
-		this.ctn.addChild(this.#sprite_3D);
-		this.#sprite_3D.x = (ThreeDLayer.#stageW -this.#sprite_3D.width) /2
-		this.#sprite_3D.y = (ThreeDLayer.#stageH -this.#sprite_3D.height) /2
+		// bluesnovelのthis.ctnは素のdiv（pixiのSprite/Textureブリッジは無い）ので、
+		//	WebGLRendererのcanvasをそのままDOMへ挿す。箱（PlgLayer.tsx）のサイズが
+		//	ステージ実寸(stageW/H)と異なっても崩れないよう、中央寄せだけCSSで担保する。
+		//	this.ctn自体にwidth/height:100%が要る：中身（canvas）がposition:absoluteだけだと
+		//	通常のフロー計算に参加せず、position:relativeのthis.ctnの高さが0のままになり、
+		//	canvasのtop:50%の基準がずれる（実機比較で発覚：グリッドが実際より上に表示された）
+		this.ctn.style.position = 'relative';
+		this.ctn.style.width = '100%';
+		this.ctn.style.height = '100%';
+		const el = this.#canvas_3D.domElement;
+		el.style.position = 'absolute';
+		el.style.left = '50%';
+		el.style.top = '50%';
+		el.style.transform = 'translate(-50%, -50%)';
+		this.ctn.appendChild(el);
 	}
 
 
@@ -64,7 +71,6 @@ export class ThreeDLayer extends Layer {
 		if (! this.#running) return;
 
 		this.#canvas_3D.render(this.#scene_3D, this.#camera);
-		this.#sprite_3D.texture.update();	//tell pixi that threejs changed
 		this.#tickUpdEff();
 		this.#fncCtrl();
 		this.#fncMixerUpd();
@@ -362,7 +368,6 @@ export class ThreeDLayer extends Layer {
 		this.#hInf = {};
 		this.#clearScene(this.#scene_3D);
 		this.#canvas_3D.clear();
-		this.#sprite_3D.texture.update();	//tell pixi that threejs changed
 		//delete this.camera;
 	}
 	#clearScene(sc: Scene) {
