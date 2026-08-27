@@ -8,7 +8,7 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/skynovel_esm": "file:../skynovel_esm",
+		"@famibee/skynovel_esm": "^2.2.1",
 		"pixi.js": "^6.5.10",
 		"three": "^0.185.1"
 	},

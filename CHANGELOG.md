@@ -1,5 +1,11 @@
 # Change Log
 
+## v2.12.0
+- update: ライブラリ更新
+	- @famibee/skynovel_esm@2.2.1
+- fix(【Live2D】サンプル): 新規作り直し。
+	- /public/prj/live2d/
+	- gallery URL/?cur=live2d で試せる
 ## v2.11.1
 - update: ライブラリ更新
 	- @famibee/skynovel_esm@2.0.1

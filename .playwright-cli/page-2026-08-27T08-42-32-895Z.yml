@@ -1,0 +1,115 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic "SideMenu" [ref=e3] [cursor=pointer]: 
+    - generic [ref=e5]:
+      - link "Title" [ref=e6] [cursor=pointer]:
+        - /url: "#"
+        - text: SKYNovel
+      - list [ref=e7]:
+        - listitem [ref=e8]: top page
+        - listitem [ref=e9]:
+          - generic "Reload" [ref=e10] [cursor=pointer]: 
+        - listitem [ref=e12]:
+          - generic "Snapshot" [ref=e13] [cursor=pointer]: 
+        - listitem [ref=e15]:
+          - generic "Look Code" [ref=e16] [cursor=pointer]: 
+  - generic [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]: 
+        - text: レイヤアニメ
+      - generic [ref=e22]:
+        - generic "ext_fg" [ref=e23]: クロスフェードや動き
+        - generic "tag_quake" [ref=e24]: 画面を揺らす
+        - generic "tag_tsy" [ref=e25]: トゥイーンアニメを行なう
+        - generic "ext_fg2" [ref=e26]: 立ち絵を簡単に扱う
+        - generic "glsl_slide" [ref=e27]: シェーダで画像切り替え
+      - generic [ref=e28]:
+        - generic [ref=e29]: 
+        - text: 画像・動画
+      - generic [ref=e30]:
+        - generic "tag_lay_face" [ref=e31]: 画像も動画も重ねて表示
+        - generic "anime_png" [ref=e32]: アニメpng
+        - generic "tag_lay_mov" [ref=e33]: mp4, webp動画再生
+        - generic "blendmode" [ref=e34]: ブレンドモード
+        - generic "filter" [ref=e35]: フィルター
+        - generic "3d_efk" [ref=e36]: Effekseerエフェクト
+        - generic "3d_base" [ref=e37]: ３Ｄレイヤ（仕様策定中）
+        - generic "3d_gltf" [ref=e38]: glTF表示
+        - generic "3d_theta" [ref=e39]: 天球表示
+        - generic "live2d" [ref=e40]: Live2Dレイヤ（技術デモ）
+      - generic [ref=e41]:
+        - generic [ref=e42]: 
+        - text: 文字表示
+      - generic [ref=e43]:
+        - generic "ruby" [ref=e44]: 直感的なルビ記法
+        - generic "ch_in_out" [ref=e45]: 文字出現演出
+        - generic "font" [ref=e46]: フォント利用
+        - generic "txt_back" [ref=e47]: メッセージウインドウ
+        - generic "txt_back2" [ref=e48]: 複数メッセージウインドウ
+        - generic "ch_button" [ref=e49]: 文字ボタン・リンク
+        - generic "kidoku" [ref=e50]: 既読スキップ
+        - generic "log_and_play" [ref=e51]: 履歴と機能追加
+        - generic "line_breaking_rules" [ref=e52]: 禁則処理と文字詰め
+      - generic [ref=e53]:
+        - generic [ref=e54]: 
+        - text: スクリプト
+      - generic [ref=e55]:
+        - generic "debug" [ref=e56]: デバッグ機能
+        - generic "tag_if" [ref=e57]: if文を使える
+        - generic "multiline" [ref=e58]: 複数行タグやマクロ
+        - generic "ext_for_call" [ref=e59]: for文を使える
+        - generic "let_zenkaku" [ref=e60]: 変数名に全角文字
+        - generic "anon_label" [ref=e61]: 無名ラベル
+        - generic "escape" [ref=e62]: エスケープ文字
+      - generic [ref=e63]:
+        - generic [ref=e64]: 
+        - text: サウンド
+      - generic [ref=e65]:
+        - generic "sound" [ref=e66]: サウンド再生
+        - generic [ref=e67]:
+          - generic [ref=e68]: 
+          - text: その他
+        - generic "frame" [ref=e69]: HTMLフレーム
+        - generic "import" [ref=e70]: プレイデータ
+        - generic "tag_page" [ref=e71]: ページ移動
+      - generic "mul_ev" [ref=e72]: 複数イベント待ち
+      - generic "77slide" [ref=e74]: SKYNovel発表スライド
+    - generic [ref=e78]:
+      - list [ref=e79]:
+        - listitem [ref=e80]:
+          - link " 注目ポイント" [ref=e81] [cursor=pointer]:
+            - /url: "#tab_top"
+            - generic [ref=e82]: 
+            - text: 注目ポイント
+        - listitem [ref=e83]:
+          - link " レイヤアニメ" [ref=e84] [cursor=pointer]:
+            - /url: "#tab_ani"
+            - generic [ref=e85]: 
+            - text: レイヤアニメ
+        - listitem [ref=e86]:
+          - link " 画像・動画" [ref=e87] [cursor=pointer]:
+            - /url: "#tab_pic"
+            - generic [ref=e88]: 
+            - text: 画像・動画
+        - listitem [ref=e89]:
+          - link " 文字表示" [ref=e90] [cursor=pointer]:
+            - /url: "#tab_ch"
+            - generic [ref=e91]: 
+            - text: 文字表示
+        - listitem [ref=e92]:
+          - link " スクリプト" [ref=e93] [cursor=pointer]:
+            - /url: "#tab_scr"
+            - generic [ref=e94]: 
+            - text: スクリプト
+        - listitem [ref=e95]:
+          - link " サウンド" [ref=e96] [cursor=pointer]:
+            - /url: "#tab_snd"
+            - generic [ref=e97]: 
+            - text: サウンド
+        - listitem [ref=e98]:
+          - link " その他" [ref=e99] [cursor=pointer]:
+            - /url: "#tab_other"
+            - generic [ref=e100]: 
+            - text: その他
+      - generic:           

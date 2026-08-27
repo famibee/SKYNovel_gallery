@@ -1,0 +1,1 @@
+import{s as e}from"./pixi2.js";var t=class{#e=new Set;add(t,n,r,i={}){let a;return t instanceof e.default?(t.on(n,r,i),a=()=>{t.off(n,r,i)}):(t.addEventListener(n,r,i),a=()=>{t.removeEventListener(n,r,{capture:i.capture??!1})}),this.#e.add(a),()=>{this.#e.delete(a)&&a()}}clear(){for(let e of this.#e)e();this.#e.clear()}get isEmpty(){return this.#e.size===0}};export{t};

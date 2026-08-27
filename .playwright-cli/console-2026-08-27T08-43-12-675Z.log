@@ -1,0 +1,3 @@
+[     401ms] [LOG] Live2D Cubism SDK Core Version 6.0.1 @ http://localhost:8082/SKYNovel_gallery/plugin_lib/live2dcubismcore.min.js:8
+[   44005ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:8082/SKYNovel_gallery/src/web.ts:0
+[   48130ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:8082/SKYNovel_gallery/src/web.ts:0
