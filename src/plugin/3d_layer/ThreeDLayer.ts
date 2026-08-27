@@ -6,7 +6,7 @@
 ** ***** END LICENSE BLOCK ***** */
 
 import type {TArg, T_PluginInitArg} from '@famibee/skynovel_esm/web';
-import {Layer, argChk_Num, argChk_Boolean} from '@famibee/skynovel_esm/web';
+import {PlgLayer, argChk_Num, argChk_Boolean} from '@famibee/skynovel_esm/web';
 import type {AnimationClip, AnimationMixer, Camera, Mesh, Object3D, Object3DEventMap, Scene} from 'three';
 import {Material, MeshBasicMaterial} from 'three';
 
@@ -16,8 +16,7 @@ import {Material, MeshBasicMaterial} from 'three';
 const EXT_STILL_IMG = 'png_|jpg_|jpeg_|svg_|png|jpg|jpeg|svg';
 
 
-export class ThreeDLayer extends Layer {
-	static	#uniq_num	= 0;
+export class ThreeDLayer extends PlgLayer {
 	static	#stageW		= 0;
 	static	#stageH		= 0;
 
@@ -35,35 +34,34 @@ export class ThreeDLayer extends Layer {
 	constructor(private pia: T_PluginInitArg) {
 		super();
 
-		// 裏pageまでやると重そうなので
-		if (ThreeDLayer.#uniq_num++ % 2 == 1) return;
-		if (ThreeDLayer.#uniq_num === 1) {
+		// 本家 skynovel_esm では [add_lay] が1レイヤ名につき表裏2インスタンスを生成し、
+		//	[trans] のたびに Pages が表裏の参照を入れ替える。旧「偶数番だけ実体を持つ
+		//	（#uniq_num % 2）」最適化は、trans を挟むと実体無しインスタンスが表に回って
+		//	[lay] が効かなくなるため廃止。表裏とも実体を持たせる（3Dレイヤは通常1枚なので
+		//	WebGLコンテキスト2個は許容）
+		if (ThreeDLayer.#stageW === 0) {
 			const {window: {width, height}} = pia.getInfo();
 			ThreeDLayer.#stageW = width;
 			ThreeDLayer.#stageH = height;
 		}
 		this.#scene_3D = new ThreeDLayer.THREE.Scene();
-		this.#canvas_3D = new ThreeDLayer.THREE.WebGLRenderer({antialias: true, alpha: true});
+		// preserveDrawingBuffer: trueは[snapshot]対策（bluesnovel側 src/ts/Snapshot.ts参照。
+		//	live2d_layerと同じ理由：既定falseだとrAFループの外から任意のタイミングで
+		//	canvas.toDataURL()を呼ぶ[snapshot]が黒画像を拾う恐れがある）
+		this.#canvas_3D = new ThreeDLayer.THREE.WebGLRenderer({antialias: true, alpha: true, preserveDrawingBuffer: true});
 
 		// 3D Scene canvas
 		this.#canvas_3D.setSize(ThreeDLayer.#stageW, ThreeDLayer.#stageH);
 		this.#canvas_3D.setPixelRatio(window.devicePixelRatio);
 
-		// bluesnovelのthis.ctnは素のdiv（pixiのSprite/Textureブリッジは無い）ので、
-		//	WebGLRendererのcanvasをそのままDOMへ挿す。箱（PlgLayer.tsx）のサイズが
-		//	ステージ実寸(stageW/H)と異なっても崩れないよう、中央寄せだけCSSで担保する。
-		//	this.ctn自体にwidth/height:100%が要る：中身（canvas）がposition:absoluteだけだと
-		//	通常のフロー計算に参加せず、position:relativeのthis.ctnの高さが0のままになり、
-		//	canvasのtop:50%の基準がずれる（実機比較で発覚：グリッドが実際より上に表示された）
-		this.ctn.style.position = 'relative';
-		this.ctn.style.width = '100%';
-		this.ctn.style.height = '100%';
+		// this.htm（PlgLayerが用意する position:absolute・ステージ実寸の素div）へ
+		//	WebGLRendererのcanvasを中央寄せで挿す
 		const el = this.#canvas_3D.domElement;
 		el.style.position = 'absolute';
 		el.style.left = '50%';
 		el.style.top = '50%';
 		el.style.transform = 'translate(-50%, -50%)';
-		this.ctn.appendChild(el);
+		this.htm.appendChild(el);
 	}
 
 
@@ -411,6 +409,25 @@ export class ThreeDLayer extends Layer {
 			default:
 				break;
 		}*/
+	}
+
+	// [snapshot]（Web版）。PlgLayerのヘルパでcanvasをPIXI Texture化して焼き込む
+	override snapshot(rnd: any, re: ()=> void): void {
+		const el = this.#canvas_3D?.domElement;
+		if (! el) {re(); return}
+		this.snapshotByCanvas(el, rnd, re);
+	}
+
+	// プロジェクト切替（LayerMng.destroy → Pages.destroy）で必ず呼ばれる唯一の後始末口。
+	//	自前rAFループの停止とWebGLコンテキストの明示解放を行う
+	override destroy(): void {
+		super.destroy();	// PlgLayer: ticker解除・htm.remove()
+		this.#running = false;
+		this.#fncCtrl = ()=> {};
+		this.#fncMixerUpd = ()=> {};
+		this.#tickUpdEff = ()=> {};
+		this.#canvas_3D?.dispose?.();
+		this.#canvas_3D?.forceContextLoss?.();
 	}
 
 	override dump(): string {

@@ -1,0 +1,296 @@
+- generic [active] [ref=f6e1]:
+  - navigation [ref=f6e2]:
+    - generic "SideMenu" [ref=f6e3] [cursor=pointer]: 
+    - generic [ref=f6e5]:
+      - link "Title" [ref=f6e6] [cursor=pointer]:
+        - /url: "#"
+        - text: SKYNovel
+      - list [ref=f6e7]:
+        - listitem [ref=f6e8]: Live2Dレイヤ（技術デモ）
+        - listitem [ref=f6e9]:
+          - generic "Reload" [ref=f6e10] [cursor=pointer]: 
+        - listitem [ref=f6e12]:
+          - generic "Snapshot" [ref=f6e13] [cursor=pointer]: 
+        - listitem [ref=f6e15]:
+          - generic "Look Code" [ref=f6e16] [cursor=pointer]: 
+  - generic [ref=f6e18]:
+    - generic [ref=f6e19]:
+      - generic [ref=f6e20]:
+        - generic [ref=f6e21]: 
+        - text: レイヤアニメ
+      - generic [ref=f6e22]:
+        - generic "ext_fg" [ref=f6e23]: クロスフェードや動き
+        - generic "tag_quake" [ref=f6e24]: 画面を揺らす
+        - generic "tag_tsy" [ref=f6e25]: トゥイーンアニメを行なう
+        - generic "ext_fg2" [ref=f6e26]: 立ち絵を簡単に扱う
+        - generic "glsl_slide" [ref=f6e27]: シェーダで画像切り替え
+      - generic [ref=f6e28]:
+        - generic [ref=f6e29]: 
+        - text: 画像・動画
+      - generic [ref=f6e30]:
+        - generic "tag_lay_face" [ref=f6e31]: 画像も動画も重ねて表示
+        - generic "anime_png" [ref=f6e32]: アニメpng
+        - generic "tag_lay_mov" [ref=f6e33]: mp4, webp動画再生
+        - generic "blendmode" [ref=f6e34]: ブレンドモード
+        - generic "filter" [ref=f6e35]: フィルター
+        - generic "3d_efk" [ref=f6e36]: Effekseerエフェクト
+        - generic "3d_base" [ref=f6e37]: ３Ｄレイヤ（仕様策定中）
+        - generic "3d_gltf" [ref=f6e38]: glTF表示
+        - generic "3d_theta" [ref=f6e39]: 天球表示
+        - generic "live2d" [ref=f6e40]: Live2Dレイヤ（技術デモ）
+      - generic [ref=f6e41]:
+        - generic [ref=f6e42]: 
+        - text: 文字表示
+      - generic [ref=f6e43]:
+        - generic "ruby" [ref=f6e44]: 直感的なルビ記法
+        - generic "ch_in_out" [ref=f6e45]: 文字出現演出
+        - generic "font" [ref=f6e46]: フォント利用
+        - generic "txt_back" [ref=f6e47]: メッセージウインドウ
+        - generic "txt_back2" [ref=f6e48]: 複数メッセージウインドウ
+        - generic "ch_button" [ref=f6e49]: 文字ボタン・リンク
+        - generic "kidoku" [ref=f6e50]: 既読スキップ
+        - generic "log_and_play" [ref=f6e51]: 履歴と機能追加
+        - generic "line_breaking_rules" [ref=f6e52]: 禁則処理と文字詰め
+      - generic [ref=f6e53]:
+        - generic [ref=f6e54]: 
+        - text: スクリプト
+      - generic [ref=f6e55]:
+        - generic "debug" [ref=f6e56]: デバッグ機能
+        - generic "tag_if" [ref=f6e57]: if文を使える
+        - generic "multiline" [ref=f6e58]: 複数行タグやマクロ
+        - generic "ext_for_call" [ref=f6e59]: for文を使える
+        - generic "let_zenkaku" [ref=f6e60]: 変数名に全角文字
+        - generic "anon_label" [ref=f6e61]: 無名ラベル
+        - generic "escape" [ref=f6e62]: エスケープ文字
+      - generic [ref=f6e63]:
+        - generic [ref=f6e64]: 
+        - text: サウンド
+      - generic [ref=f6e65]:
+        - generic "sound" [ref=f6e66]: サウンド再生
+        - generic [ref=f6e67]:
+          - generic [ref=f6e68]: 
+          - text: その他
+        - generic "frame" [ref=f6e69]: HTMLフレーム
+        - generic "import" [ref=f6e70]: プレイデータ
+        - generic "tag_page" [ref=f6e71]: ページ移動
+      - generic "mul_ev" [ref=f6e72]: 複数イベント待ち
+      - generic "77slide" [ref=f6e74]: SKYNovel発表スライド
+    - generic [ref=f6e76]:
+      - generic [ref=f6e109]:
+        - generic [ref=f6e110]: ３
+        - generic [ref=f6e111]: Ｄ
+        - generic [ref=f6e112]: レ
+        - generic [ref=f6e113]: イ
+        - generic [ref=f6e114]: ヤ
+        - generic [ref=f6e115]: と
+        - generic [ref=f6e116]: 同
+        - generic [ref=f6e117]: じ
+        - generic [ref=f6e118]: 「
+        - generic [ref=f6e119]: D
+        - generic [ref=f6e120]: O
+        - generic [ref=f6e121]: M
+        - generic [ref=f6e122]: 直
+        - generic [ref=f6e123]: 描
+        - generic [ref=f6e124]: 画
+        - generic [ref=f6e125]: 方
+        - generic [ref=f6e126]: 式
+        - generic [ref=f6e127]: 」
+        - generic [ref=f6e128]: （
+        - generic [ref=f6e129]: "`"
+        - generic [ref=f6e130]: t
+        - generic [ref=f6e131]: h
+        - generic [ref=f6e132]: i
+        - generic [ref=f6e133]: s
+        - generic [ref=f6e134]: .
+        - generic [ref=f6e135]: c
+        - generic [ref=f6e136]: t
+        - generic [ref=f6e137]: "n"
+        - generic [ref=f6e138]: "`"
+        - generic [ref=f6e139]: へ
+        - generic [ref=f6e140]: c
+        - generic [ref=f6e141]: a
+        - generic [ref=f6e142]: "n"
+        - generic [ref=f6e143]: v
+        - generic [ref=f6e144]: a
+        - generic [ref=f6e145]: s
+        - generic [ref=f6e146]: を
+        - generic [ref=f6e147]: 直
+        - generic [ref=f6e148]: 接
+        - generic [ref=f6e149]: a
+        - generic [ref=f6e150]: p
+        - generic [ref=f6e151]: p
+        - generic [ref=f6e152]: e
+        - generic [ref=f6e153]: "n"
+        - generic [ref=f6e154]: d
+        - generic [ref=f6e155]: C
+        - generic [ref=f6e156]: h
+        - generic [ref=f6e157]: i
+        - generic [ref=f6e158]: l
+        - generic [ref=f6e159]: d
+        - generic [ref=f6e160]: ）
+        - generic [ref=f6e161]: で
+        - generic [ref=f6e162]: 、
+        - generic [ref=f6e163]: 公
+        - generic [ref=f6e164]: 式
+        - generic [ref=f6e165]: C
+        - generic [ref=f6e166]: u
+        - generic [ref=f6e167]: b
+        - generic [ref=f6e168]: i
+        - generic [ref=f6e169]: s
+        - generic [ref=f6e170]: m
+        - generic [ref=f6e172]: W
+        - generic [ref=f6e173]: e
+        - generic [ref=f6e174]: b
+        - generic [ref=f6e176]: S
+        - generic [ref=f6e177]: D
+        - generic [ref=f6e178]: K
+        - generic [ref=f6e180]: f
+        - generic [ref=f6e181]: o
+        - generic [ref=f6e182]: r
+        - generic [ref=f6e184]: W
+        - generic [ref=f6e185]: e
+        - generic [ref=f6e186]: b
+        - generic [ref=f6e187]: （
+        - generic [ref=f6e188]: m
+        - generic [ref=f6e189]: o
+        - generic [ref=f6e190]: c
+        - generic [ref=f6e191]: "3"
+        - generic [ref=f6e192]: /
+        - generic [ref=f6e193]: m
+        - generic [ref=f6e194]: o
+        - generic [ref=f6e195]: d
+        - generic [ref=f6e196]: e
+        - generic [ref=f6e197]: l
+        - generic [ref=f6e198]: "3"
+        - generic [ref=f6e199]: .
+        - generic [ref=f6e200]: j
+        - generic [ref=f6e201]: s
+        - generic [ref=f6e202]: o
+        - generic [ref=f6e203]: "n"
+        - generic [ref=f6e204]: を
+        - generic [ref=f6e205]: 直
+        - generic [ref=f6e206]: 接
+        - generic [ref=f6e207]: 読
+        - generic [ref=f6e208]: み
+        - generic [ref=f6e209]: 込
+        - generic [ref=f6e210]: み
+        - generic [ref=f6e211]: ）
+        - generic [ref=f6e212]: を
+        - generic [ref=f6e213]: 使
+        - generic [ref=f6e214]: っ
+        - generic [ref=f6e215]: て
+        - generic [ref=f6e216]: い
+        - generic [ref=f6e217]: ま
+        - generic [ref=f6e218]: す
+        - generic [ref=f6e219]: 。
+        - generic [ref=f6e220]: 待
+        - generic [ref=f6e221]: 機
+        - generic [ref=f6e222]: 中
+        - generic [ref=f6e223]: は
+        - generic [ref=f6e224]: ま
+        - generic [ref=f6e225]: ば
+        - generic [ref=f6e226]: た
+        - generic [ref=f6e227]: き
+        - generic [ref=f6e228]: ・
+        - generic [ref=f6e229]: 呼
+        - generic [ref=f6e230]: 吸
+        - generic [ref=f6e231]: で
+        - generic [ref=f6e232]: 自
+        - generic [ref=f6e233]: 動
+        - generic [ref=f6e234]: 的
+        - generic [ref=f6e235]: に
+        - generic [ref=f6e236]: 動
+        - generic [ref=f6e237]: い
+        - generic [ref=f6e238]: て
+        - generic [ref=f6e239]: い
+        - generic [ref=f6e240]: ま
+        - generic [ref=f6e241]: す
+        - generic [ref=f6e242]: 。
+        - generic [ref=f6e243]: ク
+        - generic [ref=f6e244]: リ
+        - generic [ref=f6e245]: ッ
+        - generic [ref=f6e246]: ク
+        - generic [ref=f6e247]: で
+        - generic [ref=f6e248]: モ
+        - generic [ref=f6e249]: ー
+        - generic [ref=f6e250]: シ
+        - generic [ref=f6e251]: ョ
+        - generic [ref=f6e252]: ン
+        - generic [ref=f6e253]: を
+        - generic [ref=f6e254]: 切
+        - generic [ref=f6e255]: り
+        - generic [ref=f6e256]: 替
+        - generic [ref=f6e257]: え
+        - generic [ref=f6e258]: ま
+        - generic [ref=f6e259]: す
+        - generic [ref=f6e260]: 。
+        - generic [ref=f6e262]: 「
+        - generic [ref=f6e263]: F
+        - generic [ref=f6e264]: l
+        - generic [ref=f6e265]: i
+        - generic [ref=f6e266]: c
+        - generic [ref=f6e267]: k
+        - generic [ref=f6e268]: 」
+        - generic [ref=f6e269]: モ
+        - generic [ref=f6e270]: ー
+        - generic [ref=f6e271]: シ
+        - generic [ref=f6e272]: ョ
+        - generic [ref=f6e273]: ン
+        - generic [ref=f6e274]: に
+        - generic [ref=f6e275]: 切
+        - generic [ref=f6e276]: り
+        - generic [ref=f6e277]: 替
+        - generic [ref=f6e278]: え
+        - generic [ref=f6e279]: 。
+        - generic [ref=f6e280]: も
+        - generic [ref=f6e281]: う
+        - generic [ref=f6e282]: 一
+        - generic [ref=f6e283]: 度
+        - generic [ref=f6e284]: ク
+        - generic [ref=f6e285]: リ
+        - generic [ref=f6e286]: ッ
+        - generic [ref=f6e287]: ク
+        - generic [ref=f6e288]: す
+        - generic [ref=f6e289]: る
+        - generic [ref=f6e290]: と
+        - generic [ref=f6e291]: 次
+        - generic [ref=f6e292]: へ
+        - generic [ref=f6e293]: 。
+      - generic [ref=f6e78]:
+        - list [ref=f6e79]:
+          - listitem [ref=f6e80]:
+            - link " 注目ポイント" [ref=f6e81] [cursor=pointer]:
+              - /url: "#tab_top"
+              - generic [ref=f6e82]: 
+              - text: 注目ポイント
+          - listitem [ref=f6e83]:
+            - link " レイヤアニメ" [ref=f6e84] [cursor=pointer]:
+              - /url: "#tab_ani"
+              - generic [ref=f6e85]: 
+              - text: レイヤアニメ
+          - listitem [ref=f6e86]:
+            - link " 画像・動画" [ref=f6e87] [cursor=pointer]:
+              - /url: "#tab_pic"
+              - generic [ref=f6e88]: 
+              - text: 画像・動画
+          - listitem [ref=f6e89]:
+            - link " 文字表示" [ref=f6e90] [cursor=pointer]:
+              - /url: "#tab_ch"
+              - generic [ref=f6e91]: 
+              - text: 文字表示
+          - listitem [ref=f6e92]:
+            - link " スクリプト" [ref=f6e93] [cursor=pointer]:
+              - /url: "#tab_scr"
+              - generic [ref=f6e94]: 
+              - text: スクリプト
+          - listitem [ref=f6e95]:
+            - link " サウンド" [ref=f6e96] [cursor=pointer]:
+              - /url: "#tab_snd"
+              - generic [ref=f6e97]: 
+              - text: サウンド
+          - listitem [ref=f6e98]:
+            - link " その他" [ref=f6e99] [cursor=pointer]:
+              - /url: "#tab_other"
+              - generic [ref=f6e100]: 
+              - text: その他
+        - generic:           

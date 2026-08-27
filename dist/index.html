@@ -49,11 +49,11 @@
 <script defer type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 	<!-- https://getbootstrap.com/ deferも忘れず -->
 <!-- プラグイン系のスクリプト -->
-<!--
+	<!-- live2dcubismcore.min.jsはLive2D公式Core（プロプライエタリ・グローバル変数Live2DCubismCoreを
+		提供）。live2d_layerがsrc/plugin/live2d_layer/framework/配下で参照するため常時ロードが必要
+		（3d_layerのthree.js同様、全ページで読み込まれる想定＝src/web.tsが全プラグインを
+		DOMContentLoadedで一括importするため） -->
 	<script defer src="./plugin_lib/live2dcubismcore.min.js"></script>
-	<script defer src="./plugin_lib/live2dcubismframework.js"></script>
-	<script defer src="./plugin_lib/live2dcubismpixi.js"></script>
--->
 	<script defer src="/SKYNovel_gallery/plugin_lib/emotedriver.js"></script>
 	<script defer src="/SKYNovel_gallery/plugin_lib/emoteplayer.min.js"></script>
 
@@ -109,8 +109,9 @@
 		<a class="list-group-item list-group-item-action bg-light" data-prj="3d_efk" title="3d_efk">Effekseerエフェクト</a>
 		<a class="list-group-item list-group-item-action bg-light" data-prj="3d_base" title="3d_base">３Ｄレイヤ（仕様策定中）</a>
 		<a class="list-group-item list-group-item-action bg-light" data-prj="3d_gltf" title="3d_gltf">glTF表示</a>
-		<a class="list-group-item list-group-item-action bg-light" data-prj="emote_layer" title="emote_layer">えもふりレイヤ</a>
+		<!-- <a class="list-group-item list-group-item-action bg-light" data-prj="emote_layer" title="emote_layer">えもふりレイヤ</a> -->
 		<a class="list-group-item list-group-item-action bg-light" data-prj="3d_theta" title="3d_theta">天球表示</a>
+		<a class="list-group-item list-group-item-action bg-light" data-prj="live2d" title="live2d">Live2Dレイヤ（技術デモ）</a>
 		</div>
 
 		<div class="sidebar-heading"><i class="fas fa-pencil-alt"></i> 文字表示</div>
@@ -360,22 +361,6 @@
 							<p class="card-text text-right"><small class="text-muted">E-mote Powered by M2 Co.,Ltd.</small></p>
 						</div>
 					</div>
-		<!--
-					<div class="col-sm-4 card p-0 border border-secondary">
-						<div class="card-body">
-							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> Live2D Cubismレイヤ</h5>
-							<picture>
-								<source type="image/webp" srcset="grp/cubism3_layer.webp"/>
-								<img class="card-img p-0" src="grp/cubism3_layer.jpg"/>
-							</picture>
-							<p class="card-text"><a href="https://emote.mtwo.co.jp/emofuri/" target="_blank" rel="noopener">Live2D® Cubism</a>を表示するレイヤです。</p>
-							<p class="card-text text-right"><small class="text-muted">※暫定版です</small></p>
-							<p class="card-text"><small class="text-muted">※実際の使用時は、Live2D社の<a href="https://www.live2d.com/ja/products/releaselicense" target="_blank" rel="noopener">SDKリリース(出版許諾)ライセンス</a>を確認して下さい。</small></p>
-							<span class="btn btn-block btn-primary" data-prj="cubism3_layer">RUN sample</span>
-							<p class="card-text text-right"><small class="text-muted">Live2D Cubism Powered by Live2D Inc.</small></p>
-						</div>
-					</div>
-		-->
 					<div class="col-sm-4 card p-0 border border-secondary">
 						<div class="card-body">
 							<h5 class="card-title text-center"><span class="badge badge-pill badge-danger">New</span> ３Ｄレイヤ・天球表示（実験機能）</h5>

@@ -1,0 +1,50 @@
+[title text='Live2Dレイヤ（技術デモ）'][call label=*init]
+
+[add_lay layer=bg class=grp]
+	[lay layer=bg fn=saiyuukan_you]
+[add_lay layer=l2d class=live2d]
+[add_lay layer=mes class=txt]
+	[lay layer=mes b_color=0xFFFFFF b_alpha=0.9 left=16 top=300 style="width: 690px; height: 144px; padding: 8px; color: black;"]
+
+	[lay layer=l2d fn=hiyori_free_t08 label=Idle scale=1]
+３Ｄレイヤと同じ「DOM直描画方式」です。[r]
+待機中はまばたき・呼吸で動いています。[r]
+クリックでモーションを切り替えます。[l][er]
+
+*loop
+	[lay layer=l2d label=Flick]
+「Flick」モーションに切り替え。もう一度クリックすると次へ。[l][er]
+
+	[lay layer=l2d label=FlickDown]
+「FlickDown」モーションに切り替え。[l][er]
+
+	[lay layer=l2d label=Tap]
+「Tap」モーションに切り替え。[l][er]
+
+	[lay layer=l2d label=Tap@Body]
+「Tap@Body」モーションに切り替え。[l][er]
+
+	[lay layer=l2d label=Flick@Body]
+「Flick@Body」モーションに切り替え。[l][er]
+
+	[lay layer=l2d scale=1.3]
+scale属性を変えて拡大表示（1.3倍）。[l][er]
+
+	[lay layer=l2d scale=1]
+scale属性を戻して等倍表示に。しばらく放置すると「Idle」の待機モーションへ自動的に戻ります（まばたき・呼吸は待機中も継続して動作しています）。[l][er]
+[jump label=*loop]
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
+	[toggle_full_screen key=w]	; for browser
+	[event global=true call=true key=F8 label=*dump cond=const.sn.isDebugger]
+[return]
+
+*snapshot
+[snapshot fn=pic][return]
+
+*dump
+	[dump_lay]
+[return]
