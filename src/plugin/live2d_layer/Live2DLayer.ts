@@ -304,8 +304,19 @@ export class Live2DLayer extends PlgLayer {
 	#model?: Live2DModel;
 	#running = false;
 	#lastT = 0;
+
+	// [trans] 後の不可視 back ページでは自前 rAF を止める（bluesnovel の PlgLayMng が
+	//	foreIdx／trans 状態から算出して setActive() で通知する。backpage-perf.md）。
+	//	本家 skynovel_esm には setActive が無く呼ばれない＝#active は true のまま＝従来動作
+	#active = true;
+	override setActive(active: boolean): void {
+		this.#active = active;
+		// 再開時は #lastT を捨てて次フレームで dt=0 から（凍結中の経過をモーションへ流さない）
+		if (active && this.#running) {this.#lastT = 0; requestAnimationFrame(this.#tick)}
+	}
+
 	#tick = (t: number)=> {
-		if (! this.#running) return;
+		if (! this.#running || ! this.#active) return;
 
 		const dt = this.#lastT ? (t -this.#lastT) /1000 : 0;
 		this.#lastT = t;

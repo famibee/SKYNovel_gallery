@@ -1,0 +1,75 @@
+[title text='シェーダエフェクト（BlueSNovel専用）'][call label=*init]
+	; SKYNovel では動かない
+
+	[call fn=face*]	; *** 立ち絵顔差分を読み込む ***
+
+[add_lay layer=bg class=grp]
+	[lay layer=bg fn=bg visible=true]
+[add_lay layer=hu class=grp]
+	[lay layer=hu fn=minoura_yousou face=minoura_kuchi_hohoemi,minoura_me_mabataki,minoura_mayu_futsu time=0 visible=true]
+[add_lay layer=mes class=txt]
+	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 70px; padding-bottom: 0px; padding-left: 30px; padding-right: 40px; font-family: monospace;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
+
+	&sty  = '{"fill": "tomato"}'
+	&styH = '{"fill": "#eee"}'
+[button text=wave label=*wave
+	hint='横ゆれ（水面／陽炎）'
+	global=true call=true left=20 top=460 page=fore style=&sty style_hover=&styH]
+[button text='wave 強め' label=*wave_big
+	hint='amp/freq/speed を上げる'
+	global=true call=true left=120 top=460 page=fore style=&sty style_hover=&styH]
+[button text=rgbShift label=*rgb
+	hint='RGB を左右にずらす（色収差）'
+	global=true call=true left=220 top=460 page=fore style=&sty style_hover=&styH]
+[button text='wave + rgb' label=*both_fx
+	hint='スタック（2 パス ping-pong）'
+	global=true call=true left=320 top=460 page=fore style=&sty style_hover=&styH]
+[button text='one-shot 1.5s' label=*oneshot
+	hint='time= 経過後そのパス素通し＝凍結'
+	global=true call=true left=420 top=460 page=fore style=&sty style_hover=&styH]
+[button text=clear label=*clr
+	hint='[clear_fx layer=hu]'
+	global=true call=true left=520 top=460 page=fore style=&sty style_hover=&styH]
+
+　ボタンでwave(ゆらぎ)・rgbShift(色収差)などを切り替え。[r]
+[s]
+
+
+*wave
+	[clear_fx layer=hu]
+	[add_fx layer=hu fx=wave]
+[return]
+
+*wave_big
+	[clear_fx layer=hu]
+	[add_fx layer=hu fx=wave amp=16 freq=3 speed=1.6]
+[return]
+
+*rgb
+	[clear_fx layer=hu]
+	[add_fx layer=hu fx=rgbShift shift=10]
+[return]
+
+*both_fx
+	[clear_fx layer=hu]
+	[add_fx layer=hu fx=wave amp=8]
+	[add_fx layer=hu name=rgb fx=rgbShift shift=6]
+[return]
+
+*oneshot
+	[clear_fx layer=hu]
+	[add_fx layer=hu fx=rgbShift shift=16 time=1500]
+[return]
+
+*clr
+	[clear_fx layer=hu]
+[return]
+
+
+*init
+	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[toggle_full_screen key=w]	; for browser
+[return]
+
+*snapshot
+[snapshot fn=pic][return]

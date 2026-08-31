@@ -66,7 +66,7 @@ export class ThreeDLayer extends PlgLayer {
 
 
 	#tick = ()=> {
-		if (! this.#running) return;
+		if (! this.#running || ! this.#active) return;
 
 		this.#canvas_3D.render(this.#scene_3D, this.#camera);
 		this.#tickUpdEff();
@@ -75,6 +75,16 @@ export class ThreeDLayer extends PlgLayer {
 		requestAnimationFrame(this.#tick);
 	}
 	#running = false;
+
+	// [trans] 後の不可視 back ページでは自前 rAF を止める（bluesnovel の PlgLayMng が
+	//	foreIdx／trans 状態から算出して setActive() で通知する。backpage-perf.md）。
+	//	本家 skynovel_esm には setActive が無く呼ばれない＝#active は true のまま＝従来動作
+	#active = true;
+	override setActive(active: boolean): void {
+		this.#active = active;
+		if (active && this.#running) requestAnimationFrame(this.#tick);	// 止まっていたループを再開
+	}
+
 	#fncCtrl = ()=> {};
 
 	#fncMixerUpd	= ()=> {};
