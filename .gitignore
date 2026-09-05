@@ -5,6 +5,7 @@
 /node_modules/
 
 *.LICENSE.txt
+*.tsbuildinfo
 
 # SKYNovel Dev famibee's Work Folder
 /Work/

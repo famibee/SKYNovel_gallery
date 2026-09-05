@@ -1,0 +1,6 @@
+[let_ml name=g]
+[endlet_ml]
+
+[def_fx name=xxx glsl=&g]
+
+[return]

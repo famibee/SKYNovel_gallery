@@ -1,0 +1,632 @@
+;********************************************************
+;@EXT_DESC	炎のシェーダエフェクト 4種。fx=fire_floor（炎の床）／fx=fire（1本の炎）／fx=fire_b（THREE.Fire 系ボリューム炎）／fx=fire_c（fire＋内部ムラ）
+;@VER		2026.09.03.000	初版（fire_floor／fire／fire_b／fire_c を 1ファイルに定義）
+;********************************************************
+; 使い方
+;	・テンプレ起動時に必ず通る処理から一度だけ [call fn=ext_fx_tst] する
+;	  （[def_fx] は [add_face] と同じくセーブ非対象。GLSL 本体はセーブファイルに焼かれず、
+;	   起動のたびにこの [def_fx] 再実行で埋め直す運用。docs/tag.html [def_fx] の項）
+;	・背景（不透明な grp レイヤ）に対して使う。炎は加算合成、背景は「炎に目が慣れて
+;	  相対的に暗く見える」ぶん露出を落として返す。
+;	・一時的な有効無効は [pause_fx]／[resume_fx]。撤去は [clear_fx]。
+;
+; ● 共通パラメータ（未指定はすべて 0＝各 fx の既定値。既定値は各項に記載）
+;	amp   … 炎の勢い・明るさ。負値でオフ（素通し。記述子は残るので [add_fx] で再開できる）
+;	freq  … ゆらぎ／乱流のディテール。0.5〜2.0 目安
+;	shift … 炎に照らされて背景が沈む量。負値で背景そのまま
+;	p1    … 炎の高さ（基準は fx により異なる。各項参照）
+;	p2    … 横位置＝画面幅に対する割合（0=中央, ±1=画面端）。花火の p2 と同じ流儀
+;	p3    … fire_b／fire_c のみ使用（各項参照）
+;	color … 色づけ。color=0x33ff88 ／ "#rrggbb" ／ r,g,b（各 0..1）。未指定→橙
+;
+; ■ fx=fire_floor … 画面下端いっぱいから立ち上がる炎（火事場・炎上する床）
+;	    [add_fx layer=bg fx=fire_floor]                          … 床から立ち上がる標準の炎
+;	    [add_fx layer=bg fx=fire_floor amp=1.6 p1=0.85]          … 画面高くまで舐め上げる大火
+;	    [add_fx layer=bg fx=fire_floor amp=0.6 p1=0.3 shift=0.4] … 消えかけの残り火
+;	    [add_fx layer=bg fx=fire_floor color=0x33ff88]           … 怪火（色替え）
+;	    p1    … 舐め上げる高さ＝画面下からの割合。未指定→0.55。0.2〜1.1 目安
+;	    shift … 未指定→0.8
+;
+; ■ fx=fire … 1本の炎（キャンプファイア／松明。手前から見た涙滴形の炎柱）
+;	    [add_fx layer=bg fx=fire]                                … 画面中央に 1 本
+;	    [add_fx layer=bg fx=fire p2=-0.5]                        … 左寄りへ
+;	    [add_fx layer=bg fx=fire amp=1.6 p1=0.8]                 … 大きく高い炎
+;	    [add_fx layer=bg fx=fire color=0x66aaff p2=0.4]          … 右寄りの青い怪火
+;	    p1    … 炎の高さ＝画面に対する割合。未指定→0.62。0.12〜1.4 目安
+;	    shift … 未指定→0.6
+;
+; ■ fx=fire_b … THREE.Fire（three.js の定番ボリューム炎）の技法を 2D 全画面へ移した炎柱。
+;	         円筒座標（軸距離・高さ）の濃度プロファイルへ、sqrt(高さ) 重みのリッジ乱流で
+;	         参照位置をずらして舌を作り、奥行き方向のレイマーチで半透明の舌を積む。
+;	         立ちのぼる速さ・横揺れ・ちらつきは fire に合わせてある。
+;	    [add_fx layer=bg fx=fire_b]                              … 画面中央に 1 本（縦長）
+;	    [add_fx layer=bg fx=fire_b p2=-0.6]                      … 左寄りへ
+;	    [add_fx layer=bg fx=fire_b amp=1.6 p1=1.4]               … 大きく高い炎
+;	    [add_fx layer=bg fx=fire_b freq=1.8 p3=1.8]              … 乱流細かめ・舌を大きくうねらせる
+;	    [add_fx layer=bg fx=fire_b color=0x66aaff p2=0.4]        … 右寄りの青い怪火
+;	    p1    … 炎の高さ＝画面に対する割合（根元は下端固定で上へ伸びる）。未指定→1.05。0.12〜2.0 目安
+;	    p3    … magnitude＝乱流がプロファイル参照位置をずらす量。未指定→1.3（THREE.Fire 既定）。0.6〜2.2 目安
+;	    shift … 未指定→0.6
+;
+; ■ fx=fire_c … fire と同じパラメータ＋ p3。中央部を fbm で抜いて背景を透かし、
+;	         「のっぺり赤黄色い」感じを減らす（webgl-fire の内部の半透明感に寄せる）
+;	    [add_fx layer=bg fx=fire_c]                              … 標準（p3=0→0.7）
+;	    [add_fx layer=bg fx=fire_c p3=1.3]                       … ムラ強め＝より透ける
+;	    [add_fx layer=bg fx=fire_c p3=-1]                        … ムラ無し（合成だけ fire と別）
+;	    p1    … fire と同じ。未指定→0.62
+;	    p3    … 内部の透け・ムラの強さ。未指定→0.7。負値でムラ無し
+;
+; ライセンス
+;	この .sn と下記 GLSL は MIT（分家 bluesnovel 本体と同じ）。既存コードの写し・改変では
+;	なく、下記の公開実装からは「技法（アイデア）だけ」を参考にした独自実装：
+;	  - fire_floor    : "301's Fire Shader - Remix 2"  https://www.shadertoy.com/view/MtcGD7
+;	      画面下から縦に潰した fbm を流し、もう一段の fbm でドメインワープして乱流化し、
+;	      高さで減衰させて炎の舌を切り出す定番手法。
+;	  - fire / fire_c : "Procedural Volumetric Fire"   https://webgl-fire.appspot.com/
+;	      「sqrt(高さ) 重みのリッジ乱流を縦プロファイルのルックアップ位置に足して舌を作る」
+;	      というアイデアのみ。元実装の Blum-Blum-Shub 乱数・事前生成ノイズ画像(nzw.png)・
+;	      炎プロファイル画像(firetex.png)・スライスキューブのボリュームレイマーチは一切
+;	      使わず、ハッシュ値ノイズ／pow・smoothstep のシルエット関数／手前 1 枚板の
+;	      多重加算スライスで書き直してある。fire_c はそれに内部ムラ（fbm で穴を開ける）を足したもの。
+;	  - fire_b        : "THREE.Fire"  https://github.com/typeWolffo/THREE.Fire （MIT / typeWolffo・原型 mattatz 2015）
+;	      「円筒座標（軸距離, 高さ）の濃度プロファイルへ、sqrt(高さ) 重みのリッジ乱流
+;	      （sum abs(noise)*amp, freq*=lacunarity, amp*=gain）でプロファイル参照位置をずらし、
+;	      奥行き方向のレイマーチで積む」というアイデアのみ。元実装の Ashima simplex ノイズ
+;	      （snoise 約 200 行）・濃度マスク画像 Fire.png・invModelMatrix を使ったワールド空間の
+;	      3D ボリュームレイマーチは使わず、自前の 3D 値ノイズ／手続き生成の涙滴プロファイル／
+;	      正面ビルボードを奥行きに積む近似で書き直してある。
+;	共通ヘッダの hash 乱数は rain_window.sn と同じ流儀。専用テクスチャはいずれも不使用。
+;********************************************************
+
+; ============================================================
+;  fx=fire_floor … 画面下端いっぱいから立ち上がる炎
+; ============================================================
+; --- フラグメントシェーダ本体（main() と固有 uniform だけ。共通ヘッダ
+;     precision／vTextureCoord／uSampler／tick／resolution は FxRunner が前置する） ---
+[let_ml name=g]
+uniform float amp;		// 炎の勢い（未指定=0→標準1.0。負値でオフ）
+uniform float freq;	// ゆらぎのディテール（未指定=0→1.0）
+uniform float shift;	// 炎に照らされ背景が沈む量（未指定=0→0.8。負値で背景そのまま）
+uniform float p1;		// 炎が舐め上げる高さ＝下からの割合（未指定=0→0.55）
+uniform vec3  color;	// 炎の色づけ（未指定=vec3(0)→既定の橙）
+
+// --- ハッシュ乱数（rain_window.sn と同じ流儀。mediump 前提・テクスチャ不要） ---
+float h21(vec2 p) {
+	p = fract(p * vec2(127.32, 311.7));
+	p += dot(p, p + 34.21);
+	return fract(p.x * p.y);
+}
+
+// 値ノイズ（格子点をハッシュして双一次補間。f を smoothstep で丸めて折り目を消す）
+float vnoise(vec2 p) {
+	vec2 i = floor(p), f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	return mix(mix(h21(i),               h21(i + vec2(1.0, 0.0)), f.x),
+	           mix(h21(i + vec2(0.0, 1.0)), h21(i + vec2(1.0, 1.0)), f.x), f.y);
+}
+
+// 5 オクターブ fbm。オクターブごとに回転付き 2 倍拡大（det=4）＝格子の異方性を散らす
+float fbm(vec2 p) {
+	float s = 0.0, a = 0.5;
+	for (int i = 0; i < 5; i++) {
+		s += a * vnoise(p);
+		p  = mat2(1.6, 1.2, -1.2, 1.6) * p;
+		a *= 0.5;
+	}
+	return s;
+}
+
+// 炎の発光量（0〜およそ 1.4、1 付近で白熱）。uv は y-up の 0..1（下端が y=0）
+float fireGlow(vec2 uv, float t, float detail, float reach) {
+	float aspect = resolution.x / max(resolution.y, 1.0);
+	vec2 p = vec2((uv.x - 0.5) * aspect + 0.5, uv.y);
+
+	// 縦に伸ばした座標＝縦長の炎。時間で上へ流す（y-up：y を減らすと模様は上へ）
+	vec2 q = vec2(p.x * 3.0, p.y * 1.1 - t * 1.7);
+	q.x += sin(p.y * 3.2 - t * 2.2) * 0.30 * p.y;	// 上ほど大きく揺らめく（根元は動かさない）
+
+	float sc   = 0.7 + detail * 0.6;
+	float warp = fbm(q * sc);						// 1 段目＝歪ませ場
+	float n    = fbm(q * sc * 1.9 + warp * 1.9 - vec2(0.0, t * 0.7));	// 2 段目＝乱流
+	n = n * n * 1.8;								// コントラストを付けて「炎の舌」と隙間を分ける
+
+	// 高さ減衰：下端で 1 → reach で 0
+	float h = smoothstep(reach, 0.0, uv.y);
+	// 炎の密度＝ノイズ − 高さペナルティ（h の落ち込みを主にして、緩めのペナルティで先細りさせる）
+	float d = h * (n + 0.22) - uv.y * (0.30 / max(reach, 0.08));
+	d = max(d, 0.0);
+
+	// 芯を非線形に持ち上げて白熱させる
+	return d * d * (2.0 + detail * 0.8);
+}
+
+void main() {
+	vec2 uv = vTextureCoord;
+	vec4 base = texture2D(uSampler, uv);
+
+	// amp 負値＝オフ。素の背景をそのまま返す（記述子は残るので後から上書き可）
+	if (amp < 0.0) { gl_FragColor = base; return; }
+
+	float power  = amp == 0.0 ? 1.0 : amp;
+	float detail = freq <= 0.0 ? 1.0 : freq;
+	float dark   = shift == 0.0 ? 0.8 : max(shift, 0.0);
+	float reach  = p1 <= 0.0 ? 0.55 : clamp(p1, 0.05, 1.2);
+	bool  tinted = dot(color, color) > 0.0001;
+
+	// mediump の桁落ち対策で流れ用の時間だけ緩く周回させる（fract しないので不連続は約 4 分に 1 回、
+	//	乱流の中では体感できない）。ちらつき用は sin なので生 tick でよい
+	float ft = mod(tick, 240.0);
+
+	float fl = fireGlow(uv, ft, detail, reach) * power;
+
+	// 全体のちらつき（0.56〜1.0）。炎の明るさと背景の露出、両方を同位相で揺らす
+	float flick = 0.78 + 0.22 * (0.6 * sin(tick * 8.0) + 0.4 * sin(tick * 19.0 + 1.7));
+
+	// --- 炎の色：発光量 fl を火色グラデーションに載せる（橙→黄→白熱） ---
+	float x = clamp(fl, 0.0, 1.4);
+	vec3 fire = vec3(1.3, 0.35, 0.08) * x;
+	fire = mix(fire, vec3(1.5, 1.05, 0.30), smoothstep(0.50, 1.00, x));
+	fire = mix(fire, vec3(1.6, 1.50, 1.15), smoothstep(0.95, 1.35, x));
+	if (tinted) fire *= (color + 0.15) * 2.0;		// color= 指定でグラデ全体を色替え（怪火など）
+	fire *= flick;
+
+	// --- 背景（透過）：炎に目が慣れて暗く見える ---
+	float near = smoothstep(0.05, 0.70, fl);			// 炎の強い所ほど 1
+	vec3 lightCol = tinted ? color : vec3(1.0, 0.45, 0.15);
+	vec3 bg = base.rgb;
+	bg += lightCol * near * 0.30 * flick;			// 炎に照らされる暖色（弱め）
+	bg *= 1.0 - dark * (0.45 + 0.55 * flick) * (1.0 - near * 0.8);	// それ以外は沈む
+
+	vec3 col = bg + fire;
+
+	// 周辺減光（炎への集中感）
+	vec2 vg = uv - 0.5;
+	col *= 1.0 - dot(vg, vg) * 0.15;
+
+	gl_FragColor = vec4(clamp(col, 0.0, 1.0), base.a);
+}
+[endlet_ml]
+
+[def_fx name=fire_floor glsl=&g]
+
+
+; ============================================================
+;  fx=fire … 手前から見た 1 本の炎（キャンプファイア／松明）
+; ============================================================
+[let_ml name=g2]
+uniform float amp;		// 炎の大きさ・明るさ（未指定=0→1.0。負値でオフ）
+uniform float freq;	// ゆらぎ（乱流）の細かさ（未指定=0→1.0）
+uniform float shift;	// 炎に照らされ背景が沈む量（未指定=0→0.6。負値で背景そのまま）
+uniform float p1;		// 炎の高さ＝画面に対する割合（未指定=0→0.62）
+uniform float p2;		// 横位置＝画面幅に対する割合（0=中央, ±1=画面端）。花火の p2 と同じ流儀
+uniform vec3  color;	// 炎の色づけ（未指定=vec3(0)→既定の橙）
+
+// --- ハッシュ乱数（rain_window.sn と同じ流儀。mediump 前提・テクスチャ不要） ---
+float h21(vec2 p) {
+	p = fract(p * vec2(127.32, 311.7));
+	p += dot(p, p + 34.21);
+	return fract(p.x * p.y);
+}
+float vnoise(vec2 p) {
+	vec2 i = floor(p), f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	return mix(mix(h21(i),               h21(i + vec2(1.0, 0.0)), f.x),
+	           mix(h21(i + vec2(0.0, 1.0)), h21(i + vec2(1.0, 1.0)), f.x), f.y);
+}
+
+// リッジ乱流：|noise| を 4 オクターブ積む＝炎特有のギザついた「舌」
+float turb(vec2 p) {
+	float s = 0.0, a = 0.5;
+	for (int i = 0; i < 4; i++) {
+		s += abs(vnoise(p) * 2.0 - 1.0) * a;
+		p  = mat2(1.6, 1.2, -1.2, 1.6) * p;
+		a *= 0.5;
+	}
+	return s;								// おおむね 0〜0.9
+}
+// 横ゆらぎ用の軽い 2 オクターブ符号つきノイズ（フル turb より安い）
+float wob(vec2 p) {
+	return (vnoise(p) * 2.0 - 1.0) * 0.66 + (vnoise(p * 2.03 + 7.0) * 2.0 - 1.0) * 0.34;
+}
+
+// 卵形（涙滴）シルエット。y は炎ローカル高さ（0=根元, 1=先端, 負値=根元より下）。
+//	底は丸く細く、胴でふくらみ、先端へ 0 に尖らせる（webgl-fire の fireProfile テクスチャの
+//	輪郭ぶんを pow/smoothstep で手続き生成したもの＝専用画像を持たない）
+float silR(float y) {
+	y = clamp(y, -0.25, 1.05);
+	float lower = smoothstep(-0.28, 0.42, y);
+	float upper = 1.0 - smoothstep(0.40, 1.02, y);
+	return sqrt(lower) * (upper * (0.75 + 0.25 * upper));	// pow を排除（≒ lower^0.45 * upper^1.25）
+}
+
+// 炎のボリューム 1 スライス。sx=符号つき軸距離（fx/halfW）, hgt=ローカル高さ, np=乱流座標,
+//	zoff=奥行き（スライスごとに乱流を脱相関＝半透明の舌が重なって見える）, mag=縦変位の強さ。
+//	「sqrt(高さ) 重みのリッジ乱流を縦ルックアップに足して舌を切り出す」定番手法を 1 枚板で近似。
+//	戻り値 x=密度, y=温度寄与（0=冷 1=熱）
+vec2 fireSlice(float sx, float hgt, vec2 np, float zoff, float mag) {
+	float tb = turb(np + zoff * 7.31);
+	float H  = hgt + sqrt(max(hgt + 0.15, 0.0)) * mag * tb;		// 縦ルックアップ変位（sqrt重み＝根元は静か）
+	if (H <= -0.22 || H >= 1.05) return vec2(0.0);
+	float R = silR(H);
+	if (R < 0.001) return vec2(0.0);
+	// 横方向にもスライスごとにずらす＝芯が 1 本の線にならない
+	float xj = wob(np * 1.15 + zoff * 11.7 + 4.0) * 0.42 * (0.18 + 0.82 * sqrt(max(hgt, 0.0)));
+	float e  = abs(sx + xj) / R;								// 0=軸 1=シルエット端
+	float body = clamp(1.0 - e, 0.0, 1.0);						// 線形（芯を持ち上げない）
+	body *= smoothstep(-0.20, 0.22, H);							// 底の縁をなじませる（少し下へも）
+	body *= smoothstep(1.05, 0.78, H);							// 先端フェード
+	float temp = clamp(1.0 - e * 0.8, 0.0, 1.0) * (1.0 - max(H, 0.0) * 0.4)
+		* (0.35 + 0.65 * smoothstep(-0.10, 0.24, H));			// 端＝冷（赤）, 上＝冷, 根元も赤寄り
+	return vec2(body, temp);
+}
+
+void main() {
+	vec2 uv = vTextureCoord;
+	vec4 base = texture2D(uSampler, uv);
+
+	// amp 負値＝オフ。素の背景をそのまま返す（記述子は残るので後から上書き可）
+	if (amp < 0.0) { gl_FragColor = base; return; }
+
+	float size   = amp == 0.0 ? 1.0 : amp;
+	float detail = freq <= 0.0 ? 1.0 : freq;
+	float dark   = shift == 0.0 ? 0.6 : max(shift, 0.0);
+	float Hs     = p1 <= 0.0 ? 0.62 : clamp(p1, 0.12, 1.4);	// 炎の画面上の高さ（割合）
+	float axisX  = 0.5 + p2 * 0.5;							// p2=±1 で炎の中心軸がフレーム左右端
+	bool  tinted = dot(color, color) > 0.0001;
+
+	float aspect = resolution.x / max(resolution.y, 1.0);
+
+	float baseY = 0.04;										// 炎の根元の画面高さ
+	float fx = (uv.x - axisX) * aspect;
+	fx += sin(tick * 1.1) * 0.006 + sin(tick * 0.43) * 0.013;	// ゆったりした横揺れ
+
+	float hgt   = (uv.y - baseY) / Hs;						// 炎ローカル高さ（0=根元 1=先端。負値=根元より下）
+	float halfW = 0.20 * size;								// 涙滴の最大半幅（アスペクト補正済み x 単位）
+	float sx    = fx / halfW;
+
+	// 上昇気流：模様は一定速度で上へ流れる（速度を高さに依存させると時間とともにシアで崩れる）。
+	//	スクロール量は mediump 桁落ち対策で周回させる（乱流の中なので周回の不連続は目立たない）
+	vec2  np   = vec2(fx * 1.7, uv.y * 0.9) * (2.2 + detail * 1.3);
+	np.y -= mod(tick * 1.3, 96.0);
+	float mag  = 0.42 + 0.30 * detail;
+
+	// 3 スライスを加算＝半透明の舌が重なったボリューム感（webgl-fire の 8 サンプルレイマーチを軽量化）
+	vec2 s0 = fireSlice(sx, hgt, np, 0.0, mag);
+	vec2 s1 = fireSlice(sx, hgt, np, 2.0, mag);
+	vec2 s2 = fireSlice(sx, hgt, np, 4.0, mag);
+	float w0 = 1.0, w1 = 0.72, w2 = 0.48;
+	float dens = s0.x * w0 + s1.x * w1 + s2.x * w2;
+	float temp = dens > 0.001
+		? (s0.x*w0*s0.y + s1.x*w1*s1.y + s2.x*w2*s2.y) / dens
+		: 0.0;
+
+	// ゆったりしたちらつき（煙のように）
+	float flick = 0.86 + 0.14 * (0.6 * sin(tick * 3.4) + 0.4 * sin(tick * 8.1 + 1.7));
+
+	// --- 炎の色：温度で（端・上＝暗赤 → 橙 → 黄）。白熱はさせない ---
+	vec3 tc;
+	if (tinted) {
+		tc = color * (0.35 + 0.65 * temp);
+	} else {
+		tc = mix(vec3(0.75, 0.06, 0.01), vec3(1.00, 0.30, 0.03), smoothstep(0.10, 0.45, temp));
+		tc = mix(tc, vec3(1.00, 0.60, 0.13), smoothstep(0.45, 0.80, temp));
+		tc = mix(tc, vec3(1.00, 0.80, 0.32), smoothstep(0.80, 1.00, temp));
+	}
+
+	float d = clamp(dens * size * 0.72, 0.0, 1.0);
+	vec3 fire = tc * d * (0.72 + 0.14 * flick);				// 加算する炎の発光（白飛びさせない）
+
+	// --- 背景（透過）：炎まわりが照らされ、それ以外は沈む ---
+	float near = clamp(d * 0.9, 0.0, 1.0);
+	vec3 lightCol = tinted ? normalize(color + 0.001) : vec3(1.0, 0.45, 0.15);
+	vec3 bg = base.rgb;
+	bg += lightCol * near * 0.20 * flick;					// 炎に照らされる暖色
+	bg *= 1.0 - dark * (0.40 + 0.60 * flick) * (1.0 - near);	// それ以外は沈む
+
+	vec3 col = bg + fire;
+	gl_FragColor = vec4(clamp(col, 0.0, 1.0), base.a);
+}
+[endlet_ml]
+
+[def_fx name=fire glsl=&g2]
+
+
+; ============================================================
+;  fx=fire_b … THREE.Fire（three.js の定番ボリューム炎）の技法を 2D 全画面へ移植
+;   円筒プロファイル＋sqrt 高さ重みリッジ乱流＋奥行きレイマーチ
+; ============================================================
+[let_ml name=g3]
+uniform float amp;		// 炎の大きさ・明るさ（未指定=0→1.0。負値でオフ）
+uniform float freq;	// 乱流のディテール（未指定=0→1.0）。0.5〜2.0 目安
+uniform float shift;	// 炎に照らされ背景が沈む量（未指定=0→0.6。負値で背景そのまま）
+uniform float p1;		// 炎の高さ＝画面に対する割合（未指定=0→1.05。根元は下端固定で上へ伸びる）
+uniform float p2;		// 横位置＝画面幅に対する割合（0=中央, ±1=画面端）
+uniform float p3;		// magnitude＝乱流がプロファイル参照位置をずらす量（未指定=0→1.3）
+uniform vec3  color;	// 炎の色づけ（未指定=vec3(0)→既定の橙）
+
+// --- ハッシュ乱数（rain_window.sn と同じ流儀の 3D 版。mediump 前提・テクスチャ不要） ---
+float h31(vec3 p) {
+	p = fract(p * vec3(127.32, 311.7, 74.72));
+	p += dot(p, p.yzx + 34.21);
+	return fract((p.x + p.y) * p.z);
+}
+// 3D 値ノイズ（8 格子点をハッシュして三線形補間。f を smoothstep で丸めて折り目を消す）
+float vnoise3(vec3 p) {
+	vec3 i = floor(p), f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	float a = mix(h31(i + vec3(0.0, 0.0, 0.0)), h31(i + vec3(1.0, 0.0, 0.0)), f.x);
+	float b = mix(h31(i + vec3(0.0, 1.0, 0.0)), h31(i + vec3(1.0, 1.0, 0.0)), f.x);
+	float c = mix(h31(i + vec3(0.0, 0.0, 1.0)), h31(i + vec3(1.0, 0.0, 1.0)), f.x);
+	float d = mix(h31(i + vec3(0.0, 1.0, 1.0)), h31(i + vec3(1.0, 1.0, 1.0)), f.x);
+	return mix(mix(a, b, f.y), mix(c, d, f.y), f.z);
+}
+// リッジ乱流：|noise| を 3 オクターブ積む（THREE.Fire の turbulence と同じ流儀：
+//	freq *= lacunarity, amp *= gain）。専用の simplex ノイズは使わず値ノイズで代替
+float turb3(vec2 xz, float y, float lac, float gn) {
+	vec3  p = vec3(xz.x, y, xz.y);
+	float s = 0.0, fr = 1.0, am = 1.0;
+	for (int i = 0; i < 3; i++) {
+		s  += abs(vnoise3(p * fr) * 2.0 - 1.0) * am;
+		fr *= lac;
+		am *= gn;
+	}
+	return s;								// おおむね 0〜1.4
+}
+
+// 炎プロファイル（THREE.Fire の Fire.png 濃度マスクを手続き生成したもの＝専用画像を持たない）。
+//	st.x=中心軸からの距離（0=芯 1=外）, st.y=高さ（0=根元 1=先端）。戻り値 rgb=火色, a=濃度
+vec4 fireLUT(vec2 st) {
+	float hgt  = st.y;
+	float prof = 0.16 + 0.84 * sqrt(clamp(1.0 - hgt, 0.0, 1.0));	// 根元で太く先端へ点に尖る涙滴形
+	float r    = st.x / max(prof, 0.05);
+	float body = 1.0 - smoothstep(0.12, 0.92, r);					// 軸から端へなだらかに減衰
+	body *= smoothstep(-0.05, 0.14, hgt);							// 根元の縁をなじませる
+	body *= 1.0 - smoothstep(0.35, 1.0, hgt);						// 先端フェード
+	float dens = body;
+	float temp = clamp(dens * 1.6 - hgt * 0.30, 0.0, 1.0);		// 芯・根元＝熱, 端・上＝冷
+	vec3  c = mix(vec3(0.80, 0.08, 0.02), vec3(1.00, 0.34, 0.04), smoothstep(0.05, 0.35, temp));
+	c = mix(c, vec3(1.00, 0.62, 0.14), smoothstep(0.35, 0.70, temp));
+	c = mix(c, vec3(1.00, 0.88, 0.55), smoothstep(0.70, 1.00, temp));
+	return vec4(c * dens, dens);
+}
+
+// THREE.Fire の samplerFire を 2D 全画面向けに書き直したもの。
+//	円筒座標（軸距離, 高さ）→ sqrt(高さ)重みの乱流でプロファイル参照位置をずらす → プロファイル濃度。
+//	参照位置が上端を越えても即 0 にせず、なだらかに消す（少スライスでも粒状にならない）
+vec4 sampleFire(vec3 lp, float magn, float lac, float gn, float flow, float nsc) {
+	vec2 st = vec2(sqrt(dot(lp.xz, lp.xz)), lp.y);
+	if (st.x >= 1.0 || st.y <= 0.0 || st.y >= 1.0) return vec4(0.0);
+	// ノイズ座標：noiseScale.xyz ≒ (1,2,1)。時間で下へずらす＝模様は上へ流れる（seed+time）
+	float t = turb3(lp.xz * nsc, lp.y * nsc * 2.0 - flow, lac, gn);
+	st.y += sqrt(st.y) * magn * t;
+	float topFade = 1.0 - smoothstep(0.78, 1.06, st.y);			// 参照位置の上端フェード＝舌先
+	if (topFade <= 0.0 || st.y <= 0.0) return vec4(0.0);
+	return fireLUT(st) * topFade;
+}
+
+void main() {
+	vec2 uv = vTextureCoord;
+	vec4 base = texture2D(uSampler, uv);
+
+	// amp 負値＝オフ。素の背景をそのまま返す（記述子は残るので後から上書き可）
+	if (amp < 0.0) { gl_FragColor = base; return; }
+
+	float size   = amp   == 0.0 ? 1.0  : amp;
+	float detail = freq  <= 0.0 ? 1.0  : freq;
+	float dark   = shift == 0.0 ? 0.6  : max(shift, 0.0);
+	float Hs     = p1    <= 0.0 ? 1.05 : clamp(p1, 0.12, 2.0);	// 炎の画面上の高さ（割合）。根元を下端に固定して上へ伸ばす
+	float axisX  = 0.5 + p2 * 0.5;								// p2=±1 で炎の中心軸がフレーム左右端
+	float magn   = p3    <= 0.0 ? 1.3  : p3;
+	bool  tinted = dot(color, color) > 0.0001;
+
+	float aspect = resolution.x / max(resolution.y, 1.0);
+	float baseY  = 0.03;										// 炎の根元の画面高さ
+	float halfW  = 0.26 * size;								// 涙滴の最大半幅（アスペクト補正済み x 単位）
+
+	float fx = (uv.x - axisX) * aspect;
+	fx += sin(tick * 1.1) * 0.006 + sin(tick * 0.43) * 0.013;	// ゆったりした横揺れ（fire と同じ流儀）
+	float x  = fx / halfW;
+	float y  = (uv.y - baseY) / Hs;							// 炎ローカル高さ（0=根元 1=先端）
+
+	float lac  = 2.0;											// lacunarity（THREE.Fire 既定）
+	float gn   = clamp(0.5 + 0.10 * (detail - 1.0), 0.35, 0.72);	// gain（既定 0.5。freq で微調整）
+	float nsc  = 1.5 + 0.9 * detail;							// ノイズ座標スケール
+	// スクロール量は mediump 桁落ち対策で周回させる（乱流の中なので周回の不連続は目立たない）。
+	//	立ちのぼる速さは fire の np スクロールに合わせてある（体感で同等）
+	float flow = mod(tick * (1.2 + 0.8 * detail), 96.0);
+
+	// --- ボリューム・レイマーチ：正面から見た円筒ビルボードを奥行き方向へ 14 スライス積分。
+	//	THREE.Fire の 20 反復レイマーチを軽量化（加算＝半透明の舌が重なったボリューム感）。
+	//	z は R2 低食い違い列で 1 スライスぶんオフセット（白色ノイズのような粒立ちが出ない） ---
+	const int STEPS = 14;										// 奥行きスライス数
+	float dz  = 2.6 / float(STEPS);
+	float jz  = (fract(dot(uv * resolution, vec2(0.75487767, 0.56984029))) - 0.5) * dz * 0.7;
+	vec4  acc = vec4(0.0);
+	for (int i = 0; i < STEPS; i++) {
+		float z = (float(i) + 0.5) * dz - 1.3 + jz;				// 奥行き ≒ −1.3〜+1.3
+		acc += sampleFire(vec3(x, y, z), magn, lac, gn, flow, nsc);
+	}
+	acc *= 0.30;												// レイマーチのゲイン戻し
+	// 涙滴の外へ散る微弱値を断つ：微小値の床引き＋炎柱まわりだけ通す包絡
+	acc = max(acc - vec4(0.024), vec4(0.0)) * 1.08;
+	float envelope = (1.0 - smoothstep(1.05, 1.8, abs(x))) * (1.0 - smoothstep(1.1, 1.7, max(y, 0.0)));
+	acc *= envelope;
+
+	float flick = 0.86 + 0.14 * (0.6 * sin(tick * 3.4) + 0.4 * sin(tick * 8.1 + 1.7));	// fire と同じちらつき
+
+	float d    = clamp(acc.a * size, 0.0, 1.0);
+	vec3  fire = acc.rgb * size;
+	if (tinted) fire *= (color + 0.15) * 1.7;					// color= 指定でグラデ全体を色替え（怪火など）
+	fire *= 0.75 + 0.20 * flick;
+
+	// --- 背景（透過）：炎まわりが照らされ、それ以外は沈む ---
+	float near = clamp(d * 1.1, 0.0, 1.0);
+	vec3  lightCol = tinted ? normalize(color + 0.001) : vec3(1.0, 0.45, 0.15);
+	vec3  bg = base.rgb;
+	bg += lightCol * near * 0.20 * flick;						// 炎に照らされる暖色
+	bg *= 1.0 - dark * (0.40 + 0.60 * flick) * (1.0 - near);		// それ以外は沈む
+
+	vec3 col = bg + fire;
+	// 周辺減光（炎への集中感）
+	vec2 vg = uv - 0.5;
+	col *= 1.0 - dot(vg, vg) * 0.12;
+
+	gl_FragColor = vec4(clamp(col, 0.0, 1.0), base.a);
+}
+[endlet_ml]
+
+[def_fx name=fire_b glsl=&g3]
+
+
+; ============================================================
+;  fx=fire_c … fire ベース＋中央部に半透明のムラ（"除算の炎"）
+;   のっぺり赤黄色くならないよう、内部を fbm で抜いて背景を透かす
+; ============================================================
+[let_ml name=g4]
+uniform float amp;		// 炎の大きさ・明るさ（未指定=0→1.0。負値でオフ）
+uniform float freq;	// ゆらぎ（乱流）の細かさ（未指定=0→1.0）
+uniform float shift;	// 炎に照らされ背景が沈む量（未指定=0→0.6。負値で背景そのまま）
+uniform float p1;		// 炎の高さ＝画面に対する割合（未指定=0→0.62）
+uniform float p2;		// 横位置＝画面幅に対する割合（0=中央, ±1=画面端）
+uniform float p3;		// 内部の透け・ムラの強さ（未指定=0→0.7。負値でムラ無し）
+uniform vec3  color;	// 炎の色づけ（未指定=vec3(0)→既定の橙）
+
+// --- ハッシュ乱数（fire と同じ） ---
+float h21(vec2 p) {
+	p = fract(p * vec2(127.32, 311.7));
+	p += dot(p, p + 34.21);
+	return fract(p.x * p.y);
+}
+float vnoise(vec2 p) {
+	vec2 i = floor(p), f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	return mix(mix(h21(i),               h21(i + vec2(1.0, 0.0)), f.x),
+	           mix(h21(i + vec2(0.0, 1.0)), h21(i + vec2(1.0, 1.0)), f.x), f.y);
+}
+float turb(vec2 p) {
+	float s = 0.0, a = 0.5;
+	for (int i = 0; i < 4; i++) {
+		s += abs(vnoise(p) * 2.0 - 1.0) * a;
+		p  = mat2(1.6, 1.2, -1.2, 1.6) * p;
+		a *= 0.5;
+	}
+	return s;
+}
+float wob(vec2 p) {
+	return (vnoise(p) * 2.0 - 1.0) * 0.66 + (vnoise(p * 2.03 + 7.0) * 2.0 - 1.0) * 0.34;
+}
+// 内部ムラ用の 3 オクターブ fbm（0〜1）
+float fbm3(vec2 p) {
+	return vnoise(p) * 0.60 + vnoise(p * 2.1 + 3.7) * 0.28 + vnoise(p * 4.4 + 11.3) * 0.12;
+}
+
+float silR(float y) {
+	y = clamp(y, -0.25, 1.05);
+	float lower = smoothstep(-0.28, 0.42, y);
+	float upper = 1.0 - smoothstep(0.40, 1.02, y);
+	return sqrt(lower) * (upper * (0.75 + 0.25 * upper));
+}
+
+vec2 fireSlice(float sx, float hgt, vec2 np, float zoff, float mag) {
+	float tb = turb(np + zoff * 7.31);
+	float H  = hgt + sqrt(max(hgt + 0.15, 0.0)) * mag * tb;
+	if (H <= -0.22 || H >= 1.05) return vec2(0.0);
+	float R = silR(H);
+	if (R < 0.001) return vec2(0.0);
+	float xj = wob(np * 1.15 + zoff * 11.7 + 4.0) * 0.42 * (0.18 + 0.82 * sqrt(max(hgt, 0.0)));
+	float e  = abs(sx + xj) / R;
+	float body = clamp(1.0 - e, 0.0, 1.0);
+	body *= smoothstep(-0.20, 0.22, H);
+	body *= smoothstep(1.05, 0.78, H);
+	float temp = clamp(1.0 - e * 0.8, 0.0, 1.0) * (1.0 - max(H, 0.0) * 0.4)
+		* (0.35 + 0.65 * smoothstep(-0.10, 0.24, H));
+	return vec2(body, temp);
+}
+
+void main() {
+	vec2 uv = vTextureCoord;
+	vec4 base = texture2D(uSampler, uv);
+
+	if (amp < 0.0) { gl_FragColor = base; return; }
+
+	float size   = amp == 0.0 ? 1.0 : amp;
+	float detail = freq <= 0.0 ? 1.0 : freq;
+	float dark   = shift == 0.0 ? 0.6 : max(shift, 0.0);
+	float Hs     = p1 <= 0.0 ? 0.62 : clamp(p1, 0.12, 1.4);
+	float axisX  = 0.5 + p2 * 0.5;
+	float vstr   = p3 == 0.0 ? 0.7 : max(p3, 0.0);			// 内部ムラの強さ
+	bool  tinted = dot(color, color) > 0.0001;
+
+	float aspect = resolution.x / max(resolution.y, 1.0);
+
+	float baseY = 0.04;
+	float fx = (uv.x - axisX) * aspect;
+	fx += sin(tick * 1.1) * 0.006 + sin(tick * 0.43) * 0.013;
+
+	float hgt   = (uv.y - baseY) / Hs;
+	float halfW = 0.20 * size;
+	float sx    = fx / halfW;
+
+	vec2  np   = vec2(fx * 1.7, uv.y * 0.9) * (2.2 + detail * 1.3);
+	np.y -= mod(tick * 1.3, 96.0);
+	float mag  = 0.42 + 0.30 * detail;
+
+	vec2 s0 = fireSlice(sx, hgt, np, 0.0, mag);
+	vec2 s1 = fireSlice(sx, hgt, np, 2.0, mag);
+	vec2 s2 = fireSlice(sx, hgt, np, 4.0, mag);
+	float w0 = 1.0, w1 = 0.72, w2 = 0.48;
+	float dens = s0.x * w0 + s1.x * w1 + s2.x * w2;
+	float temp = dens > 0.001
+		? (s0.x*w0*s0.y + s1.x*w1*s1.y + s2.x*w2*s2.y) / dens
+		: 0.0;
+
+	float flick = 0.86 + 0.14 * (0.6 * sin(tick * 3.4) + 0.4 * sin(tick * 8.1 + 1.7));
+
+	vec3 tc;
+	if (tinted) {
+		tc = color * (0.40 + 0.60 * temp);
+	} else {
+		// 暗赤 → 橙 → 黄金。黄色域を広めに
+		tc = mix(vec3(0.85, 0.10, 0.01), vec3(1.00, 0.38, 0.04), smoothstep(0.08, 0.38, temp));
+		tc = mix(tc, vec3(1.00, 0.72, 0.16), smoothstep(0.34, 0.68, temp));
+		tc = mix(tc, vec3(1.00, 0.92, 0.48), smoothstep(0.64, 1.00, temp));	// 黄金
+	}
+
+	// --- 内部ムラ：中〜高周波 fbm を上へ流し、中心に「穴」を開ける（0=完全に透ける） ---
+	vec2 vp = vec2(fx * 3.6, uv.y * 1.7) * (1.0 + 0.7 * detail);
+	vp.y -= mod(tick * 1.9, 64.0);
+	float veins = smoothstep(0.35, 0.70, fbm3(vp));
+	// のっぺりしがちな中心ほど強く効かせる。根元は詰まったまま残す
+	float rC    = abs(sx) / max(silR(clamp(hgt, 0.0, 1.0)), 0.12);
+	float carve = smoothstep(1.10, 0.12, rC) * smoothstep(0.02, 0.32, hgt);
+	float holes = mix(1.0, veins, min(vstr * carve, 0.92));		// 1=詰まり 0=穴
+
+	// --- 背景（透過）：炎まわりが照らされ、それ以外は沈む ---
+	float d = clamp(dens * size * 0.72, 0.0, 1.0);
+	float near = clamp(d * 0.9, 0.0, 1.0);
+	vec3 lightCol = tinted ? normalize(color + 0.001) : vec3(1.0, 0.45, 0.15);
+	vec3 bg = base.rgb;
+	bg += lightCol * near * 0.12 * flick;						// 照り返しは弱め
+	bg *= 1.0 - dark * (0.40 + 0.60 * flick) * (1.0 - near);
+
+	// 炎に覆われた下地はほぼ黒へ沈める（＝引き算。穴からこの地が透ける）
+	vec3 bgUnder = bg * (1.0 - 0.82 * clamp(dens * size, 0.0, 1.0));
+
+	// 炎の色：黄金寄りで明るめ。芯はさらに持ち上げ。穴の所は少し薄く
+	vec3 flameCol = tc * (0.78 + 0.20 * flick + 0.45 * smoothstep(0.62, 1.0, temp));
+	flameCol *= 0.74 + 0.26 * holes;
+
+	// 不透明度＝なめらかな被覆 × 穴。穴では 0.16 付近まで落ちて背景がちょっと透ける
+	float cover   = clamp(dens * size * 1.7, 0.0, 1.0);
+	float opacity = cover * (0.16 + 0.84 * holes) * 0.90;
+
+	// 引き算合成＋芯だけ少量の加算（黄金のハイライト。全体を光らせない）
+	float hotCore = smoothstep(0.72, 1.0, temp) * holes * cover;
+	vec3 col = mix(bgUnder, flameCol, opacity) + flameCol * hotCore * 0.30;
+	gl_FragColor = vec4(clamp(col, 0.0, 1.0), base.a);
+}
+[endlet_ml]
+
+[def_fx name=fire_c glsl=&g4]
+
+[return]

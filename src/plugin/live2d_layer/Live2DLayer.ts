@@ -24,8 +24,8 @@
 //	drawModelの基本経路には関与しないため未使用（gl単位でMapされるので複数コンテキストでも
 //	安全だが、今回のモデルはオフスクリーンパーツ合成もクリッピングマスクも使わないため不要）。
 
-import type {TArg, T_PluginInitArg} from '@famibee/skynovel_esm/web';
-import {PlgLayer, argChk_Num} from '@famibee/skynovel_esm/web';
+import type {TArg, T_PluginInitArg} from '@famibee/bluesnovel/web';
+import {PlgLayer, argChk_Num} from '@famibee/bluesnovel/web';
 
 import {CubismFramework, LogLevel, Option} from './framework/live2dcubismframework';
 import {CubismModelSettingJson} from './framework/cubismmodelsettingjson';

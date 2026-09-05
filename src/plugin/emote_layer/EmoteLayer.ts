@@ -5,8 +5,8 @@
 	http://opensource.org/licenses/mit-license.php
 ** ***** END LICENSE BLOCK ***** */
 
-import {Layer, argChk_Num} from '@famibee/skynovel_esm/web';
-import type {TArg, T_PluginInitArg} from '@famibee/skynovel_esm/web';
+import {Layer, argChk_Num} from '@famibee/bluesnovel/web';
+import type {TArg, T_PluginInitArg} from '@famibee/bluesnovel/web';
 
 import {RenderTexture, Sprite, Texture, BaseTexture} from 'pixi.js';
 import type {DisplayObject} from 'pixi.js';

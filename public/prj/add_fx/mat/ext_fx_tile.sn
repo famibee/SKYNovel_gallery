@@ -1,0 +1,65 @@
+;********************************************************
+;@EXT_DESC	画像をタイル状に敷き詰めて一定方向へ無限スクロールさせる汎用シェーダエフェクト（[add_fx fx=tile]）
+;@VER		2026.09.05.001	tex=（uTex2）方式に変更。専用レイヤ無しで対象レイヤへ直接重ねられるように
+;********************************************************
+; 使い方
+;	・テンプレ起動時に必ず通る処理から一度だけ [call fn=ext_fx_tile] する
+;	  （[def_fx] は [add_face] と同じくセーブ非対象。GLSL 本体はセーブファイルに焼かれず、
+;	   起動のたびにこの [def_fx] 再実行で埋め直す運用。docs/tag.html [def_fx] の項）
+;	・tex=（uniform sampler2D uTex2。docs/tag.html [add_fx] の項）で**対象レイヤの基本画像とは別に**
+;	  タイル化する画像を渡す。対象レイヤ自身の画像（uSampler）はそのまま表示され続け、tex= の画像を
+;	  タイル＋スクロールしながら重ねるだけ＝専用の重ねレイヤを増やす必要が無い（bg の上にそのまま
+;	  [add_fx layer=bg fx=tile tex=…] でよい）：
+;	    [add_fx layer=bg fx=tile tex=f_fog]                      … 標準（4×4 敷き詰め・静止）
+;	    [add_fx layer=bg fx=tile tex=f_fog amp=6 p1=0.03]         … 6×6・ゆっくり横流れ
+;	    [add_fx layer=bg fx=tile tex=f_fog p1=0.04 p2=0.03]       … 斜めに流れる霧
+;	  タイル画像は「小さく端がシームレスに継げる画像」を使う（端が繋がらない画像だと 1 タイルぶんの
+;	  継ぎ目が見える）。棚引く霧・煙・雨脚の帯など、ループ前提の絵柄に向く。
+;	  一時的な有効無効は [pause_fx]／[resume_fx]。撤去は [clear_fx]（対象レイヤ自身の画像には
+;	  何もしていないので、[clear_fx] だけで元通り＝main.sn の *霧／*bg_clr 参照）。
+;
+; パラメータ（未指定はすべて 0）
+;	tex … 重ねる画像の論理名（fn= と同じく path.json 参照）。未指定だと何も重ならない（uSampler の
+;	      素通しに近くなる。texture2D(uTex2, …) が全ゼロを返すため）
+;	amp … タイル数（画面いっぱいに何回繰り返すか）。未指定（=0）で標準 4
+;	p1  … 横方向のスクロール速度（1 秒あたり何タイルぶんずらすか。正で +x 方向）
+;	p2  … 縦方向のスクロール速度（同上。正で +y 方向。y-up のシェーダ座標系なので見た目は上向き）
+;
+; 由来・ライセンス
+;	この .sn と下記 GLSL は MIT（分家 bluesnovel 本体と同じ）。技法自体（UV に繰り返し回数を掛けて
+;	fract() で折り返し、tick でオフセットをずらすだけ）は GLSL の教科書的な定番で特定コードの写しではない。
+;	発想の出どころは AIRNovel 時代の瀬戸愛羅さんプラグイン（タイルスクロール機能）
+;	https://famibee.blog.fc2.com/blog-entry-322.html 。当時の speed= 相当は分家の [add_fx speed=]
+;	（tick 倍率）と役割が重複するため引き継がず、方向つきの速度は他プリセットと揃えて p1/p2 に持たせた。
+;
+; 制約
+;	・CLAMP_TO_EDGE テクスチャ（FxRunner.ts）に自前 fract() で折り返しを作っているため、バイリニア
+;	  補間で継ぎ目に 1 texel 未満のうっすらした境界が出ることがある（画像側がシームレスでも僅かに残る）。
+;	  気になる密度（amp を大きく）では目立たない
+;	・tex= の読み込みは非同期（FxRunner.ts getTex2）。ロード完了までの数フレームは 1×1 透明を
+;	  サンプルする＝タイルが出ない一瞬があるが、対象レイヤ自身の表示は最初から変わらないので
+;	  中間状態のガタつきは出ない（旧版：専用レイヤを visible=true にする方式では出ていた）
+;********************************************************
+
+; --- フラグメントシェーダ本体（main() と固有 uniform だけ。共通ヘッダ
+;     precision／vTextureCoord／uSampler／tick／resolution は FxRunner が前置する） ---
+[let_ml name=g]
+uniform sampler2D uTex2;	// tex= で渡す追加テクスチャ（タイル化する画像）。対象レイヤの基本画像はuSampler側でそのまま
+uniform float amp;	// タイル数（未指定=0→標準4）
+uniform float p1;	// 横方向のスクロール速度（未指定=0→静止）
+uniform float p2;	// 縦方向のスクロール速度（未指定=0→静止）
+void main() {
+	float n = amp <= 0.0 ? 4.0 : amp;
+	vec2 uv = vTextureCoord * n + vec2(p1, p2) * tick;
+	vec4 base = texture2D(uSampler, vTextureCoord);
+	vec4 t = texture2D(uTex2, fract(uv));
+	// t（tex=）を base（対象レイヤの元絵）の上へ重ねるだけ（t.a による over 合成。
+	//	base は不透明前提＝out.a は base.a のまま。半透明な base に重ねたい場合は
+	//	Porter-Duff の out.a = t.a + base.a*(1-t.a) まで要るが、用途上ここでは割り切った）
+	gl_FragColor = vec4(mix(base.rgb, t.rgb, t.a), base.a);
+}
+[endlet_ml]
+
+[def_fx name=tile glsl=&g]
+
+[return]

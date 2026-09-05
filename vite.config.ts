@@ -24,8 +24,8 @@ export default {
 	server: {
 		port: 8082,
 		fs: {allow: ['..']},
-		watch: {ignored: ['!**/node_modules/@famibee/skynovel_esm/**']},
+		watch: {ignored: ['!**/node_modules/@famibee/bluesnovel/**']},
 	},
-	optimizeDeps: {exclude: ['@famibee/skynovel_esm']},
+	optimizeDeps: {exclude: ['@famibee/bluesnovel']},
 	plugins: [CustomHmr()],
 } satisfies UserConfig;
