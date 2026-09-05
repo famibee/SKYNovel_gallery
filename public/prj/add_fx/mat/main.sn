@@ -259,6 +259,7 @@
 
 *init
 	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
 	[toggle_full_screen key=w]	; for browser
 [return]
 
