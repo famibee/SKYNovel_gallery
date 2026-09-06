@@ -5,7 +5,7 @@
 	"author": "famibee",
 	"license": "MIT",
 	"dependencies": {
-		"@famibee/bluesnovel": "^0.12.0",
+		"@famibee/bluesnovel": "latest",
 		"pixi.js": "^6.5.10",
 		"three": "^0.185.1"
 	},

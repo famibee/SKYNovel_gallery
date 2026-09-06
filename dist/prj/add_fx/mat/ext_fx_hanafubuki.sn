@@ -1,0 +1,199 @@
+;********************************************************
+;@EXT_DESC	桜が舞い散る背景シェーダエフェクト（[add_fx fx=hanafubuki]）。イメージ重視の情景向け
+;@VER		2026.09.04.000	初版（Shadertoy fccXRs の技法を参考に単一パスで再実装）
+;********************************************************
+; 使い方
+;	・テンプレ起動時に必ず通る処理から一度だけ [call fn=ext_fx_hanafubuki] する
+;	  （[def_fx] は [add_face] と同じくセーブ非対象。GLSL 本体はセーブファイルに焼かれず、
+;	   起動のたびにこの [def_fx] 再実行で埋め直す運用。docs/tag.html [def_fx] の項）
+;	・背景（不透明な grp レイヤ）に対して使う。花びらを背景へ重ね、shift で情景の仕上げ
+;	  （淡い発光・光のかすみ・彩度・周辺減光。背景自体はぼかさない）を掛ける：
+;	    [add_fx layer=bg fx=hanafubuki]                  … 標準（そよ風・中密度）
+;	    [add_fx layer=bg fx=hanafubuki amp=1.6 freq=1.4] … 花びら多め・やや速い
+;	    [add_fx layer=bg fx=hanafubuki p2=0.8]           … 強い横風で流れる
+;	    [add_fx layer=bg fx=hanafubuki shift=-1]         … 仕上げ無し（花びらの合成だけ）
+;	    [add_fx layer=bg fx=hanafubuki color=0xffffff]   … 白い花びら（無彩色寄せ）
+;	    [add_fx layer=bg fx=hanafubuki amp=-1]           … オフ（素通し。記述子は残る）
+;	  一時的な有効無効は [pause_fx]／[resume_fx]。撤去は [clear_fx]。
+;
+; パラメータ（未指定はすべて 0＝各既定値）
+;	amp   … 花びらの密度・枚数。未指定（=0）で標準（1.0＝約38枚）。上限で約46枚。負値でオフ
+;	freq  … 舞い落ちる速さ（ドリフト＋回転）。未指定（=0）で標準（1.0）。ゆっくりが既定。0.5〜2.0 目安
+;	shift … 情景の仕上げ量（淡い発光・光のかすみ・彩度・周辺減光。背景はぼかさない）。
+;	        未指定（=0）で標準（1.0）。負値で仕上げ無し。0〜2 目安
+;	p1    … 花びらの大きさ。未指定（=0）で標準（1.0）。0.5〜2.0 目安
+;	p2    … 風向き＝横流れの割合（0=そよ風, ±1 で強い横風。花火・炎の p2 と同じ流儀）
+;	color … 花びらの色（uniform vec3 color）。未指定（=vec3(0)）で桜色パレット（濃淡ピンク3色を
+;	        粒ごとに混合）。color=0xffe3ec ／ "#rrggbb" ／ r,g,b（各 0..1）でその色へ寄せる
+;
+; 負荷
+;	1 パス。実効ワーク ≒ 画素数 × 〔球交差 MAX_PETALS 回 ＋ レイに当たった花びらだけ
+;	polar 展開＋sdPetal（vnoise 1 回）×2 面〕＋ haze fbm 1 回。
+;	off 画面の花びらは sphIntersect が即 return するので実コストは可視枚数ぶん。重ければ
+;	MAX_PETALS を下げる。
+;
+; ライセンス
+;	この .sn と下記 GLSL は MIT（分家 bluesnovel 本体と同じ）。既存コードの写し・改変ではなく、
+;	下記の公開シェーダからは「技法（アイデア）」だけを参考にした独自実装：
+;	  - "falling cherry blossom petals"  https://www.shadertoy.com/view/fccXRs
+;	      ・花びらを「球と交差 → 表面を極座標に開いて 2D の花びら SDF で切り抜く（表裏 2 面）」
+;	        という立体化のアイデア。元の sdPetal の式は考え方だけ踏襲し、係数・縁ノイズは自作。
+;	      ・重力を与えず等速ドリフト＋ゆっくり回転で「空気抵抗の大きい葉のように舞う」挙動。
+;	      ・被写界深度ボケ（元は別バッファのディスクボケ）は、単一パス制約から
+;	        「奥行きに応じて花びらの縁の smoothstep 幅を変える」近似に畳んだ。
+;	      ・仕上げ（元は bloom＋放射ブラー＋ACES＋彩度）は淡い発光＋彩度＋周辺減光へ簡略化
+;	        （背景自体のブラーは持たない）。
+;	      Shadertoy 既定ライセンスは CC BY-NC-SA だが、上記のとおりコードは持ち込んでいない。
+;	球交差 sphIntersect は iq の定番（https://iquilezles.org/articles/intersectors/ ・MIT）。
+;	ハッシュ乱数は rain_window.sn／fire.sn と同じ流儀。専用テクスチャは不使用。
+;********************************************************
+
+; --- フラグメントシェーダ本体（main() と固有 uniform だけ。共通ヘッダ
+;     precision／vTextureCoord／uSampler／tick／resolution は FxRunner が前置する） ---
+[let_ml name=g]
+uniform float amp;		// 花びらの密度・枚数（未指定=0→1.0。負値でオフ）
+uniform float freq;	// 舞い落ちる速さ（未指定=0→1.0）
+uniform float shift;	// 情景の仕上げ量（未指定=0→1.0。負値で仕上げ無し）
+uniform float p1;		// 花びらの大きさ（未指定=0→1.0）
+uniform float p2;		// 風向き＝横流れの割合（0=そよ風, ±1=強い横風）
+uniform vec3  color;	// 花びらの色（未指定=vec3(0)→桜色パレット）
+
+// --- ハッシュ乱数（fire.sn／rain_window.sn と同じ流儀。mediump 前提・テクスチャ不要） ---
+//	1 個の float 種から 3 成分の乱数（花火 h13 と同型）
+vec3 h13(float p) {
+	vec3 p3 = fract(vec3(p) * vec3(0.1031, 0.1030, 0.0973));
+	p3 += dot(p3, p3.yzx + 33.33);
+	return fract((p3.xxy + p3.yzz) * p3.zyx);
+}
+float h21(vec2 p) {
+	p = fract(p * vec2(127.32, 311.7));
+	p += dot(p, p + 34.21);
+	return fract(p.x * p.y);
+}
+// 値ノイズ（格子点をハッシュして双一次補間。f を smoothstep で丸めて折り目を消す）
+float vnoise(vec2 p) {
+	vec2 i = floor(p), f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	return mix(mix(h21(i),               h21(i + vec2(1.0, 0.0)), f.x),
+	           mix(h21(i + vec2(0.0, 1.0)), h21(i + vec2(1.0, 1.0)), f.x), f.y);
+}
+// 3 オクターブ fbm（仕上げの光のかすみ用）
+float fbm(vec2 p) {
+	float s = 0.0, a = 0.5;
+	for (int i = 0; i < 3; i++) { s += a * vnoise(p); p = mat2(1.6, 1.2, -1.2, 1.6) * p; a *= 0.5; }
+	return s;
+}
+
+mat2 rot(float a) { float s = sin(a), c = cos(a); return mat2(c, -s, s, c); }
+
+// 桜の花びら SDF。p は花びらローカル座標（原点＝中心, +y＝上）。下すぼまり・上ふくらみの
+//	輪郭に、上端の浅い切れ込みを 1 つ入れる。縁は値ノイズで軽く波打たせる（有機的な輪郭）
+float sdPetal(vec2 p) {
+	p.x = abs(p.x);
+	p += 0.010 * (vnoise(13.0 * p + 3.0) - 0.5);		// 縁のゆらぎ
+	float w = 1.45 - clamp(p.y, -0.30, 0.50) * 1.4;	// 上ほど幅広
+	float d = length(p * vec2(w, 0.95) - vec2(0.0, 0.05)) - 0.22;
+	d = max(d, 0.07 - length(p - vec2(0.0, 0.34)));	// 上端の切れ込み
+	return d;
+}
+
+// 球交差（iq https://iquilezles.org/articles/intersectors/ ・MIT）
+vec2 sphIntersect(vec3 ro, vec3 rd, vec3 ce, float ra) {
+	vec3 oc = ro - ce;
+	float b = dot(oc, rd);
+	float c = dot(oc, oc) - ra * ra;
+	float h = b * b - c;
+	if (h < 0.0) return vec2(-1.0);
+	h = sqrt(h);
+	return vec2(-b - h, -b + h);
+}
+
+vec2 polar(vec3 p) { return vec2(atan(p.x, p.z), p.y); }
+
+// 1 枚の花びら＝球の表面を極座標に開いて SDF で切り抜く（表裏 2 面）。
+//	an＝XZ／YZ 平面の回転角, ra＝半径, soft＝縁の甘さ（＝奥行きボケの近似）
+float petalSphere(vec3 ro, vec3 rd, vec3 ce, vec2 an, float ra, float soft) {
+	vec2 t = sphIntersect(ro, rd, ce, ra);
+	if (t.y < 0.0) return 0.0;						// レイが当たらない＝早期 return（off 画面の大半）
+	vec3 oc = ro - ce;
+	vec3 pf = oc + rd * t.x;							// 手前の交点（球中心基準）
+	vec3 pb = oc + rd * t.y;							// 奥の交点
+	pf.xz *= rot(an.x); pf.yz *= rot(an.y);
+	pb.xz *= rot(an.x); pb.yz *= rot(an.y);
+	vec2  r  = vec2(ra, 1.0) / (ra * 2.0);			// polar → 花びらローカルへの縮尺
+	float lf = 1.0 - smoothstep(-soft, soft, sdPetal(polar(pf) * r));
+	float lb = 1.0 - smoothstep(-soft, soft, sdPetal(polar(pb) * r));
+	return clamp(lf * (1.0 - lb) + lb, 0.0, 1.0);	// 表が抜けていれば裏が見える
+}
+
+const int MAX_PETALS = 48;
+
+void main() {
+	vec2 uv = vTextureCoord;
+	vec4 base = texture2D(uSampler, uv);
+
+	// amp 負値＝オフ。素の背景をそのまま返す（記述子は残るので後から上書き可）
+	if (amp < 0.0) { gl_FragColor = base; return; }
+
+	float dens   = amp   == 0.0 ? 1.0 : amp;
+	float spd    = freq  <= 0.0 ? 1.0 : freq;
+	float finish = shift == 0.0 ? 1.0 : max(shift, 0.0);
+	float psize  = p1    <= 0.0 ? 1.0 : p1;
+	float wind   = p2;
+	bool  tinted = dot(color, color) > 0.0001;
+
+	// --- カメラレイ（fireworks と同じ流儀。y-up の 0..1 → 中心原点・アスペクト補正） ---
+	float aspect = resolution.x / max(resolution.y, 1.0);
+	vec2  q  = (uv - 0.5) * vec2(aspect, 1.0);
+	vec3  ro = vec3(0.0, 0.0, -3.0);
+	vec3  rd = normalize(vec3(q, 1.5));
+
+	// --- 花びらを奥→手前に重ねる（背景 base はそのまま。ぼかさない） ---
+	int   n     = int(clamp(mix(30.0, float(MAX_PETALS - 2), dens), 8.0, float(MAX_PETALS)));
+	vec2  an0   = vec2(tick * spd * 0.20, tick * spd * 0.30);		// 全体のゆっくりした回転
+	vec2  drift = vec2(-0.055 - wind * 0.10, 0.05) * tick * spd;	// 等速ドリフト（重力なし＝空気抵抗大）
+	vec3  col   = base.rgb;
+	vec3  bloom = vec3(0.0);										// 花びらのふちが受ける淡い発光
+	for (int i = 0; i < MAX_PETALS; i++) {
+		if (i >= n) break;
+		float fi = float(i) + 1.0;
+		vec3  r  = h13(fi);
+		vec3  r2 = h13(fi + 71.3);
+		// xy 位置：fract で巻き戻る等速ドリフト。粒ごとに初期位相 r.xy
+		vec2  pos = (0.5 - fract(r.xy + drift)) * vec2(12.0, 10.0);
+		// 奥行き：0（手前）〜約 7.7（奥）。手前ほど大きく写り、合焦帯（≈3.5）から外れるほどボケる
+		float depth = 8.0 * (1.0 - fi / float(MAX_PETALS));
+		vec3  ce   = vec3(pos, depth);
+		float ra   = (0.17 + 0.15 * r2.y) * psize;
+		vec2  an   = an0 + (r.z - 0.5) * 6.2831;						// 粒ごとの回転位相
+		float soft = mix(0.015, 0.13, clamp(abs(depth - 3.5) / 4.0, 0.0, 1.0)) * max(finish, 0.35);
+		float a = petalSphere(ro, rd, ce, 3.14159 * an, ra, soft);
+		if (a <= 0.0) continue;
+
+		// 桜色パレット（濃淡ピンク 3 色）を粒ごとに混合。color= 指定でその色へ寄せる
+		vec3 mat = mix(mix(vec3(1.00, 0.62, 0.74), vec3(1.00, 0.87, 0.91), r2.z),
+		               vec3(0.96, 0.55, 0.78), r.x);
+		if (tinted) mat = mix(mat, color, 0.7);
+
+		col   = mix(col, mat, a);
+		bloom += mat * a;
+	}
+
+	// --- 仕上げ：淡い花びら発光＋光のかすみ＋彩度＋周辺減光（元 Image を 1 パスに簡略化） ---
+	if (finish > 0.0) {
+		col += bloom * 0.06 * finish;
+		float haze = fbm(9.0 * rd.xy + tick * 0.08 * vec2(1.0, 3.0));
+		col += (0.015 + 0.02 * finish) * haze * vec3(1.0, 0.93, 0.97);
+		float l = dot(col, vec3(0.299, 0.587, 0.114));
+		col = mix(vec3(l), col, 1.0 + 0.22 * finish);				// 彩度を少し上げる
+		vec2 vg = uv - 0.5;
+		col *= 1.0 - dot(vg, vg) * 0.20 * finish;					// 周辺減光
+	}
+
+	gl_FragColor = vec4(clamp(col, 0.0, 1.0), base.a);
+}
+[endlet_ml]
+
+[def_fx name=hanafubuki glsl=&g]
+
+[return]

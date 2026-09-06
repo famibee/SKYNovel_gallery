@@ -1,0 +1,170 @@
+;********************************************************
+;@EXT_DESC	窓ガラスを流れ落ちる雨のシェーダエフェクト（[add_fx fx=rain_window]）
+;@VER		2026.08.31.000	初版（Heartfelt / Raining Blood 系を参考に全面再実装）
+;********************************************************
+; 使い方
+;	・テンプレ起動時に必ず通る処理から一度だけ [call fn=ext_fx_rain_window] する
+;	  （[def_fx] は [add_face] と同じくセーブ非対象。GLSL 本体はセーブファイルに焼かれず、
+;	   起動のたびにこの [def_fx] 再実行で埋め直す運用。docs/tag.html [def_fx] の項）
+;	・背景（不透明な grp レイヤ）に対して使う：
+;	    [add_fx layer=bg fx=rain_window]                 … 標準の雨
+;	    [add_fx layer=bg fx=rain_window amp=1.3 freq=1.6] … やや強い雨・水滴多め
+;	    [add_fx layer=bg fx=rain_window shift=2.2]        … ガラスの曇りを強く
+;	    [add_fx layer=bg fx=rain_window color=0x991418]  … 血の雨アレンジ（水滴・尾を赤く）
+;	    [add_fx layer=bg fx=rain_window amp=-1]           … 水滴なし＝素通し（実質オフ。
+;	                                                        記述子は残るので [add_fx] で上書き再開できる）
+;	  一時的な有効無効は [pause_fx]／[resume_fx] でもよい。撤去は [clear_fx]。
+;
+; パラメータ（[def_fx] シェーダの入力ポート。未指定は 0）
+;	amp   … 雨量・水滴の活発さ。未指定（=0）で標準（0.7 相当）。負値で水滴オフ（ガラスだけ）
+;	freq  … 水滴グリッドの密度。未指定（=0）で標準（1.0）。0.5〜2.0 目安
+;	shift … ガラスの曇り／ボケの強さ。未指定（=0）で標準（1.0）。0〜3 目安
+;	color … 水滴・尾の色づけ（uniform vec3 color）。未指定（=vec3(0)）で色づけなし。
+;	        color=0x991418 で血の雨。color="#rrggbb" / color=r,g,b（各 0..1）も可
+;
+; ライセンス
+;	この .sn と下記 GLSL は MIT（分家 bluesnovel 本体と同じ）。
+;	技法は下記の公開シェーダを「参考」にした独自実装で、コードの写しではない：
+;	  - Martijn Steinrucken "Heartfelt"        https://www.shadertoy.com/view/ltffzl
+;	  - "Raining Blood"                        https://www.shadertoy.com/view/tdG3Rw
+;	  - Codrops "Rain / Water Effect"          https://tympanus.net/codrops/2015/11/04/rain-water-effect-experiments/
+;	共通の「セルグリッド＋ハッシュ乱数で水滴を撒き、蛇行しながら垂れて尾を引く」定番手法を
+;	要点だけ書き直したもの（稲光・ホワイトアウトは意図的に外してある）。
+;********************************************************
+
+; --- フラグメントシェーダ本体（main() と固有 uniform だけ。共通ヘッダ
+;     precision／vTextureCoord／uSampler／tick／resolution は FxRunner が前置する） ---
+[let_ml name=g]
+uniform float amp;		// 雨量（未指定=0→標準。負値で水滴オフ）
+uniform float freq;		// 水滴グリッドの密度（未指定=0→1.0）
+uniform float shift;	// ガラスの曇り／ボケ量（未指定=0→1.0）
+uniform vec3  color;	// 水滴・尾の色づけ（未指定=vec3(0)→色づけなし）
+
+// --- ハッシュ乱数（snow/rain プリセットと同じ流儀。mediump 前提） ---
+float h11(float p) { return fract(sin(p * 127.1) * 43758.5453); }
+vec2  h22(vec2 p) {
+	p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
+	return fract(sin(p) * 43758.5453);
+}
+
+// 垂れ落ちる水滴の 1 層。縦セルグリッドの各セルに 1 粒を置き、
+//	蛇行しながら下（y-up なので tick を「＋」して y を増やす＝画面では下）へ流す。
+//	戻り値 x = 水滴の高さ場（法線計算に使う）, y = 尾＝曇りを拭った跡
+vec2 dropLayer(vec2 uv, float t, float dens) {
+	vec2 UV = uv;
+	// セル場の下降。セルが下る速度（＝t係数 × grid.y）は、下記 y ハンプが持つ
+	//	セル内での上昇（最大傾き ≈ 0.8 × 1.77 ≈ 1.4）を必ず上回るようにする
+	//	（0.7 × 3.0 = 2.1 > 1.4）。ここが逆転すると「一部の粒が下から上へ登る」不具合になる
+	uv.y += t * 0.7;
+	vec2 grid = vec2(6.0 * dens, 3.0);				// 縦セル数は密度非依存（下降が freq で壊れないよう）
+	vec2 id = floor(uv * grid);
+	uv.y += h11(id.x);								// 列ごとに位相をずらす
+	id = floor(uv * grid);
+	vec2 st = fract(uv * grid) - vec2(0.5, 0.0);
+	vec2 rnd = h22(id + 0.5);
+
+	float x = rnd.x - 0.5;
+	float wig = sin(UV.y * 18.0 + sin(UV.y * 7.0));
+	x += wig * (0.5 - abs(x)) * (rnd.y - 0.5);		// 垂れながら左右に蛇行
+	x *= 0.7;
+
+	float ti = fract(t + rnd.y);
+	// セル内で「ためて落ちる」ハンプ。振幅 0.8（範囲 0.1〜0.9）＝上昇の最大傾きを抑える
+	float y = (smoothstep(0.0, 0.85, ti) * smoothstep(1.0, 0.85, ti) - 0.5) * 0.8 + 0.5;
+	vec2 p = vec2(x, y);
+
+	float d = length((st - p) * vec2(1.0, 5.0));	// 縦長のしずく（grid.y=3 でセルが低いので少し緩める）
+	float drop = smoothstep(0.28, 0.0, d);
+
+	float r = sqrt(smoothstep(1.0, y, st.y));		// 頭から上へ細る尾
+	float cd = abs(st.x - x);
+	float trail = smoothstep(0.22 * r, 0.12 * r * r, cd)
+		* smoothstep(-0.02, 0.02, st.y - y) * r * r;
+
+	float yy = fract(UV.y * 9.0) + (st.y - 0.5);		// 尾に残る小粒
+	float beads = smoothstep(0.30, 0.0, length(st - vec2(x, yy))) * r;
+
+	return vec2(drop + beads * 0.5, trail);
+}
+
+// ガラスに点在する動かない細かい水滴。時間でゆっくり明滅して消える
+float staticDrops(vec2 uv, float t) {
+	uv *= 40.0;
+	vec2 id = floor(uv);
+	uv = fract(uv) - 0.5;
+	vec2 rnd = h22(id + 0.5);
+	float d = length(uv - (rnd - 0.5) * 0.7);
+	float ph = fract(t * 0.7 + rnd.y);
+	float fade = smoothstep(0.0, 0.05, ph) * smoothstep(1.0, 0.95, ph);
+	return smoothstep(0.28, 0.0, d) * fract(rnd.y * 10.0) * fade;
+}
+
+// 全層合成。x = 高さ場（0..1）, y = クリアに見える度合い（尾）
+vec2 drops(vec2 uv, float t, float dens, float aStatic, float aL1, float aL2) {
+	float s  = staticDrops(uv * dens, t) * aStatic;
+	vec2  m1 = dropLayer(uv, t, dens) * aL1;
+	vec2  m2 = dropLayer(uv * 1.7 + 3.1, t * 1.3, dens) * aL2;
+	return vec2(smoothstep(0.3, 1.0, s + m1.x + m2.x), max(m1.y, m2.y));
+}
+
+void main() {
+	vec2 uv = vTextureCoord;
+
+	// amp 負値＝水滴オフ。素の背景をそのまま返す（記述子は残るので後から上書き可）
+	if (amp < 0.0) { gl_FragColor = texture2D(uSampler, uv); return; }
+
+	float aspect = resolution.x / max(resolution.y, 1.0);
+	float rain = amp == 0.0 ? 0.7 : amp;			// 未指定→標準
+	float dens = freq <= 0.0 ? 1.0 : freq;
+	float fog  = shift <= 0.0 ? 1.0 : shift;
+	float t = tick * 0.2;
+
+	// 水滴を丸く保つためのアスペクト補正座標（密度は dropLayer 側で grid.x に効かせる）
+	vec2 suv = vec2((uv.x - 0.5) * aspect, uv.y - 0.5);
+
+	float aStatic = clamp(rain, 0.0, 1.0) * 1.5;
+	float aL1 = smoothstep(0.10, 0.90, rain);
+	float aL2 = smoothstep(0.00, 0.60, rain);
+
+	vec2  c = drops(suv, t, dens, aStatic, aL1, aL2);
+
+	// 高さ場の数値微分＝屈折の向き（ガラス越しの背景をこの分ずらして覗く）
+	float e = 1.5 / resolution.y;
+	float cx = drops(suv + vec2(e, 0.0), t, dens, aStatic, aL1, aL2).x;
+	float cy = drops(suv + vec2(0.0, e), t, dens, aStatic, aL1, aL2).x;
+	vec2  n = vec2(cx - c.x, cy - c.x);
+	vec2  refr = clamp(n * 1.6, vec2(-0.15), vec2(0.15));
+
+	// 水滴・尾のあるところはクリア、それ以外はガラスが曇る＝多タップぼかし。
+	//	WebGL1 に textureLod が無いので放射状 6 タップで近似（負荷は Heartfelt 相当）
+	float clarity = clamp(c.x + c.y, 0.0, 1.0);
+	float blur = mix(3.2, 0.3, clarity) * fog;
+	vec3 col = texture2D(uSampler, uv - refr).rgb;
+	for (int i = 0; i < 6; ++i) {
+		float a = float(i) * 1.04719755;			// 2π/6
+		vec2 off = vec2(cos(a), sin(a)) * blur / resolution;
+		col += texture2D(uSampler, uv - refr + off).rgb;
+	}
+	col /= 7.0;
+
+	// うっすら曇りの白み（クリアな所は戻す）＋ ほんの少し寒色
+	col = mix(mix(col, vec3(0.72, 0.78, 0.85), 0.16 * fog), col, clarity);
+	col *= vec3(0.96, 0.99, 1.04);
+
+	// color= 指定時は水滴（c.x）と尾（c.y）をその色へ寄せる（血の雨など）
+	if (dot(color, color) > 0.0001) {
+		col += (color - 0.5) * c.y * 0.85;					// 尾に色を差す
+		col = mix(col, col * (color + 0.15) * 2.2, clamp(c.x, 0.0, 1.0) * 0.7);	// 水滴を色づける
+	}
+
+	// 周辺減光
+	vec2 vg = uv - 0.5;
+	col *= 1.0 - dot(vg, vg) * 0.25;
+
+	gl_FragColor = vec4(col, texture2D(uSampler, uv).a);
+}
+[endlet_ml]
+
+[def_fx name=rain_window glsl=&g]
+
+[return]

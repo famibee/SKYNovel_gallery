@@ -1,5 +1,0 @@
-[     314ms] [ERROR] SysBase.run err e:%o Error: プロジェクトが見つかりません（JSONとして解析できませんでした）: prj/live2d_layer/prj.json
-    at i.generate (http://localhost:8082/SKYNovel_gallery/@fs/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/bluesnovel/dist/Config.js:13:10)
-    at async l.run (http://localhost:8082/SKYNovel_gallery/@fs/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/bluesnovel/dist/web.js:78:8)
-    at async l.loaded (http://localhost:8082/SKYNovel_gallery/@fs/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/bluesnovel/dist/web.js:56:7)
-    at async l.loaded (http://localhost:8082/SKYNovel_gallery/@fs/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/bluesnovel/dist/web.js:223:41) @ http://localhost:8082/SKYNovel_gallery/@fs/Users/ugai/Documents/MacHD2/_Famibee/SKYNovel/bluesnovel/dist/web.js:79

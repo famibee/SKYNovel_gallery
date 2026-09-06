@@ -6,11 +6,11 @@
 
 ;	[tcy t="551" r=蓬莱][graph pic=sankaku][tcy t=39]	; [span]内テスト
 
-W[span][ch text='eb' style='color: limegreen;']
+[span style='color: limegreen;']React[span]
 
 ;	111111111111111[link label=*目を輝かせる global=true call=true style='background: linear-gradient(45deg, green, rgba(104,255,204,.6), red); color: sandybrown; border-radius: 8px;' style_hover='outline: thick dashed red;' hint='つーるちっぷ' hint_opt='{"placement": "left"}']文字リ[ch text='ンー[r]〜' style='color: darkviolet;']ク[graph pic=sankaku][tcy t=縦横][tcy t=451 r=華氏][endlink]b[ch text='0000000000000000000000000[r]22222222222222222222222222222222' style='color: blue;']	; [span]内テスト
 
-[span style='color: limegreen;']GL[span]による高速描画。[r]
+による柔軟な画面構築。[r]
 　𩸽《ほっけ》なルビや[tcy t=縦横][tcy t="451" r=縦中横]、👺《てんぐ》など絵文字も。[r]
 　文字修飾は[span style='color: darkslateblue; background-image: linear-gradient(70deg, tomato 0%, white 100%); border-radius: 8px;']CSS[span] [ch text='Style' style='color: darkslategray; background-image: linear-gradient(70deg, white 0%, indianred 100%); border-radius: 8px;']で指定。[span style='font-size: 40px;']🌈[span][r]
 　[span style='font-family: my_himajihoso; color: skyblue;']フォント[span]も自由に変更。[r]

@@ -1,17 +1,88 @@
 [title text='シェーダエフェクト（BlueSNovel専用）'][call label=*init]
 	; SKYNovel では動かない
 
+	[call fn=ext_*]
 	[call fn=face*]	; *** 立ち絵顔差分を読み込む ***
 
 [add_lay layer=bg class=grp]
 	[lay layer=bg fn=bg visible=true]
-[add_lay layer=hu class=grp]
+[add_lay layer=hu class=grp]	; 立ち絵
 	[lay layer=hu fn=minoura_yousou face=minoura_kuchi_hohoemi,minoura_me_mabataki,minoura_mayu_futsu time=0 visible=true]
 [add_lay layer=mes class=txt]
-	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 70px; padding-bottom: 0px; padding-left: 30px; padding-right: 40px; font-family: monospace;' b_pic=ele1 b_alpha=1 b_alpha_isfixed=true]
+	[lay layer=mes left=0 top=&const.sn.config.window.height-230 style='width: 750px; height: 230px; padding-top: 70px; padding-bottom: 0px; padding-left: 30px; padding-right: 40px; font-family: monospace;' b_pic=ele1 b_alpha=0.4 b_alpha_isfixed=true]
 
 	&sty  = '{"fill": "tomato"}'
 	&styH = '{"fill": "#eee"}'
+[button text=降雪 label=*降雪 hint='降雪（背景向け）'
+	global=true call=true left=20 top=10 page=fore style=&sty style_hover=&styH]
+
+[button text=弱雨 label=*弱雨 hint='弱雨（背景向け）'
+	global=true call=true left=120 top=10 page=fore style=&sty style_hover=&styH]
+
+[button text=豪雨 label=*豪雨 hint='豪雨（背景向け）'
+	global=true call=true left=220 top=10 page=fore style=&sty style_hover=&styH]
+
+[button text=雨窓 label=*雨窓 hint='窓ガラスを流れ落ちる雨'
+	global=true call=true left=320 top=10 page=fore style=&sty style_hover=&styH]
+
+[button text=血窓 label=*血窓 hint='窓ガラスを流れ落ちる血雨'
+	global=true call=true left=420 top=10 page=fore style=&sty style_hover=&styH]
+
+[button text=花吹雪 label=*花吹雪 hint='fx=hanafubuki 桜が舞い散る（イメージ重視の情景・背景向け）'
+	global=true call=true left=520 top=10 page=fore style=&sty style_hover=&styH]
+
+[button text=clear label=*bg_clr hint='背景向けクリア'
+	global=true call=true left=620 top=10 page=fore style=&sty style_hover=&styH]
+
+
+[button text=霧 label=*霧 hint='fx=tile f_fog.png をタイル状に敷き詰めて無限スクロール（霧・棚引く煙）'
+	global=true call=true left=20 top=70 page=fore style=&sty style_hover=&styH]
+
+
+[button text=花火 label=*花火 hint='花火（無限に繰り返す）'
+	global=true call=true left=20 top=40 page=fore style=&sty style_hover=&styH]
+
+[button text=花火(単発) label=*花火(単発) hint='花火（loop=falseで1発だけ）'
+	global=true call=true left=120 top=40 page=fore style=&sty style_hover=&styH]
+
+[button text=炎の床 label=*炎の床 hint='fx=fire_floor 画面下端から立ち上がる炎（火事場・炎上する床）'
+	global=true call=true left=220 top=40 page=fore style=&sty style_hover=&styH]
+
+[button text=炎 label=*炎 hint='fx=fire 1本立ちの炎（キャンプファイア／松明）'
+	global=true call=true left=320 top=40 page=fore style=&sty style_hover=&styH]
+
+[button text=炎b label=*炎b hint='fx=fire_b ボリューム炎'
+	global=true call=true left=420 top=40 page=fore style=&sty style_hover=&styH]
+
+[button text=炎c label=*炎c hint='fx=fire_c fire＋内部ムラ（fbm で穴を開けて背景を透かす）'
+	global=true call=true left=520 top=40 page=fore style=&sty style_hover=&styH]
+
+[button text=怪火 label=*怪火 hint='fx=fire_c color=0x66aaff の青い怪火'
+	global=true call=true left=620 top=40 page=fore style=&sty style_hover=&styH]
+
+
+[button text=オーラ label=*オーラ
+	hint='スタンドのオーラ'
+	global=true call=true left=520 top=400 page=fore style=&sty style_hover=&styH]
+[button text='大オーラ' label=*大オーラ
+	hint='大オーラの金色版（color=0xffcc33）'
+	global=true call=true left=620 top=400 page=fore style=&sty style_hover=&styH]
+
+; 背景の色/ぼかしランプ（blur / grayscale / sepia）。進＝元絵→効果、戻＝reverse=true で効果→元絵。
+;	どれも loop=false の単発ランプで keep 既定 true ＝変化しきったら止まってその絵を保つ
+[button text=ぼかし進 label=*ぼかし進 hint='fx=blur loop=false 元絵→ぼかし（0.8秒）'
+	global=true call=true left=20 top=430 page=fore style=&sty style_hover=&styH]
+[button text=ぼかし戻 label=*ぼかし戻 hint='fx=blur reverse=true ぼかし→元絵'
+	global=true call=true left=120 top=430 page=fore style=&sty style_hover=&styH]
+[button text=モノクロ進 label=*モノクロ進 hint='fx=grayscale loop=false 元絵→モノクロ'
+	global=true call=true left=220 top=430 page=fore style=&sty style_hover=&styH]
+[button text=モノクロ戻 label=*モノクロ戻 hint='fx=grayscale reverse=true モノクロ→元絵'
+	global=true call=true left=320 top=430 page=fore style=&sty style_hover=&styH]
+[button text=セピア進 label=*セピア進 hint='fx=sepia loop=false 元絵→セピア'
+	global=true call=true left=420 top=430 page=fore style=&sty style_hover=&styH]
+[button text=セピア戻 label=*セピア戻 hint='fx=sepia reverse=true セピア→元絵'
+	global=true call=true left=520 top=430 page=fore style=&sty style_hover=&styH]
+
 [button text=wave label=*wave
 	hint='横ゆれ（水面／陽炎）'
 	global=true call=true left=20 top=460 page=fore style=&sty style_hover=&styH]
@@ -27,47 +98,168 @@
 [button text='one-shot 1.5s' label=*oneshot
 	hint='time= 経過後そのパス素通し＝凍結'
 	global=true call=true left=420 top=460 page=fore style=&sty style_hover=&styH]
-[button text=clear label=*clr
-	hint='[clear_fx layer=hu]'
-	global=true call=true left=520 top=460 page=fore style=&sty style_hover=&styH]
 
-　ボタンでwave(ゆらぎ)・rgbShift(色収差)などを切り替え。[r]
+[button text=clear label=*clr
+	hint='[clear_fx layer=hu]（立ち絵も通常版へ戻す）'
+	global=true call=true left=620 top=460 page=fore style=&sty style_hover=&styH]
+
+　上段は背景シェーダ/ぼかしランプ。[r]
+　下行は人物シェーダ、オーラ。[r]
 [s]
 
 
-*wave
-	[clear_fx layer=hu]
+*降雪	; 組み込みプリセット
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=snow]
+[return]
+
+*弱雨	; 組み込みプリセット
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=rain]
+[return]
+
+*豪雨	; 組み込みプリセット
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=rain amp=2 freq=8 shift=18]
+[return]
+
+*雨窓	; ext_fx_rain_window.sn
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=rain_window amp=1.3 freq=1.6]
+[return]
+
+*血窓	; ext_fx_rain_window.sn 血の雨アレンジ（水滴・尾を赤く）
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=rain_window amp=1.3 freq=1.6 color=0x991418]
+[return]
+
+*花吹雪	; ext_fx_hanafubuki.sn 桜が舞い散る情景（イメージ重視）
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=hanafubuki]
+[return]
+
+*霧	; ext_fx_tile.sn 画像タイル＋無限スクロールの汎用エフェクト。tex=（uTex2）で bg へ直接 f_fog.png を重ねる
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=tile tex=f_fog amp=4 p1=0.04 p2=0.03]
+[return]
+
+*bg_clr
+	[clear_fx layer=bg]
+[return]
+
+
+*花火	; 組み込みプリセット
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=fireworks p2=-0.6]
+[return]
+
+*花火(単発)	; 組み込みプリセット
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=fireworks p2=-0.6 loop=false]
+[return]
+
+*炎の床	; ext_fx_fire.sn
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=fire_floor]
+[return]
+
+*炎		; ext_fx_fire.sn
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=fire p2=-0.6]
+[return]
+
+*炎b	; ext_fx_fire.sn
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=fire_b p2=-0.6]
+[return]
+
+*炎c	; ext_fx_fire.sn
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=fire_c p2=-0.6]
+[return]
+
+*怪火	; ext_fx_fire.sn
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=fire_c color=0x66aaff p2=-0.6]
+[return]
+
+
+*ぼかし進	; 組み込みプリセット（尺 0.8秒・keep 既定 true）
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=blur loop=false]
+[return]
+
+*ぼかし戻	; progress を 1→0 ＝ぼかし→元絵
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=blur loop=false reverse=true]
+[return]
+
+*モノクロ進	; 組み込みプリセット
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=grayscale loop=false]
+[return]
+
+*モノクロ戻
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=grayscale loop=false reverse=true]
+[return]
+
+*セピア進	; 組み込みプリセット
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=sepia loop=false]
+[return]
+
+*セピア戻
+	[call label=*bg_clr]
+	[add_fx layer=bg fx=sepia loop=false reverse=true]
+[return]
+
+
+*オーラ	; ext_fx_aura.sn 立ち絵レイヤ（顔差分つきのまま）へ直接。[def_fx pad=] で枠外まで描かれる
+	[call label=*clr]
+	[add_fx layer=hu fx=stand_aura amp=1.2 p1=1.0]
+[return]
+
+*大オーラ	; ext_fx_aura.sn
+	[call label=*clr]
+	[add_fx layer=hu fx=stand_aura amp=1.9 p1=2.6 color=0xffcc33]
+[return]
+
+
+*wave	; 組み込みプリセット
+	[call label=*clr]
 	[add_fx layer=hu fx=wave]
 [return]
 
-*wave_big
-	[clear_fx layer=hu]
+*wave_big	; 組み込みプリセット
+	[call label=*clr]
 	[add_fx layer=hu fx=wave amp=16 freq=3 speed=1.6]
 [return]
 
-*rgb
-	[clear_fx layer=hu]
+*rgb	; 組み込みプリセット
+	[call label=*clr]
 	[add_fx layer=hu fx=rgbShift shift=10]
 [return]
 
-*both_fx
-	[clear_fx layer=hu]
+*both_fx	; 組み込みプリセット
+	[call label=*clr]
 	[add_fx layer=hu fx=wave amp=8]
 	[add_fx layer=hu name=rgb fx=rgbShift shift=6]
 [return]
 
-*oneshot
-	[clear_fx layer=hu]
+*oneshot	; 組み込みプリセット
+	[call label=*clr]
 	[add_fx layer=hu fx=rgbShift shift=16 time=1500]
 [return]
 
-*clr
+*clr	; 立ち絵 hu は [lay] しっぱなし（画像差し替えをしない方式）
 	[clear_fx layer=hu]
 [return]
 
 
 *init
 	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]
+	[dump_script set_fnc=set_ed break_fnc=break_ed need_err=false]
 	[toggle_full_screen key=w]	; for browser
 [return]
 

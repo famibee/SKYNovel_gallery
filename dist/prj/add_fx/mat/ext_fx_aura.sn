@@ -1,0 +1,210 @@
+;********************************************************
+;@EXT_DESC	JOJOスタンドのオーラのシェーダエフェクト（[add_fx fx=stand_aura]）。立ち絵レイヤへ直接掛ける（別レイヤ不要）
+;@VER		2026.09.03.006	[def_fx pad=] で fx キャンバスを立ち絵 png の枠外へ広げるエンジン対応に合わせ、
+;@VER		                余白 png への差し替えを不要化。立ち絵レイヤ（顔差分つき）へ直接掛けられる
+;@VER		2026.09.03.005	方式変更：別レイヤ（透明板）を廃止。立ち絵レイヤそのものへ掛け、
+;@VER		                立ち絵のある画素は素通し／透過画素へ演算オーラを出す 1 パス合成に。
+;@VER		                erode（内部フェード）は不要になったので削除（p3 廃止）
+;@VER		2026.09.03.004	炎寄せ：ドメインワープした乱流を縦長スケール＋強めの上昇で流し、舌／隙間を pow で分け、
+;@VER		                舌先を明るく持ち上げる。根元で太く立ちのぼるほど細く千切れる
+;@VER		2026.09.03.003	もや化：境界線の法線（アルファ勾配 3 スケール）を取り、法線＋上昇方向へ乱流ノイズを流す
+;@VER		2026.09.03.002	（旧）透明板方式
+;@VER		2026.09.03.001	芯／広ハローの 2 帯化・上方向へ舐め上げるバイアス・立ちのぼる火の粉・呼吸＋脈動を追加
+;@VER		2026.09.03.000	初版（2D スプライトのアルファ外周ダイレーション＋内側リム。3D フレネルの 2D 代替）
+;********************************************************
+; 使い方（立ち絵レイヤへ直接掛ける。オーラ専用の別レイヤは要らない）
+;	・テンプレ起動時に必ず通る処理から一度だけ [call fn=ext_fx_aura] する
+;	  （[def_fx] は [add_face] と同じくセーブ非対象。GLSL 本体はセーブファイルに焼かれず、
+;	   起動のたびにこの [def_fx] 再実行で埋め直す運用。docs/tag.html [def_fx] の項）
+;	・立ち絵レイヤ（grp。顔差分つきでよい）へそのまま [add_fx]。シェーダは
+;	    立ち絵のある画素（alpha>0）… 立ち絵のピクセルを素通し（無加工）
+;	    透過画素（alpha==0）      … 演算で作ったオーラを出力
+;	  を 1 パスで合成する。オーラは絶対に立ち絵へ乗り上げない（透過部にしか出さない）。
+;	・この [def_fx] は pad=0.28（＝基本画像高さの 28% を上左右へ）を宣言している。エンジンが
+;	  fx キャンバスを立ち絵 png の枠外まで広げるので、余白の広い専用 png も別レイヤも要らない。
+;	  立ち絵は普段どおり [lay layer=hu fn=… face=…]、その同じレイヤへ [add_fx] するだけ。
+;	  レイヤごと [tsy]／Moveable してもオーラは付いてくる（div0 の箱＝立ち絵サイズは不変）。
+;	  発動：
+;	    [add_fx layer=hu fx=stand_aura]                        ; 標準（紫）
+;	    [add_fx layer=hu fx=stand_aura amp=1.4 p1=2.6]         ; 強く・広く（大オーラ）
+;	    [add_fx layer=hu fx=stand_aura color=0xffcc33]         ; 黄金
+;	    [add_fx layer=hu fx=stand_aura freq=1.8 p2=1.6]        ; 細かく速く脈動
+;	    [add_fx layer=hu fx=stand_aura amp=-1]                 ; オフ＝素の立ち絵に戻す（記述子は残る）
+;	  撤去：[clear_fx layer=hu]。一時的な有効無効は [pause_fx]／[resume_fx]。
+;
+; ■ 仕組みと制約
+;	・シェーダは uSampler（＝立ち絵）の RGBA を読み、alpha でオーラと立ち絵を出し分ける。
+;	  立ち絵の内側へは絶対に乗らない（(1-alpha) でオーラを殺す）。
+;	・fx キャンバスは [def_fx pad=] ぶん立ち絵 png の外へ広がる（CLAMP_TO_EDGE）。オーラの届く
+;	  範囲＝その余白まで。もっと大きく出したいときは下の [def_fx] の pad= を上げる。
+;	  ステージ端は Stage の overflow:hidden で切れる（背景の外へは出ない）。
+;	・背景まで照らすには FxRunner に 2 枚目テクスチャの口を足すエンジン改造が要る（未対応）。
+;
+; パラメータ（[def_fx] シェーダの入力ポート。未指定は 0）
+;	amp   … オーラの明るさ・広がりの総合。未指定（=0）で 1.0。負値でオフ（素の立ち絵に戻す）
+;	freq  … ゆらめきの細かさ。未指定（=0）で 1.0。0.5〜2.0 目安
+;	p1    … 広がり幅の倍率。未指定（=0）で 1.0（1 で板高の約 4.5%）。0.6〜3.0 目安
+;	p2    … 脈動・呼吸の速さ。未指定（=0）で 1.0
+;	color … オーラ色（uniform vec3 color）。未指定（=vec3(0)）で紫。
+;	        color=0xffcc33 で黄金。color="#rrggbb" / color=r,g,b（各 0..1）も可
+;
+; 負荷メモ（1 パス＝立ち絵 png 実寸のクワッド。per-fragment のテクスチャ読みが主コスト）
+;	近さの場 16 方向 × 1 リング ＋ 法線用アルファ勾配 3 スケール ×4 ＝ tex 約 28 読み／画素。
+;	fbm は 4 オクターブ 7 回（ドメインワープ 2＋乱流 1＋もや土台 1＋火の粉 1＋外縁 1＋粗ムラ 1）。
+;	モバイルや巨大な立ち絵では p1／ANG を下げるか、ドメインワープを 1 段に減らす。
+;
+; ライセンス
+;	この .sn と下記 GLSL は MIT（分家 bluesnovel 本体と同じ）。コードの写しではない独自実装。
+;	技法の出どころ：
+;	  - 「輪郭の外へ滲む」：アルファの外周ダイレーション（近傍をリング状にサンプルして加重和）。
+;	    ジャンプフラッド等の距離場を 1 パスで粗く近似したもの。
+;	  - フレネル（3D メッシュの `1 - dot(viewDir, normal)`）そのものは 2D スプライトでは使えないが、
+;	    「境界線の法線」はアルファ勾配（近傍差分を数スケール合成）で取れる。ここではその法線を
+;	    もやの噴き出し方向に使う。
+;	  - ゆらめき・脈動：共通ヘッダの hash 乱数（fire/rain_window と同じ流儀）＋ tick。
+;********************************************************
+
+; --- フラグメントシェーダ本体（main() と固有 uniform だけ。共通ヘッダ
+;     precision／vTextureCoord／uSampler／tick／resolution は FxRunner が前置する） ---
+[let_ml name=g]
+uniform float amp;		// 明るさ・広がりの総合（未指定=0→1.0。負値でオフ）
+uniform float freq;	// ゆらめきの細かさ（未指定=0→1.0）
+uniform float p1;		// 広がり幅の倍率（未指定=0→1.0）
+uniform float p2;		// 脈動・呼吸の速さ（未指定=0→1.0）
+uniform vec3  color;	// オーラ色（未指定=vec3(0)→紫）
+
+// --- ハッシュ乱数（fire/rain_window と同じ流儀。mediump 前提・テクスチャ不要） ---
+float h21(vec2 p) {
+	p = fract(p * vec2(127.32, 311.7));
+	p += dot(p, p + 34.21);
+	return fract(p.x * p.y);
+}
+float vnoise(vec2 p) {
+	vec2 i = floor(p), f = fract(p);
+	f = f * f * (3.0 - 2.0 * f);
+	return mix(mix(h21(i),               h21(i + vec2(1.0, 0.0)), f.x),
+	           mix(h21(i + vec2(0.0, 1.0)), h21(i + vec2(1.0, 1.0)), f.x), f.y);
+}
+// 4 オクターブ fbm（0〜およそ 1）
+float fbm(vec2 p) {
+	float s = 0.0, a = 0.5;
+	for (int i = 0; i < 4; i++) {
+		s += a * vnoise(p);
+		p  = mat2(1.6, 1.2, -1.2, 1.6) * p;
+		a *= 0.5;
+	}
+	return s;
+}
+
+// 立ち絵 png の箱の外（CLAMP_TO_EDGE で縁が伸びる）は 0 に潰す＝オーラが png 境界で正しく消える
+float alphaAt(vec2 c) {
+	vec2 m = step(vec2(0.0), c) * step(c, vec2(1.0));
+	return texture2D(uSampler, c).a * m.x * m.y;
+}
+
+void main() {
+	vec2  uv  = vTextureCoord;
+	vec4  src = texture2D(uSampler, uv);			// 立ち絵のピクセル（ストレートアルファ）
+	float A   = src.a;							// 立ち絵シルエット
+
+	// amp 負値＝オフ。素の立ち絵をそのまま返す（記述子は残るので後から上書き可）
+	if (amp < 0.0) { gl_FragColor = src; return; }
+
+	float pw   = amp == 0.0 ? 1.0 : amp;
+	float det  = freq <= 0.0 ? 1.0 : freq;
+	float wide = p1   <= 0.0 ? 1.0 : p1;
+	float spd  = p2   <= 0.0 ? 1.0 : p2;
+	vec3  aur  = dot(color, color) > 0.0001 ? color : vec3(0.55, 0.30, 1.0);
+
+	vec2  px   = 1.0 / resolution;
+	float Rpx  = wide * resolution.y * 0.045;			// 広がりの最大半径（px）
+
+	// ゆらめき場：輪郭に沿ってノイズを上へ流す（mediump 桁落ち対策で時間は周回）
+	float ft = mod(tick, 240.0);
+	vec2  fp = vec2(uv.x, uv.y - ft * 0.32) * (4.0 + 6.0 * det);
+	float n  = fbm(fp);								// 0〜約1：粗いムラ（境界ぼかしの主因）
+	float n2 = fbm(fp * 2.3 + 11.0);					// 細かいムラ
+	float base0 = mod(tick * 0.4, 6.2831853);			// サンプル角を回してタップ本数を節約
+
+	// --- 時間ゆらぎ：ゆっくりした呼吸 × 細かいちらつき × 輪郭に沿う脈動（下限は高めに＝常に濃い） ---
+	float breath = 0.82 + 0.24 * sin(tick * 1.5 * spd);
+	float flick  = 0.86 + 0.14 * (0.55 * sin(tick * 6.0) + 0.45 * sin(tick * 15.0 + 1.7));
+	float puls   = 0.5  + 0.5  * sin(tick * 2.6 * spd + uv.y * 6.0 - n * 5.0);
+
+	// --- シルエットからの「近さ」の場（★1 段：各方向 1 リングだけ採る。均一な太縁ベース。
+	//     半径を多段で採ると「人型が何枚も重なって」見えるので、1 リング＋方向ムラ＋
+	//     per-fragment 半径ジッタで太さを散らし、外縁だけノイズで溶かす） ---
+	float prox = 0.0;
+	const int ANG = 16;		// 段数を 1 にしたぶん角度を増やして縁を滑らかに
+	for (int a = 0; a < ANG; a++) {
+		float th  = base0 + 6.2831853 * float(a) / float(ANG);
+		vec2  dir = vec2(cos(th), sin(th));
+		float reach = mix(0.70, 1.55, smoothstep(-1.0, 1.0, dir.y));		// 上方向へ長め
+		float lobe  = 0.45 + 0.95 * vnoise(fp * 0.6 + dir * 2.7 + float(a) * 1.7);	// 方向ごとに太さを変える
+		float jit   = 0.75 + 0.5 * vnoise(uv * resolution * 0.04 + base0 * 3.0 + float(a));	// 画素ごとの半径ゆらぎ
+		prox += alphaAt(uv + dir * (Rpx * 0.42 * lobe * reach * jit) * px);
+	}
+	prox = clamp(prox / float(ANG) * 1.8, 0.0, 1.0);
+
+	// 外縁を軽く溶かす（キワは残す）。presence＝帯の存在（1 リング由来。0..1）
+	float ncar = 0.60 + 0.80 * fbm(fp * 1.3 + 3.0);
+	prox = mix(prox, prox * ncar, 0.50 * (1.0 - prox));
+	float presence = smoothstep(0.02, 0.60, prox);
+
+	// --- 境界線の法線（アルファ勾配。derivatives 拡張なしなので近傍差分を 3 スケールで合成。
+	//     -勾配＝透明側へ向かう単位ベクトル＝もやの噴き出す向き） ---
+	vec2 gsum = vec2(0.0);
+	for (int s = 0; s < 3; s++) {
+		float sc = Rpx * (0.05 + 0.13 * float(s));
+		gsum += vec2(alphaAt(uv + vec2(sc, 0.0) * px) - alphaAt(uv - vec2(sc, 0.0) * px),
+		             alphaAt(uv + vec2(0.0, sc) * px) - alphaAt(uv - vec2(0.0, sc) * px));
+	}
+	float glen = length(gsum);
+	vec2  outward = glen > 1e-3 ? -gsum / glen : vec2(0.0, 1.0);		// 既定は上向き
+
+	// --- 炎：法線＋（強めの）上昇へドメインワープした乱流を流す。縦に伸ばして舌にする ---
+	vec2  flowdir = normalize(outward * 0.4 + vec2(0.0, 1.35));	// ほぼ上昇＋わずかに法線方向
+	// 舌先ほど大きく横に揺れる（presence が低い＝外側ほど waver）
+	float sway  = sin(uv.y * 9.0 - tick * 3.2 * spd + n * 4.0) * 0.16 * (1.0 - presence);
+	// 縦長スケール（x を強く＝細く縦に伸びた特徴）。上へ速く流す
+	vec2  smUV  = vec2(uv.x * (6.0 + 4.0 * det) + sway, uv.y * (2.6 + 2.0 * det)) - flowdir * (ft * 1.7);
+	vec2  warp  = vec2(fbm(smUV * 0.7), fbm(smUV * 0.7 + 4.3));	// ドメインワープ（fire の定番）
+	float turb  = fbm(smUV + warp * 1.3);
+	turb = pow(smoothstep(0.18, 0.92, turb), 1.5);				// 舌と隙間をくっきり分ける
+	// 舌は根元（presence 高）で太く、立ちのぼるほど細く千切れる
+	float flame = turb * mix(0.35, 1.15, presence) * (0.7 + 0.5 * n2);
+	float mist  = presence * flame;
+
+	// 立ちのぼる火の粉（さらに縦長・高速）
+	vec2  rp   = vec2(uv.x * (10.0 + 5.0 * det) + sway * 1.5, uv.y * 3.4) - flowdir * (ft * 2.6);
+	float wisp = smoothstep(0.66, 0.97, fbm(rp)) * presence;
+
+	// 舌先の明るい部分（発色を持ち上げる）
+	float tip  = smoothstep(0.55, 1.0, turb) * presence;
+
+	// 境界キワにうっすら常時のる分
+	float rim  = clamp(prox * 1.25 - 0.16, 0.0, 1.0) * (0.55 + 0.30 * puls);
+
+	// --- オーラ量（炎＝舌はしっかり、間は透ける） ---
+	float amt = (mist * 1.25 + wisp * 0.45 + rim * 0.42) * breath * flick * pw;
+	amt = clamp(amt, 0.0, 0.88);
+
+	// 発色：土台は指定色、舌先は明るく持ち上げる（白熱はさせず彩度を保つ）
+	vec3 gcol = aur * (0.92 + 0.28 * n2 + 0.12 * puls);
+	gcol = mix(gcol, min(aur * 1.5 + 0.35, vec3(1.0)), tip * 0.7);
+	gcol = clamp(gcol, 0.0, 1.0);
+
+	// --- 合成：立ち絵のある画素は素通し、透過画素へオーラ（オーラは立ち絵の背後。ストレートアルファ） ---
+	float aA   = amt * (1.0 - A);					// オーラは透過部にしか出さない
+	float outA = A + aA;
+	vec3  outR = outA > 0.0 ? (src.rgb * A + gcol * aA) / outA : vec3(0.0);
+
+	gl_FragColor = vec4(outR, outA);
+}
+[endlet_ml]
+
+; pad=0.28／pad_b=0：fx キャンバスを基本画像**高さ**の 28% ぶん上左右へ拡張（下端は無し
+;	＝立ち絵は grp 下端接地で足元が画面外）。エンジンがこの余白まで立ち絵 png の枠外へ描く
+[def_fx name=stand_aura glsl=&g pad=0.28]
+
+[return]

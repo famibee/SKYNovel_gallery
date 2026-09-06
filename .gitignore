@@ -4,6 +4,9 @@
 # Node.js Tools
 /node_modules/
 
+# playwright-cli スキルの作業用スクショ・スナップショット
+/.playwright-cli/
+
 *.LICENSE.txt
 *.tsbuildinfo
 
