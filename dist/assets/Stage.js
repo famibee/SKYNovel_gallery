@@ -355,7 +355,7 @@ cursor: move;
 		display: inline-block;
 		padding: 5px;
 	`,A=(e,t)=>{if(!m)return;let n=c?.[e];n&&f(n,c?.[t]??`SYS`)},j=()=>{if(o){d(o);return}u(n,r??!1,i,a)},M=e=>{e.stopPropagation(),m&&(Pu.hide(),A(`clickse`,`clicksebuf`),j())},P=()=>{c?.hint&&Pu.show(g.current,c.hint,c.hint_style,c.hint_opt)};return N(`span`,{css:D,style:c?zu(c,b):void 0,ref:g,role:`button`,tabIndex:m?0:-1,onClick:M,onKeyDown:e=>{(e.key===`Enter`||e.key===` `)&&(e.stopPropagation(),e.preventDefault(),m&&(Pu.hide(),A(`clickse`,`clicksebuf`),j()))},onMouseEnter:()=>{P(),A(`enterse`,`entersebuf`),m&&c?.onenter&&p(c.onenter,i)},onMouseLeave:()=>{Pu.hide(),A(`leavese`,`leavesebuf`),m&&c?.onleave&&p(c.onleave,i)},onFocus:P,onBlur:()=>Pu.hide(),children:[B(`span`,{css:k,ref:_,style:T.x!==1||T.y!==1?{transform:`scale(${String(T.x)}, ${String(T.y)})`}:void 0,children:e}),t.masume&&B(`span`,{style:{position:`absolute`,inset:0,boxSizing:`border-box`,background:`rgba(136, 51, 136, 0.2)`,border:`1px solid rgb(136, 51, 136)`,pointerEvents:`none`}})]})}function Vu({cmn:{styChild:e,isDesignMode:n},sty:r,nm:i,isFore:a,str:o,aCh:c,clrGen:l,ffs:u,noffs:d,bura:f,kinsoku_sol:h,kinsoku_eol:g,kinsoku_dns:_,kinsoku_bura:v,r_align:b,break_fixed:x,break_fixed_left:S,break_fixed_top:w,b_color:T,b_alpha:k,b_alpha_isfixed:A,b_src:j,styTxt:M,pl:P,pr:F,pt:I,pb:R,enabled:z,aBtn:ee,in_style:V,out_style:te,onActivate:ne,onNavigate:re,onSe:ie,onHoverCall:ae}){let oe=O(e=>e.isReadBack),se=O(e=>e.styPaging),ce=O(e=>e.isTyping),le=O(e=>e.setIsTyping),ue=O(e=>e.skipReq),de=O(e=>e.skipping),fe=O(e=>e.wait),pe=O(e=>e.hChIn),me=O(e=>e.hChOut),he=e=>pe[e??V??`default`]??C,ge=e=>me[e??te??`default`]??E,[_e,ve]=(0,W.useState)(null);(0,W.useEffect)(()=>{if(!j){ve(null);return}let e=!0,t=new Image;return t.onload=()=>{e&&ve({w:t.naturalWidth,h:t.naturalHeight})},t.src=j,()=>{e=!1}},[j]);let ye={..._e&&(!(`width`in r)||!(`height`in r))?{...r,...`width`in r?{}:{width:`${String(_e.w)}px`},...`height`in r?{}:{height:`${String(_e.h)}px`}}:r,...P===void 0?{}:{paddingLeft:`${String(P)}px`},...F===void 0?{}:{paddingRight:`${String(F)}px`},...I===void 0?{}:{paddingTop:`${String(I)}px`},...R===void 0?{}:{paddingBottom:`${String(R)}px`}},be=(0,W.useRef)(null),xe=(0,W.useRef)(null),Se=(0,W.useRef)(null),Ce=e=>{if(e.url){re(e.url);return}ne(e.label,e.call,e.fn,e.arg)},we=(0,W.useRef)([]),Te=(0,W.useRef)([]),Ee=(0,W.useRef)([]),De=(0,W.useRef)(0),Oe=(0,W.useRef)(l),ke=(0,W.useRef)([]),Ae=(0,W.useRef)(null),je=(0,W.useCallback)(()=>{let e=Ae.current;if(e){Ae.current=null;for(let t of e.anims)t.cancel();e.el.remove()}},[]),Me=(0,W.useCallback)((e,t,n)=>{let r=be.current,i=xe.current;if(!r||!i||e.length===0)return;je();let a=document.createElement(`span`);a.dataset.erase=`1`,a.style.position=`absolute`;let o=globalThis.getComputedStyle(r);for(a.style.inset=`${o.paddingTop} ${o.paddingRight} ${o.paddingBottom} ${o.paddingLeft}`,a.style.pointerEvents=`none`;i.firstChild;)a.appendChild(i.firstChild);r.appendChild(a);let s=[];if(e.forEach((e,r)=>{let i=ge(t[r]?.cos);if(i.wait<=0){e.style.display=`none`;return}let{keyframes:a,options:o}=m(i);s.push(e.animate(a,{...o,delay:i.join?n[r]??0:0}))}),s.length===0){a.remove();return}Ae.current={el:a,anims:s},Promise.allSettled(s.map(e=>e.finished)).then(()=>{Ae.current?.el===a&&je()})},[me,te,je]);(0,W.useEffect)(()=>je,[je]);let Ne=(0,W.useMemo)(()=>RegExp(`[　${d??``}]`),[d]),Pe=(0,W.useCallback)(e=>u?Ne.test(e)?``:u:``,[u,Ne]),Fe=(0,W.useMemo)(()=>new D({sol:h,eol:g,dns:_,bura:v}),[h,g,_,v]),Ie=()=>!!be.current&&globalThis.getComputedStyle(be.current).writingMode.startsWith(`vertical`);(0,W.useLayoutEffect)(()=>{if(!t.masume)return;let e=be.current,n=Se.current;if(!e||!n)return;let r=globalThis.getComputedStyle(e);n.style.inset=`${r.paddingTop} ${r.paddingRight} ${r.paddingBottom} ${r.paddingLeft}`},[P,F,I,R,M]);let[Le,Re]=(0,W.useState)({l:16,t:16});(0,W.useLayoutEffect)(()=>{if(!x)return;let e=be.current;if(!e)return;let t=globalThis.getComputedStyle(e),n=parseFloat(t.paddingLeft)||0,r=parseFloat(t.paddingTop)||0;Re(e=>e.l===n&&e.t===r?e:{l:n,t:r})},[x,P,I,M]),(0,W.useLayoutEffect)(()=>{let e=xe.current;if(!e)return;let{chWait:n,autowc:r}=O.getState();++De.current;for(let e of Ee.current)e.cancel();Ee.current=[];let i=Oe.current!==l;Oe.current=l;let a=Te.current,o=Math.min(a.length,c.length),s=0;if(!i)for(;s<o&&a[s].c===c[s].c&&a[s].r===c[s].r&&a[s].s===c[s].s&&a[s].rs===c[s].rs;)++s;we.current.length>0&&s<we.current.length&&!oe&&!de&&(Me(we.current,Te.current,ke.current),we.current=[],Te.current=[],ke.current=[],e.textContent=``),s<o&&(we.current=[],Te.current=[],ke.current=[],e.textContent=``),e.querySelectorAll(`:scope > br`).forEach(e=>e.remove());let u=we.current,d=Math.min(c.length,u.length);for(;e.childNodes.length>d;)e.removeChild(e.lastChild);for(;e.childNodes.length<d;)e.appendChild(u[e.childNodes.length]);if(c.length<=u.length){Uu(e,u,Te.current,Fe,f??!1,Ie()),le(!1);return}let p=c.slice(u.length),m=document.createDocumentFragment(),h=p.map(e=>{let n=document.createElement(`span`);return n.style.display=e.c===`
-`?`inline`:`inline-block`,t.masume&&(n.style.outline=`1px solid rgb(255, 51, 0)`,n.style.backgroundColor=`rgba(102, 204, 255, 0.5)`),n.appendChild(Gu(e,b,Ce,Pe,ie,ae)),m.appendChild(n),n});Te.current=[...Te.current,...p],u.push(...h),e.appendChild(m);{let e=0;for(let t of p){let i=he(t.cis),a=t.w??(r.enabled?r.h[t.c.at(0)??``]??0:n);i.join&&(e+=a),ke.current.push(i.join?e:0)}}if(Uu(e,u,Te.current,Fe,f??!1,Ie()),oe||de){le(!1);return}let g=De.current,_=0,v=[];if(h.forEach((e,t)=>{let i=p[t],a=he(i.cis),o=i.w??(r.enabled?r.h[i.c.at(0)??``]??0:n);if(a.join&&(_+=o/1e3),a.wait<=0)return;let{keyframes:s,options:c}=y(a);v.push(e.animate(s,{...c,delay:(a.join?_:0)*1e3}))}),v.length===0){le(!1);return}Ee.current=v,le(!0),Promise.allSettled(v.map(e=>e.finished)).then(()=>{De.current===g&&le(!1)})},[c,l,oe,Pe,V,pe,f,Fe,b]),(0,W.useEffect)(()=>{for(let e of Ee.current)e.playState!==`finished`&&e.finish();let e=Ae.current;if(e)for(let t of e.anims)t.playState!==`finished`&&t.finish()},[ue]);let ze=fe?.src??``,Be=ze.endsWith(`.json`),[Ve,He]=(0,W.useState)(void 0);(0,W.useEffect)(()=>{if(!Be){He(void 0);return}let e=!0;return H(ze).then(t=>{e&&He(t)}),()=>{e=!1}},[ze,Be]);let Ue=a&&!oe&&!ce&&fe!==null&&fe.nm===i,We=Ue&&fe.kind!==`waitclick`,Ge=We&&(!!Ve||!!ze&&!Be),Ke=Ue&&z,[qe,Je]=(0,W.useState)(!1);(0,W.useLayoutEffect)(()=>{let e=be.current;Je(!!e&&globalThis.getComputedStyle(e).writingMode.startsWith(`vertical`))},[M,r]);let Ye=Iu`
+`?`inline`:`inline-block`,t.masume&&(n.style.outline=`1px solid rgb(255, 51, 0)`,n.style.backgroundColor=`rgba(102, 204, 255, 0.5)`),n.appendChild(Gu(e,b,Ce,Pe,ie,ae)),m.appendChild(n),n});Te.current=[...Te.current,...p],u.push(...h),e.appendChild(m);{let e=0;for(let t of p){let i=he(t.cis),a=t.w??(r.enabled?r.h[t.c.at(0)??``]??0:n);i.join&&(e+=a),ke.current.push(i.join?e:0)}}if(Uu(e,u,Te.current,Fe,f??!1,Ie()),oe||de){le(!1);return}let g=De.current,_=0,v=[];if(h.forEach((e,t)=>{let i=p[t],a=he(i.cis),o=i.w??(r.enabled?r.h[i.c.at(0)??``]??0:n);if(a.join&&(_+=o/1e3),a.wait<=0)return;let{keyframes:s,options:c}=y(a);v.push(e.animate(s,{...c,delay:(a.join?_:0)*1e3}))}),v.length===0){le(!1);return}Ee.current=v,le(!0),Promise.allSettled(v.map(e=>e.finished)).then(()=>{De.current===g&&le(!1)})},[c,l,oe,Pe,V,pe,f,Fe,b]),(0,W.useEffect)(()=>{for(let e of Ee.current)e.playState!==`finished`&&e.finish();let e=Ae.current;if(e)for(let t of e.anims)t.playState!==`finished`&&t.finish()},[ue]);let ze=fe?.src??``,Be=ze.endsWith(`.json`),[Ve,He]=(0,W.useState)(void 0);(0,W.useEffect)(()=>{if(!Be){He(void 0);return}let e=!0;return H(ze).then(t=>{e&&He(t)}),()=>{e=!1}},[ze,Be]);let Ue=a&&!oe&&!ce&&fe!==null&&fe.nm===i,We=Ue&&fe.kind!==`waitclick`&&!fe.noMark,Ge=We&&(!!Ve||!!ze&&!Be),Ke=Ue&&z,[qe,Je]=(0,W.useState)(!1);(0,W.useLayoutEffect)(()=>{let e=be.current;Je(!!e&&globalThis.getComputedStyle(e).writingMode.startsWith(`vertical`))},[M,r]);let Ye=Iu`
 		display: inline-block;
 		/* **論理プロパティで書く**。縦書き（writing-mode: vertical-rl）では margin-left が
 			「次の行の方向」＝横へのずらしになってしまい、マークだけ本文から離れて隣の列へ寄る。
@@ -403,13 +403,17 @@ cursor: move;
 			立ち絵レイヤの背後（コンテキストの外）へ回り込んで見えなくなる回帰を引き起こした。
 			transformの副作用に頼らず、目的（背面固定）に合ったisolation: isolateで明示的に持たせる */
 		isolation: isolate;
-		/* **明示が要る**：sn_galleryなどBootstrapを読み込むホストは全称セレクタで
-			box-sizing: border-box をグローバルに敷いており、何も書かなければこちらが
-			それをそのまま継承してしまう（E2Eの自前テストアプリにはBootstrapが無いため
-			気付かれなかった）。[lay width=/height=]は常に「中身の寸法」という設計
-			（test/e2e/argdef.e2e.ts「pl/pr/pt/pbは文字表示領域の内側余白」参照）なので、
-			border-boxのままだと明示指定時にpx値の意味が変わってしまう（2026-08-25発覚） */
-		box-sizing: content-box;
+		/* **本家 TxtLayer.ts:112 に合わせて border-box**（＝width/height は padding 込みの外形）。
+			以前は content-box にして「[lay width=] は文字表示領域の寸法・padding は外側に足す」
+			という独自解釈を採っていたが、本家サンプル由来のテンプレ（桜の樹の下には等）は
+			[lay style="width: 310px; height: 768px; padding-left: 26px; …"] を **本家と同じ
+			border-box 前提**で書いており、content-box だと箱が padding ぶん（この例で横 62px・
+			縦 46px）膨らんでステージからはみ出していた（2026-09-07、tmp_blues 実機で発覚）。
+			本家準拠へ戻す＝[lay width=N] も b_pic 自動サイズも「N＝外形」で本家 TxtStage の
+			infTL.$width（setMySize / lay style 由来）と一致する。既定の全画面サイズは下の
+			right: 0 / bottom: 0 が担うので border-box でも padding は内側に収まる。
+			sn_gallery 等 Bootstrap 常駐ホストが全称セレクタで border-box を敷くのとも一致。 */
+		box-sizing: border-box;
 		/* 本家 TxtLayer.ts:271-272（const padding = 16;）に合わせ4辺均一の16px。
 			以前は1em 1.5em（上下24px・左右36px、非対称）だったが、本家と数値が食い違っており、
 			masumeガイド枠（CmnLib.masume）の見え方が本家（緑と青がほぼ重なり太い青一色に
@@ -459,18 +463,14 @@ cursor: move;
 			ままで、widthだけ直した直後の実機比較でmasumeガイド枠がステージ下端に届かない食い違いが
 			見つかったため同時に揃えた。
 			**widthプロパティ自体は指定せず、right: 0（下のheightも同様にbottom: 0）で表す**：
-			bluesnovelのwidth/heightは常に「中身（文字表示領域）の寸法」で、paddingはその外側に
-			足す設計（test/e2e/argdef.e2e.ts「pl/pr/pt/pbは文字表示領域の内側余白」参照）。
-			width: calc(100% - 3em)のようにpaddingを差し引く固定値でも一度試したが、
-			[lay style="padding-bottom: …px;"]でpaddingを個別変更するプロジェクト
-			（sn_galleryのline_breaking_rules）でズレて逆にステージをはみ出した。
-			right: 0ならtop/left:0と合わせて要素の外形が常にcontaining block（ステージ）
-			いっぱいになり、paddingがどんな値でもbox-sizingに関わらず内側に自動で確保される
-			（box-sizing: border-boxでpadding込み外形をステージに合わせる案も試したが、
-			[lay width=/height=]やb_picの自然サイズ調整の「常に中身の寸法」という意味が
-			壊れるため撤回した）。
-			[lay width=/height=]明示時はLay.tsのstyLay()がインラインでpx指定するので、
-			left+width+rightが揃うCSSの規則でrightは自動的に無視される（衝突しない） */
+			top/left:0 と合わせて要素の外形が常に containing block（ステージ）いっぱいになり、
+			padding がどんな値でも（上の box-sizing: border-box のもと）内側に自動で収まる。
+			width: calc(100% - 3em) のように padding を差し引く固定値でも一度試したが、
+			[lay style="padding-bottom: …px;"] で padding を個別変更するプロジェクト
+			（sn_gallery の line_breaking_rules）でズレて逆にステージをはみ出した。
+			[lay width=/height=] 明示時は Lay.ts の styLay() がインラインで px 指定するので、
+			left+width+right が揃う CSS の規則で right は自動的に無視される（衝突しない）。
+			その px 値は border-box なので padding 込みの外形＝本家 TxtStage の $width と一致する */
 		right: 0;
 		bottom: 0;
 		white-space: pre-wrap;

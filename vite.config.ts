@@ -6,7 +6,7 @@
 ** ***** END LICENSE BLOCK ***** */
 
 import type {UserConfig} from 'vite';
-import {CustomHmr} from './src/CustomHmr';
+import {CustomHmr} from './src/CustomHmr.ts';
 
 export default {
 	base: '/SKYNovel_gallery/',

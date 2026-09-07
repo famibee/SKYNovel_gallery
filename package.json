@@ -4,6 +4,7 @@
 	"description": "What can SKYNovel do? sample project",
 	"author": "famibee",
 	"license": "MIT",
+	"type": "module",
 	"dependencies": {
 		"@famibee/bluesnovel": "latest",
 		"pixi.js": "^6.5.10",

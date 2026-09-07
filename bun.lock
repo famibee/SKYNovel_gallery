@@ -75,7 +75,7 @@
 
     "@emotion/weak-memoize": ["@emotion/weak-memoize@0.4.0", "", {}, "sha512-snKqtPW01tN0ui7yu9rGv69aJXr/a/Ywvl11sUjNtEcRc+ng/mQriFL0wLXMef74iHa/EkftbDzU9F8iFbH+zg=="],
 
-    "@famibee/bluesnovel": ["@famibee/bluesnovel@0.13.0", "", { "dependencies": { "@emotion/react": "^11.14.0", "adm-zip": "^0.6.0", "electron-store": "^11.0.2", "fs-extra": "^11.4.0", "motion": "^13.2.0", "react": "^19.2.8", "react-dom": "^19.2.8", "react-moveable": "^0.56.0", "react-use": "^17.6.1", "zustand": "^5.0.15" } }, "sha512-uMUkicczmZ/LKw40fJpCMcZ2n1kQL/XIJ/WIIxd11DGjWSFDlH67ZJ/qhLv8ZtLQPu/TIm6qNmXa9Gbiis13gQ=="],
+    "@famibee/bluesnovel": ["@famibee/bluesnovel@0.14.0", "", { "dependencies": { "@emotion/react": "^11.14.0", "adm-zip": "^0.6.0", "electron-store": "^11.0.2", "fs-extra": "^11.4.0", "motion": "^13.2.0", "react": "^19.2.8", "react-dom": "^19.2.8", "react-moveable": "^0.56.0", "react-use": "^17.6.1", "zustand": "^5.0.15" } }, "sha512-tD4JuKP30j1oLivN4gztaw8ql8tYbzG4aSlnw3rEZdBHAYae5foQ0E/PJdoKCz8zWC2UqKkr5eehcUuC3uvKpA=="],
 
     "@jridgewell/gen-mapping": ["@jridgewell/gen-mapping@0.3.13", "", { "dependencies": { "@jridgewell/sourcemap-codec": "^1.5.0", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA=="],
 
