@@ -1,5 +1,14 @@
 # Change Log
 
+## v2.12.1
+- fix(blendmode サンプル): 
+	- コメントアウトされていたボタンを有効化。動く19種を3行に配置：
+		- 行1: normal / add / multiply / screen / overlay / darken
+		- 行2: lighten / color-dodge / color-burn / hard-light / soft-light / difference
+		- 行3: exclusion / hue / saturation / color / luminosity
+	- color_dodge→color-dodge 等、text=・arg= をハイフン表記に統一（engine のマップに合わせる）
+	- 「ボタン自身の blendmode」デモ（[button blendmode=]）は残し、overlay を追加
+	- CSS 非対応でエラーになる値（subtract、pixi の *_npm/src_in/xor 等）はコメントで明記
 ## v2.12.0
 - update: ライブラリ更新
 	- @famibee/skynovel_esm@2.2.1

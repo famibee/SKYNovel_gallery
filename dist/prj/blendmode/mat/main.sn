@@ -5,30 +5,41 @@
 [add_lay layer=fg1 class=grp visible=false fn=kuma425008_TP_V4]
 [add_lay layer=mes class=txt]
 
-&sn.eventArg = 'add'
+&sn.eventArg = 'normal'
 [call label=*bm]
 
+; --- blendmode（分家は CSS <blend-mode> 全種＋plus-lighter を受ける。
+;     add は CSS に同名が無いので plus-lighter へ読み替え。plus-darker は CSS の
+;     mix-blend-mode に存在しない値のためサポート対象外＝ボタンを出さない） ---
+[button text=normal       left=20  top=10 page=fore arg=normal       call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=add          left=130 top=10 page=fore arg=add          call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=multiply     left=240 top=10 page=fore arg=multiply     call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=screen       left=350 top=10 page=fore arg=screen       call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=overlay      left=460 top=10 page=fore arg=overlay      call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=darken       left=570 top=10 page=fore arg=darken       call=true label=*bm global=true style='{"fill": "tomato"}']
 
-[button text=normal left=20 top=10 page=fore arg=normal call=true label=*bm global=true style='{"fill": "tomato"}']
-[button text=add left=130 top=10 page=fore arg=add call=true label=*bm global=true style='{"fill": "tomato"}']
-[button text=multiply left=240 top=10 page=fore arg=multiply call=true label=*bm global=true style='{"fill": "tomato"}']
-[button text=screen left=350 top=10 page=fore arg=screen call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=lighten      left=20  top=40 page=fore arg=lighten      call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=color-dodge  left=130 top=40 page=fore arg=color-dodge  call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=color-burn   left=240 top=40 page=fore arg=color-burn   call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=hard-light   left=350 top=40 page=fore arg=hard-light   call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=soft-light   left=460 top=40 page=fore arg=soft-light   call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=difference   left=570 top=40 page=fore arg=difference   call=true label=*bm global=true style='{"fill": "tomato"}']
 
-; ボタンにも
-[button text=add left=130 top=40 page=fore arg=add blendmode=add call=true label=*bm global=true style='{"fill": "tomato"}']
-[button text=multiply left=240 top=40 page=fore arg=multiply blendmode=multiply call=true label=*bm global=true style='{"fill": "tomato"}']
-[button text=screen left=350 top=40 page=fore arg=screen blendmode=screen call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=exclusion    left=20  top=70 page=fore arg=exclusion    call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=hue          left=130 top=70 page=fore arg=hue          call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=saturation   left=240 top=70 page=fore arg=saturation   call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=color        left=350 top=70 page=fore arg=color        call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=luminosity   left=460 top=70 page=fore arg=luminosity   call=true label=*bm global=true style='{"fill": "tomato"}']
 
-	;==== これ以降が効いてない
-;[button text=overlay left=460 top=10 page=fore arg=overlay call=true label=*bm global=true style='{"fill": "tomato"}']
-;[button text=darken left=570 top=10 page=fore arg=darken call=true label=*bm global=true style='{"fill": "tomato"}']
+; ボタン自身の blendmode（[button blendmode=]。fg レイヤではなくボタンが背景と混ざる）
+[button text=add      left=130 top=430 page=fore arg=add      blendmode=add      call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=multiply left=240 top=430 page=fore arg=multiply blendmode=multiply call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=screen   left=350 top=430 page=fore arg=screen   blendmode=screen   call=true label=*bm global=true style='{"fill": "tomato"}']
+[button text=overlay  left=460 top=430 page=fore arg=overlay  blendmode=overlay  call=true label=*bm global=true style='{"fill": "tomato"}']
 
-;[button text=lighten left=20 top=430 page=fore arg=lighten call=true label=*bm global=true style='{"fill": "tomato"}']
-;[button text=color_dodge left=130 top=430 page=fore arg=color_dodge call=true label=*bm global=true style='{"fill": "tomato"}']
-;[button text=color_burn left=240 top=430 page=fore arg=color_burn call=true label=*bm global=true style='{"fill": "tomato"}']
-;[button text=hard_light left=350 top=430 page=fore arg=hard_light call=true label=*bm global=true style='{"fill": "tomato"}']
-;[button text=soft_light left=460 top=430 page=fore arg=soft_light call=true label=*bm global=true style='{"fill": "tomato"}']
-;[button text=difference left=570 top=430 page=fore arg=difference call=true label=*bm global=true style='{"fill": "tomato"}']
+; CSS の mix-blend-mode に無い値はエラー：
+;   減算 subtract、Canvas 2D 専用の plus-darker、pixi 合成オペレータ normal_npm/add_npm/screen_npm/none/
+;   src_in/src_out/src_atop/dst_over/dst_in/dst_out/dst_atop/src_over/erase/xor
 
 [s]
 
@@ -38,31 +49,6 @@
 	[lay layer=fg0 blendmode=&bm right=300 top=100 visible=true]
 	[lay layer=fg1 blendmode=&bm  left=450 top=100 visible=true]
 	[return]
-
-
-		'exclusion'	
-		'hue'		
-		'saturation'
-		'color'		
-		'luminosity'
-
-		'normal_npm'
-		'add_npm'	
-		'screen_npm'
-		'none'		
-		'src_in'	
-		'src_out'	
-		'src_atop'	
-		'dst_over'	
-		'dst_in'	
-		'dst_out'	
-		'dst_atop'	
-		'subtract'	
-		'src_over'	
-		'erase'		
-		'xor'		
-
-
 
 *init
 	[event key='dom=#snapshot' label=*snapshot global=true call=true need_err=false]

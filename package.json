@@ -6,14 +6,14 @@
 	"license": "MIT",
 	"type": "module",
 	"dependencies": {
-		"@famibee/bluesnovel": "latest",
+		"@famibee/bluesnovel": "^0.15.1",
 		"pixi.js": "^6.5.10",
-		"three": "^0.185.1"
+		"three": "^0.186.0"
 	},
 	"devDependencies": {
 		"@types/three": "^0.185.4",
 		"typescript": "6.0.3",
-		"vite": "^8.2.2"
+		"vite": "^8.3.0"
 	},
 	"scripts": {
 		"start": "vite --open",

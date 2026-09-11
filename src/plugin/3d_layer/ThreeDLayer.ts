@@ -8,6 +8,7 @@
 import type {TArg, T_PluginInitArg} from '@famibee/bluesnovel/web';
 import {PlgLayer, argChk_Num, argChk_Boolean} from '@famibee/bluesnovel/web';
 import type {AnimationClip, AnimationMixer, Camera, Mesh, Object3D, Object3DEventMap, Scene} from 'three';
+import * as THREE from 'three';
 import {Material, MeshBasicMaterial} from 'three';
 
 /// <reference path="./effekseer.d.ts" />
@@ -23,7 +24,7 @@ export class ThreeDLayer extends PlgLayer {
 	static	THREE			: any;
 	static	OrbitControls	: any;
 	static	GLTFLoader		: any;
-	static	async init() {ThreeDLayer.THREE ??= await import('three')}
+	static	init() {ThreeDLayer.THREE ??= THREE}
 //	static	async init() {globalThis.THREE ??= await import('three');}	// 2024/3/30まで
 
 	#scene_3D;
